@@ -1,27 +1,27 @@
 using System;
 using System.IO; // File In/Out
  
-public class GrocceryApplication {
-    private static GrocceryList grocceryList;
+public class FreezerExpireyApplication {
+    private static FreezerList grocceryList;
 
     static public void Main(){
-        Console.WriteLine("Groccery Application Started!");
-        grocceryList = new GrocceryList();
+        Console.WriteLine("FreezerExpirey Application Started!");
+        grocceryList = new FreezerList();
         grocceryList.fillFromFile("list1.txt");
         grocceryList.defaultPrint();
     }
 }
 
-public class GrocceryList {
-    private SinglyLinkedList<GrocceryItem> grocceryItems;
+public class FreezerList {
+    private SinglyLinkedList<FreezerItem> grocceryItems;
     
-    public GrocceryList(){
-        this.grocceryItems = new SinglyLinkedList<GrocceryItem>();   
+    public FreezerList(){
+        this.grocceryItems = new SinglyLinkedList<FreezerItem>();   
     }
 
     public void defaultPrint(){
         int grocceryListLength = this.grocceryItems.getLength();
-        Console.WriteLine("GrocceryList (" + grocceryListLength + "):");
+        Console.WriteLine("FreezerList (" + grocceryListLength + "):");
         for (int i = 0; i < this.grocceryItems.getLength(); i++){
             Console.WriteLine(grocceryItems.getItem(i).getName());
         }
@@ -38,11 +38,11 @@ public class GrocceryList {
         String[] lines = fileText.Split("\n");
 
         for (int i = 0; i < lines.Length; i++){
-            this.addItem(GrocceryItem.readFromFileString(lines[i]));
+            this.addItem(FreezerItem.readFromFileString(lines[i]));
         }
     }
 
-    public void addItem(GrocceryItem item){
+    public void addItem(FreezerItem item){
         this.grocceryItems.add(item);
     }
 }
@@ -116,17 +116,28 @@ public class SinglyLinkedList<T> {
     }
 }
 
-public class GrocceryItem{
+public class FreezerItem{
     private String name;
+    private int quantity;
+    private long expireyMS;
     
-    public GrocceryItem(String name){
+    public FreezerItem(String name, int quantity, long expireyMS){
         this.name = name;
+        this.quantity = quantity;
+        this.expireyMS = expireyMS;
     }
 
     public String getName(){ return this.name; }
     public void setName(String name){ this.name = name; }
 
-    public static GrocceryItem readFromFileString(String lineText){
-        return new GrocceryItem(lineText);
+    public int getQuantity(){ return this.quantity; }
+    public void setQuantity(int quantity){ this.quantity = quantity; }
+
+    public long getExpireyMS(){ return this.expireyMS; }
+    public void setExpireyMS(long expireyMS){ this.expireyMS = expireyMS; }
+
+    public static FreezerItem readFromFileString(String lineText){
+        String[] lineItemStrings = lineText.Split(",");
+        return new FreezerItem(lineTextSplit[0], int.Parse(lineTextSplit[1]), long.Parse(lineTextSplit[2]));
     }
 }
