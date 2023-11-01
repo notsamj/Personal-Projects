@@ -1,2 +1,2 @@
-mcs -out:groccery.exe groccery.cs
-mono groccery.exe
+mcs -out:food_expirey.exe food_expirey.cs
+mono food_expirey.exe
