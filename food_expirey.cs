@@ -31,9 +31,7 @@ public class FoodList {
 
     public void printExpireyList(){
         this.sort();
-        Console.WriteLine("here5");
         int grocceryListLength = this.foodItems.getLength();
-        Console.WriteLine("here6");
         Console.WriteLine("FoodList with details (" + grocceryListLength + "):");
         for (int i = 0; i < this.foodItems.getLength(); i++){
             Console.WriteLine(foodItems.getItem(i).getFullDisplay());
@@ -49,19 +47,14 @@ public class FoodList {
         while (!sorted){
             sorted = true;
             for (int i = 0; i < this.foodItems.getLength() - 1; i++){
-                Console.WriteLine("here9");
                 FoodItem item1 = foodItems.getItem(i);
                 FoodItem item2 = foodItems.getItem(i+1);
                 if (item1.getExpireyMS() > item2.getExpireyMS()){
-                    Console.WriteLine("Swapping");
                     foodItems.swap(i, i+1);
                     sorted = false;
                 }
-                Console.WriteLine("here4 " + i.ToString());
             }
-            Console.WriteLine("here8");
         }
-        Console.WriteLine("here7");
     }
 
     public void fillFromFile(String fileName){
@@ -134,6 +127,17 @@ public class SinglyLinkedList<T> {
         return currentNode.getData();
     }
 
+        // Returns null if itemIndex > length(linked_list)
+    public SLLNode<T> getNode(int itemIndex){
+        int currentIndex = 0;
+        SLLNode<T> currentNode = this.head;
+        while(currentIndex < itemIndex){
+            currentNode = currentNode.getNext();
+            currentIndex++;
+        }
+        return currentNode;
+    }
+
     public void add(T newElement){
         SLLNode<T> newNode = new SLLNode<T>(newElement);
 
@@ -162,54 +166,29 @@ public class SinglyLinkedList<T> {
         if (index2 < index1){
             lowerIndex = index2;
             higherIndex = index1;
+        }else if (index1 == index2){
+            return;
         }
 
-        SLLNode<T> currentNode = this.head;
-        int currentIndex = 0;
+        SLLNode<T> lowerNode = this.getNode(lowerIndex);
+        SLLNode<T> higherNode = this.getNode(higherIndex);
+        SLLNode<T> lowerNodeNewNext = higherNode.getNext();
+        SLLNode<T> nodeBeforeHigherNode = this.getNode(higherIndex - 1);
 
-        Console.WriteLine("here1");
-        // Arrive at node prior to the lower node
-        while (currentIndex < lowerIndex - 1){
-            currentNode = currentNode.getNext();
-            currentIndex++;
-        }
-        Console.WriteLine("here2");
-
-        // Now currentIndex is at the node who's next attribute is that of the lower item
-        SLLNode<T> priorToLowerSwappingNode = currentNode;
-        SLLNode<T> lowerSwappingNode = currentNode.getNext();
-        // Special case when lowerswapping node is the first node
+        // If lower node is the head then handle by changing head
         if (lowerIndex == 0){
-            lowerSwappingNode = currentNode;
+            this.head = higherNode;
+        }else{ // Otherwise attached one below previous lower to new higher
+            this.getNode(lowerIndex - 1).setNext(higherNode);
         }
-        SLLNode<T> afterLowerSwappingNode = currentNode.getNext();
-
-        // Arrive at node prior to the higher node
-        while (currentIndex < higherIndex - 1){
-            currentNode = currentNode.getNext();
-            currentIndex++;
+        // If they are next to one another then higher attaches to lower
+        if (higherIndex - lowerIndex == 1){
+            higherNode.setNext(lowerNode);
+        }else{ // Otherwise higher gets lower's next and the old before higher node gets lower as its next
+            higherNode.setNext(lowerNode.getNext());
+            nodeBeforeHigherNode.setNext(lowerNode);
         }
-        Console.WriteLine("here3");
-
-        SLLNode<T> priorToHigherSwappingNode = currentNode;
-        SLLNode<T> higherSwappingNode = currentNode.getNext();
-        SLLNode<T> afterHigherSwappingNode = currentNode.getNext();
-
-        // Set previous node and next node for the higher swapping node
-
-        // If the lower node is 0 then the prior doesn't exist
-        if (lowerIndex > 0){
-            priorToLowerSwappingNode.setNext(higherSwappingNode);
-        }else{
-            this.head = higherSwappingNode;
-        }
-        
-        higherSwappingNode.setNext(afterLowerSwappingNode);
-
-
-        // Set previous node and next node for the lower swapping node
-        priorToHigherSwappingNode.setNext(lowerSwappingNode);
-        lowerSwappingNode.setNext(afterHigherSwappingNode);
+        lowerNode.setNext(lowerNodeNewNext);
     }
 }
 
