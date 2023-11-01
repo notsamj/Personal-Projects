@@ -1,4 +1,5 @@
 using System;
+using System.IO; // File In/Out
  
 public class GrocceryApplication {
     private static GrocceryList grocceryList;
@@ -6,6 +7,7 @@ public class GrocceryApplication {
     static public void Main(){
         Console.WriteLine("Groccery Application Started!");
         grocceryList = new GrocceryList();
+        grocceryList.fillFromFile("list1.txt");
         grocceryList.defaultPrint();
     }
 }
@@ -24,26 +26,49 @@ public class GrocceryList {
             Console.WriteLine(grocceryItems.getItem(i).getName());
         }
     }
+
+    public void fillFromFile(String fileName){
+        if (!File.Exists(fileName)){
+            Console.WriteLine("Unable to read: " + fileName);
+            return;
+        }
+
+        // File exists time to read it
+        String fileText = File.ReadAllText(fileName);
+        String[] lines = fileText.Split("\n");
+
+        for (int i = 0; i < lines.Length; i++){
+            this.addItem(GrocceryItem.readFromFileString(lines[i]));
+        }
+    }
+
+    public void addItem(GrocceryItem item){
+        this.grocceryItems.add(item);
+    }
 }
 
 public class SinglyLinkedList<T> {
     private SLLNode<T> head;
 
-    public class SLLNode<T>{
-        private T data;
-        private SLLNode<T> next;
+    public class SLLNode<U>{
+        private U data;
+        private SLLNode<U> next;
 
-        public SLLNode(T data){
+        public SLLNode(U data){
             this.data = data;
             this.next = null;
         }
 
-        public SLLNode<T> getNext(){
+        public SLLNode<U> getNext(){
             return this.next;
         }
 
-        public T getData(){
+        public U getData(){
             return this.data;
+        }
+
+        public void setNext(SLLNode<U> node){
+            this.next = node;
         }
     }
 
@@ -71,6 +96,24 @@ public class SinglyLinkedList<T> {
         }
         return currentItem.getData();
     }
+
+    public void add(T newElement){
+        SLLNode<T> newNode = new SLLNode<T>(newElement);
+
+        // If list is empty then set head to new element
+        if (this.head == null){
+            this.head = newNode;
+            return;
+        }
+
+        // Else add it to the end
+        SLLNode<T> head = this.head;
+        while (head.getNext() != null){
+            head = head.getNext(); 
+        }
+        // head is now the last element
+        head.setNext(newNode);
+    }
 }
 
 public class GrocceryItem{
@@ -82,4 +125,8 @@ public class GrocceryItem{
 
     public String getName(){ return this.name; }
     public void setName(String name){ this.name = name; }
+
+    public static GrocceryItem readFromFileString(String lineText){
+        return new GrocceryItem(lineText);
+    }
 }
