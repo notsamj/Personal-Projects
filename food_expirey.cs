@@ -2,7 +2,16 @@ using System;
 using System.IO; // File In/Out
 using System.Globalization; // Current time
 using System.Text.RegularExpressions; // Regex
- 
+/*Project Background
+    This project is a proof of concept for a system that may encourage myself to consume
+    more variety of foods by being better able to keep track of their expirey. 
+    
+    This is the sole coding example I plan to make in C# as I'm not very fond of the language.
+
+    I have neglected including extensive documentation as I feel it would be overkill for a project I am
+    not all that fond of. If I had instead written this in javascript with a nice frontend I may have liked
+    it more and seen fit to provide nice documentation.
+*/
 public class FoodExpireyApplication {
     private static Regex ITEM_NAME_REGEX = new Regex("^[a-zA-Z0-9 ]{1,20}$");
     private static Regex ITEM_QUANTITY_REGEX = new Regex("^[0-9]{1,5}$");
@@ -12,9 +21,6 @@ public class FoodExpireyApplication {
     public static void Main(){
         Console.WriteLine("FoodExpirey Application Started!");
         grocceryList = new FoodList();
-        //grocceryList.fillFromFile("list1.txt");
-        //grocceryList.defaultPrint();
-        //grocceryList.printExpireyList();
 
         bool continueRunning = true;
         while (continueRunning){
