@@ -11,6 +11,9 @@ using System.Text.RegularExpressions; // Regex
     I have neglected including extensive documentation as I feel it would be overkill for a project I am
     not all that fond of. If I had instead written this in javascript with a nice frontend I may have liked
     it more and seen fit to provide nice documentation.
+
+    I cut off my work where I did, with little instruction on program useage, because I would like to move on
+    to making similarly small projects in other languages and got bored of the project idea.
 */
 public class FoodExpireyApplication {
     private static Regex ITEM_NAME_REGEX = new Regex("^[a-zA-Z0-9 ]{1,20}$");
