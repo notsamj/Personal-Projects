@@ -1,24 +1,167 @@
 using System;
 using System.IO; // File In/Out
 using System.Globalization; // Current time
+using System.Text.RegularExpressions; // Regex
  
 public class FoodExpireyApplication {
+    private static Regex ITEM_NAME_REGEX = new Regex("^[a-zA-Z0-9 ]{1,20}$");
+    private static Regex ITEM_QUANTITY_REGEX = new Regex("^[0-9]{1,5}$");
+    private static Regex EXPIREY_DATE_REGEX = new Regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
     private static FoodList grocceryList;
 
-    static public void Main(){
+    public static void Main(){
         Console.WriteLine("FoodExpirey Application Started!");
         grocceryList = new FoodList();
-        grocceryList.fillFromFile("list1.txt");
+        //grocceryList.fillFromFile("list1.txt");
         //grocceryList.defaultPrint();
+        //grocceryList.printExpireyList();
+
+        bool continueRunning = true;
+        while (continueRunning){
+            Console.Write("Please enter your request: ");
+            continueRunning = processRequest(Console.ReadLine());
+        }
+    }
+
+    private static bool processRequest(String requestText){
+        if (requestText == "quit"){
+            return false;
+        }else if (requestText == "add"){
+            userAdd();
+        }else if (requestText == "remove"){
+            userRemove();
+        }else if (requestText == "status"){
+            userStatus();
+        }else if (requestText == "load"){
+            userLoad();
+        }else if (requestText == "help"){
+            userHelp();
+        }else{
+            Console.WriteLine("Unknown command. Type \"help\" for help!");
+        }
+        return true;
+    }
+
+    private static void userHelp(){
+        Console.WriteLine("Command List:");
+        Console.WriteLine("load - load a list");
+        Console.WriteLine("add - add an item to a list");
+        Console.WriteLine("remove - remove an item from a list");
+        Console.WriteLine("status - view the expirey status of items on the list");
+        Console.WriteLine("quit - quit the application");
+        Console.WriteLine("help - ask for help");
+    }
+
+
+    private static void userLoad(){
+        if (grocceryList.isLoaded()){
+            Console.WriteLine("File already loaded.");
+            return;
+        }
+
+        Console.Write("Please enter the file name: ");
+        String fileName = Console.ReadLine();
+        grocceryList.load(fileName);
+        if (grocceryList.isLoaded()){
+            Console.WriteLine("File loaded!");
+        }
+    }
+
+    private static void userRemove(){
+        if (!grocceryList.isLoaded()){
+            Console.WriteLine("Please load a list first.");
+            return;
+        }
+        Console.Write("Please enter the item name: ");
+        String itemName = readMatchingInput(ITEM_NAME_REGEX);
+        bool removed = grocceryList.removeByName(itemName);
+        if (removed){
+            Console.WriteLine("'{0}' removed!", itemName);
+        }else{
+            Console.WriteLine("'{0}' not found!", itemName);
+        }
+    }
+
+    private static void userStatus(){
+        if (!grocceryList.isLoaded()){
+            Console.WriteLine("Please load a list first.");
+            return;
+        }
         grocceryList.printExpireyList();
     }
+
+    private static void userAdd(){
+        if (!grocceryList.isLoaded()){
+            Console.WriteLine("Please load a list first.");
+            return;
+        }
+        Console.Write("Please enter the item name: ");
+        String itemName = readMatchingInput(ITEM_NAME_REGEX);
+
+        Console.Write("Please enter the item quantity: ");
+        String itemQuantityStr = readMatchingInput(ITEM_QUANTITY_REGEX);
+        int itemQuantity = int.Parse(itemQuantityStr);
+
+        Console.Write("Please enter the expirey date: ");
+        DateTime date = readDate();
+        DateTimeOffset dateTimeOffset = new DateTimeOffset(date.ToUniversalTime());
+        long expireMS = dateTimeOffset.ToUnixTimeMilliseconds();
+
+        grocceryList.addItem(new FoodItem(itemName, itemQuantity, expireMS));
+        Console.WriteLine("Added!");
+    }
+
+    private static DateTime readDate(){
+        DateTime date = new DateTime(); // empty DateTime() value never used just for preventing error messages
+        String dateString;
+        bool matchFound = false;
+        while (!matchFound){
+            dateString = readMatchingInput(EXPIREY_DATE_REGEX);
+            matchFound = DateTime.TryParse(dateString, out date);
+            if (!matchFound){
+                Console.WriteLine("Invalid date. Please try again.");
+                Console.Write("Your input: ");
+            }
+        }
+
+        return date;
+    }
+
+    private static String readMatchingInput(Regex regex){
+        String inputStr = "";
+        bool matchFound = false;
+        while (!matchFound){
+            inputStr = Console.ReadLine();
+            matchFound = regexMatchFound(regex, inputStr);
+            if (!matchFound){
+                Console.WriteLine("Invalid input. Please try again in format: " + regex.ToString());
+                Console.Write("Your input: ");
+            }
+        }
+        return inputStr;
+    }
+
+    private static bool regexMatchFound(Regex regex, String str){
+        return regex.Matches(str).Count > 0;
+    }
+
 }
 
 public class FoodList {
     private SinglyLinkedList<FoodItem> foodItems;
+    private String fileName;
     
     public FoodList(){
-        this.foodItems = new SinglyLinkedList<FoodItem>();   
+        this.foodItems = new SinglyLinkedList<FoodItem>();
+        this.fileName = "";   
+    }
+
+    public void load(String fileName){
+        this.fillFromFile(fileName);
+    }
+
+    public bool isLoaded(){
+        return this.fileName != "";
     }
 
     public void defaultPrint(){
@@ -62,8 +205,8 @@ public class FoodList {
             Console.WriteLine("Unable to read: " + fileName);
             return;
         }
-
         // File exists time to read it
+        this.fileName = fileName;
         String fileText = File.ReadAllText(fileName);
         String[] lines = fileText.Split("\n");
 
@@ -72,8 +215,48 @@ public class FoodList {
         }
     }
 
+    public void saveToFile(){
+        if (!this.isLoaded()){
+            return;
+        }
+        File.WriteAllText(this.fileName, this.getFileText());
+    }
+
+    private String getFileText(){
+        String fileText = "";
+        int foodItemsLength = this.foodItems.getLength();
+        for (int i = 0; i < foodItemsLength; i++){
+            fileText += foodItems.getItem(i).toFileString();
+            if (i != foodItemsLength - 1){
+                fileText += "\n";
+            }
+        }
+        return fileText;
+    }
+
     public void addItem(FoodItem item){
         this.foodItems.add(item);
+        this.saveToFile();
+    }
+
+    public bool removeByName(String name){
+        int foodItemsLength = this.foodItems.getLength();
+        int itemIndex = -1;
+        this.foodItems.sort(); // Must be sorted because you are assumed to remove the closest to expirey first
+        for (int i = 0; i < foodItemsLength; i++){
+            FoodItem item = this.foodItems.getItem(i);
+            if (item.getName() == name){
+                itemIndex = i;
+                break;
+            }
+        }
+
+        if (itemIndex == -1){
+            return false;
+        }
+        this.foodItems.removeAtIndex(itemIndex);
+        this.saveToFile();
+        return true;
     }
 }
 
@@ -190,6 +373,23 @@ public class SinglyLinkedList<T> {
         }
         lowerNode.setNext(lowerNodeNewNext);
     }
+
+    public void removeAtIndex(int indexToRemoveAt){
+        int listLength = this.getLength();
+        if (listLength == 0 || indexToRemoveAt < 0 || indexToRemoveAt >= listLength){
+            return;
+        }else if (indexToRemoveAt == 0){
+            this.head = this.head.getNext();
+            return;
+        }
+
+        // After the elimination of the above possitibilites, we know this is a valid index > 0
+        
+        // Remove and attach it's next to node below
+        SLLNode<T> nodeBelow = this.getNode(indexToRemoveAt - 1);
+        SLLNode<T> nodeToRemove = nodeBelow.getNext();
+        nodeBelow.setNext(nodeToRemove.getNext());
+    }
 }
 
 public class FoodItem{
@@ -249,5 +449,9 @@ public class FoodItem{
             currentDateString += "s";
         }
         return currentDateString + end;
+    }
+
+    public String toFileString(){
+        return this.name.ToString() + "," + this.quantity.ToString() + "," + this.expireyMS.ToString();
     }
 }
