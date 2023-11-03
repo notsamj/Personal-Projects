@@ -1,12 +1,22 @@
 #include <stdio.h>
 #include<sys/socket.h>
 #include<arpa/inet.h>
+#include<pthread.h>
+
+// These ones are unknown if needed
+#include<unistd.h>
+#include<netdb.h>
+#include<stdlib.h>
+#include<string.h>
+#include<stdbool.h>
+#include<time.h>
 
 #define MAX_MESSAGE_SIZE 4096
 #define STANDARD_STRING_SIZE 128
 #define USERNAME_SIZE 32
 #define PASSWORD_SIZE 32
 #define MAX_CLIENTS 16
+#define APPLICATION_PORT 27015 // Using default steam game port
 
 // Global variables
 char chatroomPassword[PASSWORD_SIZE] = {};
@@ -15,12 +25,13 @@ int clients[MAX_CLIENTS] = {};
 int numClients = 0;
 
 // Declare functions
-void communicateWithClient(void*);
-void sendMessageToClient(int, char*, char*, int);
+void* communicateWithClient(void*);
+void sendToClient(int, char*, int);
 void readProgramInformation();
 void addClient(int);
 void removeClient(int);
 void sendToAllClientsExcept(char*, int, int);
+void receiveFromClient(int, char*, int);
 
 // Function bodies
 
@@ -41,7 +52,7 @@ int main(int argc, char const *argv[]){
 	struct sockaddr_in serverAddress;
 	serverAddress.sin_family = AF_INET;
 	serverAddress.sin_addr.s_addr = INADDR_ANY;
-	serverAddress.sin_port = htons(CHOSEN_PORT);
+	serverAddress.sin_port = htons(APPLICATION_PORT);
 	int addressLength = sizeof(serverAddress);
 
 	// Binding and listening
@@ -56,10 +67,10 @@ int main(int argc, char const *argv[]){
 		return 1;
 	}
 
-	int clientSocket; // Temporary variable will be used for each new client
+	int clientSocket = 0; // Temporary variable will be used for each new client
 
-	// Run without stopping
-	while(true){
+	// Run until an error
+	while(clientSocket >= 0){
 		clientSocket = accept(serverSocket, (struct sockaddr *) &serverAddress, (socklen_t *) &addressLength);
 		// If client socket has a negative number, it is bad and should be ignored
 		if (clientSocket < 0){
@@ -71,14 +82,14 @@ int main(int argc, char const *argv[]){
 		}
 		// Create a thread for communication
 		pthread_t childID;
-		pthread_create(&childID, NULL, communicateWithClient, (void *) &clientSocket);
+		pthread_create(&childID, NULL, &communicateWithClient, (void *) &clientSocket);
 	}
 
 	// Unreachable connectly, may change my mind
 	close(serverSocket);
 }
 
-void communicateWithClient(void* clientSocketVoid){
+void* communicateWithClient(void* clientSocketVoid){
 	const int* CLIENT_SOCKET = (int*) clientSocketVoid; // Cast due to known value
 	int clientSocket = *CLIENT_SOCKET; // Move the value to a convinient variable
 	char receivingBuffer[MAX_MESSAGE_SIZE] = {};
@@ -118,7 +129,7 @@ void communicateWithClient(void* clientSocketVoid){
 			sendToAllClientsExcept(sendingBuffer, sizeof(sendingBuffer), clientSocket);
 		}
 	}else{
-		strcpy(sendingBuffer, "Invalid password.\nPlease restart the application.");
+		strcpy(sendingBuffer, "Invalid password.\nPlease restart the application.\n");
 		sendToClient(clientSocket, sendingBuffer, sizeof(sendingBuffer));
 	}
 
@@ -127,8 +138,9 @@ void communicateWithClient(void* clientSocketVoid){
 	pthread_exit(NULL);
 }
 
-void sendMessageToClient(int clientSocket, char* buffer, int bufferSize){
+void sendToClient(int clientSocket, char* buffer, int bufferSize){
 	// Send contents of the buffer
+	printf("Sending %s to %d\n", buffer, clientSocket);
 	send(clientSocket, buffer, bufferSize, 0);
 	// Clear the buffer
 	strcpy(buffer, "");
@@ -152,7 +164,7 @@ void readProgramInformation(){
 }
 
 void addClient(int clientID){
-	printf("Client Socket:%d\n", clientSocket);
+	printf("Client Socket:%d\n", clientID);
 	clients[numClients++] = clientID;
 }
 
@@ -175,6 +187,16 @@ void sendToAllClientsExcept(char* buffer, int bufferSize, int clientSocket){
 		if (clientSocket == clients[i]){
 			continue;
 		}
-		sendMessageToClient(clients[i], buffer, bufferSize);
+		sendToClient(clients[i], buffer, bufferSize);
+	}
+}
+
+void receiveFromClient(int clientSocket, char* receivingBuffer, int bufferSize){
+	int received = recv(clientSocket, receivingBuffer, bufferSize, 0);
+
+	// if there was an error
+	if (received == 0){
+		printf("Error receving data.\n");
+		return;
 	}
 }

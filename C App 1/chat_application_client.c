@@ -1,17 +1,27 @@
 #include <stdio.h>
 #include<sys/socket.h>
 #include<arpa/inet.h>
+#include<pthread.h>
+
+// Unknown if needed
+#include<unistd.h>
+#include<sys/socket.h>
+#include<netdb.h>
+#include<stdlib.h>
+#include<string.h>
+#include<stdbool.h>
 
 #define APPLICATION_PORT 27015 // Using the usual steam game port
 #define MAX_MESSAGE_SIZE 4096
 #define USERNAME_SIZE 32
+#define STANDARD_STRING_SIZE 32
 
 char quitCommand[STANDARD_STRING_SIZE] = {}; // Making it standard string size if provided one is too big then it's seen as the user's fault
 
 void receiveFromServer(int, char*, int);
 void sendToServer(int, char*, int);
 void readProgramInformation();
-void receiveAndPrint(void*);
+void* receiveAndPrint(void*);
 
 int main(int argc, char const *argv[]){
 	int clientSocket;
@@ -62,7 +72,7 @@ int main(int argc, char const *argv[]){
 
 	// Create a thread for communication
 	pthread_t childID;
-	pthread_create(&childID, NULL, receiveAndPrint, (void *) &clientSocket);
+	pthread_create(&childID, NULL, &receiveAndPrint, (void *) &clientSocket);
 
 	bool quitProgram = false;
 
@@ -71,6 +81,7 @@ int main(int argc, char const *argv[]){
 		printf("%s: ", userName);
 		scanf("%s", sendingBuffer);
 		sendToServer(clientSocket, sendingBuffer, sizeof(sendingBuffer));
+		quitProgram = strcmp(sendingBuffer, quitCommand) == 0;
 	}
 	close(clientSocket);
 	return 0;
@@ -107,7 +118,7 @@ void sendToServer(int clientSocket, char* sendingBuffer, int bufferSize){
 	send(clientSocket, sendingBuffer, bufferSize, 0);
 }
 
-void receiveAndPrint(void* clientSocketVoid){
+void* receiveAndPrint(void* clientSocketVoid){
 	const int* CLIENT_SOCKET = (int*) clientSocketVoid; // Cast due to known value
 	int clientSocket = *CLIENT_SOCKET; // Move the value to a convinient variable
 	char receivingBuffer[MAX_MESSAGE_SIZE] = {};
