@@ -4,10 +4,14 @@
 
 #define APPLICATION_PORT 27015 // Using the usual steam game port
 #define MAX_MESSAGE_SIZE 4096
+#define USERNAME_SIZE 32
 
 char quitCommand[STANDARD_STRING_SIZE] = {}; // Making it standard string size if provided one is too big then it's seen as the user's fault
 
+void receiveFromServer(int, char*, int);
+void sendToServer(int, char*, int);
 void readProgramInformation();
+void receiveAndPrint(void*);
 
 int main(int argc, char const *argv[]){
 	int clientSocket;
@@ -33,13 +37,40 @@ int main(int argc, char const *argv[]){
 		return 1;
 	}
 
-	char sendingBuffer[STRING_SIZE] = {};
-	char receivingBuffer[STRING_SIZE] = {};
+	char sendingBuffer[MAX_MESSAGE_SIZE] = {};
+	char receivingBuffer[MAX_MESSAGE_SIZE] = {};
+	char userName[USERNAME_SIZE] = {};
+
+	// Handle "login-in process"
+
+	// Get request to login
+	receiveFromServer(clientSocket, receivingBuffer, sizeof(receivingBuffer));
+	printf(receivingBuffer);
+
+	// Send username
+	scanf("%s", sendingBuffer);
+	strcpy(userName, sendingBuffer);
+	sendToServer(clientSocket, sendingBuffer, sizeof(sendingBuffer));
+
+	// Get request for password
+	receiveFromServer(clientSocket, receivingBuffer, sizeof(receivingBuffer));
+	printf(receivingBuffer);
+
+	// Send password
+	scanf("%s", sendingBuffer);
+	sendToServer(clientSocket, sendingBuffer, sizeof(sendingBuffer));
+
+	// Create a thread for communication
+	pthread_t childID;
+	pthread_create(&childID, NULL, receiveAndPrint, (void *) &clientSocket);
 
 	bool quitProgram = false;
+
 	// Run until user writes the quit command
 	while (!quitProgram){
-		// TODO
+		printf("%s: ", userName);
+		scanf("%s", sendingBuffer);
+		sendToServer(clientSocket, sendingBuffer, sizeof(sendingBuffer));
 	}
 	close(clientSocket);
 	return 0;
@@ -60,4 +91,28 @@ void readProgramInformation(){
 	fgets(quitCommand, sizeof(quitCommand), dataFile);
 
 	fclose(dataFile);
+}
+
+void receiveFromServer(int clientSocket, char* receivingBuffer, int bufferSize){
+	int received = recv(clientSocket, receivingBuffer, bufferSize, 0);
+
+	// if error receiving 
+	if (received == 0){
+		printf("Error receving data from the server.\n");
+		return;
+	}
+}
+
+void sendToServer(int clientSocket, char* sendingBuffer, int bufferSize){
+	send(clientSocket, sendingBuffer, bufferSize, 0);
+}
+
+void receiveAndPrint(void* clientSocketVoid){
+	const int* CLIENT_SOCKET = (int*) clientSocketVoid; // Cast due to known value
+	int clientSocket = *CLIENT_SOCKET; // Move the value to a convinient variable
+	char receivingBuffer[MAX_MESSAGE_SIZE] = {};
+	while (true){
+		receiveFromServer(clientSocket, receivingBuffer, sizeof(receivingBuffer));
+		printf(receivingBuffer);
+	}
 }
