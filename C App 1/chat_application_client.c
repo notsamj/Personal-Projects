@@ -2,28 +2,28 @@
 #include<sys/socket.h>
 #include<arpa/inet.h>
 #include<pthread.h>
-
-// Unknown if needed
 #include<unistd.h>
-#include<sys/socket.h>
-#include<netdb.h>
-#include<stdlib.h>
 #include<string.h>
 #include<stdbool.h>
 
 #define APPLICATION_PORT 27015 // Using the usual steam game port
-#define MAX_MESSAGE_SIZE 4096
+#define MAX_SENDING_MESSAGE_SIZE 4096
+#define MAX_RECEIVING_MESSAGE_SIZE 4096
 #define USERNAME_SIZE 32
 #define STANDARD_STRING_SIZE 32
 
 char quitCommand[STANDARD_STRING_SIZE] = {}; // Making it standard string size if provided one is too big then it's seen as the user's fault
 
 void receiveFromServer(int, char*, int);
+void receiveFromServerAsync(int, char*, int);
 void sendToServer(int, char*, int);
 void readProgramInformation();
 void* receiveAndPrint(void*);
+void removeTrailingNLine(char*);
 
 int main(int argc, char const *argv[]){
+	// Read information about the program (i.e. quit command)
+	readProgramInformation();
 	int clientSocket;
 	clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -47,15 +47,15 @@ int main(int argc, char const *argv[]){
 		return 1;
 	}
 
-	char sendingBuffer[MAX_MESSAGE_SIZE] = {};
-	char receivingBuffer[MAX_MESSAGE_SIZE] = {};
+	char sendingBuffer[MAX_SENDING_MESSAGE_SIZE] = {};
+	char receivingBuffer[MAX_RECEIVING_MESSAGE_SIZE] = {};
 	char userName[USERNAME_SIZE] = {};
 
 	// Handle "login-in process"
 
 	// Get request to login
 	receiveFromServer(clientSocket, receivingBuffer, sizeof(receivingBuffer));
-	printf(receivingBuffer);
+	printf("%s", receivingBuffer);
 
 	// Send username
 	scanf("%s", sendingBuffer);
@@ -64,26 +64,33 @@ int main(int argc, char const *argv[]){
 
 	// Get request for password
 	receiveFromServer(clientSocket, receivingBuffer, sizeof(receivingBuffer));
-	printf(receivingBuffer);
+	printf("%s", receivingBuffer);
 
 	// Send password
 	scanf("%s", sendingBuffer);
 	sendToServer(clientSocket, sendingBuffer, sizeof(sendingBuffer));
 
+	// Get auth message
+	receiveFromServer(clientSocket, receivingBuffer, sizeof(receivingBuffer));
+	printf("%s", receivingBuffer);
+
 	// Create a thread for communication
 	pthread_t childID;
 	pthread_create(&childID, NULL, &receiveAndPrint, (void *) &clientSocket);
+
 
 	bool quitProgram = false;
 
 	// Run until user writes the quit command
 	while (!quitProgram){
-		printf("%s: ", userName);
 		scanf("%s", sendingBuffer);
 		sendToServer(clientSocket, sendingBuffer, sizeof(sendingBuffer));
 		quitProgram = strcmp(sendingBuffer, quitCommand) == 0;
+		printf("quitProgram %s %s %d\n", sendingBuffer, quitCommand, strcmp(sendingBuffer, quitCommand));
 	}
+	printf("Quitting\n");
 	close(clientSocket);
+	pthread_cancel(childID);
 	return 0;
 }
 
@@ -100,6 +107,7 @@ void readProgramInformation(){
 	// NOTE: May encounter error if file format is not right
 
 	fgets(quitCommand, sizeof(quitCommand), dataFile);
+	removeTrailingNLine(quitCommand);
 
 	fclose(dataFile);
 }
@@ -114,6 +122,16 @@ void receiveFromServer(int clientSocket, char* receivingBuffer, int bufferSize){
 	}
 }
 
+void receiveFromServerAsync(int clientSocket, char* receivingBuffer, int bufferSize){
+	int received = recv(clientSocket, receivingBuffer, bufferSize, 0);
+
+	// if error receiving 
+	if (received == 0){
+		strcpy(receivingBuffer, "");
+		return;
+	}
+}
+
 void sendToServer(int clientSocket, char* sendingBuffer, int bufferSize){
 	send(clientSocket, sendingBuffer, bufferSize, 0);
 }
@@ -121,9 +139,22 @@ void sendToServer(int clientSocket, char* sendingBuffer, int bufferSize){
 void* receiveAndPrint(void* clientSocketVoid){
 	const int* CLIENT_SOCKET = (int*) clientSocketVoid; // Cast due to known value
 	int clientSocket = *CLIENT_SOCKET; // Move the value to a convinient variable
-	char receivingBuffer[MAX_MESSAGE_SIZE] = {};
+	char receivingBuffer[MAX_RECEIVING_MESSAGE_SIZE] = {};
 	while (true){
-		receiveFromServer(clientSocket, receivingBuffer, sizeof(receivingBuffer));
-		printf(receivingBuffer);
+		receiveFromServerAsync(clientSocket, receivingBuffer, sizeof(receivingBuffer));
+		if (strlen(receivingBuffer) > 1){
+			printf("%s\n", receivingBuffer);
+		}else{
+			sleep(1);
+		}
 	}
+}
+
+void removeTrailingNLine(char* str){
+	int n = strlen(str);
+	if (n == 0 || str[n-1] != '\n'){
+
+		return;
+	}
+	str[n-1] = '\0';
 }

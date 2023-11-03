@@ -2,16 +2,13 @@
 #include<sys/socket.h>
 #include<arpa/inet.h>
 #include<pthread.h>
-
-// These ones are unknown if needed
-#include<unistd.h>
-#include<netdb.h>
-#include<stdlib.h>
 #include<string.h>
+#include<unistd.h>
+#include<stdlib.h>
 #include<stdbool.h>
-#include<time.h>
 
-#define MAX_MESSAGE_SIZE 4096
+#define MAX_SENDING_MESSAGE_SIZE 4096
+#define MAX_RECEIVING_MESSAGE_SIZE 4096
 #define STANDARD_STRING_SIZE 128
 #define USERNAME_SIZE 32
 #define PASSWORD_SIZE 32
@@ -32,6 +29,7 @@ void addClient(int);
 void removeClient(int);
 void sendToAllClientsExcept(char*, int, int);
 void receiveFromClient(int, char*, int);
+void removeTrailingNLine(char*);
 
 // Function bodies
 
@@ -69,6 +67,7 @@ int main(int argc, char const *argv[]){
 
 	int clientSocket = 0; // Temporary variable will be used for each new client
 
+	printf("ChatServer Started!\n");
 	// Run until an error
 	while(clientSocket >= 0){
 		clientSocket = accept(serverSocket, (struct sockaddr *) &serverAddress, (socklen_t *) &addressLength);
@@ -92,8 +91,8 @@ int main(int argc, char const *argv[]){
 void* communicateWithClient(void* clientSocketVoid){
 	const int* CLIENT_SOCKET = (int*) clientSocketVoid; // Cast due to known value
 	int clientSocket = *CLIENT_SOCKET; // Move the value to a convinient variable
-	char receivingBuffer[MAX_MESSAGE_SIZE] = {};
-	char sendingBuffer[MAX_MESSAGE_SIZE] = {};
+	char receivingBuffer[MAX_RECEIVING_MESSAGE_SIZE] = {};
+	char sendingBuffer[MAX_SENDING_MESSAGE_SIZE] = {};
 	char userName[USERNAME_SIZE] = {}; // store username of connected client
 	char password[PASSWORD_SIZE] = {};
 
@@ -117,6 +116,7 @@ void* communicateWithClient(void* clientSocketVoid){
 	if (strcmp(password, chatroomPassword) == 0){
 		addClient(clientSocket);
 		sprintf(sendingBuffer, "Authenticated!\nHello %s!\n", userName);
+		sendToClient(clientSocket, sendingBuffer, sizeof(sendingBuffer));
 		bool receiveRequests = true;
 		// Loop until the user quits
 		while(receiveRequests){
@@ -124,9 +124,17 @@ void* communicateWithClient(void* clientSocketVoid){
 			receiveFromClient(clientSocket, receivingBuffer, sizeof(receivingBuffer));
 			// If message is $quit then quit
 			receiveRequests = !(strcmp(receivingBuffer, quitCommand) == 0);
+			if (!receiveRequests){
+				continue; // Equivalent to break in this case
+			}
 			// Otherwise send message to all clients
-			sprintf(sendingBuffer, "%s: %s", userName, receivingBuffer);
-			sendToAllClientsExcept(sendingBuffer, sizeof(sendingBuffer), clientSocket);
+			// Prevent copying too much from receivingBuffer into sendingBuffer (a little extra)
+			receivingBuffer[MAX_RECEIVING_MESSAGE_SIZE - USERNAME_SIZE * 2] = '\0';
+			// Always true
+			if (strlen(receivingBuffer) + strlen(userName) < MAX_SENDING_MESSAGE_SIZE){
+				sprintf(sendingBuffer, "%s: %s", userName, receivingBuffer); // Ignore the warning (b/c previous line)
+				sendToAllClientsExcept(sendingBuffer, sizeof(sendingBuffer), clientSocket);
+			}
 		}
 	}else{
 		strcpy(sendingBuffer, "Invalid password.\nPlease restart the application.\n");
@@ -140,7 +148,7 @@ void* communicateWithClient(void* clientSocketVoid){
 
 void sendToClient(int clientSocket, char* buffer, int bufferSize){
 	// Send contents of the buffer
-	printf("Sending %s to %d\n", buffer, clientSocket);
+	//printf("Sending %s to %d\n", buffer, clientSocket);
 	send(clientSocket, buffer, bufferSize, 0);
 	// Clear the buffer
 	strcpy(buffer, "");
@@ -159,17 +167,19 @@ void readProgramInformation(){
 	// NOTE: May encounter error if file format is not right
 	fgets(chatroomPassword, sizeof(chatroomPassword), dataFile);
 	fgets(quitCommand, sizeof(quitCommand), dataFile);
+	removeTrailingNLine(chatroomPassword);
+	removeTrailingNLine(quitCommand);
 
 	fclose(dataFile);
 }
 
 void addClient(int clientID){
-	printf("Client Socket:%d\n", clientID);
 	clients[numClients++] = clientID;
 }
 
 // This assumes the client is found
 void removeClient(int clientID){
+	printf("Removing client");
 	for (int i = 0; i < numClients; i++){
 		// if the client has been found
 		if (clientID == clients[i]){
@@ -199,4 +209,13 @@ void receiveFromClient(int clientSocket, char* receivingBuffer, int bufferSize){
 		printf("Error receving data.\n");
 		return;
 	}
+}
+
+void removeTrailingNLine(char* str){
+	int n = strlen(str);
+	if (n == 0 || str[n-1] != '\n'){
+
+		return;
+	}
+	str[n-1] = '\0';
 }
