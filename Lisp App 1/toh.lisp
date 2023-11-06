@@ -65,10 +65,6 @@
 (defun inStateList (stateList state)
 (let ( (returnValue nil) ) ; Default to false
 (progn
-    ;(princ "inStateList")
-    ;(print "")
-    ;(print stateList)
-    ;(print (length stateList))
     (loop for stateToCompare in stateList
         do (cond
             ; (if) -> (then) {1} - If state is found at current position
@@ -131,8 +127,6 @@
 ;   A modified version of the list
 (defun modifyListAtR (currentList newList index newElement currentPosition)
 (progn
-    ;(princ "modifyListAtR")
-    ;(print "")
     ; Add current element to new list
     (cond
         ; (if) -> (then) {1} - If function is at the position then add new element
@@ -245,8 +239,6 @@
 ; will be < numRings if there is a ring. Otherwise numRings can be used to indicate
 ; that there are no rings present.
 (progn
-    ;(princ "Entering getTopRing")
-    ;(print "")
 	(loop for ringIndex from 0 to (- numRings 1)
 		do
 		(cond
@@ -279,8 +271,6 @@
 (defun hasRing (currentState towerNumber)
 (let ( (returnValue nil) )
 (progn
-    ;(princ "hasRing")
-    ;(print "")
 	(loop for ringIndex from 0 to (- numRings 1)
 		do
 		(cond
@@ -360,13 +350,6 @@
 ;	't' if the states are equal, 'nil' if not (if at the end)
 ;   if not at the end, a recursive call to stateEqualsR
 (defun stateEqualsR (state1 state2 currentIndex)
-(progn ; TODO: Remove this line
-    ;(princ "stateEqualsR")
-    ;(print "")
-    ;(print state1)
-    ;(print state2)
-    ;(princ "After1")
-    ;(print "")
 	(cond
 		; (if) -> (then) {1} - Check if not equal
 		(
@@ -399,7 +382,7 @@
 	)
 	; No need for a return here because of "else" statements above the 
 	; return has already happened
-))
+)
 
 ; Function Name: stateEquals
 ; Function Parameters:
@@ -416,13 +399,8 @@
 ; Function Return:
 ;	't' if the states are equal, 'nil' otherwise.
 (defun stateEquals (state1 state2)
-(progn ; TODO: Remove this
-    ;(princ "State equals")
-    ;(print state1)
-    ;(print state2)
-    ;(princ "After2")
 	(stateEqualsR state1 state2 0)
-))
+)
 
 ; Function Name: visitDFS
 ; Function Parameters:
@@ -439,7 +417,6 @@
 ; Function Return:
 ; 	A sequence of states from the start to the goal state. The sequence is generated
 ;	by legal moves.
-
 (defun visitDFS(currentState pathToCurrentLocation)
 (let ((newStates ()) (returnValue nil) (pathsFound ()))
 (progn ; I'm not sure 'progn' is necessary here. I'm leaving it because the program works.
@@ -459,10 +436,6 @@
 			; then
 			(progn
 				(setq newStates (generateNewStates currentState))
-				;(print "From")
-                ;(print currentState)
-                ;(print "generated")
-                ;(print newStates)
                 (setq newStates (removeVisitedStates newStates pathToCurrentLocation))
                 (loop for newState in newStates
                     do
@@ -485,8 +458,133 @@
 		)
 	)
 	; Return whatever the return value is set to be
-	;(princ "Returning from main")
-    ;(print returnValue)
+    returnValue
+)))
+
+; Function Name: visitBFS
+; Function Parameters:
+;	currentState:
+;		A parameter for the function, a list in the form ([1-3] [1-3] [1-3]) where
+;		each element @ index i represents a number between 1 & 3 (inclusive) which
+;		specifies a tower at which the ring (@ index i in indexToRingIdentifier) is 
+;		located
+;   pathToCurrentLocation:
+;		A list of states from the starting state to the current state
+;   toVisit:
+;		A list of states to visit and the paths to those states
+;	paths:
+;		A list of paths from the start to the goal state
+; Function Description:
+; 	This function is the main function for the running the program.
+;	This function traverses states using a breadth-first manner to reach the goal. 
+; Function Return:
+; 	A sequence of states from the start to the goal state. The sequence is generated
+;	by legal moves.
+(defun visitBFS(currentState pathToCurrentLocation toVisit paths)
+(let ((newStates ()))
+(progn 
+	(cond
+		; (if) -> (then) {1} - If the goal state has been reached then return
+		(
+			; if
+			(stateEquals currentState goalState)
+			; then
+			(progn
+				(setq paths (append paths (list pathToCurrentLocation)))
+				(setq pathsSoFar (+ 1 pathsSoFar))
+			)
+		)
+
+		; (if) -> (then) {2} - ; If the goal state is not yet reached
+		(
+			; Else
+			t ; True (equivalent to an else)
+			; then
+			(progn
+				; Generate & filter new states
+				(setq newStates (generateNewStates currentState))
+                (setq newStates (removeVisitedStates newStates pathToCurrentLocation))
+				
+				; Add new states to toVisit
+				(loop for newState in newStates
+                    do
+					(setq toVisit (append toVisit (list (list newState (append pathToCurrentLocation (list newState))))))
+                )
+			)
+		)
+	)
+	; At this point decide to either recurse or end
+	(cond
+		; (if) -> (then) {1} - Have more left to visit so visit another
+		(
+			(and (> (length toVisit) 0) (< pathsSoFar maxPaths))
+			(visitBFS (nth 0 (car toVisit)) (nth 1 (car toVisit)) (cdr toVisit) paths)
+		)
+		; (if) -> (then) {2} - Else all have been visited OR enough paths have been found
+		(
+			t
+			; Return paths collected
+			paths
+		)
+	)
+)))
+
+; Function Name: visitByHeuristic
+; Function Parameters:
+;	currentState:
+;		A parameter for the function, a list in the form ([1-3] [1-3] [1-3]) where
+;		each element @ index i represents a number between 1 & 3 (inclusive) which
+;		specifies a tower at which the ring (@ index i in indexToRingIdentifier) is 
+;		located
+;   pathToCurrentLocation:
+;		A list of states from the starting state to the current state
+; Function Description:
+; 	This function is the main function for the running the program.
+;	This function traverses states using a depth-first manner to reach the goal. 
+; Function Return:
+; 	A sequence of states from the start to the goal state. The sequence is generated
+;	by legal moves.
+(defun visitByHeuristic(currentState pathToCurrentLocation)
+(let ((newStates ()) (returnValue nil) (pathsFound ()))
+(progn 
+    (cond
+		; (if) -> (then) {1} - If the goal state has been reached then return
+		(
+			; if
+			(stateEquals currentState goalState)
+			; then
+			(setq returnValue (list pathToCurrentLocation))
+		)
+
+		; (if) -> (then) {2} - ; If the goal state is not yet reached
+		(
+			; Else
+			t ; True (equivalent to an else)
+			; then
+			(progn
+				(setq newStates (generateNewStates currentState))
+                (setq newStates (removeVisitedStates newStates pathToCurrentLocation))
+                (loop for newState in newStates
+                    do
+                        ; Visit new state and add all paths to pathsFound
+                        (cond
+                        	; (if) -> (then) {1} - If maxPaths is -1 or not reached then recurse
+                        	(
+                        		(< pathsSoFar maxPaths)
+                        		(progn
+                        			(setq pathsFound (append pathsFound (visitDFS newState (append pathToCurrentLocation (list newState)))))
+                        			(setq pathsSoFar (+ 1 pathsSoFar))
+                        		)
+                        	)
+                        	; Otherwise don't recuse because have enough
+                        )
+                )
+                ; Set the value so it can be returned
+                (setq returnValue pathsFound)
+			)
+		)
+	)
+	; Return whatever the return value is set to be
     returnValue
 )))
 
@@ -495,7 +593,7 @@
 ; Constant number of towers (Probably won't be modified by user)
 (setq numTowers 3) 
 ; Variable for number of rings currently being used in this program
-(setq numRings 4)
+(setq numRings 3)
 ; Constant for the maximum number of paths to be found before the program quits
 (setq maxPaths 20)
 ; Variable for number of paths found so far
@@ -505,19 +603,29 @@
 ;(setq indexToLocationStarting (list 1 3 3))
 ; State representation of goal (all rings on 3)
 (setq goalState (generateGoalLocations numRings))
-(princ "Goal State:")
-(print goalState)
-(princ "Starting:")
-(print indexToLocationStarting)
 
 ; Program Run
 
 ; Get all paths from the start to the goal
-; TODO: Develop visitBFS
+; TODO: Develop visitHeuristics
 ; TODO: Develop a function to describe the paths from state to state
 ; TODO: Develop a function to sort the paths by length
-; TODO: Make a function to get paths from visitBFS and visitDFS (reset pathsSoFar each time)
-; this function will sort them and take the maxPaths shortest
-(print (visitDFS indexToLocationStarting (list indexToLocationStarting)))
+; TODO: Make a function to get paths from visitBFS and visitDFS & visitHeuristic
+; (reset pathsSoFar each time) this function will sort them and take the {maxPaths}
+; shortest of them
+
+; visitDFS
+(setq pathsSoFar 0)
+;(print (visitDFS indexToLocationStarting (list indexToLocationStarting)))
+
+; visitBFS
+(setq pathsSoFar 0)
+(print (visitBFS indexToLocationStarting (list indexToLocationStarting) () ()))
+
+; visitByHeuristic
+(setq pathsSoFar 0)
+;(print (visitByHeuristic indexToLocationStarting (list indexToLocationStarting)))
+
+; Testing
 ;(print (generateNewStates (list 1 3 3)))
 ;(print (visitDFS (list 1 3 3) (list (list 2 3 3) (list 1 2 3))))
