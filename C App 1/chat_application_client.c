@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include<stdio.h>
 #include<sys/socket.h>
 #include<arpa/inet.h>
 #include<pthread.h>
@@ -86,7 +86,6 @@ int main(int argc, char const *argv[]){
 		scanf("%s", sendingBuffer);
 		sendToServer(clientSocket, sendingBuffer, sizeof(sendingBuffer));
 		quitProgram = strcmp(sendingBuffer, quitCommand) == 0;
-		printf("quitProgram %s %s %d\n", sendingBuffer, quitCommand, strcmp(sendingBuffer, quitCommand));
 	}
 	printf("Quitting\n");
 	close(clientSocket);
