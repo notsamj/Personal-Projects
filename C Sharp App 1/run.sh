@@ -1,2 +1,2 @@
-mcs -out:food_expirey.exe food_expirey.cs
-mono food_expirey.exe
+mcs -out:food_expiry.exe food_expiry.cs
+mono food_expiry.exe

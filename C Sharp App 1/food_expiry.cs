@@ -4,7 +4,7 @@ using System.Globalization; // Current time
 using System.Text.RegularExpressions; // Regex
 /*Project Background
     This project is a proof of concept for a system that may encourage myself to consume
-    more variety of foods by being better able to keep track of their expirey. 
+    more variety of foods by being better able to keep track of their expiry. 
     
     This is the sole coding example I plan to make in C# as I'm not very fond of the language.
 
@@ -15,14 +15,14 @@ using System.Text.RegularExpressions; // Regex
     I cut off my work where I did, with little instruction on program useage, because I would like to move on
     to making similarly small projects in other languages and got bored of the project idea.
 */
-public class FoodExpireyApplication {
+public class FoodExpiryApplication {
     private static Regex ITEM_NAME_REGEX = new Regex("^[a-zA-Z0-9 ]{1,20}$");
     private static Regex ITEM_QUANTITY_REGEX = new Regex("^[0-9]{1,5}$");
     private static Regex EXPIREY_DATE_REGEX = new Regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
     private static FoodList grocceryList;
 
     public static void Main(){
-        Console.WriteLine("FoodExpirey Application Started!");
+        Console.WriteLine("FoodExpiry Application Started!");
         grocceryList = new FoodList();
 
         bool continueRunning = true;
@@ -56,7 +56,7 @@ public class FoodExpireyApplication {
         Console.WriteLine("load - load a list");
         Console.WriteLine("add - add an item to a list");
         Console.WriteLine("remove - remove an item from a list");
-        Console.WriteLine("status - view the expirey status of items on the list");
+        Console.WriteLine("status - view the expiry status of items on the list");
         Console.WriteLine("quit - quit the application");
         Console.WriteLine("help - ask for help");
     }
@@ -96,7 +96,7 @@ public class FoodExpireyApplication {
             Console.WriteLine("Please load a list first.");
             return;
         }
-        grocceryList.printExpireyList();
+        grocceryList.printExpiryList();
     }
 
     private static void userAdd(){
@@ -111,7 +111,7 @@ public class FoodExpireyApplication {
         String itemQuantityStr = readMatchingInput(ITEM_QUANTITY_REGEX);
         int itemQuantity = int.Parse(itemQuantityStr);
 
-        Console.Write("Please enter the expirey date: ");
+        Console.Write("Please enter the expiry date: ");
         DateTime date = readDate();
         DateTimeOffset dateTimeOffset = new DateTimeOffset(date.ToUniversalTime());
         long expireMS = dateTimeOffset.ToUnixTimeMilliseconds();
@@ -181,7 +181,7 @@ public class FoodList {
         }
     }
 
-    public void printExpireyList(){
+    public void printExpiryList(){
         this.sort();
         int grocceryListLength = this.foodItems.getLength();
         Console.WriteLine("FoodList with details (" + grocceryListLength + "):");
@@ -201,7 +201,7 @@ public class FoodList {
             for (int i = 0; i < this.foodItems.getLength() - 1; i++){
                 FoodItem item1 = foodItems.getItem(i);
                 FoodItem item2 = foodItems.getItem(i+1);
-                if (item1.getExpireyMS() > item2.getExpireyMS()){
+                if (item1.getExpiryMS() > item2.getExpiryMS()){
                     foodItems.swap(i, i+1);
                     sorted = false;
                 }
@@ -251,7 +251,7 @@ public class FoodList {
     public bool removeByName(String name){
         int foodItemsLength = this.foodItems.getLength();
         int itemIndex = -1;
-        this.sort(); // Must be sorted because you are assumed to remove the closest to expirey first
+        this.sort(); // Must be sorted because you are assumed to remove the closest to expiry first
         for (int i = 0; i < foodItemsLength; i++){
             FoodItem item = this.foodItems.getItem(i);
             if (item.getName() == name){
@@ -404,12 +404,12 @@ public class SinglyLinkedList<T> {
 public class FoodItem{
     private String name;
     private int quantity;
-    private long expireyMS;
+    private long expiryMS;
     
-    public FoodItem(String name, int quantity, long expireyMS){
+    public FoodItem(String name, int quantity, long expiryMS){
         this.name = name;
         this.quantity = quantity;
-        this.expireyMS = expireyMS;
+        this.expiryMS = expiryMS;
     }
 
     public String getName(){ return this.name; }
@@ -418,8 +418,8 @@ public class FoodItem{
     public int getQuantity(){ return this.quantity; }
     public void setQuantity(int quantity){ this.quantity = quantity; }
 
-    public long getExpireyMS(){ return this.expireyMS; }
-    public void setExpireyMS(long expireyMS){ this.expireyMS = expireyMS; }
+    public long getExpiryMS(){ return this.expiryMS; }
+    public void setExpiryMS(long expiryMS){ this.expiryMS = expiryMS; }
 
     public static FoodItem readFromFileString(String lineText){
         String[] lineItemStrings = lineText.Split(",");
@@ -427,13 +427,13 @@ public class FoodItem{
     }
 
     public String getFullDisplay(){
-        String fullDisplayString = this.name + "[" + this.quantity + "] " + FoodItem.toExpireString(expireyMS);
+        String fullDisplayString = this.name + "[" + this.quantity + "] " + FoodItem.toExpireString(expiryMS);
         return fullDisplayString;        
     }
 
-    public static String toExpireString(long expireyTimeMS){
+    public static String toExpireString(long expiryTimeMS){
         long currentTimeMS = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        long timeDiff = expireyTimeMS - currentTimeMS;
+        long timeDiff = expiryTimeMS - currentTimeMS;
         String start = "expires ";
         String end = " from now";
         if (timeDiff < 0){
@@ -447,7 +447,7 @@ public class FoodItem{
         int dayCounter = 0;
         const int MS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
-        // Count the number of days until expirey
+        // Count the number of days until expiry
         while(timeDiff >= MS_IN_A_DAY){
             dayCounter += 1;
             timeDiff -= MS_IN_A_DAY;
@@ -461,6 +461,6 @@ public class FoodItem{
     }
 
     public String toFileString(){
-        return this.name.ToString() + "," + this.quantity.ToString() + "," + this.expireyMS.ToString();
+        return this.name.ToString() + "," + this.quantity.ToString() + "," + this.expiryMS.ToString();
     }
 }

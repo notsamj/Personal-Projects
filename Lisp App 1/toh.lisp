@@ -26,7 +26,21 @@
 
 
 ; TODO: removeVisitedStates
-; TODO: generateNewStates
+
+; Function Name: generateNewStates
+; Function Parameters:
+;	currentState:
+;		A representation of the current state from which to generate 'adjacent'* states.
+;		* An 'adjacent' state is a state that is 1 move away from another state
+; Function Description:
+;	Generate a list of states adjacent from the current state
+; Noteworthy Assumptions:
+; 	There are of course assumptions that are relevant to this function. However, I do not
+;   think this function appears to be a general use function like 'stateEquals' to be misused.
+;	Therefore, I have decided to neglect adding noteworthy assumptions for this function
+;   and others that are similar.
+(defun generateNewStates (currentState)
+)
 
 ; Function Name: stateEqualsR
 ; Function Parameters:
