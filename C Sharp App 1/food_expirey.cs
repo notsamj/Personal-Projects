@@ -251,7 +251,7 @@ public class FoodList {
     public bool removeByName(String name){
         int foodItemsLength = this.foodItems.getLength();
         int itemIndex = -1;
-        this.foodItems.sort(); // Must be sorted because you are assumed to remove the closest to expirey first
+        this.sort(); // Must be sorted because you are assumed to remove the closest to expirey first
         for (int i = 0; i < foodItemsLength; i++){
             FoodItem item = this.foodItems.getItem(i);
             if (item.getName() == name){
@@ -437,7 +437,7 @@ public class FoodItem{
         String start = "expires ";
         String end = " from now";
         if (timeDiff < 0){
-            start += "expired ";
+            start = "expired ";
             end = " ago";
             timeDiff *= -1; // Should be a positive number for the next calculation
         }
@@ -457,7 +457,7 @@ public class FoodItem{
         if (dayCounter != 1){
             currentDateString += "s";
         }
-        return currentDateString + end;
+        return start + currentDateString + end;
     }
 
     public String toFileString(){
