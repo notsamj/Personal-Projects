@@ -1,1 +1,1 @@
-clisp < input.txt > output.txt
+clisp < input.in > output.out

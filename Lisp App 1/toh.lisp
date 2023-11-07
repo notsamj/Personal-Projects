@@ -16,14 +16,137 @@
 
 ; Function Definitions
 
+; Function Name: swapElements
+; Function Parameters:
+; 	listBeingSorted:
+;		list including elements that need to be swapped
+;	index1:
+;		first index to swap with second index
+;	index2:
+;		second index to swap with first index
+; Function Description:
+;	Creates a new list with two elements swapped
+; Function Return:
+;	A new list wtth two elements swapped
+(defun swapElements (listBeingSorted index1 index2)
+(let ( (element1 ()) (element2 ()) )
+(progn
+	(setq element1 (nth index1 listBeingSorted))
+	(setq element2 (nth index2 listBeingSorted))
+	(setq listBeingSorted (modifyListAt listBeingSorted index2 element1))
+	; Return after second swap
+	(modifyListAt listBeingSorted index1 element2)
+)))
+
+; Function Name: valueState
+; Function Parameters:
+; 	state:
+;		A representation of a state in howers of hanoi
+; Function Description:
+;	Creates a value representing how desirable a state is.
+;	There are two ways it does this:
+;		1. It increases score for rings on the final tower 
+; 		   IF they are stacked properly with LARGEST -> 2ndLargest ... adding more points
+;		2. Whichever ring NEXT needs to be moved to the final tower
+;		   remove points for having rings above it
+; Function Return:
+;	An integer representing a state's value
+(defun valueState (state)
+(let ( (score 0) (nextToMoveIndex (- (length state) 1)) (eIndex 0))
+(progn
+	; Loop from biggest ring index to smallest ring
+	(loop for index from 0 to (- (length state) 1)
+		do(progn
+			; Effective index (length(state) - 1) -> 0 (length(state) - 2) -> 1 ... 0 -> (length(state) - 1)
+			(setq eIndex (- (- (length state) 1) index))
+			(cond
+				; If nextToMoveIndex == index AND the ring is on the final tower
+				; THEN decrease nextToMoveIndex
+				(
+					(and (= nextToMoveIndex index) (= (nth nextToMoveIndex state) numTowers))
+					(progn
+						(setq nextToMoveIndex (- 1 nextToMoveIndex))
+						(setq score (+ score (* 10 (length state))))
+					)
+				)
+			)
+
+			; Check if we can add more points using # 2
+			(cond
+				(
+					(> nextToMoveIndex (- 0 1))
+					(loop for index from 0 to (- (length state) 1)
+						do(cond
+							; if index != nextToMoveIndex AND state[index] ==
+							; state[nextToMoveIndex] (same tower) then subtract score
+							(
+								(and (not (= nextToMoveIndex index)) (= (nth nextToMoveIndex state) (nth index state)))
+								(setq score (- score (length state)))
+							)
+						)
+					)
+				)
+			)
+		)
+	)
+	; return
+	score
+)))
+
+
+; Function Name: sortToVisit
+; Function Parameters:
+;   toVisitList:
+;       A list of states and their prior states
+; Function Description:
+;   	Sorts the toVisit list using BubbleSort.
+;		NOTE: Using a n^2 complexity algorithm when one is reconstructing
+;		the n element list 2x for every swap is inefficient. I'm aware of this,
+;		if I knew more about LISP I'd probably do this differently.
+; Function Return:
+;  		A sorted version of the toVisitList
+(defun sortToVisit (toVisitList)
+(let ( (sorted nil) (e1Value 0) (e2Value 0))
+(progn
+	; Loop while !sorted
+	(loop
+		; Sorted until found not to be sorted
+		(setq sorted t)
+		(loop for i from 0 to (- (length toVisitList) 2)
+			do(progn
+				; Extract heuristic values for the states
+				(setq e1Value (valueState (nth 0 (nth i toVisitList))))
+				(setq e2Value (valueState (nth 0 (nth (+ i 1) toVisitList))))
+				;(print "e1Value")
+				;(print e1Value)
+				;(print "e2Value")
+				;(print e2Value)
+				(cond
+					; If e1Value < e2Value then swap them
+					(
+						(< e1Value e2Value)
+						(progn
+							(setq sorted nil)
+							(setq toVisitList (swapElements toVisitList i (+ i 1)))
+						)
+					)
+				)
+			)
+		)
+		(when sorted (return 0)) ; TODO: This doesn't return from the function, right?
+	)
+	; Return
+	toVisitList
+)))
+
 ; Function Name: generateGoalLocations
 ; Function Parameters:
 ;   numLocations:
 ;       The number of locations that must be initialized
 ; Function Description:
-;   Generates a list of {numLocations} elements that are all initialized to 13
+;   	Generates a list of {numLocations} elements that are all initialized to 13
 ; Function Return:
-;   A list of {numLocations} all equal to 3
+;   	A list of {numLocations} all equal to 3
 (defun generateGoalLocations (numLocations)
 (let ( (startingLocations ()) )
 (progn
@@ -420,13 +543,23 @@
 (defun visitDFS(currentState pathToCurrentLocation)
 (let ((newStates ()) (returnValue nil) (pathsFound ()))
 (progn ; I'm not sure 'progn' is necessary here. I'm leaving it because the program works.
+    (setq visitCounter (+ visitCounter 1))
     (cond
 		; (if) -> (then) {1} - If the goal state has been reached then return
 		(
 			; if
 			(stateEquals currentState goalState)
 			; then
-			(setq returnValue (list pathToCurrentLocation))
+			(cond
+				; (if) -> (then) {1.1} - If we haven't yet reached max paths then look for more
+				(
+					(< pathsSoFar maxPaths)
+					(progn ; Return new path (OTHERWISE will return empty path so won't add 1)
+						(setq pathsSoFar (+ 1 pathsSoFar))
+						(setq returnValue (list pathToCurrentLocation))
+					)
+				)
+			)
 		)
 
 		; (if) -> (then) {2} - ; If the goal state is not yet reached
@@ -446,7 +579,6 @@
                         		(< pathsSoFar maxPaths)
                         		(progn
                         			(setq pathsFound (append pathsFound (visitDFS newState (append pathToCurrentLocation (list newState)))))
-                        			(setq pathsSoFar (+ 1 pathsSoFar))
                         		)
                         	)
                         	; Otherwise don't recuse because have enough
@@ -483,6 +615,7 @@
 (defun visitBFS(currentState pathToCurrentLocation toVisit paths)
 (let ((newStates ()))
 (progn 
+	(setq visitCounter (+ visitCounter 1))
 	(cond
 		; (if) -> (then) {1} - If the goal state has been reached then return
 		(
@@ -538,22 +671,31 @@
 ;		located
 ;   pathToCurrentLocation:
 ;		A list of states from the starting state to the current state
+;   toVisit:
+;		A list of states to visit and the paths to those states
+;	paths:
+;		A list of paths from the start to the goal state
 ; Function Description:
 ; 	This function is the main function for the running the program.
-;	This function traverses states using a depth-first manner to reach the goal. 
+;	This function traverses states using a heuristic to determine which state to visit next.
+;   This function is almost identical to breadth-first search
 ; Function Return:
 ; 	A sequence of states from the start to the goal state. The sequence is generated
 ;	by legal moves.
-(defun visitByHeuristic(currentState pathToCurrentLocation)
-(let ((newStates ()) (returnValue nil) (pathsFound ()))
-(progn 
-    (cond
+(defun visitByHeuristic(currentState pathToCurrentLocation toVisit paths)
+(let ((newStates ()))
+(progn
+	(setq visitCounter (+ visitCounter 1))
+	(cond
 		; (if) -> (then) {1} - If the goal state has been reached then return
 		(
 			; if
 			(stateEquals currentState goalState)
 			; then
-			(setq returnValue (list pathToCurrentLocation))
+			(progn
+				(setq paths (append paths (list pathToCurrentLocation)))
+				(setq pathsSoFar (+ 1 pathsSoFar))
+			)
 		)
 
 		; (if) -> (then) {2} - ; If the goal state is not yet reached
@@ -562,30 +704,142 @@
 			t ; True (equivalent to an else)
 			; then
 			(progn
+				; Generate & filter new states
 				(setq newStates (generateNewStates currentState))
                 (setq newStates (removeVisitedStates newStates pathToCurrentLocation))
-                (loop for newState in newStates
+				
+				; Add new states to toVisit
+				(loop for newState in newStates
                     do
-                        ; Visit new state and add all paths to pathsFound
-                        (cond
-                        	; (if) -> (then) {1} - If maxPaths is -1 or not reached then recurse
-                        	(
-                        		(< pathsSoFar maxPaths)
-                        		(progn
-                        			(setq pathsFound (append pathsFound (visitDFS newState (append pathToCurrentLocation (list newState)))))
-                        			(setq pathsSoFar (+ 1 pathsSoFar))
-                        		)
-                        	)
-                        	; Otherwise don't recuse because have enough
-                        )
+					(setq toVisit (append toVisit (list (list newState (append pathToCurrentLocation (list newState))))))
                 )
-                ; Set the value so it can be returned
-                (setq returnValue pathsFound)
 			)
 		)
 	)
-	; Return whatever the return value is set to be
-    returnValue
+	; At this point decide to either recurse or end
+	(cond
+		; (if) -> (then) {1} - Have more left to visit so visit another
+		(
+			(and (> (length toVisit) 0) (< pathsSoFar maxPaths))
+			(progn
+				(setq toVisit (sortToVisit toVisit))
+				(visitByHeuristic (nth 0 (car toVisit)) (nth 1 (car toVisit)) (cdr toVisit) paths)
+			)
+		)
+		; (if) -> (then) {2} - Else all have been visited OR enough paths have been found
+		(
+			t
+			; Return paths collected
+			paths
+		)
+	)
+)))
+
+; Function Name: runComparison
+; Function Parameters: None 
+; Function Description:
+;	Run different kinds of path finding functions and print the results
+; Function Return: None
+(defun runComparison ()
+	; visitDFS
+	(setq pathsSoFar 0)
+	(setq visitCounter 0)
+	(print (visitDFS indexToLocationStarting (list indexToLocationStarting)))
+	(print "DFS Summary")
+	(print "Paths found:")
+	(print pathsSoFar)
+	(print "# of visits")
+	(print visitCounter)
+
+	; visitBFS
+	(setq pathsSoFar 0)
+	(setq visitCounter 0)
+
+	(print (visitBFS indexToLocationStarting (list indexToLocationStarting) () ()))
+	(print "BFS Summary")
+	(print "Paths found:")
+	(print pathsSoFar)
+	(print "# of visits")
+	(print visitCounter)
+
+	; visitByHeuristic
+	(setq pathsSoFar 0)
+	(setq visitCounter 0)
+
+	(print (visitByHeuristic indexToLocationStarting (list indexToLocationStarting) () ()))
+	(print "Heuristic Summary")
+	(print "Paths found:")
+	(print pathsSoFar)
+	(print "# of visits")
+	(print visitCounter)
+)
+
+; Function Name: describePath
+; Function Parameters:
+;	path:
+;		A list of states from a start state to the goal state
+; Function Description:
+;	Prints out the steps to move rings from the start state to the goal start
+; Function Return: None
+(defun describePath (path)
+(let ( (state ()) )
+(progn
+	(print (format nil "Best Path ~D Steps:" (- (length path) 1)))
+	(loop for i from 1 to (- (length path) 1)
+		; the for j loop is expected to only print once during looping so no need to break
+		do(progn
+			(setq previousState (nth (- i 1) path))
+			(setq state (nth i path))
+			(loop for j from 0 to (- (length state) 1)
+				do(progn
+					(cond
+						(
+							; if state[j] != previousState[j] then a move was made
+							(not (= (nth j state) (nth j previousState)))
+							(print (format nil "Move ring ~D from tower ~D to tower ~D" j (nth j previousState) (nth j state)))
+						)
+					)
+				)
+			)
+		)
+	)
+)))
+
+; Function Name: findShortestPath
+; Function Parameters: None 
+; Function Description:
+;	Run different kinds of path finding functions and finds the shortest path
+; Function Return: None
+(defun findShortestPath ()
+(let ( (shortestPath ()) (allPaths ()))
+(progn
+	; Get some paths from DFS
+	(setq pathsSoFar 0)
+	(setq visitCounter 0)
+	(setq allPaths (append allPaths (visitDFS indexToLocationStarting (list indexToLocationStarting))))
+	
+	; Get some paths from BFS
+	(setq pathsSoFar 0)
+	(setq visitCounter 0)
+	(setq allPaths (append allPaths (visitBFS indexToLocationStarting (list indexToLocationStarting) () ())))
+
+	; Get some paths from Heuristic Search
+	(setq pathsSoFar 0)
+	(setq visitCounter 0)
+	(setq allPaths (append allPaths (visitByHeuristic indexToLocationStarting (list indexToLocationStarting) () ())))
+
+	; Find the shortest path
+	(loop for i from 0 to (- (length allPaths) 1)
+		do(cond
+			; if length(path) < length(shortestPath) -> shortestPath = path
+			; OR length(shortestPath) == 0
+			(
+				(or (< (length (nth i allPaths)) (length shortestPath)) (= (length shortestPath) 0))
+				(setq shortestPath (nth i allPaths))
+			)
+		)
+	)
+	(describePath shortestPath)
 )))
 
 ; Initialize Global Variables
@@ -606,26 +860,8 @@
 
 ; Program Run
 
-; Get all paths from the start to the goal
-; TODO: Develop visitHeuristics
-; TODO: Develop a function to describe the paths from state to state
-; TODO: Develop a function to sort the paths by length
-; TODO: Make a function to get paths from visitBFS and visitDFS & visitHeuristic
-; (reset pathsSoFar each time) this function will sort them and take the {maxPaths}
-; shortest of them
+; Run 1
+; (runComparison)
 
-; visitDFS
-(setq pathsSoFar 0)
-;(print (visitDFS indexToLocationStarting (list indexToLocationStarting)))
-
-; visitBFS
-(setq pathsSoFar 0)
-(print (visitBFS indexToLocationStarting (list indexToLocationStarting) () ()))
-
-; visitByHeuristic
-(setq pathsSoFar 0)
-;(print (visitByHeuristic indexToLocationStarting (list indexToLocationStarting)))
-
-; Testing
-;(print (generateNewStates (list 1 3 3)))
-;(print (visitDFS (list 1 3 3) (list (list 2 3 3) (list 1 2 3))))
+; Run 2
+(findShortestPath)
