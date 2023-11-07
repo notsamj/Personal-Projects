@@ -16,6 +16,22 @@
 
 ; Function Definitions
 
+; Function Name: calculateAverageLength
+; Function Parameters:
+;	listOfLists:
+;		A list of lists
+; Function Description:
+;	Calculates the average length of lists in a list
+; Function Return:
+;	Average length of the lists
+(defun calculateAverageLength (listOfLists)
+(let ( (totalLength 0) )
+	(loop for subList in listOfLists
+		do (setq totalLength (+ totalLength (length subList)))
+	)
+	(/ totalLength (length listOfLists))
+))
+
 ; Function Name: swapElements
 ; Function Parameters:
 ; 	listBeingSorted:
@@ -38,21 +54,24 @@
 	(modifyListAt listBeingSorted index1 element2)
 )))
 
-; Function Name: valueState
+; Function Name: valueStateAndPath
 ; Function Parameters:
 ; 	state:
 ;		A representation of a state in howers of hanoi
+;   path:
+;		Path to the state
 ; Function Description:
-;	Creates a value representing how desirable a state is.
-;	There are two ways it does this:
+;	Creates a value representing how desirable a state & its path is.
+;	There are three ways it does this:
 ;		1. It increases score for rings on the final tower 
 ; 		   IF they are stacked properly with LARGEST -> 2ndLargest ... adding more points
 ;		2. Whichever ring NEXT needs to be moved to the final tower
 ;		   remove points for having rings above it
+;		3. You can use the formula MIN_MOVES = 2^{NUM_RINGS} - 1 to prune paths that are too long
 ; Function Return:
 ;	An integer representing a state's value
-(defun valueState (state)
-(let ( (score 0) (nextToMoveIndex (- (length state) 1)) (eIndex 0))
+(defun valueStateAndPath (state path)
+(let ( (score 0) (nextToMoveIndex (- (length state) 1)) (eIndex 0) (minPathLengthToSolve 0))
 (progn
 	; Loop from biggest ring index to smallest ring
 	(loop for index from 0 to (- (length state) 1)
@@ -89,6 +108,18 @@
 			)
 		)
 	)
+	; # 3
+
+	(setq minPathLengthToSolve (- (expt 2 (length state)) 1))
+
+	(cond
+		; if the path (including new state) is longer than the minimum required to solve
+		; the problem THEN subtract from the score 50 * the amount that it's greater by
+		(
+			(and part3Enabled (> (+ 1 (length path)) minPathLengthToSolve))
+			(setq score (- score (* 50 (- (+ 1 (length path)) minPathLengthToSolve))))
+		)
+	)
 	; return
 	score
 )))
@@ -115,12 +146,8 @@
 		(loop for i from 0 to (- (length toVisitList) 2)
 			do(progn
 				; Extract heuristic values for the states
-				(setq e1Value (valueState (nth 0 (nth i toVisitList))))
-				(setq e2Value (valueState (nth 0 (nth (+ i 1) toVisitList))))
-				;(print "e1Value")
-				;(print e1Value)
-				;(print "e2Value")
-				;(print e2Value)
+				(setq e1Value (valueStateAndPath (nth 0 (nth i toVisitList)) (nth 1 (nth i toVisitList))))
+				(setq e2Value (valueStateAndPath (nth 0 (nth (+ i 1) toVisitList)) (nth 1 (nth (+ i 1) toVisitList))))
 				(cond
 					; If e1Value < e2Value then swap them
 					(
@@ -741,38 +768,45 @@
 ;	Run different kinds of path finding functions and print the results
 ; Function Return: None
 (defun runComparison ()
+(let ((paths nil))
 	; visitDFS
 	(setq pathsSoFar 0)
 	(setq visitCounter 0)
-	(print (visitDFS indexToLocationStarting (list indexToLocationStarting)))
+	(setq paths (visitDFS indexToLocationStarting (list indexToLocationStarting)))
 	(print "DFS Summary")
-	(print "Paths found:")
+	(print "Paths found")
 	(print pathsSoFar)
 	(print "# of visits")
 	(print visitCounter)
+	(print "Average Path Length")
+	(print (format nil "~F" (calculateAverageLength paths)))
 
 	; visitBFS
 	(setq pathsSoFar 0)
 	(setq visitCounter 0)
 
-	(print (visitBFS indexToLocationStarting (list indexToLocationStarting) () ()))
+	(setq paths (visitBFS indexToLocationStarting (list indexToLocationStarting) () ()))
 	(print "BFS Summary")
-	(print "Paths found:")
+	(print "Paths found")
 	(print pathsSoFar)
 	(print "# of visits")
 	(print visitCounter)
+	(print "Average Path Length")
+	(print (format nil "~F" (calculateAverageLength paths)))
 
 	; visitByHeuristic
 	(setq pathsSoFar 0)
 	(setq visitCounter 0)
 
-	(print (visitByHeuristic indexToLocationStarting (list indexToLocationStarting) () ()))
+	(setq paths (visitByHeuristic indexToLocationStarting (list indexToLocationStarting) () ()))
 	(print "Heuristic Summary")
-	(print "Paths found:")
+	(print "Paths found")
 	(print pathsSoFar)
 	(print "# of visits")
 	(print visitCounter)
-)
+	(print "Average Path Length")
+	(print (format nil "~F" (calculateAverageLength paths)))
+))
 
 ; Function Name: describePath
 ; Function Parameters:
@@ -784,7 +818,7 @@
 (defun describePath (path)
 (let ( (state ()) )
 (progn
-	(print (format nil "Best Path ~D Steps:" (- (length path) 1)))
+	(print (format nil "Best Path (~D Steps):" (- (length path) 1)))
 	(loop for i from 1 to (- (length path) 1)
 		; the for j loop is expected to only print once during looping so no need to break
 		do(progn
@@ -849,19 +883,20 @@
 ; Variable for number of rings currently being used in this program
 (setq numRings 3)
 ; Constant for the maximum number of paths to be found before the program quits
-(setq maxPaths 20)
+(setq maxPaths 30)
 ; Variable for number of paths found so far
 (setq pathsSoFar 0)
 ; Starting Values. All start on Tower 1
 (setq indexToLocationStarting (generateStartingLocations numRings))
-;(setq indexToLocationStarting (list 1 3 3))
 ; State representation of goal (all rings on 3)
 (setq goalState (generateGoalLocations numRings))
+; Whether part 3 of the value function is enabled (very intensive)
+(setq part3Enabled nil)
 
 ; Program Run
 
 ; Run 1
-; (runComparison)
+(runComparison)
 
 ; Run 2
 (findShortestPath)

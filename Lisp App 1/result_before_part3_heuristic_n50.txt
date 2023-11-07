@@ -19,33 +19,25 @@ Type :h and hit Enter for context help.
 ;; Loading file toh.lisp ...
 "DFS Summary" 
 "Paths found" 
-30 
+50 
 "# of visits" 
-296 
+501 
 "Average Path Length" 
-"17.5" 
+"18.06" 
 "BFS Summary" 
 "Paths found" 
-30 
+50 
 "# of visits" 
-615 
+893 
 "Average Path Length" 
-"10.466666" 
+"11.08" 
 "Heuristic Summary" 
 "Paths found" 
-30 
+50 
 "# of visits" 
-213 
+417 
 "Average Path Length" 
-"11.033334" 
-"Best Path (7 Steps):" 
-"Move ring 0 from tower 1 to tower 3" 
-"Move ring 1 from tower 1 to tower 2" 
-"Move ring 0 from tower 3 to tower 2" 
-"Move ring 2 from tower 1 to tower 3" 
-"Move ring 0 from tower 2 to tower 1" 
-"Move ring 1 from tower 2 to tower 3" 
-"Move ring 0 from tower 1 to tower 3" 
+"11.62" 
 ;; Loaded file toh.lisp
 #P"/home/samueljonesadmin/Documents/SmallApplications/Lisp App 1/toh.lisp"
 Bye.
