@@ -9,6 +9,8 @@
   - A command line food expiry listing application.
 - Lisp App 1
   - An attempt at the Towers of Hanoi problem utilizing three approaches.
+- Python App 1
+  - A custom-config class.
 ## W.I.P & Future Applications
 - CPP App 1
   - I haven't decided what I want to do for this yet. It's just Hello World for now.
@@ -16,11 +18,9 @@
   - An app for managing a grocery list. This currently my #1 priority.
 - Java App 1
   - Not yet in development.
-- Python App 1
-  - Not yet in development.
 
 ### Other Projects
-I have contributed to two public group projects from my time as a student at Ontario Tech (with a different GitHub account)\
+I have contributed to two public group projects during my time as a student at Ontario Tech (with a different GitHub account)\
 JavaFX Battleship Game
 https://github.com/samuel-jones-uoit/group_battleship_assignment \
 Vue Games Website https://github.com/AlexNayl/WebDevGroupProject

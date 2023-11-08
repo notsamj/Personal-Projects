@@ -1,0 +1,5 @@
+additional_colors=[dark_red,dark_green]%str
+dark_red_color=[150,74,70]%int
+testinput=True%bool
+charactermatchpercent=100%int
+characters=abcddefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!-()':,%str
