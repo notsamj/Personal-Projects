@@ -4,49 +4,46 @@
 #####Written by: Samuel Jones
 ####
 
-## Program Purpose
-# TODO:  Redo for C SHarp App 1
-C Sharp App 1 is a program that finds paths to follow when solving the towers of
-hanoi problem. The program has two main execution paths that are run on program
-start.
-### Global Variables
-The variables that may be changed by the user are:
-- `numRings`
-  - This variable is used to change the number of rings involved in the problem.
-  It must be noted that numRings >= 4 has caused BFS and Heuristic methods to encounter stack overflow in my testing.
-- `maxPaths`
-  - The number of paths that the program will attempt to find with each state traversal method
-  before ending
-- `part3Enabled`
-  - This is used to enable or disable part 3 in the heuristic to compute the value of a state
-  - Part 3 involves comparing the number of steps in the path (so far) and the expected
-  minimum length of a path to solve the problem. If the number of steps is high, it is devalued.
-  The user may want to disable part 3 because it makes the program run slowly and tends not to produce great results.
-  It is hypothesized by the program author that with a sufficiently large `maxPaths` value, part 3 would be
-  useful, however, that has not been experimentally confirmed so it is *disabled* by default. Also, a sufficently large
-  `maxPaths` value would likely cause a stack overflow error prior to reaping the benefits, so the program would need to
-  be rewritten to be immune to that error.
+## Application Purpose
+C Sharp App 1 provides the function as a list of food items one has that have an expirey date.
+The application functions as a command line application, it can be compiled and run as an exe.
+The application may be useful to a user that is keen on consuming all their food prior to its expiry date. 
 
-###Execution Path 1 (Comparison)
-This path involves comparing the Depth First Search (DFS), Breadth First Search (BFS) and 
-Heuristic state traversal methods included in the program. It does this recording the number of
-recursive calls (called 'visits') involved in finding `maxPaths` paths, and the average path length.
-Examples of this compairson can be found in
-- `result_after_path3_heuristic_n20.txt` lines [1-21]
-- `result_before_path3_heuristic_n20.txt` lines [1-21]
-- `result_before_path3_heuristic_n50.txt` lines [1-21]
-- `result_after_path3_heuristic_n50.txt` lines [1-21]
-- `n30_output.txt` lines [1-21]
+## Appication User Guide
+An example of application useage can be seen in `runtime_example.txt`\
+\
+The application supports 6 commands:
+- **load**
+  - Loads a list from a file
+  - *if fed a blank file -> treats it as a new list*
+  - **Required for some other commands to function**
+- **add**
+  - Adds an new food item to the expiry list
+  - **Requires a list to be loaded**
+- **remove**
+  - Removes an item from the expiry list
+  - **Requires a list to be loaded**
+- **status**
+  - Displays the expiry list
+- **quit**
+  - Exits the application
+- **help**
+  - Displays the help menu
 
-###Execution Path 2 (Shortest Path)
-This path involves running all three aforementioned methods and finding the shortest path from all of these.
-The shortest path is then described in a series of steps and printed. An example of this is can be found in
-`n30_output.txt` lines [22-29]. The _ring number_ mentioned in the steps represents the size of the ring with **0** being
-the smallest ring and higher numbers being the larger rings. For 'tower numbers', **1** corresponds to the leftmost tower /
-starting location and **3** corresponds to the right most tower / goal location.
+## Application Shortcomings
+The application has various shortcomings. Listed below are a few.
+- It is a command line application
+  - it's not incredibly user-friendly party due to this. 
+- The removal feature is also not great
+  - Rather than having an option to modify item quantities, the program forces you to remove and re-add items to modify the quantities. 
+- Status feature could be improved
+  - It may be strange when something expiring tomorrow says it expires in 0 days, however I figured it's close enough.
 
-###Author Background in Lisp
-As explained in detail in the header comments in `toh.lisp` I  have little experience programming in Lisp. My most recent
-Computer Science course prior to completing my bachelor's degree involved programming in Lisp so when I was
-looking for programs to make to illustrate my knowledge of the field I felt comfortable making a state traversal program
-in Lisp.
+I prefer to aknowledge shortcomings of an application rather than leave them unmentioned. There are many reasons for this, I won't elaborate here.
+
+###Author Background in C Sharp
+I have no background in C Sharp. Shortly after finishing my Computer Science Bachelor's Degree requirements I was looking
+at what experience various employers expect from candidates and saw C# knowledge mentioned a few times. I decided to make
+a small program in this language for that reason. I don't feel that I've learned much from this short experience in working
+with C#, it was enough like Java that it was very comfortable for me to use. I may need to make a much more complex program
+to gain an appreciation for the unique aspects of C#.
