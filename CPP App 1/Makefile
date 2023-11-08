@@ -1,3 +1,3 @@
 run:
-	g++ main.cpp -o main
-	./main
+	g++ main.cpp -o main.o
+	./main.o
