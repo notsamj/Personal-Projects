@@ -50,7 +50,7 @@ I prefer to aknowledge shortcomings of an application rather than leave them unm
 
 ### Experience working on similar programs
 This program is similar by one of the projects from a course I took. Because this program is so short, it has a lot in common with my assignments. I have concluded
-that it is different enough to be a separate application because none of my assignments involved communicating between clients involving
+that it is different enough to be a separate application because none of my assignments involved communicating between clients using
 a server as a medium (to the best of my recollection). When it comes to short applications involving a client and server
 in C, it is inevitable they will be similar due to much of the code comprising setting up sockets and receiving & copying strings. 
 
@@ -59,5 +59,5 @@ I have little experience in C. I took a course from January to April 2023 in C. 
 in that course about programming in C.
 
 ### Regarding the comments
-I didn't use. I decided to use this program as a way to illustrate how many and how detailed
+I didn't make many comments. I decided to use this program as a way to illustrate how many and how detailed
 I comment in programs that don't have a requirement to add proper comments.

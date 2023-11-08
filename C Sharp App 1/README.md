@@ -49,5 +49,5 @@ with C#, it was enough like Java that it was very comfortable for me to use. I m
 to gain an appreciation for the unique aspects of C#.
 
 ### Regarding the comments
-I didn't use. I decided to use this program as a way to illustrate how many and how detailed
+I didn't make many comments. I decided to use this program as a way to illustrate how many and how detailed
 I comment in programs that don't have a requirement to add proper comments.
