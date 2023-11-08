@@ -5,12 +5,12 @@
 ####
 
 ## Application Purpose
-C Sharp App 1 provides the function as a list of food items one has that have an expirey date.
+C Sharp App 1 provides the function of a list of food items that have an expiry date.
 The application functions as a command line application, it can be compiled and run as an exe.
 The application may be useful to a user that is keen on consuming all their food prior to its expiry date. 
 
-## Appication User Guide
-An example of application useage can be seen in `runtime_example.txt`\
+## Application User Guide
+An example of application usage can be seen in `runtime_example.txt`\
 \
 The application supports 6 commands:
 - **load**

@@ -4,9 +4,9 @@
 ##### Written by: Samuel Jones
 ####
 
-## Program Purpose
-Lisp App 1 is a program that finds paths to follow when solving the towers of
-hanoi problem. The program has two main execution paths that are run on program
+## Application Purpose
+Lisp App 1 is an application that finds paths to follow when solving the towers of
+hanoi problem. The application has two main execution paths that are run on
 start.
 ### Global Variables
 The variables that may be changed by the user are:
@@ -14,21 +14,21 @@ The variables that may be changed by the user are:
   - This variable is used to change the number of rings involved in the problem.
   It must be noted that numRings >= 4 has caused BFS and Heuristic methods to encounter stack overflow in my testing.
 - `maxPaths`
-  - The number of paths that the program will attempt to find with each state traversal method
+  - The number of paths that the application will attempt to find with each state traversal method
   before ending
 - `part3Enabled`
   - This is used to enable or disable part 3 in the heuristic to compute the value of a state
   - Part 3 involves comparing the number of steps in the path (so far) and the expected
   minimum length of a path to solve the problem. If the number of steps is high, it is devalued.
-  The user may want to disable part 3 because it makes the program run slowly and tends not to produce great results.
-  It is hypothesized by the program author that with a sufficiently large `maxPaths` value, part 3 would be
+  The user may want to disable part 3 because it makes the application run slowly and tends not to produce great results.
+  It is hypothesized by the application author that with a sufficiently large `maxPaths` value, part 3 would be
   useful, however, that has not been experimentally confirmed so it is *disabled* by default. Also, a sufficently large
-  `maxPaths` value would likely cause a stack overflow error prior to reaping the benefits, so the program would need to
+  `maxPaths` value would likely cause a stack overflow error prior to reaping the benefits, so the application would need to
   be rewritten to be immune to that error.
 
 ### Execution Path 1 (Comparison)
 This path involves comparing the Depth First Search (DFS), Breadth First Search (BFS) and 
-Heuristic state traversal methods included in the program. It does this recording the number of
+Heuristic state traversal methods included in the application. It does this recording the number of
 recursive calls (called 'visits') involved in finding `maxPaths` paths, and the average path length.
 Examples of this compairson can be found in
 - `result_after_path3_heuristic_n20.txt` lines [1-21]

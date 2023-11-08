@@ -10,7 +10,7 @@ C Sharp App 1 provides a Chat Room. Clients may connect, enter their name, and b
 
 ![Application Running on Ubuntu](https://github.com/notsamj/Personal-Projects/blob/master/C%20App%201/Runtime%20Screenshots/runtime_example1.png?raw=true)
 
-## Appication User Guide
+## Application User Guide
 ### Before Running
 2. Set server password as the first line of `program_data.txt`
 3. Set quit command as the second line of `program_data.txt`
