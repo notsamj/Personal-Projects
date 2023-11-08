@@ -1,7 +1,7 @@
 # C Sharp App 1
-####food_expiry.cs
-####Tested with Compiler: Mono C# compiler
-#####Written by: Samuel Jones
+#### food_expiry.cs
+#### Tested with Compiler: Mono C# compiler
+##### Written by: Samuel Jones
 ####
 
 ## Application Purpose
@@ -41,9 +41,13 @@ The application has various shortcomings. Listed below are a few.
 
 I prefer to aknowledge shortcomings of an application rather than leave them unmentioned. There are many reasons for this, I won't elaborate here.
 
-###Author Background in C Sharp
+### Author Background in C Sharp
 I have no background in C Sharp. Shortly after finishing my Computer Science Bachelor's Degree requirements I was looking
 at what experience various employers expect from candidates and saw C# knowledge mentioned a few times. I decided to make
 a small program in this language for that reason. I don't feel that I've learned much from this short experience in working
 with C#, it was enough like Java that it was very comfortable for me to use. I may need to make a much more complex program
 to gain an appreciation for the unique aspects of C#.
+
+### Regarding the comments
+I didn't use. I decided to use this program as a way to illustrate how many and how detailed
+I comment in programs that don't have a requirement to add proper comments.

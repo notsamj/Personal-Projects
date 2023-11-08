@@ -49,3 +49,7 @@ As explained in detail in the header comments in `toh.lisp` I  have little exper
 Computer Science course prior to completing my bachelor's degree involved programming in Lisp so when I was
 looking for programs to make to illustrate my knowledge of the field I felt comfortable making a state traversal program
 in Lisp.
+
+### Regarding the comments
+I used many comments in this program. I decided to use this program as a way to illustrate how many and how detailed
+I am willing to make comments if required. I do not use this many comments for programs that are not public.
