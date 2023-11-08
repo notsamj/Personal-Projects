@@ -1,7 +1,7 @@
 # Lisp App 1
-####toh.lisp
-####Tested with Compiler: clisp
-#####Written by: Samuel Jones
+#### toh.lisp
+#### Tested with Compiler: clisp
+##### Written by: Samuel Jones
 ####
 
 ## Program Purpose
@@ -26,7 +26,7 @@ The variables that may be changed by the user are:
   `maxPaths` value would likely cause a stack overflow error prior to reaping the benefits, so the program would need to
   be rewritten to be immune to that error.
 
-###Execution Path 1 (Comparison)
+### Execution Path 1 (Comparison)
 This path involves comparing the Depth First Search (DFS), Breadth First Search (BFS) and 
 Heuristic state traversal methods included in the program. It does this recording the number of
 recursive calls (called 'visits') involved in finding `maxPaths` paths, and the average path length.
@@ -37,14 +37,14 @@ Examples of this compairson can be found in
 - `result_after_path3_heuristic_n50.txt` lines [1-21]
 - `n30_output.txt` lines [1-21]
 
-###Execution Path 2 (Shortest Path)
+### Execution Path 2 (Shortest Path)
 This path involves running all three aforementioned methods and finding the shortest path from all of these.
 The shortest path is then described in a series of steps and printed. An example of this is can be found in
 `n30_output.txt` lines [22-29]. The _ring number_ mentioned in the steps represents the size of the ring with **0** being
 the smallest ring and higher numbers being the larger rings. For 'tower numbers', **1** corresponds to the leftmost tower /
 starting location and **3** corresponds to the right most tower / goal location.
 
-###Author Background in Lisp
+### Author Background in Lisp
 As explained in detail in the header comments in `toh.lisp` I  have little experience programming in Lisp. My most recent
 Computer Science course prior to completing my bachelor's degree involved programming in Lisp so when I was
 looking for programs to make to illustrate my knowledge of the field I felt comfortable making a state traversal program
