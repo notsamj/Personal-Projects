@@ -1,0 +1,71 @@
+FoodExpiry Application Started!
+Please enter your request: invalid command
+Unknown command. Type "help" for help!
+Please enter your request: help
+Command List:
+load - load a list
+add - add an item to a list
+remove - remove an item from a list
+status - view the expiry status of items on the list
+quit - quit the application
+help - ask for help
+Please enter your request: add
+Please load a list first.
+Please enter your request: remove
+Please load a list first.
+Please enter your request: status
+Please load a list first.
+Please enter your request: load
+Please enter the file name: list2.txt
+Unable to read: list2.txt
+Please enter your request: load
+Please enter the file name: list1.txt
+File loaded!
+Please enter your request: status
+FoodList with details (5):
+Carrots[99] expired 226 days ago
+Banana[5] expired 6 days ago
+Apple[5] expired 6 days ago
+caramel[2] expired 3 days ago
+Ice Cream[999] expires 52 days from now
+Please enter your request: add
+Please enter the item name: Taco
+Please enter the item quantity: 0
+Invalid input. Please try again in format: ^[1-9]{1}([0-9]{1,5})?$
+Your input: -1
+Invalid input. Please try again in format: ^[1-9]{1}([0-9]{1,5})?$
+Your input: 1
+Please enter the expiry date: 2023-12-31
+Added!
+Please enter your request: status
+FoodList with details (6):
+Carrots[99] expired 226 days ago
+Banana[5] expired 6 days ago
+Apple[5] expired 6 days ago
+caramel[2] expired 3 days ago
+Ice Cream[999] expires 52 days from now
+Taco[1] expires 52 days from now
+Please enter your request: remove
+Please enter the item name: Apple
+'Apple' removed!
+Please enter your request: status
+FoodList with details (5):
+Carrots[99] expired 226 days ago
+Banana[5] expired 6 days ago
+caramel[2] expired 3 days ago
+Ice Cream[999] expires 52 days from now
+Taco[1] expires 52 days from now
+Please enter your request: add 
+Please enter the item name: Coffee Beans
+Please enter the item quantity: 999
+Please enter the expiry date: 2023-11-09
+Added!
+Please enter your request: status
+FoodList with details (6):
+Carrots[99] expired 226 days ago
+Banana[5] expired 6 days ago
+caramel[2] expired 3 days ago
+Coffee Beans[999] expires 0 days from now
+Ice Cream[999] expires 52 days from now
+Taco[1] expires 52 days from now
+Please enter your request: quit

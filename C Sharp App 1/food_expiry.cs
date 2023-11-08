@@ -17,7 +17,7 @@ using System.Text.RegularExpressions; // Regex
 */
 public class FoodExpiryApplication {
     private static Regex ITEM_NAME_REGEX = new Regex("^[a-zA-Z0-9 ]{1,20}$");
-    private static Regex ITEM_QUANTITY_REGEX = new Regex("^[0-9]{1,5}$");
+    private static Regex ITEM_QUANTITY_REGEX = new Regex("^[1-9]{1}([0-9]{1,5})?$");
     private static Regex EXPIREY_DATE_REGEX = new Regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
     private static FoodList grocceryList;
 
