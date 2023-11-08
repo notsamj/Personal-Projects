@@ -217,6 +217,12 @@ public class FoodList {
         // File exists time to read it
         this.fileName = fileName;
         String fileText = File.ReadAllText(fileName);
+        
+        // Support blank files as a new list
+        if (fileText == ""){
+            return;
+        }
+        
         String[] lines = fileText.Split("\n");
 
         for (int i = 0; i < lines.Length; i++){
