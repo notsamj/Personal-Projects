@@ -895,8 +895,8 @@
 
 ; Program Run
 
-; Run 1
+; Execution Path 1
 (runComparison)
 
-; Run 2
+; Execution Path 2
 (findShortestPath)

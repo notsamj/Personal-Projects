@@ -1,0 +1,18 @@
+body {
+    background-color: #262525
+}
+#menuBar {
+    background-color: #202024;
+    position: absolute;
+    padding: 10px;
+    height: 100px;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+#menuBar h1 {
+    font-family: Arial;
+    font-size: 40px;
+    color: #d1cbcb;
+}
