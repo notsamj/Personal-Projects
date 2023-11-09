@@ -58,8 +58,17 @@ body {
     border-radius: 1vw;
 }
 
-.listHeader{
+#listHeaderContainer{
     width: inherit;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1vw;
+    margin-bottom: 1vw;
+}
+
+#listHeader{
+    margin-left: 1vw;
+    font-size: 50px;
 }
 
 .listBody{
@@ -94,6 +103,8 @@ body {
     position: fixed;
     bottom: 0px;
     left: 10vw;
+    border-style: solid;
+    border-width: 1px;
 }
 
 .listItem:hover{

@@ -2,7 +2,8 @@
 <head>
     <title>Grocery App v1.0</title>
     <!-- Scripts in order of loading -->
-    <script type="text/javascript" src="scripts/groccery_item_class.js"></script>
+    <script type="text/javascript" src="scripts/helper_functions.js"></script>
+    <script type="text/javascript" src="scripts/grocery_list_class.js"></script>
     <script type="text/javascript" src="scripts/grocery.js"></script>
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="stylesheets/grocery.css">
@@ -13,41 +14,11 @@
     </div>
     <div id="contentContainer">
         <div id="listContainer">
-            <div id="listHeader">
-                <h1>My List</h1>
+            <div id="listHeaderContainer">
+                <h1 id="listHeader">My List</h1>
             </div>
             <div id="listBody">
                 <ul id="list">
-                    <li class="listItem" id="listItem1">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item</textarea>
-                    </li>
-                    <li class="listItem viewedInDetail" id="listItem2">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item2</textarea>
-                    </li>
-                    <li class="listItem" id="listItem3">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item3</textarea>
-                    </li>
-                    <li class="listItem" id="listItem4">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item4</textarea>
-                    </li>
-                    <li class="listItem" id="listItem5">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item5</textarea>
-                    </li>
-                    <li class="listItem" id="listItem6">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item6</textarea>
-                    </li>
-                    <li class="listItem" id="listItem7">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item7</textarea>
-                    </li>
-                    <li class="listItem" id="listItem8">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item8</textarea>
-                    </li>
-                    <li class="listItem" id="listItem9">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item9</textarea>
-                    </li>
-                    <li class="listItem" id="listItem10">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item10</textarea>
-                    </li>
                 <ul>
                 <!-- Used to make room to see the bottom of the list when scrolling down -->
                 <div id="extraBottomSpace"></div>
@@ -59,7 +30,6 @@
         </div>
         <div id="listItemDetailsContainer">
             <h1>Test Item Details:</h1>
-            <p>Quantity: 5</p>
         </div>
     </div>
 </body>
