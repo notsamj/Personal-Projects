@@ -1,13 +1,15 @@
 html{
     width: 100%;
-    margin: 0;
+    margin: 0 0 0 0;
     color: #d1cbcb;
 }
 
 body {
-    margin: 0;
+    width: 100%;
+    margin: 0 0 0 0;
     background-color: #262525;
     font-family: Arial;
+    overflow-x: hidden;
 }
 
 #menuBar {
@@ -30,8 +32,12 @@ body {
     top: 150px;
     margin-left: 0;
     margin-right: 0;
+    width: 100vw;
+    height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-bottom: 100px;
 }
 
 #listContainer{
@@ -42,6 +48,14 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+
+#listItemDetailsContainer{
+    width: 30vw;
+    margin-left: 65vw;
+    padding-left: 1vw;
+    background-color: #202024;
+    border-radius: 1vw;
 }
 
 .listHeader{
@@ -62,23 +76,40 @@ body {
     height: inherit;
 }
 
-.listItem{
+.listItem, #newListItem{
+    border-radius: 1vw;
     margin-bottom: 0.2em;
     height: 100px;
     width: inherit;
     color: #d1cbcb;
     background-color: #202024;
     font-size: 40px;
-    display: flex; /* Check if needed */
-    flex-direction: row; /* Check if needed */
+    display: flex; 
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
-.listItemTextArea{
+#newListItem{
+    width: 50vw;
+    position: fixed;
+    bottom: 0px;
+    left: 10vw;
+}
+
+.listItem:hover{
+    background-color: #315cde;
+}
+
+/* When you are hoving over or viewing in detail */
+.listItem.viewedInDetail{
+    background-color: #315cde;
+}
+
+.listItemTextArea, #newListItemTextArea{
     font-size: inherit;
     color: inherit;
     resize:none;
-    background-color: #202024;
+    background-color: inherit;
     border: none;
     outline: none;
     margin-top: 1.2vw;
@@ -97,4 +128,8 @@ body {
     text-align: center;
     margin-top: 1.5vw;
     margin-bottom: 2vw;
+}
+
+#extraBottomSpace{
+    height: 10vw;
 }
