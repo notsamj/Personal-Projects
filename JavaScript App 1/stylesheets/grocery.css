@@ -1,6 +1,7 @@
 body {
     background-color: #262525
 }
+
 #menuBar {
     background-color: #202024;
     position: absolute;
@@ -15,4 +16,13 @@ body {
     font-family: Arial;
     font-size: 40px;
     color: #d1cbcb;
+}
+
+#contentContainer{
+    position: absolute;
+    top: 100px;
+}
+
+textarea{
+    resize:none;
 }
