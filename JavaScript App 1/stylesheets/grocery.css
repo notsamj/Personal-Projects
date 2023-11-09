@@ -33,7 +33,7 @@ body {
     margin-left: 0;
     margin-right: 0;
     width: 100vw;
-    height: 100%;
+    height: inherit;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -107,7 +107,7 @@ body {
     border-width: 1px;
 }
 
-.listItem:hover{
+.listItem:hover, .selected{
     background-color: #315cde;
 }
 
@@ -142,5 +142,6 @@ body {
 }
 
 #extraBottomSpace{
-    height: 10vw;
+    height: 20vh;
+    bottom: 0;
 }

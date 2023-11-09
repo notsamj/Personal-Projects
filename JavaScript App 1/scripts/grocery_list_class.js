@@ -15,4 +15,8 @@ class GroceryList{
     fromDataJSON(dataJSON){
         this._listData = dataJSON;
     }
+
+    getList(){
+        return this._listData["items"];
+    }
 }
