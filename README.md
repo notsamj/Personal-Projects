@@ -27,19 +27,3 @@ Vue Games Website https://github.com/AlexNayl/WebDevGroupProject
 
 ### My Background
 As of October 2023, I've completed my Computer Science Bachelor's Degree requirements at Ontario Tech University.
-Between school assignments, public & private personal projects.
-
-**Of course, I do not expect to be judged on what I can claim but what I can show. Feel free to disregard this list it's more for myself.** \
-I have experience with the following languages:
-- Java - Some experience
-- JavaScript - Some experience
-- Python - Some experience
-- AutoHotKey - Little experience
-- C++ - Little experience
-- VBScript - Little experience
-- Lisp - Little experience
-- C - Little experience
-- C Sharp - Little experience
-- Visual Basic 6 - Little experience
-
-*Some of the JavaScript, Python & AutoHotKey experience is from automating tasks in videogames, so I have not published the code.*
