@@ -1,11 +1,18 @@
+html{
+    width: 100%;
+    margin: 0;
+    color: #d1cbcb;
+}
+
 body {
-    background-color: #262525
+    margin: 0;
+    background-color: #262525;
+    font-family: Arial;
 }
 
 #menuBar {
     background-color: #202024;
     position: absolute;
-    padding: 10px;
     height: 100px;
     top: 0px;
     left: 0px;
@@ -13,16 +20,81 @@ body {
 }
 
 #menuBar h1 {
-    font-family: Arial;
+    margin-left: 10vw;
     font-size: 40px;
-    color: #d1cbcb;
+    color: inherit;
 }
 
 #contentContainer{
     position: absolute;
-    top: 100px;
+    top: 150px;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-direction: row;
 }
 
-textarea{
+#listContainer{
+    position: absolute;
+    /*background-color: black;*/
+    margin-left: 10vw;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.listHeader{
+    width: inherit;
+}
+
+.listBody{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    width: inherit;
+    height: inherit;
+}
+
+#list{
+    margin: inherit;
+    padding: inherit;
+    width: inherit;
+    height: inherit;
+}
+
+.listItem{
+    margin-bottom: 0.2em;
+    height: 100px;
+    width: inherit;
+    color: #d1cbcb;
+    background-color: #202024;
+    font-size: 40px;
+    display: flex; /* Check if needed */
+    flex-direction: row; /* Check if needed */
+    flex-wrap: wrap;
+}
+
+.listItemTextArea{
+    font-size: inherit;
+    color: inherit;
     resize:none;
+    background-color: #202024;
+    border: none;
+    outline: none;
+    margin-top: 1.2vw;
+    margin-bottom: 2vw;
+    margin-left: 1vw;
+    margin-right: 0px;
+    height: 50px;
+    width: 39vw;
+    overflow:hidden
+}
+
+.listItemLabel{
+    display: inline-block;
+    width: 10vw;
+    height: inherit;
+    text-align: center;
+    margin-top: 1.5vw;
+    margin-bottom: 2vw;
 }
