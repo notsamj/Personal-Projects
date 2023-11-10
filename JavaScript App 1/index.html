@@ -4,9 +4,9 @@
     <!-- Scripts in order of loading -->
     <script type="text/javascript" src="scripts/helper_functions.js"></script>
     <script type="text/javascript" src="scripts/grocery_list_class.js"></script>
-    <script type="text/javascript" src="scripts/grocery.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="stylesheets/grocery.css">
+    <link rel="stylesheet" href="stylesheets/main.css">
 </head>
 <body>
     <div id="menuBar">
@@ -31,8 +31,9 @@
             <!-- Used to make room to see the bottom of the list when scrolling down -->
             <div id="extraBottomSpace"></div>
         </div>
-        <div id="listItemDetailsContainer">
-            <h1>Test Item Details:</h1>
+        <div id="listItemDetailsContainer" style="display: none">
+            <h1 id="itemDetails_name"></h1>
+            <p id="itemDetails_quantity"></p>
         </div>
     </div>
 </body>

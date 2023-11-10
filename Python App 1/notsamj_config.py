@@ -1,10 +1,6 @@
 import re
-# General function
-def listHasElement(listToSearch, element):
-    for i in range(len(listToSearch)):
-        if listToSearch[i] == element:
-            return True
-    return False
+from helper_functions import *
+from notsamj_error import NSJError
 
 class NSJConfig:
     def __init__(self, fileName=""):
@@ -92,7 +88,7 @@ class NSJConfig:
     def set(self, key, data, dtype):
         self._data[key] = {'data': data, 'type': dtype}
 
-    def save_to_file(self):
+    def saveToFile(self):
         def dealWithDataTypes(e, dtype):
             def booleanConvert(s):
                 if s == False:
@@ -128,5 +124,3 @@ class NSJConfig:
             currentLine += "%" + self._data[key]['type'] + "\n"
             f.write(currentLine)
         f.close()
-class NSJError(Exception):
-    pass

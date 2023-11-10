@@ -19,4 +19,9 @@ class GroceryList{
     getList(){
         return this._listData["items"];
     }
+
+    // Assumes element @ index exists
+    getByIndex(index){
+        return this._listData["items"][index];
+    }
 }

@@ -59,7 +59,7 @@ function resetItemList(){
 }
 
 function getData(){
-    console.log(groceryList.toDataString());
+    navigator.clipboard.writeText(groceryList.toDataString());
 }
 
 function enterData(dataJSON){
@@ -70,7 +70,11 @@ function enterData(dataJSON){
 function viewDetailsFor(index){
     deselectAll();
     select(index);
-    // TODO
+    let item = groceryList.getByIndex(index);
+    let detailsContainer = document.getElementById("listItemDetailsContainer");
+    detailsContainer.style = ""; // Remove hidden
+    document.getElementById("itemDetails_name").innerHTML = item["name"];
+
 }
 
 function deselectAll(){

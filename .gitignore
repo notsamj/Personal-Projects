@@ -3,3 +3,5 @@
 *.out
 JavaScript App 1/images/user_images/
 *.pyc
+*.notes
+*.ignoredata
