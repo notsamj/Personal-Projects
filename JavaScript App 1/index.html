@@ -19,9 +19,6 @@
             </div>
             <div id="listBody">
                 <ul id="list">
-                    <li class="listItem" id="listItem1">
-                        <textarea spellcheck="false" class="listItemTextArea">Test Item</textarea>
-                    </li>
                 </ul>
                 <!-- Fixed position -->
                 <div id="newListItem">
@@ -32,8 +29,13 @@
             <div id="extraBottomSpace"></div>
         </div>
         <div id="listItemDetailsContainer" style="display: none">
-            <h1 id="itemDetails_name"></h1>
-            <p id="itemDetails_quantity"></p>
+            <textarea id="itemDetails_name" placeholder="Name" class="itemDetailsTextArea"></textarea>
+            <div class="itemDetailsInputContainer">
+                <label id="quantityLabel" class="itemDetailsLabel">Quantity: </label>
+                <textarea id="itemDetails_quantity" placeholder="Quantity" class="itemDetailsTextArea"></textarea>
+            </div>
+            <br><br><br><br>
+            <input id="itemDetails_saveChanges" type="button" value="Save Changes"></input>
         </div>
     </div>
 </body>

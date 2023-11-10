@@ -6,8 +6,8 @@ console.log("Grocery Script Running!");
         - Assuming that if the function viewDetailsFor(index) is called, the index is valid.
             - Ex: A user could go to console and type viewDetailsFor(999) and produce an error
                 - I don't care about this error because it was only encountered by a user sabotaging themself
-        - All LI elements match up with an element in the grocery list
-        - All LI elements have their class set
+        - Assuming all LI elements match up with an element in the grocery list
+        - Assuming all LI elements have their class set
 */
 
 // Global Variables
@@ -90,9 +90,12 @@ function select(index){
     item.classList.add("selected");
 }
 
-
+// Start Up
 
 // Listeners
 addEventListener("DOMContentLoaded", (event) => {
+    // Temp
+    groceryList.addItem("my new item 1");
+    resetItemDisplay();
     document.getElementById("newListItem").addEventListener("keypress", function (event){ if (event.key === "Enter"){ newItem(); event.preventDefault(); }});
 }); 
