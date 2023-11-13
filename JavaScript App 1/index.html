@@ -31,11 +31,14 @@
         <div id="listItemDetailsContainer" style="display: none">
             <textarea id="itemDetails_name" placeholder="Name" class="itemDetailsTextArea"></textarea>
             <div class="itemDetailsInputContainer">
-                <label id="quantityLabel" class="itemDetailsLabel">Quantity: </label>
+                <label id="quantityLabel" class="itemDetailsLabel">#</label>
                 <textarea id="itemDetails_quantity" placeholder="Quantity" class="itemDetailsTextArea"></textarea>
             </div>
-            <br><br><br><br>
-            <input id="itemDetails_saveChanges" type="button" value="Save Changes"></input>
+            <div class="itemDetailsInputContainer">
+                <label id="descriptionLabel" class="itemDetailsLabel">Description</label>
+                <textarea id="itemDetails_description" placeholder="Description" class="itemDetailsTextArea"></textarea>
+            </div>
+            <input id="itemDetails_saveChanges" class="notReadyButton" type="button" value="Save Changes"></input>
         </div>
     </div>
 </body>

@@ -151,6 +151,9 @@ body {
     border: none;
     resize:none;
     outline: none;
+    width: 24vw;
+    height: 5vh;
+    padding: 0;
 }
 
 .itemDetailsLabel{
@@ -158,12 +161,16 @@ body {
     background-color: #202024;
     font-size: 20px;
     font-weight: bold;
+    width: 5vw;
+    height: 5vh;
 }
 
 #itemDetails_name{
     background-color: #202024;
     font-weight: bold;
     font-size: 30px;
+    height: 12vh;
+    width: 29vw;
 }
 
 #quantityLabel{
@@ -171,9 +178,29 @@ body {
 }
 
 #itemDetails_quantity{
-    height: 5vh;
-    max-width: 5vw;
     overflow: hidden;
+}
+
+#itemDetails_saveChanges{
+    width: 29vw;
+    height: 3vh;
+    border-radius: 1vw;
+    border: none;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    color: #d1cbcb;
+}
+
+#itemDetails_description{
+    height: 20vh;
+}
+
+.notReadyButton{
+    background-color: #262525;
+}
+
+.readyButton{
+    background-color: #315cde;
 }
 
 .itemDetailsInputContainer{

@@ -96,6 +96,24 @@ function select(index){
 addEventListener("DOMContentLoaded", (event) => {
     // Temp
     groceryList.addItem("my new item 1");
+    groceryList.addItem("my new item 2");
     resetItemDisplay();
+
+
     document.getElementById("newListItem").addEventListener("keypress", function (event){ if (event.key === "Enter"){ newItem(); event.preventDefault(); }});
+    
+    let saveChangesButton = document.getElementById("itemDetails_saveChanges");
+    saveChangesButton.addEventListener("click", function(event){
+        saveChangesButton.classList.remove("readyButton");
+        saveChangesButton.classList.add("notReadyButton");
+    })
+
+    let allItemDescriptionTextAreas = document.querySelectorAll(".itemDetailsTextArea");
+    for (let textArea of allItemDescriptionTextAreas){
+        textArea.addEventListener("input", function(event){
+            saveChangesButton.classList.remove("notReadyButton");
+            saveChangesButton.classList.add("readyButton");
+        });
+    }
+
 }); 
