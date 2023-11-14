@@ -10,6 +10,9 @@ console.log("Grocery Script Running!");
         - Assuming all LI elements have their class set
 */
 
+// Global Constants
+const itemIDRegex = /^listItem([0-9]+)$/;
+
 // Global Variables
 var groceryList = new GroceryList();
 
@@ -32,23 +35,37 @@ function resetItemDisplay(){
     resetItemList();
 }
 
+function hasSelectedItem(){
+    return document.querySelector(".selected") != null;
+}
+
+function getSelectedItemID(){
+    let selectedItem = document.querySelector(".selected"); // Assumes only a proper item will have this class
+    let selectedItemIDString = selectedItem.getAttribute("id");
+    return parseInt(selectedItemIDString.match(itemIDRegex)[1]);
+}
+
+// Making lots of serious assumptions in this function
 function resetItemDetails(){
-    // TODO
+    if (!hasSelectedItem()){ return; } 
+    let selectedItem = groceryList.getByIndex(getSelectedItemID());
+    document.getElementById("itemDetails_name").value = selectedItem.getName();
+    document.getElementById("itemDetails_quantity").value = selectedItem.getQuantity();
+    document.getElementById("itemDetails_description").value = selectedItem.getDescription();
 }
 
 function resetItemList(){
-    let items = groceryList.getList();
     let listUL = document.getElementById("list");
     // Delete all children & everything inside
     listUL.innerHTML = "";
 
-    for (let i = 0; i < items.length; i++){
-        let item = items[i];
+    for (let i = 0; i < groceryList.getLength(); i++){
+        let item = groceryList.getByIndex(i);
         let itemLI = document.createElement("li");
         itemLI.setAttribute("class", "listItem");
         itemLI.setAttribute("id", "listItem" + i.toString());
         let itemTextArea = document.createElement("textarea");
-        itemTextArea.value = item["name"];
+        itemTextArea.value = item.getName();
         itemTextArea.setAttribute("spellcheck", "false");
         itemTextArea.setAttribute("class", "listItemTextArea");
         itemTextArea.setAttribute("readonly", "true");
@@ -88,6 +105,19 @@ function deselectAll(){
 function select(index){
     let item = document.getElementById("listItem" + index.toString());
     item.classList.add("selected");
+    resetItemDetails();
+}
+
+function saveCurrentItemDetails(){
+    let currentlySelectedID = getSelectedItemID();
+    let item = groceryList.getByIndex(currentlySelectedID);
+    let name = document.getElementById("itemDetails_name").value;
+    let quantity = document.getElementById("itemDetails_quantity").value;
+    let description = document.getElementById("itemDetails_description").value;
+
+    item.setName(name);
+    item.setQuantity(quantity);
+    item.setDescription(description);
 }
 
 // Start Up
@@ -104,6 +134,9 @@ addEventListener("DOMContentLoaded", (event) => {
     
     let saveChangesButton = document.getElementById("itemDetails_saveChanges");
     saveChangesButton.addEventListener("click", function(event){
+        if (saveChangesButton.classList.contains("readyButton")){
+            saveCurrentItemDetails();
+        }
         saveChangesButton.classList.remove("readyButton");
         saveChangesButton.classList.add("notReadyButton");
     })

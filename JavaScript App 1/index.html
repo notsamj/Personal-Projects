@@ -3,6 +3,7 @@
     <title>Grocery App v1.0</title>
     <!-- Scripts in order of loading -->
     <script type="text/javascript" src="scripts/helper_functions.js"></script>
+    <script type="text/javascript" src="scripts/grocery_item_class.js"></script>
     <script type="text/javascript" src="scripts/grocery_list_class.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
     <!-- CSS Stylesheet -->
@@ -31,11 +32,11 @@
         <div id="listItemDetailsContainer" style="display: none">
             <textarea id="itemDetails_name" placeholder="Name" class="itemDetailsTextArea"></textarea>
             <div class="itemDetailsInputContainer">
-                <label id="quantityLabel" class="itemDetailsLabel">#</label>
+                <label class="itemDetailsLabel">#</label>
                 <textarea id="itemDetails_quantity" placeholder="Quantity" class="itemDetailsTextArea"></textarea>
             </div>
             <div class="itemDetailsInputContainer">
-                <label id="descriptionLabel" class="itemDetailsLabel">Description</label>
+                <label class="itemDetailsLabel">Description</label>
                 <textarea id="itemDetails_description" placeholder="Description" class="itemDetailsTextArea"></textarea>
             </div>
             <input id="itemDetails_saveChanges" class="notReadyButton" type="button" value="Save Changes"></input>

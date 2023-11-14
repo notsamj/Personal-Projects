@@ -4,16 +4,21 @@ class GroceryList{
         this._listData = {"items":[]};
     }
 
-    addItem(name){
-        this._listData["items"].push({"name": name});
+    addItem(dataText){
+        // TODO: Maybe add a way to interpret this differently?
+        this._listData["items"].push(new GroceryItem(dataText, 0, ""));
     }
 
     toDataString(){
-        return JSON.stringify(this._listData);
+        // TODO
     }
 
     fromDataJSON(dataJSON){
-        this._listData = dataJSON;
+        // TODO
+    }
+
+    getLength(){
+        return this._listData["items"].length;
     }
 
     getList(){
