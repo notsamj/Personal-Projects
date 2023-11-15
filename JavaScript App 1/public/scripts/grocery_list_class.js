@@ -1,4 +1,5 @@
 console.log("GroceryList Class Loaded!");
+// Client Side Grocery List Class
 class GroceryList{
     constructor(){
         this._listData = {"items":[]};
