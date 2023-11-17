@@ -9,6 +9,8 @@ const grocceryList = new GROCERY_LIST_MODULE.GroceryList();
 
 // Start Up Setup Express
 
+app.use(express.static('public')) // Provide access to public files
+
 app.get("/", (req, res) => {
     const options = {
         root: path.join(__dirname)

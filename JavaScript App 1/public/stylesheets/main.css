@@ -15,21 +15,21 @@ body {
 #menuBar {
     background-color: #202024;
     position: absolute;
-    height: 100px;
-    top: 0px;
-    left: 0px;
+    height: 10vh;
+    top: 0vh;
+    left: 0vh;
     width: 100%;
 }
 
 #menuBar h1 {
     margin-left: 10vw;
-    font-size: 40px;
+    font-size: 5vh;
     color: inherit;
 }
 
 #contentContainer{
     position: absolute;
-    top: 150px;
+    top: 15vh;
     margin-left: 0;
     margin-right: 0;
     width: 100vw;
@@ -37,7 +37,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    padding-bottom: 100px;
+    padding-bottom: 10vh;
 }
 
 #listContainer{
@@ -64,14 +64,14 @@ body {
 #listHeaderContainer{
     width: inherit;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0.1vh;
     border-radius: 1vw;
     margin-bottom: 1vw;
 }
 
 #listHeader{
     margin-left: 1vw;
-    font-size: 50px;
+    font-size: 5vh;
 }
 
 .listBody{
@@ -91,11 +91,11 @@ body {
 .listItem, #newListItem{
     border-radius: 1vw;
     margin-bottom: 0.2em;
-    height: 100px;
+    height: 10vh;
     width: inherit;
     color: #d1cbcb;
     background-color: #202024;
-    font-size: 40px;
+    font-size: 4vh;
     display: flex; 
     flex-direction: row;
     flex-wrap: wrap;
@@ -104,10 +104,10 @@ body {
 #newListItem{
     width: 50vw;
     position: fixed;
-    bottom: 0px;
+    bottom: 0vh;
     left: 10vw;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0.1vh;
 }
 
 .listItem:hover, .selected{
@@ -129,8 +129,8 @@ body {
     margin-top: 1.2vw;
     margin-bottom: 2vw;
     margin-left: 1vw;
-    margin-right: 0px;
-    height: 50px;
+    margin-right: 0vh;
+    height: 5vh;
     width: 39vw;
     overflow:hidden
 }
@@ -146,7 +146,7 @@ body {
 
 .itemDetailsTextArea{
     color: inherit;
-    font-size: 20px;
+    font-size: 2vh;
     background-color: #202024;
     border: none;
     resize:none;
@@ -159,7 +159,7 @@ body {
 .itemDetailsLabel{
     color: inherit;
     background-color: #202024;
-    font-size: 20px;
+    font-size: 2vh;
     font-weight: bold;
     width: 9vw;
     height: 5vh;
@@ -168,7 +168,7 @@ body {
 #itemDetails_name{
     background-color: #202024;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 3vh;
     height: 12vh;
     width: 29vw;
 }
