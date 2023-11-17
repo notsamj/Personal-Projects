@@ -1,9 +1,21 @@
 const express = require("express");
 const path = require("path");
 const GROCERY_LIST_MODULE = require("grocery_list");
+
+/*  Notes:
+        According to online documentation:
+            post -> Send info (so for server app.post is receive)
+            get -> Get info (so for server app.post is sending data)
+
+*/
+
+// Global Constants
 const app = express();
 const port = 8080;
 const grocceryList = new GROCERY_LIST_MODULE.GroceryList();
+
+// Global Variables
+var currentUpdateID = 0;
 
 // Functions
 
@@ -25,7 +37,11 @@ app.get("/", (req, res) => {
     });
 })
 
-app.post("get_list", (req, res) => {
+app.get("/updateVersion", (req, res) => {
+    res.send(currentUpdateID.toString());  
+})
+
+app.get("get_list", (req, res) => {
     res.send(grocceryList.toJSON());
 })
 

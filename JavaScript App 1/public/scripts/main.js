@@ -15,6 +15,8 @@ const itemIDRegex = /^listItem([0-9]+)$/;
 
 // Global Variables
 var groceryList = new GroceryList();
+var lastUpdateID = -1; // Starts with -1 so will start out by taking version 0 (or higher if other connections have occured)
+var awaitingRefresh = false;
 
 // Functions
 function newItem(){
@@ -120,6 +122,32 @@ function saveCurrentItemDetails(){
     item.setDescription(description);
 }
 
+async function refresh(){
+    console.log("Try to refresh:", awaitingRefresh);
+    // Run every 2 seconds unless request from previous is active
+    if (awaitingRefresh){
+        return;
+    }
+    awaitingRefresh = true;
+    let response = await fetch("http://localhost:8080/updateVersion"); // TODO: This is hardcoded, change in the future
+    let responseJSON = await response.json();
+    let currentVersion = responseJSON;
+    // If we are on an outdated version then update
+    if (currentVersion > lastUpdateID){
+        // Need to await so that the awaitingRefresh isn't set to false until we have updated
+        await updateVersion();
+    }
+    // After received refresh
+    awaitingRefresh = false;
+}
+
+async function updateVersion(){
+    let response = await fetch("http://localhost:8080/getLatestVersion");
+    let responseJSON = await response.json();
+    // TODO: Update data based on the version from the cloud
+    // TODO: Reset the display based on version from the cloud
+}
+
 // Start Up
 
 // Listeners
@@ -149,4 +177,5 @@ addEventListener("DOMContentLoaded", (event) => {
         });
     }
 
+    setInterval(refresh, 2000);
 }); 
