@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const GROCERY_LIST_MODULE = require("grocery_list");
 const app = express();
 const port = 8080;
@@ -9,11 +10,20 @@ const grocceryList = new GROCERY_LIST_MODULE.GroceryList();
 // Start Up Setup Express
 
 app.get("/", (req, res) => {
-    console.log(grocceryList)
-    res.send("Test");
+    const options = {
+        root: path.join(__dirname)
+    }
+    res.sendFile("public/index.html", options, function(error){
+        if (error){
+            console.log(error);
+            console.log("An error has occured.")
+        }else{
+            console.log("Sent to user.")
+        }
+    });
 })
 
-app.post("/get_list", (req, res) => {
+app.post("get_list", (req, res) => {
     res.send(grocceryList.toJSON());
 })
 
