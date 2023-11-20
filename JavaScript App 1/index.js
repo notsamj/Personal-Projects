@@ -41,6 +41,10 @@ app.get("/updateVersion", (req, res) => {
     res.send(currentUpdateID.toString());  
 })
 
+app.get("/getLatestVersion", (req, res) => {
+    res.send({"versionNumber": currentUpdateID, "data": grocceryList.toJSON()});  
+})
+
 app.get("get_list", (req, res) => {
     res.send(grocceryList.toJSON());
 })

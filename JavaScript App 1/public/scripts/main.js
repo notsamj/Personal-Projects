@@ -15,8 +15,8 @@ const itemIDRegex = /^listItem([0-9]+)$/;
 
 // Global Variables
 var groceryList = new GroceryList();
-var lastUpdateID = -1; // Starts with -1 so will start out by taking version 0 (or higher if other connections have occured)
-var awaitingRefresh = false;
+var lastUpdateReceived = -1; // Starts with -1 so will start out by taking version 0 (or higher if other connections have occured)
+var refreshInProgress = false;
 
 // Functions
 function newItem(){
@@ -123,29 +123,38 @@ function saveCurrentItemDetails(){
 }
 
 async function refresh(){
-    console.log("Try to refresh:", awaitingRefresh);
+    console.log("Try to refresh:", refreshInProgress);
     // Run every 2 seconds unless request from previous is active
-    if (awaitingRefresh){
+    if (refreshInProgress){
         return;
     }
-    awaitingRefresh = true;
+    refreshInProgress = true;
     let response = await fetch("http://localhost:8080/updateVersion"); // TODO: This is hardcoded, change in the future
     let responseJSON = await response.json();
     let currentVersion = responseJSON;
     // If we are on an outdated version then update
-    if (currentVersion > lastUpdateID){
-        // Need to await so that the awaitingRefresh isn't set to false until we have updated
+    if (currentVersion > lastUpdateReceived){
+        console.log("Out of date -> Updating: {currentVersion} {lastUpdateReceived}", currentVersion, lastUpdateReceived);
+        // Need to await so that the refreshInProgress isn't set to false until we have updated
         await updateVersion();
     }
     // After received refresh
-    awaitingRefresh = false;
+    refreshInProgress = false;
 }
 
 async function updateVersion(){
     let response = await fetch("http://localhost:8080/getLatestVersion");
+    if (response.status != 200){ // If not a sucessful response
+        return;
+    }
+    console.log("Response", response)
     let responseJSON = await response.json();
-    // TODO: Update data based on the version from the cloud
-    // TODO: Reset the display based on version from the cloud
+    console.log("Response Data", responseJSON);
+    let versionNumber = responseJSON["versionNumber"];
+    let data = responseJSON["data"];
+    groceryList.fromDataJSON(data);
+    lastUpdateReceived = versionNumber;
+    resetItemDisplay();
 }
 
 // Start Up

@@ -15,7 +15,10 @@ class GroceryList{
     }
 
     fromDataJSON(dataJSON){
-        // TODO
+        this._listData = {"items":[]}; // Reset data
+        for (let itemJSON of dataJSON["items"]){
+            this._listData["items"].push(GroceryItem.fromDataJSON(itemJSON));
+        }
     }
 
     getLength(){
