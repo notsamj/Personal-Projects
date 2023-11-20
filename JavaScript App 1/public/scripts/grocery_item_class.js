@@ -14,6 +14,10 @@ class GroceryItem{
     setQuantity(quantity){ this.quantity = quantity; }
     setDescription(description){ this.description = description; }
 
+    toJSON(){
+        return {"name": this.name, "quantity": this.quantity, "description": this.description};
+    }
+
     static fromDataJSON(dataJSON){
         return new GroceryItem(dataJSON["name"], dataJSON["quantity"], dataJSON["description"]);
     }

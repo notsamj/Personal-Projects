@@ -10,8 +10,12 @@ class GroceryList{
         this._listData["items"].push(new GroceryItem(dataText, 0, ""));
     }
 
-    toDataString(){
-        // TODO
+    toJSON(){
+        let jsonRep = {"items": []};
+        for (let item of this._listData["items"]){
+            jsonRep["items"].push(item.toJSON());
+        }
+        return jsonRep;
     }
 
     fromDataJSON(dataJSON){

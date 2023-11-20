@@ -8,6 +8,9 @@ console.log("Grocery Script Running!");
                 - I don't care about this error because it was only encountered by a user sabotaging themself
         - Assuming all LI elements match up with an element in the grocery list
         - Assuming all LI elements have their class set
+
+    TODO:
+        - Remove hardcoding of 8080 or just make a constant
 */
 
 // Global Constants
@@ -30,6 +33,7 @@ function newItem(){
     textArea.value = "";
     groceryList.addItem(text);
     resetItemDisplay();
+    informServerOfNewItem(groceryList.getByIndex(groceryList.getLength() - 1)); // Not the best, not the worst imo
 }
 
 function resetItemDisplay(){
@@ -120,6 +124,7 @@ function saveCurrentItemDetails(){
     item.setName(name);
     item.setQuantity(quantity);
     item.setDescription(description);
+    // TODO: informServerOfUpdatedItem(item, getSelectedItemID());
 }
 
 async function refresh(){
@@ -142,9 +147,23 @@ async function refresh(){
     refreshInProgress = false;
 }
 
+async function informServerOfNewItem(newItem){
+    // TODO: Tell server what you have changed & YOUR VERSION ID AND IF server accepts the change THEN it will return the new version id
+    fetch("http://localhost:8080/addItem", {
+        method: "POST",
+        body: JSON.stringify({
+            "currentVersion": lastUpdateReceived,
+            "data": newItem.toJSON()
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+}
+
 async function updateVersion(){
     let response = await fetch("http://localhost:8080/getLatestVersion");
-    if (response.status != 200){ // If not a sucessful response
+    if (response.status != 200){ // If not a successful response
         return;
     }
     console.log("Response", response)
@@ -153,6 +172,7 @@ async function updateVersion(){
     let versionNumber = responseJSON["versionNumber"];
     let data = responseJSON["data"];
     groceryList.fromDataJSON(data);
+    // If there is an error when reading the JSON, don't update the version number
     lastUpdateReceived = versionNumber;
     resetItemDisplay();
 }
@@ -165,7 +185,7 @@ addEventListener("DOMContentLoaded", (event) => {
     groceryList.addItem("my new item 1");
     groceryList.addItem("my new item 2");
     resetItemDisplay();
-
+    // END Temp
 
     document.getElementById("newListItem").addEventListener("keypress", function (event){ if (event.key === "Enter"){ newItem(); event.preventDefault(); }});
     
