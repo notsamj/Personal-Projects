@@ -32,15 +32,17 @@ async function deleteItem(){
 
 async function newItem(){
     let textArea = document.getElementById("newListItemTextArea");
-    let text = textArea.value;
-    if (text === ""){
+    let itemName = textArea.value;
+    if (itemName === ""){
         return;
     }
 
-    let serverResponse = informServerOfNewItem(groceryList.getByIndex(groceryList.getLength() - 1)); // Not the best, not the worst imo
-    console.log("Response:", serverResponse);
-    if (serverResponse["success"]){
-        loadFromJSONData(serverResponse["data"])
+    let serverResponseJSON = await informServerOfNewItem(itemName); // Not the best, not the worst imo
+    if (serverResponseJSON["success"]){
+        lastUpdateReceived = serverResponseJSON["newVersion"];
+        textArea.value = "";
+        loadFromJSONData(serverResponseJSON["data"])
+        resetItemDisplay();
     }else{
         // TODO: ToolTip: Server not responding...
     }
@@ -169,21 +171,22 @@ async function informServerOfDeletedItem(itemIndex){
             "Content-type": "application/json; charset=UTF-8"
         }
     });
-    return response;
+    return response.json();
 }
 
-async function informServerOfNewItem(newItem){
-    fetch("http://localhost:8080/addItem", {
+async function informServerOfNewItem(itemName){
+    let response = await fetch("http://localhost:8080/addItem", {
         method: "POST",
         body: JSON.stringify({
             "purpose": "add",
             "currentVersion": lastUpdateReceived,
-            "data": newItem.toJSON()
+            "data": itemName
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
     });
+    return response.json();
 }
 
 function loadFromJSONData(data){

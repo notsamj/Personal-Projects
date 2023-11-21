@@ -29,7 +29,7 @@ async function userRequestAdd(requestBody){
     if (requestBody["currentVersion"] != currentUpdateID){
         return {"success": false};
     }
-    groceryList.addItemFromJSON(requestBody["data"]);
+    groceryList.addItem(requestBody["data"]);
     await groceryList.saveToFile(FILE_NAME);
     currentUpdateID += 1;
     return {"success": true, "newVersion": currentUpdateID, "data": groceryList.toJSON()};
@@ -77,16 +77,18 @@ app.get("/", (req, res) => {
     });
 })
 
-app.get("/updateVersion", (req, res) => {
+app.get("/updateVersion", async (req, res) => {
     req.body["purpose"] = "getVersionNumber";
     let result = await queuedTaskManager.doTask(req);
+    console.log("Sending user", currentUpdateID.toString(), "from /updateVersion");
     res.send(currentUpdateID.toString());
 
 })
 
-app.get("/getLatestVersion", (req, res) => {
+app.get("/getLatestVersion", async (req, res) => {
     req.body["purpose"] = "getLatestVersion";
     let result = await queuedTaskManager.doTask(req);
+    console.log("Sending user", result, "from /getLatestVersion");
     res.send(result);
 })
 
@@ -96,12 +98,14 @@ app.post("/addItem", async function(req, res){
     don't mess things up */
     req.body["purpose"] = "add";
     let result = await queuedTaskManager.doTask(req);
+    console.log("Sending user", result, "from /addItem");
     res.send(result);
 })
 
 app.post("/deleteItem", async function(req, res){
     req.body["purpose"] = "delete";
     let result = await queuedTaskManager.doTask(req);
+    console.log("Sending user", result, "from /deleteItem");
     res.send(result);
 })
 
