@@ -25,9 +25,15 @@ var refreshInProgress = false;
 
 async function deleteItem(){
     let index = getSelectedItemID();
-    groceryList.removeAtIndex(index)
-    resetItemDisplay();
     informServerOfDeletedItem(index);
+    let serverResponseJSON = await informServerOfDeletedItem(index); // Not the best, not the worst imo
+    if (serverResponseJSON["success"]){
+        lastUpdateReceived = serverResponseJSON["newVersion"];
+        loadFromJSONData(serverResponseJSON["data"])
+        resetItemDisplay();
+    }else{
+        // TODO: ToolTip: Server not responding...
+    }
 }
 
 async function newItem(){
@@ -242,5 +248,6 @@ addEventListener("DOMContentLoaded", (event) => {
         deleteItem();
     });
 
+    refresh();
     setInterval(refresh, 2000);
 }); 

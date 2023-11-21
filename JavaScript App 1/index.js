@@ -35,6 +35,17 @@ async function userRequestAdd(requestBody){
     return {"success": true, "newVersion": currentUpdateID, "data": groceryList.toJSON()};
 }
 
+async function userRequestDelete(requestBody) {
+    // Ensure the delete only goes through if it is received from a client on the current version
+    if (requestBody["currentVersion"] != currentUpdateID){
+        return {"success": false};
+    }
+    groceryList.removeAtIndex(requestBody["data"]);
+    await groceryList.saveToFile(FILE_NAME);
+    currentUpdateID += 1;
+    return {"success": true, "newVersion": currentUpdateID, "data": groceryList.toJSON()};
+}
+
 // Determines which function to use to handle the user request
 async function handleUserRequest(request){
     let requestBody = request.body;
