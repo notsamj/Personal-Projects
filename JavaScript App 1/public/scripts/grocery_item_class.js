@@ -22,4 +22,14 @@ class GroceryItem{
         return new GroceryItem(dataJSON["name"], dataJSON["quantity"], dataJSON["description"]);
     }
 
+    copy(){
+        return new GroceryItem(this.name, this.quantity, this.description);
+    }
+
+    copyDetailsFromJSON(jsonOBJ){
+        this.name = jsonOBJ["name"];
+        this.quantity = jsonOBJ["quantity"];
+        this.description = jsonOBJ["description"];
+    }
+
 }

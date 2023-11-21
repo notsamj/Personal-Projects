@@ -135,17 +135,28 @@ function select(index){
     resetItemDetails();
 }
 
-function saveCurrentItemDetails(){
+async function saveCurrentItemDetails(){
     let currentlySelectedID = getSelectedItemID();
     let item = groceryList.getByIndex(currentlySelectedID);
+    let itemCopy = item.copy();
     let name = document.getElementById("itemDetails_name").value;
     let quantity = document.getElementById("itemDetails_quantity").value;
     let description = document.getElementById("itemDetails_description").value;
 
-    item.setName(name);
-    item.setQuantity(quantity);
-    item.setDescription(description);
-    // TODO: informServerOfUpdatedItem(item, getSelectedItemID());
+    itemCopy.setName(name);
+    itemCopy.setQuantity(quantity);
+    itemCopy.setDescription(description);
+    let itemCopyJSON = itemCopy.toJSON();
+    let serverResponseJSON = await informServerOfItemUpdate(getSelectedItemID(), itemCopyJSON);
+    if (serverResponseJSON["success"]){
+        item.copyDetailsFromJSON(itemCopyJSON);
+        lastUpdateReceived = serverResponseJSON["newVersion"];
+        let saveChangesButton = document.getElementById("itemDetails_saveChanges");
+        saveChangesButton.classList.remove("readyButton");
+        saveChangesButton.classList.add("notReadyButton");
+    }else{
+        // TODO: ToolTip: Server not responding...
+    }
 }
 
 async function refresh(){
@@ -172,7 +183,6 @@ async function informServerOfDeletedItem(itemIndex){
     let response = await fetch("http://localhost:8080/deleteItem", {
         method: "POST",
         body: JSON.stringify({
-            "purpose": "delete",
             "currentVersion": lastUpdateReceived,
             "data": itemIndex
         }),
@@ -187,9 +197,23 @@ async function informServerOfNewItem(itemName){
     let response = await fetch("http://localhost:8080/addItem", {
         method: "POST",
         body: JSON.stringify({
-            "purpose": "add",
             "currentVersion": lastUpdateReceived,
             "data": itemName
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+    return response.json();
+}
+
+async function informServerOfItemUpdate(index, newItemJSON){
+    let response = await fetch("http://localhost:8080/updateItem", {
+        method: "POST",
+        body: JSON.stringify({
+            "currentVersion": lastUpdateReceived,
+            "index": index,
+            "data": newItemJSON
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -232,8 +256,6 @@ addEventListener("DOMContentLoaded", (event) => {
         if (saveChangesButton.classList.contains("readyButton")){
             saveCurrentItemDetails();
         }
-        saveChangesButton.classList.remove("readyButton");
-        saveChangesButton.classList.add("notReadyButton");
     })
 
     let allItemDescriptionTextAreas = document.querySelectorAll(".itemDetailsTextArea");

@@ -46,6 +46,18 @@ async function userRequestDelete(requestBody) {
     return {"success": true, "newVersion": currentUpdateID, "data": groceryList.toJSON()};
 }
 
+async function userRequestUpdate(requestBody){
+    // Ensure the update only goes through if it is received from a client on the current version
+    if (requestBody["currentVersion"] != currentUpdateID){
+        return {"success": false};
+    }
+
+    let item = groceryList.getByIndex(requestBody["index"]);
+    item.copyDetailsFromJSON(requestBody["data"]);
+    currentUpdateID += 1;
+    return {"success": true, "newVersion": currentUpdateID};
+}
+
 // Determines which function to use to handle the user request
 async function handleUserRequest(request){
     let requestBody = request.body;
@@ -59,6 +71,8 @@ async function handleUserRequest(request){
             return {"versionNumber": currentUpdateID, "data": groceryList.toJSON()};
         }else if (requestBody["purpose"] == "getVersionNumber"){
             return {"versionNumber": currentUpdateID};
+        }else if (requestBody["purpose"] == "update"){
+            return await userRequestUpdate(requestBody);
         }
     }catch (exception){
         console.log("Exception in handleUserRequest:", exception);
@@ -117,6 +131,13 @@ app.post("/deleteItem", async function(req, res){
     req.body["purpose"] = "delete";
     let result = await queuedTaskManager.doTask(req);
     console.log("Sending user", result, "from /deleteItem");
+    res.send(result);
+})
+
+app.post("/updateItem", async function(req, res){
+    req.body["purpose"] = "update";
+    let result = await queuedTaskManager.doTask(req);
+    console.log("Sending user", result, "from /updateItem");
     res.send(result);
 })
 
