@@ -37,4 +37,11 @@ class GroceryList{
     getByIndex(index){
         return this._listData["items"][index];
     }
+
+    removeAtIndex(index){
+        for (let i = index; i < this.getLength() - 1; i++){
+            this._listData["items"][i] = this._listData["items"][i+1];
+        }
+        this._listData["items"].pop();
+    }
 }

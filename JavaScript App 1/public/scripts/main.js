@@ -22,18 +22,28 @@ var lastUpdateReceived = -1; // Starts with -1 so will start out by taking versi
 var refreshInProgress = false;
 
 // Functions
-function newItem(){
+
+async function deleteItem(){
+    let index = getSelectedItemID();
+    groceryList.removeAtIndex(index)
+    resetItemDisplay();
+    informServerOfDeletedItem(index);
+}
+
+async function newItem(){
     let textArea = document.getElementById("newListItemTextArea");
     let text = textArea.value;
     if (text === ""){
         return;
     }
 
-    // Reset the text
-    textArea.value = "";
-    groceryList.addItem(text);
-    resetItemDisplay();
-    informServerOfNewItem(groceryList.getByIndex(groceryList.getLength() - 1)); // Not the best, not the worst imo
+    let serverResponse = informServerOfNewItem(groceryList.getByIndex(groceryList.getLength() - 1)); // Not the best, not the worst imo
+    console.log("Response:", serverResponse);
+    if (serverResponse["success"]){
+        loadFromJSONData(serverResponse["data"])
+    }else{
+        // TODO: ToolTip: Server not responding...
+    }
 }
 
 function resetItemDisplay(){
@@ -147,8 +157,22 @@ async function refresh(){
     refreshInProgress = false;
 }
 
+async function informServerOfDeletedItem(itemIndex){
+    let response = await fetch("http://localhost:8080/deleteItem", {
+        method: "POST",
+        body: JSON.stringify({
+            "purpose": "delete",
+            "currentVersion": lastUpdateReceived,
+            "data": itemIndex
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    });
+    return response;
+}
+
 async function informServerOfNewItem(newItem){
-    // TODO: Tell server what you have changed & YOUR VERSION ID AND IF server accepts the change THEN it will return the new version id
     fetch("http://localhost:8080/addItem", {
         method: "POST",
         body: JSON.stringify({
@@ -162,6 +186,11 @@ async function informServerOfNewItem(newItem){
     });
 }
 
+function loadFromJSONData(data){
+    groceryList.fromDataJSON(data);
+    resetItemDisplay();
+}
+
 async function updateVersion(){
     let response = await fetch("http://localhost:8080/getLatestVersion");
     if (response.status != 200){ // If not a successful response
@@ -172,10 +201,8 @@ async function updateVersion(){
     console.log("Response Data", responseJSON);
     let versionNumber = responseJSON["versionNumber"];
     let data = responseJSON["data"];
-    groceryList.fromDataJSON(data);
-    // If there is an error when reading the JSON, don't update the version number
     lastUpdateReceived = versionNumber;
-    resetItemDisplay();
+    loadFromJSONData(data);
 }
 
 // Start Up
@@ -206,6 +233,11 @@ addEventListener("DOMContentLoaded", (event) => {
             saveChangesButton.classList.add("readyButton");
         });
     }
+
+    let deleteButton = document.getElementById("deleteButton");
+    deleteButton.addEventListener("click", function(event){
+        deleteItem();
+    });
 
     setInterval(refresh, 2000);
 }); 

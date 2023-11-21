@@ -25,8 +25,14 @@ var currentUpdateID = 0;
 // Functions
 
 async function userRequestAdd(requestBody){
+    // Ensure the add only goes through if it is received from a client on the current version
+    if (requestBody["currentVersion"] != currentUpdateID){
+        return {"success": false};
+    }
     groceryList.addItemFromJSON(requestBody["data"]);
     await groceryList.saveToFile(FILE_NAME);
+    currentUpdateID += 1;
+    return {"success": true, "newVersion": currentUpdateID, "data": groceryList.toJSON()};
 }
 
 // Determines which function to use to handle the user request
@@ -38,6 +44,10 @@ async function handleUserRequest(request){
             return await userRequestAdd(requestBody);
         }else if (requestBody["purpose"] == "delete"){
             return await userRequestDelete(requestBody);
+        }else if (requestBody["purpose"] == "getLatestVersion"){
+            return {"versionNumber": currentUpdateID, "data": groceryList.toJSON()};
+        }else if (requestBody["purpose"] == "getVersionNumber"){
+            return {"versionNumber": currentUpdateID};
         }
     }catch (exception){
         console.log("Exception in handleUserRequest:", exception);
@@ -68,17 +78,29 @@ app.get("/", (req, res) => {
 })
 
 app.get("/updateVersion", (req, res) => {
-    res.send(currentUpdateID.toString());  
+    req.body["purpose"] = "getVersionNumber";
+    let result = await queuedTaskManager.doTask(req);
+    res.send(currentUpdateID.toString());
+
 })
 
 app.get("/getLatestVersion", (req, res) => {
-    res.send({"versionNumber": currentUpdateID, "data": groceryList.toJSON()});  
+    req.body["purpose"] = "getLatestVersion";
+    let result = await queuedTaskManager.doTask(req);
+    res.send(result);
 })
 
 
 app.post("/addItem", async function(req, res){
-    /* TODO: Add a queue setup with QueuedTaskManager to handle these things one at a time so multiple clients
+    /* Use a queue setup with QueuedTaskManager to handle these things one at a time so multiple clients
     don't mess things up */
+    req.body["purpose"] = "add";
+    let result = await queuedTaskManager.doTask(req);
+    res.send(result);
+})
+
+app.post("/deleteItem", async function(req, res){
+    req.body["purpose"] = "delete";
     let result = await queuedTaskManager.doTask(req);
     res.send(result);
 })

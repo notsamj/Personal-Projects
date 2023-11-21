@@ -170,7 +170,7 @@ body {
     font-weight: bold;
     font-size: 3vh;
     height: 12vh;
-    width: 29vw;
+    width: 27vw;
 }
 
 #itemDetails_quantity{
@@ -209,5 +209,22 @@ body {
 #extraBottomSpace{
     height: 20vh;
     bottom: 0;
+}
+
+#deleteButton{
+    border: none;
+    background-color: #202024;
+    color: white;
+    font-family: monospace;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    width: 2vw;
+    height: 2vw;
+    font-size: 3vh;
+    position: fixed;
+}
+
+#deleteButton:hover{
+    color: #eb4034;
 }
 
