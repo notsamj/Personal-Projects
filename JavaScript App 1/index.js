@@ -1,5 +1,6 @@
 const express = require("express");
-const BODY_PARSER = require('body-parser')
+// TODO: Remove body-parser from package JSON
+//const BODY_PARSER = require('body-parser')
 const path = require("path");
 const GROCERY_LIST_MODULE = require("grocery_list");
 const QueuedTaskManager = require("queued_tasks");
@@ -12,9 +13,10 @@ const QueuedTaskManager = require("queued_tasks");
 */
 
 // Global Constants
+const FILE_NAME = "data/list.csv";
 const app = express();
 const port = 8080;
-const grocceryList = new GROCERY_LIST_MODULE.GroceryList();
+const groceryList = new GROCERY_LIST_MODULE.GroceryList();
 const queuedTaskManager = new QueuedTaskManager(handleUserRequest);
 
 // Global Variables
@@ -22,24 +24,34 @@ var currentUpdateID = 0;
 
 // Functions
 
+async function userRequestAdd(requestBody){
+    groceryList.addItemFromJSON(requestBody["data"]);
+    await groceryList.saveToFile(FILE_NAME);
+}
+
 // Determines which function to use to handle the user request
 async function handleUserRequest(request){
-    console.log("Request:", request);
-    let details = request._body;
-    console.log("handleUserRequest received:", details);
-    if (details["purpose"] == "add"){
-        return userRequestAdd();
-    }else if (details["purpose"] == "delete"){
-        return userRequestDelete();
+    let requestBody = request.body;
+    let descriptionOfIssue = "Unknown purpose."; // Incase bad request
+    try {
+        if (requestBody["purpose"] == "add"){
+            return await userRequestAdd(requestBody);
+        }else if (requestBody["purpose"] == "delete"){
+            return await userRequestDelete(requestBody);
+        }
+    }catch (exception){
+        console.log("Exception in handleUserRequest:", exception);
+        descriptionOfIssue = exception.toString(); // TODO: Maybe this is too much detail
     }
     // Else - Bad request
-    return {"success": false, "description_of_issue": "Unknown purpose."};
+    return {"success": false, "description_of_issue": descriptionOfIssue};
 }
 
 // Start Up Setup Express
 
 app.use(express.static('public')) // Provide access to public files
-app.use(BODY_PARSER.urlencoded({ extended: true })); // TODO: Does this make the request body show up?
+//app.use(BODY_PARSER.urlencoded({ extended: true })); // TODO: Does this make the request body show up?
+app.use(express.json());
 
 app.get("/", (req, res) => {
     const options = {
@@ -60,14 +72,13 @@ app.get("/updateVersion", (req, res) => {
 })
 
 app.get("/getLatestVersion", (req, res) => {
-    res.send({"versionNumber": currentUpdateID, "data": grocceryList.toJSON()});  
+    res.send({"versionNumber": currentUpdateID, "data": groceryList.toJSON()});  
 })
 
 
 app.post("/addItem", async function(req, res){
     /* TODO: Add a queue setup with QueuedTaskManager to handle these things one at a time so multiple clients
     don't mess things up */
-    console.log("Body", req.body);
     let result = await queuedTaskManager.doTask(req);
     res.send(result);
 })
@@ -75,7 +86,7 @@ app.post("/addItem", async function(req, res){
 app.listen(port, () => {
     console.log(`Grocery List Server Running on Port: ${port}`)
     // When server is running
-    grocceryList.readFromFile("data/list.csv");
+    groceryList.readFromFile(FILE_NAME);
 })
 
 // Start Up (Before server is running / As server is starting up)

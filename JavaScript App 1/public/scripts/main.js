@@ -152,6 +152,7 @@ async function informServerOfNewItem(newItem){
     fetch("http://localhost:8080/addItem", {
         method: "POST",
         body: JSON.stringify({
+            "purpose": "add",
             "currentVersion": lastUpdateReceived,
             "data": newItem.toJSON()
         }),
