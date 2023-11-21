@@ -25,12 +25,13 @@ var refreshInProgress = false;
 
 async function deleteItem(){
     let index = getSelectedItemID();
-    informServerOfDeletedItem(index);
     let serverResponseJSON = await informServerOfDeletedItem(index); // Not the best, not the worst imo
+    // Deselect item being selected
     if (serverResponseJSON["success"]){
+        let itemElement = document.querySelector(".selected");
+        itemElement.classList.remove("selected");
         lastUpdateReceived = serverResponseJSON["newVersion"];
         loadFromJSONData(serverResponseJSON["data"])
-        resetItemDisplay();
     }else{
         // TODO: ToolTip: Server not responding...
     }
@@ -48,7 +49,6 @@ async function newItem(){
         lastUpdateReceived = serverResponseJSON["newVersion"];
         textArea.value = "";
         loadFromJSONData(serverResponseJSON["data"])
-        resetItemDisplay();
     }else{
         // TODO: ToolTip: Server not responding...
     }
@@ -71,7 +71,10 @@ function getSelectedItemID(){
 
 // Making lots of serious assumptions in this function
 function resetItemDetails(){
-    if (!hasSelectedItem()){ return; } 
+    if (!hasSelectedItem()){
+        document.getElementById("listItemDetailsContainer").style = "display: none";
+        return; 
+    }
     let selectedItem = groceryList.getByIndex(getSelectedItemID());
     document.getElementById("itemDetails_name").value = selectedItem.getName();
     document.getElementById("itemDetails_quantity").value = selectedItem.getQuantity();
@@ -146,7 +149,7 @@ function saveCurrentItemDetails(){
 }
 
 async function refresh(){
-    console.log("Try to refresh:", refreshInProgress);
+    //console.log("Try to refresh:", refreshInProgress);
     // Run every 2 seconds unless request from previous is active
     if (refreshInProgress){
         return;
@@ -205,9 +208,7 @@ async function updateVersion(){
     if (response.status != 200){ // If not a successful response
         return;
     }
-    console.log("Response", response)
     let responseJSON = await response.json();
-    console.log("Response Data", responseJSON);
     let versionNumber = responseJSON["versionNumber"];
     let data = responseJSON["data"];
     lastUpdateReceived = versionNumber;
