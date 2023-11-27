@@ -13,7 +13,7 @@ const QueuedTaskManager = require("queued_tasks");
 */
 
 // Global Constants
-const FILE_NAME = "data/list.csv";
+const FILE_NAME = "data/list.ignoredata";
 const app = express();
 const port = 8080;
 const groceryList = new GROCERY_LIST_MODULE.GroceryList();

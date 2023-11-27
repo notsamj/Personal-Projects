@@ -166,11 +166,12 @@ body {
 }
 
 #itemDetails_name{
+    padding-top: 2vh;
     background-color: #202024;
     font-weight: bold;
     font-size: 3vh;
     height: 12vh;
-    width: 27vw;
+    width: 28vw;
 }
 
 #itemDetails_quantity{
@@ -204,6 +205,10 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+#deleteButtonSpan{
+    width: 2vw;
 }
 
 #extraBottomSpace{

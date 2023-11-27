@@ -1,0 +1,8 @@
+1. Fix the position of the delete button FIXED is not good
+2. Revert from the practice of downloading the entire list after adding something
+3. Allow local sorting so get the ids/indexes figured out
+4. Make client interactions synchronous (so not downloading 2 lists at once and potentially)
+5. Multi-client features.
+
+N-1. Refactor code things like id/index -> index or -> id but not both
+N. Comment

@@ -26,10 +26,8 @@ var refreshInProgress = false;
 async function deleteItem(){
     let index = getSelectedItemID();
     let serverResponseJSON = await informServerOfDeletedItem(index); // Not the best, not the worst imo
-    // Deselect item being selected
     if (serverResponseJSON["success"]){
-        let itemElement = document.querySelector(".selected");
-        itemElement.classList.remove("selected");
+        deselectAll();
         lastUpdateReceived = serverResponseJSON["newVersion"];
         loadFromJSONData(serverResponseJSON["data"])
     }else{
@@ -46,6 +44,7 @@ async function newItem(){
 
     let serverResponseJSON = await informServerOfNewItem(itemName); // Not the best, not the worst imo
     if (serverResponseJSON["success"]){
+        deselectAll();
         lastUpdateReceived = serverResponseJSON["newVersion"];
         textArea.value = "";
         loadFromJSONData(serverResponseJSON["data"])
