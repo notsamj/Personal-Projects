@@ -17,6 +17,9 @@
         <div id="listContainer">
             <div id="listHeaderContainer">
                 <h1 id="listHeader">My List</h1>
+                <span id="enableEditingSpan">
+                    <input id="enableEditingButton" class="notReadyToEdit" type="Button" value="Edit"></input>
+                </span>
             </div>
             <div id="listBody">
                 <ul id="list">
@@ -33,7 +36,7 @@
             <div class="itemDetailsInputContainer">
                 <textarea id="itemDetails_name" placeholder="Name" class="itemDetailsTextArea"></textarea>
                 <span id="deleteButtonSpan">
-                    <input id="deleteButton" type="button" value="X"></input>
+                    <input class="deleteButton" id="deleteSelectedButton" type="button" value="X"></input>
                 </span>
             </div>
             <div class="itemDetailsInputContainer">

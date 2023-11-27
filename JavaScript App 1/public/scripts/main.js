@@ -90,12 +90,19 @@ function resetItemList(){
         let itemLI = document.createElement("li");
         itemLI.setAttribute("class", "listItem");
         itemLI.setAttribute("id", "listItem" + i.toString());
+        let deleteButtonEditMode = document.createElement("input");
+        deleteButtonEditMode.setAttribute("class", "deleteButton editMode");
+        deleteButtonEditMode.setAttribute("value", "X");
+        deleteButtonEditMode.setAttribute("id", "deleteItem" + i.toString());
+        deleteButtonEditMode.setAttribute("type", "button");
+        deleteButtonEditMode.setAttribute("style", "display: none;" ? // TODO EDIT MODe);
         let itemTextArea = document.createElement("textarea");
         itemTextArea.value = item.getName();
         itemTextArea.setAttribute("spellcheck", "false");
         itemTextArea.setAttribute("class", "listItemTextArea");
         itemTextArea.setAttribute("readonly", "true");
         itemLI.addEventListener("click", function(event){ viewDetailsFor(i); });
+        itemLI.appendChild(deleteButtonEditMode);
         itemLI.appendChild(itemTextArea);
         listUL.appendChild(itemLI);
     }
@@ -146,13 +153,17 @@ async function saveCurrentItemDetails(){
     itemCopy.setQuantity(quantity);
     itemCopy.setDescription(description);
     let itemCopyJSON = itemCopy.toJSON();
-    let serverResponseJSON = await informServerOfItemUpdate(getSelectedItemID(), itemCopyJSON);
+    let selectedItemID = getSelectedItemID();
+    let serverResponseJSON = await informServerOfItemUpdate(selectedItemID, itemCopyJSON);
     if (serverResponseJSON["success"]){
         item.copyDetailsFromJSON(itemCopyJSON);
         lastUpdateReceived = serverResponseJSON["newVersion"];
         let saveChangesButton = document.getElementById("itemDetails_saveChanges");
         saveChangesButton.classList.remove("readyButton");
         saveChangesButton.classList.add("notReadyButton");
+        // Update the visual in the list of the name after possibly changing it
+        let listItemDiv = document.getElementById("listItem" + selectedItemID.toString());
+        listItemDiv.children[0].value = name;
     }else{
         // TODO: ToolTip: Server not responding...
     }
@@ -238,6 +249,14 @@ async function updateVersion(){
     loadFromJSONData(data);
 }
 
+function showDeleteButtons(){
+    document.querySelector(".deleteButton.editMode").style = "";
+}
+
+function hideDeleteButtons(){
+    document.querySelector(".deleteButton.editMode").style = "display: none";
+}
+
 // Start Up
 
 // Listeners
@@ -265,9 +284,22 @@ addEventListener("DOMContentLoaded", (event) => {
         });
     }
 
-    let deleteButton = document.getElementById("deleteButton");
+    let deleteButton = document.getElementById("deleteSelectedButton");
     deleteButton.addEventListener("click", function(event){
         deleteItem();
+    });
+
+    let editButton = document.getElementById("enableEditingButton");
+    editButton.addEventListener("click", function(event){
+        if (editButton.classList.contains("notReadyToEdit")){
+            editButton.classList.add("readyToEdit");
+            editButton.classList.remove("notReadyToEdit")
+            showDeleteButtons();
+        }else{
+            editButton.classList.add("notReadyToEdit");
+            editButton.classList.remove("readyToEdit")
+            hideDeleteButtons();
+        }
     });
 
     refresh();

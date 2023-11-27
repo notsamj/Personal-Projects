@@ -59,6 +59,7 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    position: fixed;
 }
 
 #listHeaderContainer{
@@ -67,6 +68,26 @@ body {
     border-width: 0.1vh;
     border-radius: 1vw;
     margin-bottom: 1vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 12vh;
+}
+
+#enableEditingButton{
+    height: 10vh;
+    width: 15vh;
+    border-style: solid;
+    border-width: 0.1vh;
+    border-radius: 0.5vw;
+    background-color: #262525;
+    font-size: 5vh;
+}
+
+#enableEditingSpan{
+    top: 1vh;
+    position: relative;
+    margin-left: 32vw;
 }
 
 #listHeader{
@@ -216,7 +237,11 @@ body {
     bottom: 0;
 }
 
-#deleteButton{
+#extraTopSpace{
+    height: 12vh;
+}
+
+.deleteButton{
     border: none;
     background-color: #202024;
     color: white;
@@ -226,10 +251,18 @@ body {
     width: 2vw;
     height: 2vw;
     font-size: 3vh;
-    position: fixed;
 }
 
-#deleteButton:hover{
+.deleteButton:hover{
     color: #eb4034;
 }
 
+.notReadyToEdit{
+    color: inherit;
+    border-color: inherit;
+}
+
+.readyToEdit{
+    color: lightgreen;
+    border-color: lightgreen;
+}

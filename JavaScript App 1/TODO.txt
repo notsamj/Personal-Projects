@@ -3,6 +3,7 @@
 3. Allow local sorting so get the ids/indexes figured out
 4. Make client interactions synchronous (so not downloading 2 lists at once and potentially)
 5. Multi-client features.
-
+6. Make the edit button when clicked add a delete button to the front of each item so it can be easily deleted
+7. Add a separate tab for common items that can be easy added to the list (similar to edit delete button but always there)
 N-1. Refactor code things like id/index -> index or -> id but not both
 N. Comment
