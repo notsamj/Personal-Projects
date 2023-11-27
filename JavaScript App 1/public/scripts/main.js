@@ -23,8 +23,11 @@ var refreshInProgress = false;
 
 // Functions
 
-async function deleteItem(){
-    let index = getSelectedItemID();
+async function deleteItem(id=null){
+    let index = id;
+    if (index == null){
+        index = getSelectedItemID();
+    }
     let serverResponseJSON = await informServerOfDeletedItem(index); // Not the best, not the worst imo
     if (serverResponseJSON["success"]){
         deselectAll();
@@ -51,6 +54,11 @@ async function newItem(){
     }else{
         // TODO: ToolTip: Server not responding...
     }
+}
+
+function inEditMode(){
+    let editButton = document.getElementById("enableEditingButton");
+    return editButton.classList.contains("readyToEdit");
 }
 
 function resetItemDisplay(){
@@ -95,13 +103,21 @@ function resetItemList(){
         deleteButtonEditMode.setAttribute("value", "X");
         deleteButtonEditMode.setAttribute("id", "deleteItem" + i.toString());
         deleteButtonEditMode.setAttribute("type", "button");
-        deleteButtonEditMode.setAttribute("style", "display: none;" ? // TODO EDIT MODe);
+        deleteButtonEditMode.setAttribute("style", !inEditMode() ? "display: none;" : ""); // TODO EDIT MODe);
+        deleteButtonEditMode.addEventListener("click", (event) => {
+            if (!inEditMode()){ return; } // Formal
+            deleteItem(i);
+        });
         let itemTextArea = document.createElement("textarea");
         itemTextArea.value = item.getName();
         itemTextArea.setAttribute("spellcheck", "false");
         itemTextArea.setAttribute("class", "listItemTextArea");
         itemTextArea.setAttribute("readonly", "true");
-        itemLI.addEventListener("click", function(event){ viewDetailsFor(i); });
+
+        // When in edit mode -> Click text area for details, Otherwise -> click anywhere in the LI
+        itemTextArea.addEventListener("click", function(event){ if (!inEditMode()){ return; } viewDetailsFor(i); });
+        itemLI.addEventListener("click", function(event){ if (inEditMode()){ return; } viewDetailsFor(i); });
+        
         itemLI.appendChild(deleteButtonEditMode);
         itemLI.appendChild(itemTextArea);
         listUL.appendChild(itemLI);
@@ -250,11 +266,15 @@ async function updateVersion(){
 }
 
 function showDeleteButtons(){
-    document.querySelector(".deleteButton.editMode").style = "";
+    for (let button of document.querySelectorAll(".deleteButton.editMode")){
+        button.style = "";
+    }
 }
 
 function hideDeleteButtons(){
-    document.querySelector(".deleteButton.editMode").style = "display: none";
+    for (let button of document.querySelectorAll(".deleteButton.editMode")){
+        button.style = "display: none";
+    }
 }
 
 // Start Up
@@ -291,7 +311,7 @@ addEventListener("DOMContentLoaded", (event) => {
 
     let editButton = document.getElementById("enableEditingButton");
     editButton.addEventListener("click", function(event){
-        if (editButton.classList.contains("notReadyToEdit")){
+        if (!inEditMode()){
             editButton.classList.add("readyToEdit");
             editButton.classList.remove("notReadyToEdit")
             showDeleteButtons();
