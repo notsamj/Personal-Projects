@@ -20,6 +20,12 @@
   - Not yet in development.
 
 ### Other Projects
+
+### Individual
+I have made a simple game using JavaScript and the P5 Library.
+https://github.com/notsamj/WW2PlaneGame/
+
+### Group
 I have contributed to two public group projects during my time as a student at Ontario Tech (with a different GitHub account)\
 JavaFX Battleship Game
 https://github.com/samuel-jones-uoit/group_battleship_assignment \
