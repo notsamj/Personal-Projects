@@ -15,7 +15,7 @@
 - CPP App 1
   - I haven't decided what I want to do for this yet. It's just Hello World for now.
 - JavaScript App 1
-  - An app for managing a grocery list. This currently my #1 priority.
+  - An app for managing a grocery list.
 - Java App 1
   - Not yet in development.
 
