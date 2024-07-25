@@ -1,0 +1,1 @@
+node js_code_checker ./in/
