@@ -1,6 +1,7 @@
 const fs = require("fs");
 const JSFile = require("./js_file.js");
 const Lock = require("./lock.js");
+const doesFolderExist = require("./helper_functions.js").doesFolderExist;
 
 async function run(){
 	/*
@@ -40,17 +41,17 @@ async function run(){
 	analyzeJSFiles(jsFiles);
 
 	// Write files
-	writeJSFiles(outputFolderRPath, jsFiles)
+	writeJSFiles(inputFolderRPath.length, outputFolderRPath, jsFiles);
 }
 
 async function readJSFiles(rPath){
 	let readLock = new Lock();
 	readLock.lock();
-	let readFiles;
+	let fileNames;
 	let readingError;
-	let filesInFolderAtPath = fs.readdir(rPath, (error, files) => {
+	fs.readdir(rPath, (error, files) => {
 		readingError = error;
-		readFiles = files;
+		fileNames = files;
 		readLock.unlock();
 	});
 
@@ -63,17 +64,39 @@ async function readJSFiles(rPath){
 		process.exit(1);
 	}
 	// Else no error
-	
-	console.log("readFiles", readFiles);
+
+	let jsFileRegex = /^[a-zA-Z_0-9]+\.js$/;
+	let jsFiles = [];
+	for (let fileName of fileNames){
+		// If folder exists then get al js files
+		if (doesFolderExist(rPath + fileName + "/")){
+			let jsFilesInDir = await readJSFiles(rPath + fileName + "/");
+			for (let jsFile of jsFilesInDir){
+				jsFiles.push(jsFile);
+			}
+		}
+		// Else its a file
+		
+		// If JS File -> Read
+		if (jsFileRegex.test(fileName)){
+			jsFiles.push(JSFile.read(fileName, rPath));
+		}
+	}
+	return jsFiles;
 }
 
 function analyzeJSFiles(jsFiles){
-	// TODO
+	for (let jsFile of jsFiles){
+		console.log(jsFile.getFileName());
+	}
 }
 
-function writeJSFiles(outputFolderRPath, jsFiles){
-	// TODO
+function writeJSFiles(inputFolderRPathLength, outputFolderRPath, jsFiles){
+	for (let jsFile of jsFiles){
+		jsFile.writeToOutputFolder(inputFolderRPathLength, outputFolderRPath);
+	}
 }
+
 
 
 // Run on start up

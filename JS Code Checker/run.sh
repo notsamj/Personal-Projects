@@ -1,1 +1,1 @@
-node js_code_checker ./in/
+node js_code_checker ./in/ ./out/
