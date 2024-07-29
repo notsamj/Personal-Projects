@@ -4,6 +4,9 @@ const findIndexOfChar = require("./helper_functions.js").findIndexOfChar;
 const copyArray = require("./helper_functions.js").copyArray;
 const insertStringIntoStringBeforeCharIndex = require("./helper_functions.js").insertStringIntoStringBeforeCharIndex;
 const searchForSubstringInString = require("./helper_functions.js").searchForSubstringInString;
+const measureIndentingBefore = require("./helper_functions.js").measureIndentingBefore;
+const createIndenting = require("./helper_functions.js").createIndenting;
+const isPrecededBy = require("./helper_functions.js").isPrecededBy;
 class JSFile {
 	constructor(fileName, rPath, fileDataStr){
 		this.fileName = fileName;
@@ -80,27 +83,51 @@ class JSFile {
 		}
 	}
 
-	// Note: This destroys the indenting of nested classes
 	commentClass(classDetailsJSON){
-		let commentString = "/*\n    Class Name: " + classDetailsJSON["name"] + "\n    Class Description: TODO\n*/\n";
+		// If comment already exists then ignore
+		if (searchForSubstringInString("Class Name: " + classDetailsJSON["name"], this.fileDataStr) != -1){
+			return;
+		}
+		let numSpaces = measureIndentingBefore(this.fileDataStr, classDetailsJSON["char_index"]);
+		let indenting = createIndenting(numSpaces);
+		let commentString = "/*\n" + indenting + "    Class Name: " + classDetailsJSON["name"] + "\n" + indenting + "    Class Description: TODO\n" + indenting + "*/\n" + indenting;
 		this.fileDataStr = insertStringIntoStringBeforeCharIndex(commentString, this.fileDataStr, classDetailsJSON["char_index"]); 
 	}
 
 	commentMethodOrFunction(mFDetails){
-		// Note: This won't handle say a method within a class within a class well because of the indenting
-		let commentString = "/*\nMethod Name: " + mFDetails["name"] + "\nMethod Parameters: ";
+		// If comment already exists then ignore
+		if (searchForSubstringInString("Method Name: " + mFDetails["name"], this.fileDataStr) != -1){
+			return;
+		}
+
+		let charIndex = mFDetails["char_index"];
+		if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "async function ")){
+			charIndex -= "async function ".length;
+		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "static async ")){
+			charIndex -= "static async ".length;
+		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "async ")){
+			charIndex -= "async ".length;
+		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "function ")){
+			charIndex -= "function ".length;
+		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "static ")){
+			charIndex -= "static ".length;
+		}
+		let numSpaces = measureIndentingBefore(this.fileDataStr, charIndex);
+		let indenting = createIndenting(numSpaces);
+		let commentString = "/*\n" + indenting + "    Method Name: " + mFDetails["name"] + "\n" + indenting + "    Method Parameters: ";
 		if (mFDetails["parameters"].length == 0){
 			commentString += "None";
 		}else{
 			for (let parameterName of mFDetails["parameters"]){
 				commentString += "\n";
-				commentString += "		";
+				commentString += indenting;
 				commentString += parameterName + ":\n";
-				commentString += "		    TODO";
+				commentString += indenting;
+				commentString += "    TODO";
 			}
 		}
-		commentString += "Method Description: TODO\nMethod Return: TODO\n*/\n"
-		this.fileDataStr = insertStringIntoStringBeforeCharIndex(commentString, this.fileDataStr, mFDetails["char_index"]); 
+		commentString += "\n" + indenting + "    Method Description: TODO\n" + indenting + "    Method Return: TODO\n" + indenting + "*/\n" + indenting;
+		this.fileDataStr = insertStringIntoStringBeforeCharIndex(commentString, this.fileDataStr, charIndex); 
 	}
 
 	indentifyClasses(){

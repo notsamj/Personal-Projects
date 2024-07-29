@@ -50,10 +50,43 @@ function searchForSubstringInString(subString, sourceString){
 	return -1;
 }
 
+function measureIndentingBefore(sourceString, charIndex){
+	let c = 0;
+	for (let i = charIndex - 1; i >= 0; i--){
+		if (sourceString[i] === ' '){
+			c++;
+		}else{
+			break;
+		}
+	}
+	return c;
+}
+
+function createIndenting(size){
+	let indenting = "";
+	for (let i = 0; i < size; i++){
+		indenting += " ";
+	}
+	return indenting;
+}
+
+function isPrecededBy(sourceString, characterIndex, subString){
+	if (characterIndex < subString.length){ return false; }
+	for (let i = characterIndex - 1; i >= characterIndex - subString.length; i--){
+		if (sourceString[i] != subString[subString.length - (characterIndex - i)]){
+			return false;
+		}
+	}
+	return true;
+}
+
 module.exports = {
 	doesFolderExist,
 	findIndexOfChar,
 	copyArray,
 	insertStringIntoStringBeforeCharIndex,
-	searchForSubstringInString
+	searchForSubstringInString,
+	measureIndentingBefore,
+	createIndenting,
+	isPrecededBy
 }
