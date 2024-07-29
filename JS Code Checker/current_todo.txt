@@ -1,4 +1,5 @@
-Add ready block comments to functions and methods
+Fix indenting
+Setup indenting for inner classes and methods vs functions and such!!!!
 Pseudo interfaces/classes
 Check for all TODOs
 console.log("$LINE44", arg1, arg2, etc.) replace with console.log("$LINE45") if its moved to line 45 for example

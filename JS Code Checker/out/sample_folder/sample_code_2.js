@@ -150,7 +150,12 @@ async function tick(timeSinceLastTickMS){
     Method Description: Loads many images needed for the program.
     Method Return: void
 */
-async function loadExtraImages(){
+async function /*
+Method Name: loadExtraImages
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+loadExtraImages(){
     // Load generic extra images
     for (let imageName of PROGRAM_DATA["extra_images_to_load"]){
         await loadToImages(imageName);
@@ -163,7 +168,12 @@ async function loadExtraImages(){
     Method Description: Changes the game zoom
     Method Return: void
 */
-function setGameZoom(){
+function /*
+Method Name: setGameZoom
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+setGameZoom(){
     let buttonCount = 0;
     let eighth = USER_INPUT_MANAGER.isActivated("1/8zoomhold");
     let quarter = USER_INPUT_MANAGER.isActivated("1/4zoomhold");

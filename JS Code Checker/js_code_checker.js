@@ -88,6 +88,7 @@ async function readJSFiles(rPath){
 function analyzeJSFiles(jsFiles){
 	for (let jsFile of jsFiles){
 		console.log(jsFile.getFileName());
+		jsFile.handleComments();
 	}
 }
 

@@ -1,5 +1,14 @@
+/*
+    Class Name: RetroGameScene
+    Class Description: TODO
+*/
 class RetroGameScene {
-    constructor(){
+    /*
+Method Name: constructor
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+constructor(){
         this.objects = [];
         this.entities = new NotSamLinkedList();
         this.focusedEntity = null;
@@ -8,7 +17,12 @@ class RetroGameScene {
         this.displayingPhyiscalLayer = false;
     }
 
-    getEntities(){
+    /*
+Method Name: getEntities
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getEntities(){
         return this.entities;
     }
 
@@ -263,7 +277,12 @@ class RetroGameScene {
         this.displayingPhyiscalLayer = value;
     }
 
-    isDisplayingPhysicalLayer(){
+    /*
+Method Name: isDisplayingPhysicalLayer
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+isDisplayingPhysicalLayer(){
         return this.displayingPhyiscalLayer;
     }
 
@@ -399,7 +418,12 @@ class RetroGameScene {
         }
     }
 
-    toTileJSON(){
+    /*
+Method Name: toTileJSON
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+toTileJSON(){
         let tileJSON = {};
         tileJSON["materials"] = [];
         tileJSON["visual_tiles"] = [];
@@ -466,11 +490,21 @@ class RetroGameScene {
         return this.getMaterialImage(materialName).height / RETRO_GAME_DATA["general"]["tile_size"];
     }
 
-    hasEntityFocused(){
+    /*
+Method Name: hasEntityFocused
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+hasEntityFocused(){
         return this.focusedEntity != null;
     }
 
-    getFocusedEntity(){
+    /*
+Method Name: getFocusedEntity
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getFocusedEntity(){
         return this.focusedEntity;
     }
 
@@ -478,11 +512,21 @@ class RetroGameScene {
         this.focusedEntity = entity;
     }
 
-    getWidth(){
+    /*
+Method Name: getWidth
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getWidth(){
         return getCanvasWidth();
     }
 
-    getHeight(){
+    /*
+Method Name: getHeight
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getHeight(){
         return getCanvasHeight();
     }
 
@@ -606,11 +650,25 @@ class RetroGameScene {
         return this.getChunkAtLocation(tileX, tileY) != null;
     }
 
-    static getTileXAt(x){
+    static /*
+Method Name: getTileXAt
+Method Parameters: 
+		x:
+		    TODOMethod Description: TODO
+Method Return: TODO
+*/
+getTileXAt(x){
         return Math.floor(x / RETRO_GAME_DATA["general"]["tile_size"]);
     }
 
-    static getTileYAt(y){
+    static /*
+Method Name: getTileYAt
+Method Parameters: 
+		y:
+		    TODOMethod Description: TODO
+Method Return: TODO
+*/
+getTileYAt(y){
         return Math.floor(y / RETRO_GAME_DATA["general"]["tile_size"]);
     }
 
@@ -692,7 +750,12 @@ class RetroGameScene {
         return displayY;
     }
 
-    getLX(){
+    /*
+Method Name: getLX
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getLX(){
         let lX = 0;
         if (!this.hasEntityFocused()){
             lX = -1 * this.getWidth() / 2 / gameZoom;
@@ -702,7 +765,12 @@ class RetroGameScene {
         return lX;
     }
 
-    getBY(){
+    /*
+Method Name: getBY
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getBY(){
         let bY = 0;
         if (!this.hasEntityFocused()){
             bY = -1 * this.getWidth() / 2 / gameZoom;
@@ -712,7 +780,12 @@ class RetroGameScene {
         return bY;
     }
 
-    display(){
+    /*
+Method Name: display
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+display(){
         let lX = this.getLX(); // Bottom left x
         let bY = this.getBY(); // Bottom left y
         let rX = lX + this.getWidth() / gameZoom;
@@ -755,15 +828,36 @@ class RetroGameScene {
     }
 
 
-    changeToScreenX(x){
+    /*
+Method Name: changeToScreenX
+Method Parameters: 
+		x:
+		    TODOMethod Description: TODO
+Method Return: TODO
+*/
+changeToScreenX(x){
         return x; // Doesn't need to be changed ATM
     }
 
-    changeToScreenY(y){
+    /*
+Method Name: changeToScreenY
+Method Parameters: 
+		y:
+		    TODOMethod Description: TODO
+Method Return: TODO
+*/
+changeToScreenY(y){
         return this.getHeight() - y;
     }
 
-    changeFromScreenY(y){
+    /*
+Method Name: changeFromScreenY
+Method Parameters: 
+		y:
+		    TODOMethod Description: TODO
+Method Return: TODO
+*/
+changeFromScreenY(y){
         return this.changeToScreenY(y);
     }
 
@@ -772,11 +866,20 @@ class RetroGameScene {
         this.entities.push(entity);
     }
 
-    displayPageBackground(){
+    /*
+Method Name: displayPageBackground
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+displayPageBackground(){
         drawingContext.drawImage(IMAGES["page_background"], 0, 0); // TODO: This should be variable in the future
     }
 }
 
+/*
+    Class Name: Chunk
+    Class Description: TODO
+*/
 class Chunk {
     constructor(scene, chunkX, chunkY){
         this.scene = scene;
@@ -787,11 +890,21 @@ class Chunk {
         this.recalculateBoundaries();
     }
 
-    getVisualTiles(){
+    /*
+Method Name: getVisualTiles
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getVisualTiles(){
         return this.visualTiles;
     }
 
-    getPhysicalTiles(){
+    /*
+Method Name: getPhysicalTiles
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getPhysicalTiles(){
         return this.physicalTiles;
     }
 
@@ -862,25 +975,50 @@ class Chunk {
         return true;
     }
 
-    getLeftX(){
+    /*
+Method Name: getLeftX
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getLeftX(){
         return this.leftX;
     }
 
     // Note: Be careful if you have a 5000 long tile in bottom right it will extend this right
-    getRightX(){
+    /*
+Method Name: getRightX
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getRightX(){
         return this.rightX;
     }
 
-    getTopY(){
+    /*
+Method Name: getTopY
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getTopY(){
         return this.topY;
     }
 
     // Note: Be careful if you have a 5000 long tile in bottom right it will extend this right
-    getBottomY(){
+    /*
+Method Name: getBottomY
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getBottomY(){
         return this.bottomY;
     }
 
-    recalculateBoundaries(){
+    /*
+Method Name: recalculateBoundaries
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+recalculateBoundaries(){
         let bottomY = this.chunkY * RETRO_GAME_DATA["general"]["chunk_size"];
         for (let [tile, tI] of this.visualTiles){
             let tileBottomY = tile.getBottomY();
@@ -902,19 +1040,39 @@ class Chunk {
         this.topY = (this.chunkY + 1) * RETRO_GAME_DATA["general"]["chunk_size"] - 1;
     }
 
-    getNaturalLeftX(){
+    /*
+Method Name: getNaturalLeftX
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getNaturalLeftX(){
         return this.getLeftX();
     }
 
-    getNaturalRightX(){
+    /*
+Method Name: getNaturalRightX
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getNaturalRightX(){
         return (this.chunkX + 1) * RETRO_GAME_DATA["general"]["chunk_size"] - 1;
     }
 
-    getNaturalTopY(){
+    /*
+Method Name: getNaturalTopY
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getNaturalTopY(){
         return this.getTopY();
     }
 
-    getNaturalBottomY(){
+    /*
+Method Name: getNaturalBottomY
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+getNaturalBottomY(){
         return this.chunkY * RETRO_GAME_DATA["general"]["chunk_size"];
     }
 
@@ -999,7 +1157,12 @@ class Chunk {
         this.recalculateBoundaries();
     }
 
-    hasNativeVisualTiles(){
+    /*
+Method Name: hasNativeVisualTiles
+Method Parameters: NoneMethod Description: TODO
+Method Return: TODO
+*/
+hasNativeVisualTiles(){
         return this.visualTiles.isEmpty();
     }
 
