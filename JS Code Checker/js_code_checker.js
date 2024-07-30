@@ -89,6 +89,7 @@ function analyzeJSFiles(jsFiles){
 	for (let jsFile of jsFiles){
 		console.log(jsFile.getFileName());
 		jsFile.handleComments();
+		jsFile.updateConsoleLogs();
 	}
 }
 

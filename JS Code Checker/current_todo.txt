@@ -1,8 +1,10 @@
-Not working for multi parameter methods / functions?
 Pseudo interfaces/classes
 Check for all TODOs(
-console.log("myfile.js (L44)", arg1, arg2, etc.) replace with console.log("myfile.js (L44)", arg1, arg2, etc.) if its moved to line 45 for example
-	Also console.log("$FL" -> console.log("myfile.js (L44)"
+Basic logging to console
+Summary of findings
+Full log saved to file
+(Option) remove all //console.log("debugging thashdsah")
+Comment this code!
 
 
 Notes:

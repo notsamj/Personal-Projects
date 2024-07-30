@@ -9,6 +9,10 @@ const createIndenting = require("./helper_functions.js").createIndenting;
 const isPrecededBy = require("./helper_functions.js").isPrecededBy;
 const isPrecededByIgnoreWhiteSpace = require("./helper_functions.js").isPrecededByIgnoreWhiteSpace;
 const searchForSubstringInStringAfter = require("./helper_functions.js").searchForSubstringInStringAfter; 
+const deleteXCharsAt = require("./helper_functions.js").deleteXCharsAt; 
+const whatLineInString = require("./helper_functions.js").whatLineInString; 
+const insertIntoStringBefore = require("./helper_functions.js").insertIntoStringBefore;
+
 class JSFile {
 	constructor(fileName, rPath, fileDataStr){
 		this.fileName = fileName;
@@ -23,6 +27,21 @@ class JSFile {
 		this.identifyMethodsAndFunctions();
 		this.indentifyClasses();
 		this.addClassAndMethodComments();
+	}
+
+	updateConsoleLogs(){
+		let consoleLogRegex = /console\.log\("((\$FL)|([a-zA-Z_]+\.js \(L[0-9]+\)))/g;
+		let consoleLogStatements = [...this.fileDataStr.matchAll(consoleLogRegex)];
+		// Loop through all matching console logs and update
+		for (let i = 0; i < consoleLogStatements.length; i++){
+			let consoleLogStatement = consoleLogStatements[i][0];
+			let charIndex = searchForSubstringInString(consoleLogStatement, this.fileDataStr);
+			// Delete old part of the statement
+			this.fileDataStr = deleteXCharsAt(this.fileDataStr, charIndex, consoleLogStatement.length);
+			let lineCount = whatLineInString(this.fileDataStr, charIndex);
+			console.log(consoleLogStatement)
+			this.fileDataStr = insertIntoStringBefore("console.log(\"" + this.fileName + " (L" + lineCount.toString() + ")", this.fileDataStr, charIndex);
+		}
 	}
 
 	identifyMethodsAndFunctions(){

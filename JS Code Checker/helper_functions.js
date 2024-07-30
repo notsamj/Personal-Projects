@@ -111,6 +111,24 @@ function searchForSubstringInStringAfter(subString, sourceString, startPoint){
 	return -1;
 }
 
+function deleteXCharsAt(sourceString, charIndex, x){
+	return sourceString.substring(0, charIndex) + sourceString.substring(charIndex + x, sourceString.length);
+}
+
+function whatLineInString(sourceString, characterIndex){
+	let lineCount = 1;
+	for (let i = 0; i < characterIndex; i++){
+		if (sourceString[i] === '\n'){
+			lineCount++;
+		}
+	}
+	return lineCount;
+}
+
+function insertIntoStringBefore(insertString, sourceString, charIndex){
+	return sourceString.substring(0, charIndex) + insertString + sourceString.substring(charIndex, sourceString.length);
+}
+
 module.exports = {
 	doesFolderExist,
 	findIndexOfChar,
@@ -121,5 +139,8 @@ module.exports = {
 	createIndenting,
 	isPrecededBy,
 	isPrecededByIgnoreWhiteSpace,
-	searchForSubstringInStringAfter
+	searchForSubstringInStringAfter,
+	deleteXCharsAt,
+	whatLineInString,
+	insertIntoStringBefore
 }

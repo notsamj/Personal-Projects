@@ -256,6 +256,8 @@ class RetroGameScene {
                 "entity": hitEntityDetails["entity"]
             }
         }
+        console.log("$FL", "I'm here!!!");
+        console.log("sample_code.js (L260) I'm here!!!");
         return resultObject;
     }
 
