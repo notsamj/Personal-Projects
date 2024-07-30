@@ -7,6 +7,7 @@ const searchForSubstringInString = require("./helper_functions.js").searchForSub
 const measureIndentingBefore = require("./helper_functions.js").measureIndentingBefore;
 const createIndenting = require("./helper_functions.js").createIndenting;
 const isPrecededBy = require("./helper_functions.js").isPrecededBy;
+const isPrecededByIgnoreWhiteSpace = require("./helper_functions.js").isPrecededByIgnoreWhiteSpace;
 class JSFile {
 	constructor(fileName, rPath, fileDataStr){
 		this.fileName = fileName;
@@ -24,9 +25,8 @@ class JSFile {
 	}
 
 	identifyMethodsAndFunctions(){
-		let functionMethodRegex = /[a-zA-Z]+\(([a-zA-Z0-9](, ?[a-zA-Z0-9])*)?\)\{/g;
+		let functionMethodRegex = /[a-zA-Z]+\(([a-zA-Z0-9.=]+(, ?[a-zA-Z0-9.=]+)*)?\)\{/g;
 		let functionsAndMethodHeaders = [...this.fileDataStr.matchAll(functionMethodRegex)];
-
 		// Looping through a bunch of these ["function myFunction(a, b)", ...]
 		for (let i = 0; i < functionsAndMethodHeaders.length; i++){
 			let fOrMethodHeader = functionsAndMethodHeaders[i][0];
@@ -95,12 +95,12 @@ class JSFile {
 	}
 
 	commentMethodOrFunction(mFDetails){
-		// If comment already exists then ignore
-		if (searchForSubstringInString("Method Name: " + mFDetails["name"], this.fileDataStr) != -1){
+		let charIndex = mFDetails["char_index"];
+		//console.log(mFDetails["name"], isPrecededByIgnoreWhiteSpace(this.fileDataStr, mFDetails["char_index"], "*/"))
+		// If comment already exists then ignore.
+		if (isPrecededByIgnoreWhiteSpace(this.fileDataStr, mFDetails["char_index"], "*/")){
 			return;
 		}
-
-		let charIndex = mFDetails["char_index"];
 		if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "async function ")){
 			charIndex -= "async function ".length;
 		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "static async ")){
@@ -121,9 +121,9 @@ class JSFile {
 			for (let parameterName of mFDetails["parameters"]){
 				commentString += "\n";
 				commentString += indenting;
-				commentString += parameterName + ":\n";
+				commentString += "        " + parameterName + ":\n";
 				commentString += indenting;
-				commentString += "    TODO";
+				commentString += "            TODO";
 			}
 		}
 		commentString += "\n" + indenting + "    Method Description: TODO\n" + indenting + "    Method Return: TODO\n" + indenting + "*/\n" + indenting;

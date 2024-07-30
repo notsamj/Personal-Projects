@@ -9,11 +9,6 @@ function doesFolderExist(path){
 	return false;
 }
 
-/*
-	Method Name: findIndexOfChar
-	Method Parameters:
-
-*/
 function findIndexOfChar(str, chr){
 	for (let i = 0; i < str.length; i++){
 		if (str[i] === chr){
@@ -80,6 +75,25 @@ function isPrecededBy(sourceString, characterIndex, subString){
 	return true;
 }
 
+function isPrecededByIgnoreWhiteSpace(sourceString, characterIndex, subString){
+	let whiteSpace = /\s/;
+	if (characterIndex < subString.length){ return false; }
+	let j = 0;
+	let wsCount = 0;
+	for (let i = characterIndex - 1; i >= characterIndex - subString.length - wsCount; i--){
+		// Ignore white space
+		if (whiteSpace.test(sourceString[i])){
+			wsCount++;
+			continue;
+		}
+		if (sourceString[i] != subString[subString.length - j]){
+			return false;
+		}
+		j++;
+	}
+	return true;
+}
+
 module.exports = {
 	doesFolderExist,
 	findIndexOfChar,
@@ -88,5 +102,6 @@ module.exports = {
 	searchForSubstringInString,
 	measureIndentingBefore,
 	createIndenting,
-	isPrecededBy
+	isPrecededBy,
+	isPrecededByIgnoreWhiteSpace
 }

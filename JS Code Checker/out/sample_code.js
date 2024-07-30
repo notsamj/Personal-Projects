@@ -275,6 +275,14 @@ class RetroGameScene {
         return resultObject;
     }
 
+    /*
+        Method Name: setDisplayPhysicalLayer
+        Method Parameters: 
+            value:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     setDisplayPhysicalLayer(value){
         this.displayingPhyiscalLayer = value;
     }
@@ -289,6 +297,16 @@ class RetroGameScene {
         return this.displayingPhyiscalLayer;
     }
 
+    /*
+        Method Name: isInSameMultiCover
+        Method Parameters: 
+            entity1:
+                TODO
+             entity2:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     isInSameMultiCover(entity1, entity2){
         let entity1TileX = entity1.getTileX();
         let entity2TileX = entity2.getTileX();
@@ -368,12 +386,32 @@ class RetroGameScene {
         return false;
     }
 
+    /*
+        Method Name: tileAtLocationHasAttribute
+        Method Parameters: 
+            tileX:
+                TODO
+             tileY:
+                TODO
+             attribute:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     tileAtLocationHasAttribute(tileX, tileY, attribute){
         if (!this.hasPhysicalTileCoveringLocation(tileX, tileY)){ return false; }
         let tileAtLocation = this.getPhysicalTileCoveringLocation(tileX, tileY);
         return tileAtLocation.hasAttribute(attribute);
     }
 
+    /*
+        Method Name: loadMaterialList
+        Method Parameters: 
+            materialList:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     async loadMaterialList(materialList){
         // Load materials
         for (let materialObject of materialList){
@@ -383,10 +421,26 @@ class RetroGameScene {
         }
     }
 
+    /*
+        Method Name: loadTilesFromString
+        Method Parameters: 
+            tileJSONStr:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     async loadTilesFromString(tileJSONStr){
         await this.loadTilesFromJSON(JSON.parse(tileJSONStr));
     }
 
+    /*
+        Method Name: loadTilesFromJSON
+        Method Parameters: 
+            tileJSON:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     async loadTilesFromJSON(tileJSON){
         // Clear current chunks
         this.chunks.clear();
@@ -482,14 +536,38 @@ class RetroGameScene {
         return tileJSON;
     }
 
+    /*
+        Method Name: getMaterialImage
+        Method Parameters: 
+            materialName:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     getMaterialImage(materialName){
         return IMAGES[materialName];
     }
 
+    /*
+        Method Name: getMaterialXTileSize
+        Method Parameters: 
+            materialName:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     getMaterialXTileSize(materialName){
         return this.getMaterialImage(materialName).width / RETRO_GAME_DATA["general"]["tile_size"];
     }
 
+    /*
+        Method Name: getMaterialYTileSize
+        Method Parameters: 
+            materialName:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     getMaterialYTileSize(materialName){
         return this.getMaterialImage(materialName).height / RETRO_GAME_DATA["general"]["tile_size"];
     }
@@ -514,6 +592,14 @@ class RetroGameScene {
         return this.focusedEntity;
     }
 
+    /*
+        Method Name: setFocusedEntity
+        Method Parameters: 
+            entity:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     setFocusedEntity(entity){
         this.focusedEntity = entity;
     }
@@ -538,6 +624,14 @@ class RetroGameScene {
         return getCanvasHeight();
     }
 
+    /*
+        Method Name: tick
+        Method Parameters: 
+            timeMS:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     tick(timeMS){
         if (USER_INPUT_MANAGER.isActivated("p_ticked")){
            this.setDisplayPhysicalLayer(!this.isDisplayingPhysicalLayer());
@@ -548,6 +642,30 @@ class RetroGameScene {
         }
     }
 
+    /*
+        Method Name: placeVisualTile
+        Method Parameters: 
+            material:
+                TODO
+             tileX:
+                TODO
+             tileY:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
+    /*
+        Method Name: placeVisualTile
+        Method Parameters: 
+            material:
+                TODO
+             tileX:
+                TODO
+             tileY:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     placeVisualTile(material, tileX, tileY){
         // Delete all other tiles that are covered by region
         let materialXTileSize = this.getMaterialXTileSize(material["name"]);
@@ -555,20 +673,134 @@ class RetroGameScene {
         // Only delete if placing an extra large tile
         if (materialXTileSize > 1 || materialYTileSize > 1){
             for (let dTileX = tileX; dTileX < tileX + materialXTileSize; dTileX++){
-                for (let dTileY = tileY; dTileY > tileY - materialYTileSize; dTileY--){
+                for (let dTileY = tileY; dTileY > tileY - materialYTileSize; d/*
+    Method Name: placePhysicalTile
+    Method Parameters: 
+        material:
+            TODO
+         tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+TileY--){
                     this.deleteVisualTile(dTileX, dTileY);
                 }
             }
         }
 
         // Place tile
-        let chunk = this.getCreateChunkAtLocation(tileX, tileY);
+        let chunk = this.getCreateChunkAtLocation(tileX, tileY);/*
+    Method Name: deleteVisualTile
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+
         chunk.placeVisualTile(material, tileX, tileY);
     }
 
-    placePhysicalTile(material, tileX, tileY){
+    /*
+        Method Name: placePhysicalTile
+        Method Parameters: 
+            material:
+                /*
+                    Method Name: deletePhysicalTile
+                    Method Parameters: 
+                        tileX:
+                            TODO
+                         tileY:
+                            TODO
+                    Method Description: TODO
+                    Method Return: TODO
+                */
+                TODO
+             tileX:
+                TODO
+             tileY:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
+    placePhysicalTile(mate/*
+    Method Name: hasVisualTileAtLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+/*
+    Method Name: hasVisualTileAtLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+ /*
+     Method Name: hasVisualTileCoveringLocation
+     Method Parameters: 
+         tileX:
+             TODO
+          tileY:
+             TODO
+     Method Description: TODO
+     Method Return: TODO
+ */
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+rial, tileX, tileY){
         // Place tile
-        let chunk = this.getCreateChunkAtLocation(tileX, tileY);
+        let chu/*
+    Method Name: hasPhysicalTileAtLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+/*
+    Method Name: hasPhysicalTileAtLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+   /*
+       Method Name: hasPhysicalTileCoveringLocation
+       Method Parameters: 
+           tileX:
+               TODO
+            tileY:
+               TODO
+       Method Description: TODO
+       Method Return: TODO
+   */
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+nk = this.getCreateChunkAtLocation(tileX, tileY);
+/*
+    Method Name: getVisualTileCoveringLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
         chunk.placePhysicalTile(material, tileX, tileY);
     }
 
@@ -578,9 +810,39 @@ class RetroGameScene {
         }
     }
 
-    deletePhysicalTile(tileX, tileY){
+    deletePhysicalTile(tile/*
+    Method Name: getPhysicalTileCoveringLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+X, tileY){
         if (this.hasPhysicalTileAtLocation(tileX, tileY)){
-            this.getPhysicalTileAtLocation(tileX, tileY).delete();
+            this.getPhysicalTileAtLocation(t/*
+  /*
+      Method Name: getCreateChunkAtLocation
+      Method Parameters: 
+          tileX:
+              TODO
+           tileY:
+              TODO
+      Method Description: TODO
+      Method Return: TODO
+  */
+    Method Name: getVisualTileCoveringLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+ileX, tileY).delete();
         }
     }
 
@@ -588,12 +850,42 @@ class RetroGameScene {
         return this.getVisualTileAtLocation(tileX, tileY) != null;
     }
 
-    hasVisualTileCoveringLocation(tileX, tileY){
-        return this.getVisualTileCoveringLocation(tileX, tileY) != null;
+    hasVisualTileCoveringLocation(tileX, ti/*
+    Method Name: getChunkAtLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+leY){
+        return this.getVisualTileCoveringLocation(tileX, til/*
+    Method Name: getPhysicalTileCoveringLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+eY) != null;
     }
 
 
-    hasPhysicalTileAtLocation(tileX, tileY){
+    hasPhysicalT/*
+    Method Name: getPhysicalTileAtLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+ileAtLocation(tileX, tileY){
         return this.getPhysicalTileAtLocation(tileX, tileY) != null;
     }
 
@@ -604,19 +896,111 @@ class RetroGameScene {
 
     getVisualTileCoveringLocation(tileX, tileY){
         for (let [chunk, cI] of this.chunks){
-            if (chunk.covers(tileX, tileY)){
-                return chunk.getVisualTileCoveringLocation(tileX, tileY);
+            if (chunk.cover/*
+    Method Name: getVisualTileAtLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+s(tileX, tileY)){
+               /*
+                   Method Name: getPhysicalTileAtLocation
+                   Method Parameters: 
+                       tileX:
+                           TODO
+                        tileY:
+                           TODO
+             /*
+                 Method Name: hasChunkAtLocation
+                 Method Parameters: 
+                     tileX:
+                         TODO
+                      tileY:
+                         TODO
+                 Method Description: TODO
+                 Method Return: TODO
+             */
+                   Method Description: TODO
+                   Method Return: TODO
+               */
+                retur/*
+  /*
+      Method Name: getTileXAt
+      Method Parameters: 
+          x:
+              TODO
+      Method Description: TODO
+      Method Return: TODO
+  */
+    Method Name: getVisualTileAtLocation
+    Method Parameters: 
+        tileX:
+            TODO
+         t/*
+    Method Name: getTileYAt
+    Method Parameters: 
+        y:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+ileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+n chunk.getVisualTi/*
+    Method Name: getDisplayXFromTileX
+    Method Parameters: 
+        lX:
+            TODO
+         tileX:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+leCoveringLocation(tileX, tileY);
             }
         }
         return null;
     }
 
-    getPhysicalTileCoveringLocation(tileX, tileY){
-        return this.getPhysicalTileAtLocation(tileX, tileY);
+    getPhysical/*
+    Method Name: getXOfTile
+    Method Parameters: 
+        tileX:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+TileCoveringLocation(tileX, tileY){
+        return this.getPhysicalTileAtLocation(tileX, tileY/*
+    Method Name: getDisplayYFromTileY
+    Method Parameters: 
+        bY:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+);
     }
 
     getCreateChunkAtLocation(tileX, tileY){
         let existingChunk = this.getChunkAtLocation(tileX, tileY);
+/*
+    Method Name: getYOfTile
+    Method Parameters: 
+        tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
         // Create if not existing
         if (existingChunk == null){
             existingChunk = new Chunk(this, Chunk.tileToChunkCoordinate(tileX), Chunk.tileToChunkCoordinate(tileY));
@@ -635,7 +1019,21 @@ class RetroGameScene {
     }
 
     // Note: This is only tiles naturally at location not just covering
-    getPhysicalTileAtLocation(tileX, tileY){
+    getPhysicalTileAtLocatio/*
+    Method Name: getDisplayX
+    Method Parameters: 
+        centerX:
+            TODO
+         width:
+            TODO
+         lX:
+            TODO
+         round=false:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+n(tileX, tileY){
         for (let [chunk, chunkIndex] of this.chunks){
             if (chunk.coversNaturally(tileX, tileY)){
                 return chunk.getPhysicalTileAtLocation(tileX, tileY);
@@ -658,32 +1056,30 @@ class RetroGameScene {
         return this.getChunkAtLocation(tileX, tileY) != null;
     }
 
-    /*
-        Method Name: getTileXAt
-        Method Parameters: 
-    x:
-        TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static getTileXAt(x){
         return Math.floor(x / RETRO_GAME_DATA["general"]["tile_size"]);
     }
 
-    /*
-        Method Name: getTileYAt
-        Method Parameters: 
-    y:
-        TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static getTileYAt(y){
         return Math.floor(y / RETRO_GAME_DATA["general"]["tile_size"]);
     }
 
     getDisplayXFromTileX(lX, tileX){
-        return (this.getXOfTile(tileX) - lX) * gameZoom;
+        return (this.ge/*
+    Method Name: getDisplayY
+    Method Parameters: 
+        centerY:
+            TODO
+         height:
+            TODO
+         bY:
+            TODO
+         round=false:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+tXOfTile(tileX) - lX) * gameZoom;
     }
 
     getXOfTile(tileX){
@@ -702,6 +1098,12 @@ class RetroGameScene {
         Method Name: getDisplayX
         Method Parameters:
             centerX:
+                /*
+                    Method Name: getLX
+                    Method Parameters: None
+                    Method Description: TODO
+                    Method Return: TODO
+                */
                 The x coordinate of the center of the entity
             width:
                 The width of the entity
@@ -709,6 +1111,12 @@ class RetroGameScene {
                 The bottom left x displayed on the canvas relative to the focused entity
             round:
                 If rounded down to nearest pixel
+  /*
+      Method Name: getBY
+      Method Parameters: None
+      Method Description: TODO
+      Method Return: TODO
+  */
         Method Description: Determines the top left corner where an image should be displayed
         Method Return: int
     */
@@ -716,6 +1124,12 @@ class RetroGameScene {
         // Find relative to bottom left corner
         let displayX = (centerX - lX) * gameZoom;
 
+      /*
+          Method Name: display
+          Method Parameters: None
+          Method Description: TODO
+          Method Return: TODO
+      */
         // Change coordinate system
         displayX = this.changeToScreenX(displayX);
 
@@ -758,42 +1172,88 @@ class RetroGameScene {
             displayY = Math.floor(displayY);
         }
         return displayY;
-    }
-
     /*
-        Method Name: getLX
-        Method Parameters: None
+        Method Name: addExpiringVisual
+        Method Parameters: 
+            expiringVisual:
+                TODO
         Method Description: TODO
         Method Return: TODO
     */
+    }
+
     getLX(){
         let lX = 0;
         if (!this.hasEntityFocused()){
-            lX = -1 * this.getWidth() / 2 / gameZoom;
+            lX = -1 * t/*
+    Method Name: changeToScreenX
+    Method Parameters: 
+        x:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+his.getWidth() / 2 / gameZoom;
         }else{
-            lX = this.getFocusedEntity().getInterpolatedCenterX() - (this.getWidth()) / 2 / gameZoom;
+            lX = this.getFocusedEntit/*
+    Method Name: changeToScreenY
+    Method Parameters: 
+        y:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+y().getInterpolatedCenterX() - (this.getWidth()) / 2 / gameZoom;
+   /*
+       Method Name: changeFromScreenY
+       Method Parameters: 
+           y:
+               TODO
+       Method Description: TODO
+       Method Return: TODO
+   */
         }
         return lX;
     }
 
-    /*
-        Method Name: getBY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBY(){
         let bY = 0;
+       /*
+           Method Name: addEntity
+           Method Parameters: 
+               entity:
+                   TODO
+           Method Description: TODO
+           Method Return: TODO
+       */
         if (!this.hasEntityFocused()){
             bY = -1 * this.getWidth() / 2 / gameZoom;
         }else{
-            bY = this.getFocusedEntity().getInterpolatedCenterY() - (this.getHeight()) / 2 / gameZoom;
+            bY/*
+    Method Name: displayPageBackground
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+ = this.getFocusedEntity().getInterpolatedCenterY() - (this.getHeight()) / 2 / gameZoom;
         }
         return bY;
     }
 
     display(){
-        let lX = this.getLX(); // Bottom left x
+        let lX = this.getL/*
+    Method Name: constructor
+    Method Parameters: 
+        scene:
+            TODO
+         chunkX:
+            TODO
+         chunkY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+X(); // Bottom left x
         let bY = this.getBY(); // Bottom left y
         let rX = lX + this.getWidth() / gameZoom;
         let tY = bY + this.getHeight() / gameZoom;
@@ -802,8 +1262,20 @@ class RetroGameScene {
         this.displayPageBackground();
 
         // Display Tiles
+      /*
+          Method Name: getVisualTiles
+          Method Parameters: None
+          Method Description: TODO
+          Method Return: TODO
+      */
         for (let [chunk, cI] of this.chunks){
-            chunk.display(lX, rX, bY, tY, this.isDisplayingPhysicalLayer());
+            chunk.disp/*
+    Method Name: getPhysicalTiles
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+lay(lX, rX, bY, tY, this.isDisplayingPhysicalLayer());
         }
 
         // Display Entities
@@ -835,38 +1307,14 @@ class RetroGameScene {
     }
 
 
-    /*
-        Method Name: changeToScreenX
-        Method Parameters: 
-    x:
-        TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     changeToScreenX(x){
         return x; // Doesn't need to be changed ATM
     }
 
-    /*
-        Method Name: changeToScreenY
-        Method Parameters: 
-    y:
-        TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     changeToScreenY(y){
         return this.getHeight() - y;
     }
 
-    /*
-        Method Name: changeFromScreenY
-        Method Parameters: 
-    y:
-        TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     changeFromScreenY(y){
         return this.changeToScreenY(y);
     }
@@ -876,12 +1324,6 @@ class RetroGameScene {
         this.entities.push(entity);
     }
 
-    /*
-        Method Name: displayPageBackground
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     displayPageBackground(){
         drawingContext.drawImage(IMAGES["page_background"], 0, 0); // TODO: This should be variable in the future
     }
@@ -901,22 +1343,10 @@ class Chunk {
         this.recalculateBoundaries();
     }
 
-    /*
-        Method Name: getVisualTiles
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getVisualTiles(){
         return this.visualTiles;
     }
 
-    /*
-        Method Name: getPhysicalTiles
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getPhysicalTiles(){
         return this.physicalTiles;
     }
@@ -938,7 +1368,23 @@ class Chunk {
         return null;
     }
 
-    getPhysicalTileAtLocation(tileX, tileY){
+    getPhysica/*
+    Method Name: display
+    Method Parameters: 
+        lX:
+            TODO
+         rX:
+            TODO
+         bY:
+            TODO
+         tY:
+            TODO
+         displayPhysicalTiles:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+lTileAtLocation(tileX, tileY){
         for (let [tile, tileI] of this.physicalTiles){
             if (tile.getTileX() == tileX && tile.getTileY() == tileY){
                 return tile;
@@ -953,7 +1399,21 @@ class Chunk {
                 return tile;
             }
         }
-        return null;
+        retu/*
+    Method Name: touchesRegion
+    Method Parameters: 
+        lX:
+            TODO
+         rX:
+            TODO
+         bY:
+            TODO
+         tY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+rn null;
     }
 
     getPhysicalTileCoveringLocation(tileX, tileY){
@@ -977,79 +1437,113 @@ class Chunk {
     touchesRegion(lX, rX, bY, tY){
         let lChunkX = Chunk.tileToChunkCoordinate(RetroGameScene.getTileXAt(lX));
         let rChunkX = Chunk.tileToChunkCoordinate(RetroGameScene.getTileXAt(rX));
-        let myRightChunkX = Chunk.tileToChunkCoordinate(this.getRightX());
+        let myRightChunkX = Chunk.tileToChunkCoordinate(this.get/*
+    Method Name: getLeftX
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+RightX());
         let myLeftChunkX = Chunk.tileToChunkCoordinate(this.getLeftX());
-        if (myRightChunkX < lChunkX || myLeftChunkX > rChunkX){ return false; }
-        let bChunkY = Chunk.tileToChunkCoordinate(RetroGameScene.getTileYAt(bY));
+        if (myRightChunkX < lChunkX || myLeftChunkX > rChunkX/*
+    Method Name: getRightX
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+){ return false; }
+        let bChunkY = Chunk.tileT/*
+    Method Name: getTopY
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+oChunkCoordinate(RetroGameScene.getTileYAt(bY));
         let tChunkY = Chunk.tileToChunkCoordinate(RetroGameScene.getTileYAt(tY));
-        let myTopChunkY = Chunk.tileToChunkCoordinate(this.getTopY());
+        let /*
+     Method Name: getBottomY
+     Method Parameters: None
+     Method Description: TODO
+     Method Return: TODO
+ */
+ myTopChunkY = Chunk.tileToChunkCoordinate(this.getTopY/*
+    Method Name: recalculateBoundaries
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+());
         let myBottomChunkY = Chunk.tileToChunkCoordinate(this.getBottomY());
         if (myTopChunkY < bChunkY || myBottomChunkY > tChunkY){ return false; }
         return true;
     }
 
-    /*
-        Method Name: getLeftX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLeftX(){
         return this.leftX;
     }
 
     // Note: Be careful if you have a 5000 long tile in bottom right it will extend this right
-    /*
-        Method Name: getRightX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getRightX(){
         return this.rightX;
     }
 
-    /*
-        Method Name: getTopY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getTopY(){
         return this.topY;
     }
 
     // Note: Be careful if you have a 5000 long tile in bottom right it will extend this right
-    /*
-        Method Name: getBottomY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBottomY(){
         return this.bottomY;
     }
 
-    /*
-        Method Name: recalculateBoundaries
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     recalculateBoundaries(){
         let bottomY = this.chunkY * RETRO_GAME_DATA["general"]["chunk_size"];
         for (let [tile, tI] of this.visualTiles){
             let tileBottomY = tile.getBottomY();
-            if (tileBottomY < bottomY){
+            if (tileBottomY < botto/*
+    Method Name: getNaturalLeftX
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+mY){
                 bottomY = tileBottomY;
             }
+    /*
+        Method Name: getNaturalRightX
+        Method Parameters: None
+        Method Description: TODO
+        Method Return: TODO
+    */
         }
         this.bottomY = bottomY;
 
-        let rightX = (this.chunkX + 1) * RETRO_GAME_DATA["general"]["chunk_size"] - 1;
-        for (let [tile, tI] of this.visualTiles){
+        let rightX = (this.chunkX + 1) * RETRO_GAME_DATA["general"]["chun/*
+    Method Name: getNaturalTopY
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+k_size"] - 1;
+        for (let [tile, tI] of this.visualTile/*
+    Method Name: getNaturalBottomY
+    Method Parameters: None
+    Method Description: TODO
+    Method Return: TODO
+*/
+s){
             let tileRightX = tile.getRightX();
             if (tileRightX > rightX){
+              /*
+                  Method Name: covers
+                  Method Parameters: 
+                      tileX:
+                          TODO
+                       tileY:
+                          TODO
+                  Method Description: TODO
+                  Method Return: TODO
+              */
                 rightX = tileRightX;
             }
         }
@@ -1058,42 +1552,18 @@ class Chunk {
         this.topY = (this.chunkY + 1) * RETRO_GAME_DATA["general"]["chunk_size"] - 1;
     }
 
-    /*
-        Method Name: getNaturalLeftX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNaturalLeftX(){
         return this.getLeftX();
     }
 
-    /*
-        Method Name: getNaturalRightX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNaturalRightX(){
         return (this.chunkX + 1) * RETRO_GAME_DATA["general"]["chunk_size"] - 1;
     }
 
-    /*
-        Method Name: getNaturalTopY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNaturalTopY(){
         return this.getTopY();
     }
 
-    /*
-        Method Name: getNaturalBottomY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNaturalBottomY(){
         return this.chunkY * RETRO_GAME_DATA["general"]["chunk_size"];
     }
@@ -1101,7 +1571,17 @@ class Chunk {
     covers(tileX, tileY){
         let chunkLeftX = this.getNaturalLeftX();
         let chunkRightX = this.getNaturalRightX();
-        let chunkTopY = this.getNaturalTopY();
+        let chu/*
+    Method Name: coversNaturally
+    Method Parameters: 
+        tileX:
+            TODO
+         tileY:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+nkTopY = this.getNaturalTopY();
         let chunkBottomY = this.getNaturalBottomY();
         // If within natural boundries
         if (tileX >= chunkLeftX && tileX <= chunkRightX && tileY >= chunkBottomY && tileY <= chunkTopY){ return true; }
@@ -1159,6 +1639,14 @@ class Chunk {
         }
     }
 
+    /*
+        Method Name: deleteVisualTile
+        Method Parameters: 
+            tile:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     deleteVisualTile(tile){
         let tX = tile.getTileX();
         let tY = tile.getTileY();
@@ -1169,6 +1657,14 @@ class Chunk {
         this.recalculateBoundaries();
     }
 
+    /*
+        Method Name: deletePhysicalTile
+        Method Parameters: 
+            tile:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     deletePhysicalTile(tile){
         let tX = tile.getTileX();
         let tY = tile.getTileY();
@@ -1189,6 +1685,14 @@ class Chunk {
         return this.visualTiles.isEmpty();
     }
 
+    /*
+        Method Name: tileToChunkCoordinate
+        Method Parameters: 
+            coordinate:
+                TODO
+        Method Description: TODO
+        Method Return: TODO
+    */
     static tileToChunkCoordinate(coordinate){
         return Math.floor(coordinate / RETRO_GAME_DATA["general"]["chunk_size"]);
     }

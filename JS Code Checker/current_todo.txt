@@ -1,4 +1,16 @@
 Not working for multi parameter methods / functions?
 Pseudo interfaces/classes
-Check for all TODOs
-console.log("$LINE44", arg1, arg2, etc.) replace with console.log("$LINE45") if its moved to line 45 for example
+Check for all TODOs(
+console.log("myfile.js (L44)", arg1, arg2, etc.) replace with console.log("myfile.js (L44)", arg1, arg2, etc.) if its moved to line 45 for example
+	Also console.log("$FL" -> console.log("myfile.js (L44)"
+
+
+Notes:
+	Not going to support having multiple methods with the same name in one file. This currently breaks the program.
+
+		This means if you have class A
+			test(){}
+		in the same file as class B
+			test(){}
+
+		you will get 2 comments made on class A or B test instead of 1 on each
