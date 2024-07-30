@@ -8,6 +8,7 @@ const measureIndentingBefore = require("./helper_functions.js").measureIndenting
 const createIndenting = require("./helper_functions.js").createIndenting;
 const isPrecededBy = require("./helper_functions.js").isPrecededBy;
 const isPrecededByIgnoreWhiteSpace = require("./helper_functions.js").isPrecededByIgnoreWhiteSpace;
+const searchForSubstringInStringAfter = require("./helper_functions.js").searchForSubstringInStringAfter; 
 class JSFile {
 	constructor(fileName, rPath, fileDataStr){
 		this.fileName = fileName;
@@ -34,6 +35,14 @@ class JSFile {
 			// Note: Assuming there are no two functions with the same name / header
 			let charIndex = searchForSubstringInString(fOrMethodHeader, this.fileDataStr);
 			let name = fOrMethodHeader.substring(0, findIndexOfChar(fOrMethodHeader, '('));
+
+			// Check for other functions with the same name and adjust char index to the next occurance
+			for (let fOrMethod of this.functionsAndMethods){
+				if (fOrMethod["name"] == name && charIndex >= fOrMethod["char_index"]){
+					charIndex = searchForSubstringInStringAfter(fOrMethodHeader, this.fileDataStr, fOrMethod["char_index"]);
+				}
+			}
+
 			let parametersString = fOrMethodHeader.substring(findIndexOfChar(fOrMethodHeader, '(') + 1, fOrMethodHeader.length - 2);
 			let parametersStringList = parametersString.split(',');
 			// If empty then use an empty array
@@ -75,6 +84,7 @@ class JSFile {
 			}
 
 			// Comment the current one
+			//console.log(nextToComment, fhCharIndex, cCharIndex, cIndex, fHIndex)
 			if (nextToComment["type"] == "class"){
 				this.commentClass(nextToComment);
 			}else{

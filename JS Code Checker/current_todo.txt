@@ -6,11 +6,7 @@ console.log("myfile.js (L44)", arg1, arg2, etc.) replace with console.log("myfil
 
 
 Notes:
-	Not going to support having multiple methods with the same name in one file. This currently breaks the program.
-
-		This means if you have class A
-			test(){}
-		in the same file as class B
-			test(){}
-
-		you will get 2 comments made on class A or B test instead of 1 on each
+	Does not support automatic comments for functions with arrow function default parameters e.g.
+	myFunction(a, b, c = (var) => { return var * 5; }){
+		return a * c(b);
+	}

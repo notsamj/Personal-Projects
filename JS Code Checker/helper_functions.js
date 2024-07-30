@@ -94,6 +94,23 @@ function isPrecededByIgnoreWhiteSpace(sourceString, characterIndex, subString){
 	return true;
 }
 
+function searchForSubstringInStringAfter(subString, sourceString, startPoint){
+	for (let i = startPoint+1; i < sourceString.length - subString.length; i++){
+		let notAMatch = false;
+		let c = 0;
+		for (let j = i; j < i + subString.length; j++){
+			if (sourceString[j] != subString[c]){
+				notAMatch = true;
+				break;
+			}
+			c++;
+		}
+		if (notAMatch){ continue; }
+		return i;
+	}
+	return -1;
+}
+
 module.exports = {
 	doesFolderExist,
 	findIndexOfChar,
@@ -103,5 +120,6 @@ module.exports = {
 	measureIndentingBefore,
 	createIndenting,
 	isPrecededBy,
-	isPrecededByIgnoreWhiteSpace
+	isPrecededByIgnoreWhiteSpace,
+	searchForSubstringInStringAfter
 }
