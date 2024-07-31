@@ -17,7 +17,6 @@ class RetroGameScene {
         this.expiringVisuals = new NotSamLinkedList();
         this.displayingPhyiscalLayer = false;
     }
-
     /*
         Method Name: getEntities
         Method Parameters: None
@@ -321,9 +320,7 @@ class RetroGameScene {
         let tilesToCheck = [{"checked": false, "x": entity1TileX, "y": entity1TileY}];
         let tilesLeftToCheck = true;
 
-        //console.log("Starting", copyArray(tilesToCheck))
         while (tilesLeftToCheck){
-            //console.log("while", copyArray(tilesToCheck))
             tilesLeftToCheck = false;
             let currentTile = null;
 
@@ -344,7 +341,6 @@ class RetroGameScene {
 
             // Explore tiles around current location
             let pairs = [[currentTile["x"], currentTile["y"]+1], [currentTile["x"], currentTile["y"]-1], [currentTile["x"]+1, currentTile["y"]], [currentTile["x"]-1, currentTile["y"]]];
-            //console.log("pairs", copyArray(pairs))
             for (let pair of pairs){
                 let tileX = pair[0];
                 let tileY = pair[1];
@@ -365,7 +361,6 @@ class RetroGameScene {
                 // Found a new tile
                 if (!alreadyExists){
                     tilesLeftToCheck = true;
-                    //console.log("pushing", tileX, tileY)
                     tilesToCheck.push({
                         "checked": false,
                         "x": tileX,

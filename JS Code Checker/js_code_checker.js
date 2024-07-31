@@ -7,38 +7,36 @@ async function run(){
 	/*
 		Reading command line arguments
 
-		Three cases here
-		1. Command line arguments contain input and output folders
-			Set input folder to argv[2]
-			Set output folder to argv[3]
-		2. Command line arguments contain input folder
-			Set input folder to argv[2]
-			Set output folder to argv[2]
-		3. Command line arguments contain no input or output folders
-			Set input folder to "./"
-			Set output folder to "./"
+		argv[0] node
+		argv[1] js_code_checker.js
+		argv[2] $input_file_name
+		argv[3] $output_file_name
+		argv[4] $preset_name
 	*/
-
+	let settingsJSON = await JSON.parse(fs.readFileSync("settings.json"));
+	let settings = settingsJSON["presets"]["default"];
 	let numArgs = process.argv.length;
-	let inputFolderRPath = "./";
-	let outputFolderRPath = "./";
-	// If case 1
-	if (numArgs == 4){
-		inputFolderRPath = process.argv[2];
-		outputFolderRPath = process.argv[3];
+
+	// if wrong number of args
+	if (numArgs != 5){
+		console.error("Invalid arguments received. Please see README.md");
+		return;
 	}
-	// If case 2
-	else if (numArgs == 3){
-		inputFolderRPath = process.argv[2];
-		outputFolderRPath = process.argv[2];
+
+	let inputFolderRPath = process.argv[2];
+	let outputFolderRPath = process.argv[3];
+	let preset = process.argv[4];
+
+	// Update settings to preset
+	for (let key of Object.keys(settingsJSON["presets"][preset])){
+		settings[key] = settingsJSON["presets"][preset][key];
 	}
-	// case 3 is the default
 
 	// Read files
 	let jsFiles = await readJSFiles(inputFolderRPath);
 
-	// Analyze files
-	analyzeJSFiles(jsFiles);
+	// Modify files
+	modifyJSFiles(jsFiles, settings);
 
 	// Write files
 	writeJSFiles(inputFolderRPath.length, outputFolderRPath, jsFiles);
@@ -85,11 +83,13 @@ async function readJSFiles(rPath){
 	return jsFiles;
 }
 
-function analyzeJSFiles(jsFiles){
+function modifyJSFiles(jsFiles, settings){
 	for (let jsFile of jsFiles){
-		console.log(jsFile.getFileName());
 		jsFile.handleComments();
 		jsFile.updateConsoleLogs();
+		if (settings["remove_console_logs"]){
+			jsFile.removeOldConsoleLogs();
+		}
 	}
 }
 

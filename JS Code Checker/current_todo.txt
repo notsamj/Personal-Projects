@@ -3,7 +3,6 @@ Check for all TODOs(
 Basic logging to console
 Summary of findings
 Full log saved to file
-(Option) remove all //console.log("debugging thashdsah")
 Comment this code!
 
 

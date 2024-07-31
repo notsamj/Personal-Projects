@@ -1,0 +1,5 @@
+class NSLog {
+	constructor(){
+		
+	}
+}

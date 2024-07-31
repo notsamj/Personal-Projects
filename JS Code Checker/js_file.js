@@ -23,6 +23,11 @@ class JSFile {
 		this.classes = [];
 	}
 
+	removeOldConsoleLogs(){
+		let oldConsoleLogRegex = / *\/\/console\.log([^\n])+\n/g;
+		this.fileDataStr = this.fileDataStr.replace(oldConsoleLogRegex, '');
+	}
+
 	handleComments(){
 		this.identifyMethodsAndFunctions();
 		this.indentifyClasses();
@@ -39,7 +44,6 @@ class JSFile {
 			// Delete old part of the statement
 			this.fileDataStr = deleteXCharsAt(this.fileDataStr, charIndex, consoleLogStatement.length);
 			let lineCount = whatLineInString(this.fileDataStr, charIndex);
-			console.log(consoleLogStatement)
 			this.fileDataStr = insertIntoStringBefore("console.log(\"" + this.fileName + " (L" + lineCount.toString() + ")", this.fileDataStr, charIndex);
 		}
 	}

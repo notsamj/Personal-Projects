@@ -7,8 +7,8 @@ class RetroGameScene {
         this.expiringVisuals = new NotSamLinkedList();
         this.displayingPhyiscalLayer = false;
     }
-
     getEntities(){
+        //console.log("here")
         return this.entities;
     }
 
