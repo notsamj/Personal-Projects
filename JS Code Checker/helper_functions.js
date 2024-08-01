@@ -1,3 +1,20 @@
+function objectHasKey(obj, key){
+	for (let objKey of Object.keys(obj)){
+		if (objKey === key){
+			return true;
+		}
+	}
+	return false;
+}
+
+function multiplyString(str, count){
+	let multipliedString = "";
+	for (let i = 0; i < count; i++){
+		multipliedString += str;
+	}
+	return multipliedString;
+}
+
 function doesFolderExist(path){
 	let fs = require("fs");
 	try {
@@ -142,5 +159,7 @@ module.exports = {
 	searchForSubstringInStringAfter,
 	deleteXCharsAt,
 	whatLineInString,
-	insertIntoStringBefore
+	insertIntoStringBefore,
+	multiplyString,
+	objectHasKey
 }

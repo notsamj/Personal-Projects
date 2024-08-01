@@ -1,4 +1,6 @@
 const fs = require("fs");
+const Stats = require("./stats.js");
+
 const doesFolderExist = require("./helper_functions.js").doesFolderExist;
 const findIndexOfChar = require("./helper_functions.js").findIndexOfChar;
 const copyArray = require("./helper_functions.js").copyArray;
@@ -19,8 +21,14 @@ class JSFile {
 		this.rPath = rPath;
 		this.fileDataStr = fileDataStr.toString();
 
+		this.stats = new Stats();
+
 		this.functionsAndMethods = [];
 		this.classes = [];
+	}
+
+	getStats(){
+		return this.stats;
 	}
 
 	removeOldConsoleLogs(){

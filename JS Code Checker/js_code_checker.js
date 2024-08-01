@@ -2,6 +2,8 @@ const fs = require("fs");
 const JSFile = require("./js_file.js");
 const Lock = require("./lock.js");
 const doesFolderExist = require("./helper_functions.js").doesFolderExist;
+const NSLog = require("./ns_log.js");
+const multiplyString = require("./helper_functions.js").multiplyString;
 
 async function run(){
 	/*
@@ -83,20 +85,27 @@ async function readJSFiles(rPath){
 	return jsFiles;
 }
 
-function modifyJSFiles(jsFiles, settings){
+function modifyJSFiles(jsFiles, settings, nsLog){
+	nsLog.writeAtBeginning(multiplyString('-', 5) + "Summary" + multiplyString('-', 5));
+	let summaryStats = new Stats();
+	// TODO
 	for (let jsFile of jsFiles){
 		jsFile.handleComments();
 		jsFile.updateConsoleLogs();
 		if (settings["remove_console_logs"]){
 			jsFile.removeOldConsoleLogs();
 		}
+
+		// Stats
 	}
+	let summaryString = 
 }
 
-function writeJSFiles(inputFolderRPathLength, outputFolderRPath, jsFiles){
+function writeJSFiles(inputFolderRPathLength, outputFolderRPath, jsFiles, nsLog){
 	for (let jsFile of jsFiles){
 		jsFile.writeToOutputFolder(inputFolderRPathLength, outputFolderRPath);
 	}
+	nsLog.saveToFile();
 }
 
 
