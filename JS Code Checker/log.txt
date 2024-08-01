@@ -1,0 +1,18 @@
+----- Summary -----
+Number of function comments added: 3
+Number of method comments added: 79
+Number of class comments added: 2
+Number of line-referencing console.logs updated: 2
+Number of old console.logs removed: 5
+----- sample_code.js -----
+Number of function comments added: 0
+Number of method comments added: 79
+Number of class comments added: 2
+Number of line-referencing console.logs updated: 2
+Number of old console.logs removed: 5
+----- sample_code_2.js -----
+Number of function comments added: 3
+Number of method comments added: 0
+Number of class comments added: 0
+Number of line-referencing console.logs updated: 0
+Number of old console.logs removed: 0

@@ -33,6 +33,9 @@ class JSFile {
 
 	removeOldConsoleLogs(){
 		let oldConsoleLogRegex = / *\/\/console\.log([^\n])+\n/g;
+		// Add number being removed to stats
+		this.stats.setValue("old_console_logs_removed", [...this.fileDataStr.matchAll(oldConsoleLogRegex)].length);
+		// Delete them
 		this.fileDataStr = this.fileDataStr.replace(oldConsoleLogRegex, '');
 	}
 
@@ -54,6 +57,8 @@ class JSFile {
 			let lineCount = whatLineInString(this.fileDataStr, charIndex);
 			this.fileDataStr = insertIntoStringBefore("console.log(\"" + this.fileName + " (L" + lineCount.toString() + ")", this.fileDataStr, charIndex);
 		}
+		// Add work done to stats
+		this.stats.setValue("l_r_console_logs_updated", consoleLogStatements.length);
 	}
 
 	identifyMethodsAndFunctions(){
@@ -129,6 +134,8 @@ class JSFile {
 		if (searchForSubstringInString("Class Name: " + classDetailsJSON["name"], this.fileDataStr) != -1){
 			return;
 		}
+		// Add to stats
+		this.stats.incrementCounter("c_comments_added");
 		let numSpaces = measureIndentingBefore(this.fileDataStr, classDetailsJSON["char_index"]);
 		let indenting = createIndenting(numSpaces);
 		let commentString = "/*\n" + indenting + "    Class Name: " + classDetailsJSON["name"] + "\n" + indenting + "    Class Description: TODO\n" + indenting + "*/\n" + indenting;
@@ -142,17 +149,28 @@ class JSFile {
 		if (isPrecededByIgnoreWhiteSpace(this.fileDataStr, mFDetails["char_index"], "*/")){
 			return;
 		}
+		let isMethod = true;
 		if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "async function ")){
 			charIndex -= "async function ".length;
+			isMethod = false;
 		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "static async ")){
 			charIndex -= "static async ".length;
 		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "async ")){
 			charIndex -= "async ".length;
 		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "function ")){
 			charIndex -= "function ".length;
+			isMethod = false;
 		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "static ")){
 			charIndex -= "static ".length;
 		}
+
+		// Record in stats
+		if (isMethod){
+			this.stats.incrementCounter("m_comments_added");
+		}else{
+			this.stats.incrementCounter("f_comments_added");
+		}
+
 		let numSpaces = measureIndentingBefore(this.fileDataStr, charIndex);
 		let indenting = createIndenting(numSpaces);
 		let commentString = "/*\n" + indenting + "    Method Name: " + mFDetails["name"] + "\n" + indenting + "    Method Parameters: ";

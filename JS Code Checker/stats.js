@@ -4,6 +4,10 @@ class Stats {
 		this.storage = {};
 	}
 
+	setValue(statName, value){
+		this.setStat(statName, value);
+	}
+
 	setStat(statName, value){
 		this.storage[statName] = value;
 	}
@@ -15,7 +19,7 @@ class Stats {
 	incrementCounter(statName){
 		// 0 if doesn't exist
 		if (!this.hasStat(statName)){
-			this.setStat(statName, 0):
+			this.setStat(statName, 0);
 		}
 		this.storage[statName]++;
 	}

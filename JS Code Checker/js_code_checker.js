@@ -40,6 +40,9 @@ async function run(){
 	// Modify files
 	modifyJSFiles(jsFiles, settings);
 
+	// Collect and log stats
+	collectAndLogStats(jsFiles, settings);
+
 	// Write files
 	writeJSFiles(inputFolderRPath.length, outputFolderRPath, jsFiles);
 }
@@ -85,27 +88,92 @@ async function readJSFiles(rPath){
 	return jsFiles;
 }
 
-function modifyJSFiles(jsFiles, settings, nsLog){
-	nsLog.writeAtBeginning(multiplyString('-', 5) + "Summary" + multiplyString('-', 5));
-	let summaryStats = new Stats();
-	// TODO
+function modifyJSFiles(jsFiles, settings){
 	for (let jsFile of jsFiles){
 		jsFile.handleComments();
 		jsFile.updateConsoleLogs();
 		if (settings["remove_console_logs"]){
 			jsFile.removeOldConsoleLogs();
 		}
-
-		// Stats
 	}
-	let summaryString = 
 }
 
-function writeJSFiles(inputFolderRPathLength, outputFolderRPath, jsFiles, nsLog){
+function collectAndLogStats(jsFiles, settings){
+	let log = new NSLog();
+	let numDashesPerSide = 5;
+
+	let totalFunctionCommentsAdded = 0;
+	let totalMethodCommentsAdded = 0;
+	let totalClassCommentsAdded = 0;
+	let totalLineReferencingConsoleLogsUpdated = 0;
+	let totalOldConsoleLogsRemoved = 0;
+
+	// Log details per file
+	for (let jsFile of jsFiles){
+		let fileStats = jsFile.getStats();
+		// Write file name header
+		log.write('\n' + multiplyString('-', numDashesPerSide) + " " + jsFile.getFileName() + " " + multiplyString('-', numDashesPerSide))
+		
+		// Write number of function comments added
+		log.write('\n' + "Number of function comments added: " + fileStats.getStatValue("f_comments_added").toString());
+		totalFunctionCommentsAdded += fileStats.getStatValue("f_comments_added");
+
+		// Write number of method comments added
+		log.write('\n' + "Number of method comments added: " + fileStats.getStatValue("m_comments_added").toString());
+		totalMethodCommentsAdded += fileStats.getStatValue("m_comments_added");
+
+		// Write number of class comments added
+		log.write('\n' + "Number of class comments added: " + fileStats.getStatValue("c_comments_added").toString());
+		totalClassCommentsAdded += fileStats.getStatValue("c_comments_added");
+
+		// Write number of line-referencing console.logs updated
+		log.write('\n' + "Number of line-referencing console.logs updated: " + fileStats.getStatValue("l_r_console_logs_updated"));
+		totalLineReferencingConsoleLogsUpdated += fileStats.getStatValue("l_r_console_logs_updated");
+
+		if (settings["remove_console_logs"]){
+			// Write number of old console.logs removed
+			log.write('\n' + "Number of old console.logs removed: " + fileStats.getStatValue("old_console_logs_removed"));
+			totalOldConsoleLogsRemoved += fileStats.getStatValue("old_console_logs_removed");
+		}
+	}
+
+	// Summary Details
+
+	let summaryText = "";
+
+	// Summary Title
+	summaryText += multiplyString('-', numDashesPerSide) + " Summary " + multiplyString('-', numDashesPerSide);
+
+	// Write number of function comments added
+	summaryText += '\n' + "Number of function comments added: " + totalFunctionCommentsAdded.toString();
+
+	// Write number of method comments added
+	summaryText += '\n' + "Number of method comments added: " + totalMethodCommentsAdded.toString();
+
+	// Write number of class comments added
+	summaryText += '\n' + "Number of class comments added: " + totalClassCommentsAdded.toString();
+
+	// Write number of line-referencing console.logs updated
+	summaryText += '\n' + "Number of line-referencing console.logs updated: " + totalLineReferencingConsoleLogsUpdated;
+
+	if (settings["remove_console_logs"]){
+		// Write number of old console.logs removed
+		summaryText += '\n' + "Number of old console.logs removed: " + totalOldConsoleLogsRemoved;
+	}
+
+	log.writeAtBeginning(summaryText);
+
+	if (settings["print_summary"]){
+		console.log(summaryText);
+	}
+
+	log.saveToFile();
+}
+
+function writeJSFiles(inputFolderRPathLength, outputFolderRPath, jsFiles){
 	for (let jsFile of jsFiles){
 		jsFile.writeToOutputFolder(inputFolderRPathLength, outputFolderRPath);
 	}
-	nsLog.saveToFile();
 }
 
 

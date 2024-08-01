@@ -9,7 +9,7 @@ class NSLog {
 	}
 
 	writeAtBeginning(str){
-		this.logData = str + logData;
+		this.logData = str + this.logData;
 	}
 
 	saveToFile(){
