@@ -9,12 +9,6 @@ class MailService {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.mailboxes = new NotSamLinkedList();
     }
@@ -27,14 +21,6 @@ class MailService {
         Method Description: Checks if a mailbox exists with a given name
         Method Return: Boolean
     */
-    /*
-        Method Name: hasMailbox
-        Method Parameters: 
-            mailboxName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasMailbox(mailboxName){
         return this.getMailbox(mailboxName) != null;
     }
@@ -46,14 +32,6 @@ class MailService {
                 The mailbox being looked for
         Method Description: Searched for a mailbox, returns it if found otherwise null
         Method Return: Mailbox
-    */
-    /*
-        Method Name: getMailbox
-        Method Parameters: 
-            mailboxName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getMailbox(mailboxName){
         for (let [mailbox, mailboxIndex] of this.mailboxes){
@@ -76,18 +54,6 @@ class MailService {
         Method Description: Sends a message and gets a response
         Method Return: JSON Object
     */
-    /*
-        Method Name: sendJSON
-        Method Parameters: 
-            mailboxName:
-                TODO
-             messageJSON:
-                TODO
-             timeout=1000:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async sendJSON(mailboxName, messageJSON, timeout=1000){
         if (!this.hasMailbox(mailboxName)){
             this.mailboxes.add(new Mailbox(mailboxName));
@@ -103,14 +69,6 @@ class MailService {
                 A message to deliver
         Method Description: Delivers a message to an indicated mailbox
         Method Return: Boolean, true -> delivered, false -> not delivered
-    */
-    /*
-        Method Name: deliver
-        Method Parameters: 
-            message:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     deliver(message){
         let messageJSON = JSON.parse(message);
@@ -128,16 +86,6 @@ class MailService {
                 Name of the mailbox being monitored
         Method Description: Adds a monitor for a mailbox to await mail
         Method Return: void
-    */
-    /*
-        Method Name: addMonitor
-        Method Parameters: 
-            mailboxName:
-                TODO
-             callback:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     addMonitor(mailboxName, callback){
         if (!this.hasMailbox(mailboxName)){
@@ -158,14 +106,6 @@ class Mailbox {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            mailboxName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(mailboxName){
         this.mailboxName = mailboxName;
         this.awaiting = false;
@@ -181,16 +121,6 @@ class Mailbox {
                 The time to wait for a reply to the message
         Method Description: Sends a JSON object and return the response
         Method Return: JSON Object
-    */
-    /*
-        Method Name: sendJSON
-        Method Parameters: 
-            messageJSON:
-                TODO
-             timeout=1000:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async sendJSON(messageJSON, timeout=1000){
         //let tempNumber = randomNumberInclusive(1,1000);
@@ -211,14 +141,6 @@ class Mailbox {
         Method Description: Adds an object that will receive mail from this mailbox
         Method Return: void
     */
-    /*
-        Method Name: addReceiver
-        Method Parameters: 
-            receiver:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addReceiver(receiver){
         this.receiver = receiver;
     }
@@ -230,14 +152,6 @@ class Mailbox {
                 A message to deliver
         Method Description: Delivers a message to a receiver
         Method Return: void
-    */
-    /*
-        Method Name: deliver
-        Method Parameters: 
-            message:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     deliver(message){
         if (!this.awaiting){
@@ -254,12 +168,6 @@ class Mailbox {
         Method Description: Getter
         Method Return: String
     */
-    /*
-        Method Name: getName
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getName(){
         return this.mailboxName;
     }
@@ -270,12 +178,6 @@ class Mailbox {
         Method Description: Tells a mailbox to stop awaiting a reply
         Method Return: void
         Note: Used so that you don't run into issue endlessly awaiting say refresh and you send another then get still awaiting cannot send. Instead with thise method you will get nobody is awaiting if the refresh is actually answered at some time 
-    */
-    /*
-        Method Name: stopAwaiting
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     stopAwaiting(){
         this.awaiting = false;
@@ -288,14 +190,6 @@ class Mailbox {
                 A boolean indicated whether or not the mailbox should be in an awaiting state
         Method Description: Setter
         Method Return: void
-    */
-    /*
-        Method Name: setAwaiting
-        Method Parameters: 
-            shouldBeAwaiting:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setAwaiting(shouldBeAwaiting){
         this.awaiting = shouldBeAwaiting;
@@ -312,16 +206,6 @@ class MessageResponse {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            mailbox:
-                TODO
-             timeout:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(mailbox, timeout){
         this.result = null;
         this.completedLock = new Lock();
@@ -336,14 +220,6 @@ class MessageResponse {
         Method Parameters: None
         Method Description: Sets the result of the action of awaiting a message. Null if timeout.
         Method Return: void
-    */
-    /*
-        Method Name: complete
-        Method Parameters: 
-            result=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     complete(result=null){
         // If this is a timeout then tell the mailbox to give up waiting for a response to the previous message
@@ -364,12 +240,6 @@ class MessageResponse {
         Method Description: Waits for the response to come in the returns it
         Method Return: String
     */
-    /*
-        Method Name: awaitResponse
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async awaitResponse(){
         // Wait for the lock to no longer be completed
         await this.completedLock.awaitUnlock();
@@ -388,18 +258,6 @@ class MessageResponse {
         Method Description: Adds a password and then sends a JSON object     
         Method Return: JSON Object
     */
-    /*
-        Method Name: sendAndReceiveJSON
-        Method Parameters: 
-            mailBox:
-                TODO
-             messageJSON:
-                TODO
-             timeout:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static async sendAndReceiveJSON(mailBox, messageJSON, timeout){
         messageJSON["password"] = USER_DATA["server_data"]["password"];
         return JSON.parse(await MessageResponse.sendAndReceive(mailBox, JSON.stringify(messageJSON), timeout));
@@ -416,18 +274,6 @@ class MessageResponse {
                 The time (ms) before giving up on getting return mail
         Method Description: Sends a string and returns the response    
         Method Return: String
-    */
-    /*
-        Method Name: sendAndReceive
-        Method Parameters: 
-            mailBox:
-                TODO
-             message:
-                TODO
-             timeout:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static async sendAndReceive(mailBox, message, timeout){
         SERVER_CONNECTION.send(message);
@@ -448,16 +294,6 @@ class MailMonitor {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            mailbox:
-                TODO
-             callback:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(mailbox, callback){
         this.mailbox = mailbox;
         this.mailbox.setAwaiting(true);
@@ -472,14 +308,6 @@ class MailMonitor {
                 A message in the mailbox
         Method Description: Receieves a message from the mailbox
         Method Return: void
-    */
-    /*
-        Method Name: complete
-        Method Parameters: 
-            result:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     complete(result){
         this.mailbox.setAwaiting(true);

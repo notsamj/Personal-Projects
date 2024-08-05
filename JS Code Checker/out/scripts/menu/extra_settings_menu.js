@@ -9,12 +9,6 @@ class ExtraSettingsMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.setup();
@@ -25,12 +19,6 @@ class ExtraSettingsMenu extends Menu {
         Method Parameters: None
         Method Description: Sets up the menu interface
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         let sectionYSize = 50;
@@ -63,16 +51,6 @@ class ExtraSettingsMenu extends Menu {
                 The index of the setting used to offset its y position
         Method Description: Creates a setting in the menu
         Method Return: void
-    */
-    /*
-        Method Name: createSetting
-        Method Parameters: 
-            setting:
-                TODO
-             offSetIndex:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     createSetting(setting, offSetIndex){
         let settingName = setting["name"];
@@ -115,20 +93,6 @@ class ExtraSettingsMenu extends Menu {
         Method Description: Creates an On/Off button
         Method Return: void
     */
-    /*
-        Method Name: createOnOffButton
-        Method Parameters: 
-            setting:
-                TODO
-             settingModifierButtonX:
-                TODO
-             settingModifierButtonY:
-                TODO
-             settingModifierButtonSize:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     createOnOffButton(setting, settingModifierButtonX, settingModifierButtonY, settingModifierButtonSize){
         let settingName = setting["name"];
         let settingPath = setting["path"];
@@ -161,20 +125,6 @@ class ExtraSettingsMenu extends Menu {
                 The size of the setting modifier button
         Method Description: Creates a quantity slider user interface component
         Method Return: void
-    */
-    /*
-        Method Name: createQuantitySlider
-        Method Parameters: 
-            setting:
-                TODO
-             settingModifierButtonX:
-                TODO
-             settingModifierButtonY:
-                TODO
-             settingModifierButtonSize:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     createQuantitySlider(setting, settingModifierButtonX, settingModifierButtonY, settingModifierButtonSize){
         let settingName = setting["name"];
@@ -211,20 +161,6 @@ class ExtraSettingsMenu extends Menu {
         Method Description: Creates a selection slider user interface component
         Method Return: void
     */
-    /*
-        Method Name: createSelectionSlider
-        Method Parameters: 
-            setting:
-                TODO
-             settingModifierButtonX:
-                TODO
-             settingModifierButtonY:
-                TODO
-             settingModifierButtonSize:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     createSelectionSlider(setting, settingModifierButtonX, settingModifierButtonY, settingModifierButtonSize){
         let settingName = setting["name"];
         let settingPath = setting["path"];
@@ -252,12 +188,6 @@ class ExtraSettingsMenu extends Menu {
         Method Parameters: None
         Method Description: Switches from this menu to the main menu
         Method Return: void
-    */
-    /*
-        Method Name: goToMainMenu
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     goToMainMenu(){
         MENU_MANAGER.switchTo("main");

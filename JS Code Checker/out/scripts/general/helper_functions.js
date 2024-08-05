@@ -13,16 +13,6 @@ if (typeof window === "undefined"){
     Method Description: Finds the index of a value in a list
     Method Return: Integer
 */
-/*
-    Method Name: getIndexOfElementInList
-    Method Parameters: 
-        list:
-            TODO
-         value:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function getIndexOfElementInList(list, value){
     for (let i = 0; i < list.length; i++){
         if (list[i] == value){ return i; }
@@ -40,16 +30,6 @@ function getIndexOfElementInList(list, value){
     Method Description: Finds a JSON object with a given path
     Method Return: JSON Object
 */
-/*
-    Method Name: modifyDataJSONValue
-    Method Parameters: 
-        path:
-            TODO
-         newValue:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function modifyDataJSONValue(path, newValue){
     path = copyArray(path);
     let finalKey = path[path.length-1];
@@ -64,14 +44,6 @@ function modifyDataJSONValue(path, newValue){
     Method Description: Finds a value at a given path through the PROGRAM_DATA JSON Object
     Method Return: Unknown
 */
-/*
-    Method Name: accessDataJSONValue
-    Method Parameters: 
-        path:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function accessDataJSONValue(path){
     path = copyArray(path);
     let finalKey = path[path.length-1];
@@ -85,14 +57,6 @@ function accessDataJSONValue(path){
             A list of strings representing a path through the PROGRAM_DATA JSON Object
     Method Description: Finds a JSON object with a given path
     Method Return: JSON Object
-*/
-/*
-    Method Name: getDataJSONObjAtPath
-    Method Parameters: 
-        path:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function getDataJSONObjAtPath(path){
     let obj = PROGRAM_DATA;
@@ -110,14 +74,6 @@ function getDataJSONObjAtPath(path){
     Method Description: Attempts to retrive an image from storage. *Does not work with nodeJS, returns null
     Method Return: Image
 */
-/*
-    Method Name: getImage
-    Method Parameters: 
-        imageName:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function getImage(imageName){
     // If using Node JS return null
     if (typeof window === "undefined"){
@@ -132,12 +88,6 @@ function getImage(imageName){
     Method Description: Returns how many times slower the tick rate is than a tickrate of 100 (previously the standard tickrate)
     Method Return: Number
 */
-/*
-    Method Name: getTickMultiplier
-    Method Parameters: None
-    Method Description: TODO
-    Method Return: TODO
-*/
 function getTickMultiplier(){
     return 100 / PROGRAM_DATA["settings"]["tick_rate"];
 }
@@ -151,16 +101,6 @@ function getTickMultiplier(){
             A key
     Method Description: Determines if a JSON object has a given key
     Method Return: Boolean
-*/
-/*
-    Method Name: objectHasKey
-    Method Parameters: 
-        obj:
-            TODO
-         key:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function objectHasKey(obj, key){
     for (let foundKey of Object.keys(obj)){
@@ -178,16 +118,6 @@ function objectHasKey(obj, key){
             Object 2
     Method Description: Creates a JSON object with the contents of two JSON objects. Copying rather than referencing (with limitations)
     Method Return: JSON Object
-*/
-/*
-    Method Name: mergeCopyObjects
-    Method Parameters: 
-        obj1:
-            TODO
-         obj2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function mergeCopyObjects(obj1, obj2){
     let newObject = {};
@@ -219,14 +149,6 @@ function mergeCopyObjects(obj1, obj2){
     Method Return: JSON Object
     Note: If you give it and instance of a class it will produce a reference not a copy
 */
-/*
-    Method Name: copyObject
-    Method Parameters: 
-        obj:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function copyObject(obj){
     // Deep copy, copy inner objects aswell
     let newObject = {};
@@ -249,16 +171,6 @@ function copyObject(obj){
             Another list
     Method Description: Attaches two lists, list1=[l1i0, l1i1, ...], list2=[l2i0, l2i1, ...] result: [l1i0, l1i1, ..., l2i0, l2i1, ...]
     Method Return: list
-*/
-/*
-    Method Name: appendLists
-    Method Parameters: 
-        list1:
-            TODO
-         list2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function appendLists(list1, list2){
     let appendedList = [];
@@ -285,20 +197,6 @@ function appendLists(list1, list2){
     Method Description: Divides two numbers, returning a special result if the denominator is close to zero
     Method Return: float (or special value)
 */
-/*
-    Method Name: safeDivide
-    Method Parameters: 
-        numerator:
-            TODO
-         denominator:
-            TODO
-         closeToZeroAmount:
-            TODO
-         valueIfCloseToZero:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function safeDivide(numerator, denominator, closeToZeroAmount, valueIfCloseToZero){
     if (Math.abs(denominator) < closeToZeroAmount){ return valueIfCloseToZero; }
     return numerator / denominator;
@@ -313,16 +211,6 @@ function safeDivide(numerator, denominator, closeToZeroAmount, valueIfCloseToZer
             Value to return if the item cannot be found
     Method Description: Finds a value from storage, returns valueIfNotFound if not found.
     Method Return: void
-*/
-/*
-    Method Name: getLocalStorage
-    Method Parameters: 
-        key:
-            TODO
-         valueIfNotFound=null:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function getLocalStorage(key, valueIfNotFound=null){
     // In node js, you can't access this storage
@@ -343,16 +231,6 @@ function getLocalStorage(key, valueIfNotFound=null){
             Value to put in local storage
     Method Description: Assignes a key to a value in local storage. Errors are not *really* handled.
     Method Return: void
-*/
-/*
-    Method Name: setLocalStorage
-    Method Parameters: 
-        key:
-            TODO
-         value:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function setLocalStorage(key, value){
     // In node js, you can't access this storage
@@ -376,12 +254,6 @@ catch(e){}
     Method Description: Determines the screen width in real pixels
     Method Return: void
 */
-/*
-    Method Name: getScreenWidth
-    Method Parameters: None
-    Method Description: TODO
-    Method Return: TODO
-*/
 function getScreenWidth(){
     return window.innerWidth; // * pixelSomething density in the future?
 }
@@ -390,12 +262,6 @@ function getScreenWidth(){
     Method Parameters: None
     Method Description: Determines the screen height in real pixels
     Method Return: void
-*/
-/*
-    Method Name: getScreenHeight
-    Method Parameters: None
-    Method Description: TODO
-    Method Return: TODO
 */
 function getScreenHeight(){
     return window.innerHeight;
@@ -410,16 +276,6 @@ function getScreenHeight(){
             Displacement in y
     Method Description: Determines the angle [0,359] from a x and y displacement
     Method Return: int
-*/
-/*
-    Method Name: getDegreesFromDisplacement
-    Method Parameters: 
-        dX:
-            TODO
-         dY:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function getDegreesFromDisplacement(dX, dY){
     let dXAbs = Math.abs(dX);
@@ -450,14 +306,6 @@ function getDegreesFromDisplacement(dX, dY){
     Method Description: Determines the type of plane, given a model
     Method Return: String
 */
-/*
-    Method Name: planeModelToType
-    Method Parameters: 
-        model:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function planeModelToType(model){
     return PROGRAM_DATA["plane_data"][model]["type"];
 }
@@ -469,14 +317,6 @@ function planeModelToType(model){
             An array to copy
     Method Description: Creates a copy of an array
     Method Return: void
-*/
-/*
-    Method Name: copyArray
-    Method Parameters: 
-        array:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function copyArray(array){
     let newArray = [];
@@ -494,14 +334,6 @@ function copyArray(array){
     Method Description: Finds the mean value of a list of numbers
     Method Return: Number
 */
-/*
-    Method Name: listMean
-    Method Parameters: 
-        list:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function listMean(list){
     if (list.length == 0){ return -1; }
     let total = 0;
@@ -518,14 +350,6 @@ function listMean(list){
             An list to find the minimum number in
     Method Description: Finds the min value of a list of numbers
     Method Return: Number
-*/
-/*
-    Method Name: listMin
-    Method Parameters: 
-        list:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function listMin(list){
     let min = Number.MAX_SAFE_INTEGER;
@@ -545,14 +369,6 @@ function listMin(list){
     Method Description: Finds the max value of a list of numbers
     Method Return: Number
 */
-/*
-    Method Name: listMax
-    Method Parameters: 
-        list:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function listMax(list){
     let max = Number.MIN_SAFE_INTEGER;
     for (let i = 0; i < list.length; i++){
@@ -570,14 +386,6 @@ function listMax(list){
             An list to find the median of
     Method Description: Finds the median number in a list
     Method Return: Number
-*/
-/*
-    Method Name: listMedian
-    Method Parameters: 
-        list:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function listMedian(list){
     if (list.length == 0){ return -1; }
@@ -598,18 +406,6 @@ function listMedian(list){
     Method Description: Converts degrees to radians
     Method Return: float
 */
-/*
-    Method Name: isClose
-    Method Parameters: 
-        num1:
-            TODO
-         num2:
-            TODO
-         closeNumber:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function isClose(num1, num2, closeNumber){
     return Math.abs(num1 - num2) < closeNumber;
 }
@@ -621,14 +417,6 @@ function isClose(num1, num2, closeNumber){
             The number of degrees to convert to radians
     Method Description: Converts degrees to radians
     Method Return: float
-*/
-/*
-    Method Name: toRadians
-    Method Parameters: 
-        degrees:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function toRadians(degrees){
     return degrees * Math.PI / 180;
@@ -643,14 +431,6 @@ function toRadians(degrees){
     Method Description: Converts an amount of radians to degrees
     Method Return: int
 */
-/*
-    Method Name: toDegrees
-    Method Parameters: 
-        radians:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function toDegrees(radians){
     return radians / (2 * Math.PI) * 360;
 }
@@ -662,14 +442,6 @@ function toDegrees(radians){
             An angle to "fix"
     Method Description: Fixes an angle to the range [0,359]
     Method Return: int
-*/
-/*
-    Method Name: fixDegrees
-    Method Parameters: 
-        angle:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function fixDegrees(angle){
     while (angle < 0){
@@ -689,14 +461,6 @@ function fixDegrees(angle){
     Method Description: Fixes an angle to the range [0,2*PI)
     Method Return: float
 */
-/*
-    Method Name: fixRadians
-    Method Parameters: 
-        angle:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function fixRadians(angle){
     while (angle < 0){
         angle += 2 * Math.PI;
@@ -715,14 +479,6 @@ function fixRadians(angle){
     Method Description: Converts to degrees and fixes an angle to the range [0,2*PI)
     Method Return: float
 */
-/*
-    Method Name: toFixedRadians
-    Method Parameters: 
-        angleDEG:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function toFixedRadians(angleDEG){
     return fixRadians(toRadians(angleDEG));
 }
@@ -736,16 +492,6 @@ function toFixedRadians(angleDEG){
             The displacement in y
     Method Description: Creates a copy of an array
     Method Return: int
-*/
-/*
-    Method Name: displacementToDegrees
-    Method Parameters: 
-        dX:
-            TODO
-         dY:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function displacementToDegrees(dX, dY){
     return fixDegrees(toDegrees(displacementToRadians(dX, dY)));
@@ -761,16 +507,6 @@ function displacementToDegrees(dX, dY){
     Method Description: Converts displacement in x, y to an angle in radians
     Method Return: float
 */       
-/*
-    Method Name: displacementToRadians
-    Method Parameters: 
-        dX:
-            TODO
-         dY:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function displacementToRadians(dX, dY){
     // Handle incredibly small displacements
     if (Math.abs(dY) < 1){
@@ -806,16 +542,6 @@ function displacementToRadians(dX, dY){
     Method Description: Come up with a number in a given range [min, maxInclusive]
     Method Return: int
 */
-/*
-    Method Name: randomNumberInclusive
-    Method Parameters: 
-        min:
-            TODO
-         maxInclusive:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function randomNumberInclusive(min, maxInclusive){
     return Math.floor(Math.random() * (maxInclusive - min + 1)) + min;
 }
@@ -826,14 +552,6 @@ function randomNumberInclusive(min, maxInclusive){
         maxExclusive:
             Minimum value (exclusive)
     Method Return: int
-*/
-/*
-    Method Name: randomNumber
-    Method Parameters: 
-        maxExclusive:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function randomNumber(maxExclusive){
     return randomNumberInclusive(0, maxExclusive-1);
@@ -849,16 +567,6 @@ function randomNumber(maxExclusive){
     Method Description: Determines if two planes are on the same team
     Method Return: boolean, True -> On same team, False -> Not on the same team
 */
-/*
-    Method Name: onSameTeam
-    Method Parameters: 
-        class1:
-            TODO
-         class2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function onSameTeam(class1, class2){
     return countryToAlliance(PROGRAM_DATA["plane_data"][class1]["country"]) == countryToAlliance(PROGRAM_DATA["plane_data"][class2]["country"]);
 }
@@ -872,16 +580,6 @@ function onSameTeam(class1, class2){
             An angle in degrees
     Method Description: Calculates the difference between two angles in degrees
     Method Return: int
-*/
-/*
-    Method Name: calculateAngleDiffDEG
-    Method Parameters: 
-        angle1:
-            TODO
-         angle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function calculateAngleDiffDEG(angle1, angle2){
     let diff = Math.max(angle1, angle2) - Math.min(angle1, angle2);
@@ -901,16 +599,6 @@ function calculateAngleDiffDEG(angle1, angle2){
     Method Description: Calculates the difference between two angles in radians
     Method Return: int
 */
-/*
-    Method Name: calculateAngleDiffRAD
-    Method Parameters: 
-        angle1:
-            TODO
-         angle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function calculateAngleDiffRAD(angle1, angle2){
     let diff = Math.max(angle1, angle2) - Math.min(angle1, angle2);
     if (diff > Math.PI){
@@ -928,16 +616,6 @@ function calculateAngleDiffRAD(angle1, angle2){
             An angle in degrees
     Method Description: Calculates the difference between two angles in degrees (in the counter clockwise direction)
     Method Return: int
-*/
-/*
-    Method Name: calculateAngleDiffCCWDEG
-    Method Parameters: 
-        angle1:
-            TODO
-         angle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function calculateAngleDiffCCWDEG(angle1, angle2){
     angle1 = Math.floor(angle1);
@@ -964,16 +642,6 @@ function calculateAngleDiffCCWDEG(angle1, angle2){
     Method Description: Calculates the difference between two angles in degrees (in the clockwise direction)
     Method Return: int
 */
-/*
-    Method Name: calculateAngleDiffCWDEG
-    Method Parameters: 
-        angle1:
-            TODO
-         angle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function calculateAngleDiffCWDEG(angle1, angle2){
     angle1 = Math.floor(angle1);
     angle2 = Math.floor(angle2);
@@ -999,16 +667,6 @@ function calculateAngleDiffCWDEG(angle1, angle2){
     Method Description: Rotates an angle clockwise by an amount
     Method Return: int
 */
-/*
-    Method Name: rotateCWDEG
-    Method Parameters: 
-        angle:
-            TODO
-         amount:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function rotateCWDEG(angle, amount){
     return fixDegrees(angle - amount);
 }
@@ -1022,16 +680,6 @@ function rotateCWDEG(angle, amount){
             Amount to rotate by
     Method Description: Rotates an angle clockwise by an amount
     Method Return: float
-*/
-/*
-    Method Name: rotateCWRAD
-    Method Parameters: 
-        angle:
-            TODO
-         amount:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function rotateCWRAD(angle, amount){
     return fixRadians(angle - amount);
@@ -1047,16 +695,6 @@ function rotateCWRAD(angle, amount){
     Method Description: Rotates an angle counter clockwise by an amount
     Method Return: int
 */
-/*
-    Method Name: rotateCCWDEG
-    Method Parameters: 
-        angle:
-            TODO
-         amount:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function rotateCCWDEG(angle, amount){
     return fixDegrees(angle + amount);
 }
@@ -1070,16 +708,6 @@ function rotateCCWDEG(angle, amount){
             Amount to rotate by
     Method Description: Rotates an angle counter clockwise by an amount
     Method Return: float
-*/
-/*
-    Method Name: rotateCCWRAD
-    Method Parameters: 
-        angle:
-            TODO
-         amount:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function rotateCCWRAD(angle, amount){
     return fixRadians(angle + amount);
@@ -1096,18 +724,6 @@ function rotateCCWRAD(angle, amount){
             An angle on the other edge of a range
     Method Description: Determines if angle is between eAngle1 and eAngle2 in the counter clockwise direction (inclusive)
     Method Return: boolean, true -> angle is between, false -> angle is not between
-*/
-/*
-    Method Name: angleBetweenCCWDEG
-    Method Parameters: 
-        angle:
-            TODO
-         eAngle1:
-            TODO
-         eAngle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function angleBetweenCCWDEG(angle, eAngle1, eAngle2){
     angle = fixDegrees(Math.floor(angle));
@@ -1141,18 +757,6 @@ function angleBetweenCCWDEG(angle, eAngle1, eAngle2){
     Method Description: Determines if angle is between eAngle1 and eAngle2 in the clockwise direction
     Method Return: boolean, true -> angle is between, false -> angle is not between
 */
-/*
-    Method Name: angleBetweenCWRAD
-    Method Parameters: 
-        angle:
-            TODO
-         eAngle1:
-            TODO
-         eAngle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function angleBetweenCWRAD(angle, eAngle1, eAngle2){
     if (angle > eAngle1){
         angle -= 2 * Math.PI;
@@ -1177,18 +781,6 @@ function angleBetweenCWRAD(angle, eAngle1, eAngle2){
     Method Description: Determines if angle is between eAngle1 and eAngle2 in the counter clockwise direction
     Method Return: boolean, true -> angle is between, false -> angle is not between
 */
-/*
-    Method Name: angleBetweenCCWRAD
-    Method Parameters: 
-        angle:
-            TODO
-         eAngle1:
-            TODO
-         eAngle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function angleBetweenCCWRAD(angle, eAngle1, eAngle2){
     if (angle < eAngle1){
         angle += 2 * Math.PI;
@@ -1211,16 +803,6 @@ function angleBetweenCCWRAD(angle, eAngle1, eAngle2){
     Method Description: Calculate the distance in radians from angle1 to angle2
     Method Return: Float
 */
-/*
-    Method Name: calculateAngleDiffCWRAD
-    Method Parameters: 
-        angle1:
-            TODO
-         angle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function calculateAngleDiffCWRAD(angle1, angle2){
     if (angle2 > angle1){
         angle2 -= 2 * Math.PI;
@@ -1238,16 +820,6 @@ function calculateAngleDiffCWRAD(angle1, angle2){
             An angle in radians
     Method Description: Calculate the distance in radians from angle1 to angle2
     Method Return: Float
-*/
-/*
-    Method Name: calculateAngleDiffCCWRAD
-    Method Parameters: 
-        angle1:
-            TODO
-         angle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function calculateAngleDiffCCWRAD(angle1, angle2){
     if (angle2 < angle1){
@@ -1268,18 +840,6 @@ function calculateAngleDiffCCWRAD(angle1, angle2){
             An angle on the other edge of a range
     Method Description: Determines if angle is between eAngle1 and eAngle2 in the clockwise direction (inclusive)
     Method Return: boolean, true -> angle is between, false -> angle is not between
-*/
-/*
-    Method Name: angleBetweenCWDEG
-    Method Parameters: 
-        angle:
-            TODO
-         eAngle1:
-            TODO
-         eAngle2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function angleBetweenCWDEG(angle, eAngle1, eAngle2){
     angle = fixDegrees(Math.floor(angle));
@@ -1313,18 +873,6 @@ function angleBetweenCWDEG(angle, eAngle1, eAngle2){
     Method Description: Whether p1 is less than p2 while travelling in a direction
     Method Return: Boolean, true -> p1 < p2 in the direction of velocity, false -> otherwise
 */
-/*
-    Method Name: lessThanDir
-    Method Parameters: 
-        p1:
-            TODO
-         p2:
-            TODO
-         velocity:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function lessThanDir(p1, p2, velocity){
     return (velocity >= 0) ? (p1 < p2) : (p1 > p2);
 }
@@ -1341,18 +889,6 @@ function lessThanDir(p1, p2, velocity){
     Method Description: Whether p1 is less than p2 while travelling in a direction
     Method Return: Boolean, true -> p1 <= p2 in the direction of velocity, false -> otherwise
 */
-/*
-    Method Name: lessThanEQDir
-    Method Parameters: 
-        p1:
-            TODO
-         p2:
-            TODO
-         velocity:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function lessThanEQDir(p1, p2, velocity){
     return (velocity >= 0) ? (p1 <= p2) : (p1 >= p2);
 }
@@ -1366,16 +902,6 @@ function lessThanEQDir(p1, p2, velocity){
             Direction in which an object is moving
     Method Description: Finds the ceiling or floor of a float depending on the direction it is moving
     Method Return: int
-*/
-/*
-    Method Name: nextIntInDir
-    Method Parameters: 
-        floatValue:
-            TODO
-         velocity:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function nextIntInDir(floatValue, velocity){
     let newValue = Math.ceil(floatValue);
@@ -1401,16 +927,6 @@ function nextIntInDir(floatValue, velocity){
     Method Description: Finds a random float between two ends
     Method Return: float
 */
-/*
-    Method Name: randomFloatBetween
-    Method Parameters: 
-        lowerBound:
-            TODO
-         upperBound:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function randomFloatBetween(lowerBound, upperBound){
     return Math.random() * (upperBound - lowerBound) + lowerBound;
 }
@@ -1422,14 +938,6 @@ function randomFloatBetween(lowerBound, upperBound){
             A string representing a country name
     Method Description: Find the alliance for a given country
     Method Return: String
-*/
-/*
-    Method Name: countryToAlliance
-    Method Parameters: 
-        country:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function countryToAlliance(country){
     return PROGRAM_DATA["country_to_alliance"][country];
@@ -1443,14 +951,6 @@ function countryToAlliance(country){
     Method Description: Find the country for a given plane model
     Method Return: String
 */
-/*
-    Method Name: planeModelToCountry
-    Method Parameters: 
-        planeModel:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function planeModelToCountry(planeModel){
     return PROGRAM_DATA["plane_data"][planeModel]["country"];
 }
@@ -1463,14 +963,6 @@ function planeModelToCountry(planeModel){
     Method Description: Find the alliance for a given plane model
     Method Return: String
 */
-/*
-    Method Name: planeModelToAlliance
-    Method Parameters: 
-        planeModel:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function planeModelToAlliance(planeModel){
     return countryToAlliance(planeModelToCountry(planeModel));
 }
@@ -1482,14 +974,6 @@ function planeModelToAlliance(planeModel){
             A number of ms to sleep for
     Method Description: Sleeps for a given amount of time
     Method Return: Promise
-*/
-/*
-    Method Name: sleep
-    Method Parameters: 
-        ms:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 async function sleep(ms){
     return new Promise((resolve, reject) => { setTimeout(resolve, ms); })

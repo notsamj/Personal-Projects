@@ -24,18 +24,6 @@ class FighterPlane extends Plane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             autonomous:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, gamemode, autonomous){
         super(planeClass, gamemode, autonomous);
         this.gunHeatManager = new GunHeatManager(PROGRAM_DATA["plane_data"][planeClass]["bullet_heat_capacity"], PROGRAM_DATA["plane_data"][planeClass]["cooling_time_ms"])
@@ -49,12 +37,6 @@ class FighterPlane extends Plane {
         Method Description: Determines how much damage a bullet from this plane causes
         Method Return: Number
     */
-    /*
-        Method Name: getDamage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getDamage(){
         return PROGRAM_DATA["plane_data"][this.getPlaneClass()]["bullet_damage"];
     }
@@ -65,12 +47,6 @@ class FighterPlane extends Plane {
         Method Description: Getter
         Method Return: TickLock
     */
-    /*
-        Method Name: getShootLock
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getShootLock(){
         return this.shootLock;
     }
@@ -80,12 +56,6 @@ class FighterPlane extends Plane {
         Method Parameters: None
         Method Description: Getter
         Method Return: GunHeatManager
-    */
-    /*
-        Method Name: getGunHeatManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getGunHeatManager(){
         return this.gunHeatManager;
@@ -98,14 +68,6 @@ class FighterPlane extends Plane {
                 A Json representation of the plane sent by the server
         Method Description: Loads important data received from the server
         Method Return: void
-    */
-    /*
-        Method Name: loadImportantData
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     loadImportantData(rep){
         // This is always local being received from the server
@@ -122,14 +84,6 @@ class FighterPlane extends Plane {
         Method Description: Loads important decisions received from the server
         Method Return: void
     */
-    /*
-        Method Name: loadDecisions
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     loadDecisions(rep){
         this.decisions["shoot"] = rep["decisions"]["shoot"];
     }
@@ -139,12 +93,6 @@ class FighterPlane extends Plane {
         Method Parameters: None
         Method Description: Conduct decisions to do each tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         this.shootLock.tick();
@@ -157,12 +105,6 @@ class FighterPlane extends Plane {
         Method Parameters: None
         Method Description: Resets the decisions so the planes actions can be chosen to reflect what it current wants to do rather than previously
         Method Return: void
-    */
-    /*
-        Method Name: resetDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     resetDecisions(){
         this.decisions["face"] = 0;
@@ -181,16 +123,6 @@ class FighterPlane extends Plane {
         Method Description: Determines if the two decisions objects have different decisions
         Method Return: Boolean
     */
-    /*
-        Method Name: areMovementDecisionsChanged
-        Method Parameters: 
-            decisions1:
-                TODO
-             decisions2:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static areMovementDecisionsChanged(decisions1, decisions2){
         let c1 = decisions1["face"] != decisions2["face"];
         if (c1){ return true; }
@@ -205,12 +137,6 @@ class FighterPlane extends Plane {
         Method Parameters: None
         Method Description: Take actions based on saved decisions
         Method Return: void
-    */
-    /*
-        Method Name: executeMainDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     executeMainDecisions(){
         // Change facing direction
@@ -235,12 +161,6 @@ class FighterPlane extends Plane {
         Method Description: Decide whether or not to shoot
         Method Return: void
     */
-    /*
-        Method Name: executeAttackingDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     executeAttackingDecisions(){
         // Check shooting
         if (this.decisions["shoot"]){
@@ -258,12 +178,6 @@ class FighterPlane extends Plane {
         Method Description: Shoots a bullet from the plane
         Method Return: void
     */
-    /*
-        Method Name: shoot
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     shoot(){
         this.gamemode.getSoundManager().play("shoot", this.getX(), this.getY());
         // If using physical bullets then do it this way
@@ -280,12 +194,6 @@ class FighterPlane extends Plane {
         Method Description: Calculates the location of the gun on the x axis. Takes into account the angle of the attached plane and its offset.
         Method Return: float
     */
-    /*
-        Method Name: getGunX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getGunX(){
         let planeAngleRAD = this.getNoseAngle();
         if (!this.isFacingRight()){
@@ -300,12 +208,6 @@ class FighterPlane extends Plane {
         Method Parameters: None
         Method Description: Calculates the location of the gun on the y axis. Takes into account the angle of the attached plane and its offset.
         Method Return: float
-    */
-    /*
-        Method Name: getGunY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getGunY(){
         let planeAngleRAD = this.getNoseAngle();
@@ -322,12 +224,6 @@ class FighterPlane extends Plane {
         Method Description: Determine the x location of a gun, interpolated between ticks
         Method Return: Number
     */
-    /*
-        Method Name: getInterpolatedGunX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getInterpolatedGunX(){
         let planeAngleRAD = this.getInterpolatedAngle();
         let rotatedX = Math.cos(planeAngleRAD) * (PROGRAM_DATA["plane_data"][this.getPlaneClass()]["gun_offset_x"] * (this.isFacingRight() ? 1 : -1)) - Math.sin(planeAngleRAD) * PROGRAM_DATA["plane_data"][this.getPlaneClass()]["gun_offset_y"] + this.getInterpolatedX();
@@ -339,12 +235,6 @@ class FighterPlane extends Plane {
         Method Parameters: None
         Method Description: Determine the y location of a gun, interpolated between ticks
         Method Return: Number
-    */
-    /*
-        Method Name: getInterpolatedGunY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getInterpolatedGunY(){
         let planeAngleRAD = this.getInterpolatedAngle();
@@ -363,18 +253,6 @@ class FighterPlane extends Plane {
                 The time used to interpolate the positions of the planes
         Method Description: Displays a plane on the screen (if it is within the bounds)
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-             displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(lX, bY, displayTime){
         let rX = lX + getZoomedScreenWidth() - 1;
@@ -441,14 +319,6 @@ class FighterPlane extends Plane {
                 The current time in miliseconds
         Method Description: Display the HUD of the fighter plane
         Method Return: void
-    */
-    /*
-        Method Name: displayHUD
-        Method Parameters: 
-            displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     displayHUD(displayTime){
         this.gunHeatManager.display(displayTime - this.gamemode.getLastTickTime());

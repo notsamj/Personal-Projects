@@ -29,26 +29,6 @@ class SimpleProjectile extends Entity {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-             gamemode:
-                TODO
-             xVelocity:
-                TODO
-             yVelocity:
-                TODO
-             currentTick:
-                TODO
-             hitboxRadius:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(x, y, gamemode, xVelocity, yVelocity, currentTick, hitboxRadius){
         super(gamemode);
         this.startX = x;
@@ -66,12 +46,6 @@ class SimpleProjectile extends Entity {
         Method Description: Getter
         Method Return: Number
     */
-    /*
-        Method Name: getInterpolatedX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getInterpolatedX(){
         return this.interpolatedX;
     }
@@ -82,12 +56,6 @@ class SimpleProjectile extends Entity {
         Method Description: Getter
         Method Return: Number
     */
-    /*
-        Method Name: getInterpolatedY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getInterpolatedY(){
         return this.interpolatedY;
     }
@@ -97,12 +65,6 @@ class SimpleProjectile extends Entity {
         Method Parameters: None
         Method Description: Calculate x at the current tick
         Method Return: Number
-    */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getX(){
         return this.getXAtTick(this.gamemode.getNumTicks());
@@ -115,14 +77,6 @@ class SimpleProjectile extends Entity {
                 Tick to determine the x at
         Method Description: Determine the x position of the projectile at a given tick
         Method Return: Number
-    */
-    /*
-        Method Name: getXAtTick
-        Method Parameters: 
-            tick:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getXAtTick(tick){
         // Handle asking for old information that doesn't exist
@@ -142,16 +96,6 @@ class SimpleProjectile extends Entity {
         Method Description: Calculate the positition of the projectile at the given time and tick
         Method Return: Number
     */
-    /*
-        Method Name: getGameDisplayX
-        Method Parameters: 
-            tick:
-                TODO
-             currentTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getGameDisplayX(tick, currentTime){
         return this.getXAtTick(tick) + this.xVelocity * (currentTime - this.gamemode.getLastTickTime()) / 1000;
     }
@@ -161,12 +105,6 @@ class SimpleProjectile extends Entity {
         Method Parameters: None
         Method Description: Calculate y at the current tick
         Method Return: Number
-    */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getY(){
         return this.getYAtTick(this.gamemode.getNumTicks());
@@ -179,14 +117,6 @@ class SimpleProjectile extends Entity {
                 Tick to determine the y at
         Method Description: Determine the y position of the projectile at a given tick
         Method Return: Number
-    */
-    /*
-        Method Name: getYAtTick
-        Method Parameters: 
-            tick:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getYAtTick(tick){
         // Handle asking for old information that doesn't exist
@@ -203,12 +133,6 @@ class SimpleProjectile extends Entity {
         Method Description: Calculate the y velocity at the current tick
         Method Return: Number
     */
-    /*
-        Method Name: getYVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getYVelocity(){
         let tick = this.gamemode.getNumTicks();
         return this.getYVelocityAtTick(tick);
@@ -221,14 +145,6 @@ class SimpleProjectile extends Entity {
                 A tick number
         Method Description: Calculate the y velocity at the given tick
         Method Return: Number
-    */
-    /*
-        Method Name: getYVelocityAtTick
-        Method Parameters: 
-            tick:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getYVelocityAtTick(tick){
         let seconds = ((tick - this.spawnedTick) / (1000 / PROGRAM_DATA["settings"]["ms_between_ticks"]));
@@ -245,16 +161,6 @@ class SimpleProjectile extends Entity {
         Method Description: Calculate the positition of the bullet at the given time and tick
         Method Return: Number
     */
-    /*
-        Method Name: getGameDisplayY
-        Method Parameters: 
-            tick:
-                TODO
-             currentTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getGameDisplayY(tick, currentTime){
         let seconds = ((tick - this.spawnedTick) / (1000 / PROGRAM_DATA["settings"]["ms_between_ticks"])) + (currentTime - this.gamemode.getLastTickTime()) / 1000;
         return this.startY + this.yVI * seconds - 0.5 * PROGRAM_DATA["constants"]["gravity"] * Math.pow(seconds, 2);
@@ -268,14 +174,6 @@ class SimpleProjectile extends Entity {
         Method Description: Calculate the interpolated x and y
         Method Return: void
     */ 
-    /*
-        Method Name: calculateInterpolatedCoordinates
-        Method Parameters: 
-            currentTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     calculateInterpolatedCoordinates(currentTime){
         let currentFrameIndex = FRAME_COUNTER.getFrameIndex();
         if (GAMEMODE_MANAGER.getActiveGamemode().isPaused() || !GAMEMODE_MANAGER.getActiveGamemode().isRunning() || this.isDead() || this.lastInterpolatedFrame == currentFrameIndex){
@@ -295,14 +193,6 @@ class SimpleProjectile extends Entity {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setIndex
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setIndex(index){
         this.index = index;
     }
@@ -312,12 +202,6 @@ class SimpleProjectile extends Entity {
         Method Parameters: None
         Method Description: Provide the width of the projectile image
         Method Return: Integer
-    */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getWidth(){
         return this.getImage().width;
@@ -329,12 +213,6 @@ class SimpleProjectile extends Entity {
         Method Description: Provide the height of the projectile image
         Method Return: Integer
     */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getHeight(){
         return this.getImage().height;
     }
@@ -344,12 +222,6 @@ class SimpleProjectile extends Entity {
         Method Parameters: None
         Method Description: Provide the hitbox (updated with the current projectile position)
         Method Return: Hitbox
-    */
-    /*
-        Method Name: getHitbox
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getHitbox(){
         this.hitBox.update(this.getX(), this.getY());
@@ -362,12 +234,6 @@ class SimpleProjectile extends Entity {
         Method Description: Provide the current x velocity of the bullet
         Method Return: float
     */
-    /*
-        Method Name: getXVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getXVelocity(){
         return this.xVelocity;
     }
@@ -379,14 +245,6 @@ class SimpleProjectile extends Entity {
                 An x velocity float
         Method Description: Setter
         Method Return: void
-    */
-    /*
-        Method Name: setXVelocity
-        Method Parameters: 
-            xVelocity:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setXVelocity(xVelocity){
         this.xVelocity = xVelocity;
@@ -403,18 +261,6 @@ class SimpleProjectile extends Entity {
                 Time at which frame is displayed
         Method Description: Displays a projectile on the screen (if it is within the bounds)
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-             displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(lX, bY, displayTime){
         if (this.isDead()){ return; }
@@ -460,18 +306,6 @@ class SimpleProjectile extends Entity {
                 The tick before the current tick
         Method Description: Checks for a collision between a projectile and an object that has linear movement
         Method Return: Boolean, true -> collision, false -> not collision
-    */
-    /*
-        Method Name: checkForProjectileLinearCollision
-        Method Parameters: 
-            projectile:
-                TODO
-             linearMovingObject:
-                TODO
-             previousTick:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static checkForProjectileLinearCollision(projectile, linearMovingObject, previousTick){
        let timeProportion = PROGRAM_DATA["settings"]["ms_between_ticks"]/1000;

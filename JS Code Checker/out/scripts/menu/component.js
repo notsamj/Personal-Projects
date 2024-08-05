@@ -9,12 +9,6 @@ class Component {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.enabled = true;
         this.displayEnabled = true;
@@ -26,12 +20,6 @@ class Component {
         Method Description: Enables the component
         Method Return: void
     */
-    /*
-        Method Name: enable
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     enable(){
         this.enabled = true;
     }
@@ -41,12 +29,6 @@ class Component {
         Method Parameters: None
         Method Description: Disables the component
         Method Return: void
-    */
-    /*
-        Method Name: disable
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     disable(){
         this.enabled = false;
@@ -58,12 +40,6 @@ class Component {
         Method Description: Reports whether the component is disabled
         Method Return: Boolean
     */
-    /*
-        Method Name: isDisabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isDisabled(){
         return !this.enabled;
     }
@@ -73,12 +49,6 @@ class Component {
         Method Parameters: None
         Method Description: Reports whether the component is enabled
         Method Return: Boolean
-    */
-    /*
-        Method Name: isEnabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isEnabled(){
         return this.enabled;
@@ -90,12 +60,6 @@ class Component {
         Method Description: Reports whether the component has its display enabled
         Method Return: Boolean
     */
-    /*
-        Method Name: isDisplayEnabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isDisplayEnabled(){
         return this.displayEnabled;
     }
@@ -105,12 +69,6 @@ class Component {
         Method Parameters: None
         Method Description: Enables the display of the component
         Method Return: void
-    */
-    /*
-        Method Name: enableDisplay
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     enableDisplay(){
         this.displayEnabled = true;
@@ -122,12 +80,6 @@ class Component {
         Method Description: Disables the display of the component
         Method Return: void
     */
-    /*
-        Method Name: disableDisplay
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     disableDisplay(){
         this.displayEnabled = false;
     }
@@ -137,12 +89,6 @@ class Component {
         Method Parameters: None
         Method Description: Disables the component, including display
         Method Return: void
-    */
-    /*
-        Method Name: fullDisable
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     fullDisable(){
         this.disableDisplay();
@@ -154,12 +100,6 @@ class Component {
         Method Parameters: None
         Method Description: Enables the component, including display
         Method Return: void
-    */
-    /*
-        Method Name: fullEnable
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     fullEnable(){
         this.enableDisplay();

@@ -14,14 +14,6 @@ class FrameRateCounter {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            maxFPS:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(maxFPS){
         this.maxFPS = maxFPS;
         this.minFrameGap = 1000 / maxFPS * FrameRateCounter.FRAME_GAP_CONSTANT;
@@ -37,12 +29,6 @@ class FrameRateCounter {
         Method Description: Getter
         Method Return: Integer
     */
-    /*
-        Method Name: getFrameIndex
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getFrameIndex(){
         return this.frameIndex;
     }
@@ -53,12 +39,6 @@ class FrameRateCounter {
         Method Description: Getter
         Method Return: void
     */
-    /*
-        Method Name: getLastFrameTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLastFrameTime(){
         return this.lastFrameTime;
     }
@@ -68,12 +48,6 @@ class FrameRateCounter {
         Method Parameters: None
         Method Description: Adds an entry in the frameTimes array to register that a frame was registered at this time
         Method Return: void
-    */
-    /*
-        Method Name: countFrame
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     countFrame(){
         let currentTime = Date.now();
@@ -93,12 +67,6 @@ class FrameRateCounter {
         Method Description: Counts the number of frames counted in the last second
         Method Return: int in range [0,this.maxFPS]
     */
-    /*
-        Method Name: getFPS
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getFPS(){
         let currentTime = Date.now();
         let fps = 0;
@@ -116,12 +84,6 @@ class FrameRateCounter {
         Method Description: Getter
         Method Return: integer
     */
-    /*
-        Method Name: getMaxFPS
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMaxFPS(){
         return this.maxFPS;
     }
@@ -132,12 +94,6 @@ class FrameRateCounter {
         Method Description: Determines if the counter is ready for another frame to be displayed
         Method Return: Boolean
     */
-    /*
-        Method Name: ready
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     ready(){
         return this.getFPS() < this.getMaxFPS() && Date.now() - this.lastFrameTime > this.minFrameGap;
     }
@@ -147,16 +103,6 @@ class FrameRateCounter {
         Method Parameters: None
         Method Description: Determines if a frame was registered in the past second
         Method Return: Boolean, true -> Frame is from the past second, false -> Frame is older
-    */
-    /*
-        Method Name: fromPastSecond
-        Method Parameters: 
-            currentTime:
-                TODO
-             oldTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static fromPastSecond(currentTime, oldTime){
         return oldTime + 1000 >= currentTime; 

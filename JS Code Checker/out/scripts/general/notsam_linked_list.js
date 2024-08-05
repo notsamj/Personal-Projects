@@ -14,14 +14,6 @@ class NotSamLinkedList {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            array=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(array=null){
         this.head = null;
         this.end = null;
@@ -37,14 +29,6 @@ class NotSamLinkedList {
                 A function taking one parameter and returning true or flase
         Method Description: Counts the number of elements satisfying a condition
         Method Return: Integer
-    */
-    /*
-        Method Name: countCondition
-        Method Parameters: 
-            conditionFunction:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     countCondition(conditionFunction){
         let count = 0;
@@ -65,12 +49,6 @@ class NotSamLinkedList {
         Method Description: Empties the list
         Method Return: void
     */
-    /*
-        Method Name: clear
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     clear(){
         this.head = null;
         this.end = null;
@@ -83,14 +61,6 @@ class NotSamLinkedList {
                 An array used to initialize the data for this list
         Method Description: Adds all elements from array to the list
         Method Return: void
-    */
-    /*
-        Method Name: convertFromArray
-        Method Parameters: 
-            array:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     convertFromArray(array){
         for (let i = 0; i < array.length; i++){
@@ -107,14 +77,6 @@ class NotSamLinkedList {
      *   This method inserts a value into the end of the list.
      *   Method Return: None
      */
-    /*
-        Method Name: append
-        Method Parameters: 
-            value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     append(value){
         if (this.isEmpty()){
             this.insert(value);
@@ -189,14 +151,6 @@ class NotSamLinkedList {
      *   This method inserts a value into the end of the list.
      *   Method Return: None
      */
-    /*
-        Method Name: push
-        Method Parameters: 
-            element:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     push(element){ this.append(element); }
 
     /*
@@ -208,14 +162,6 @@ class NotSamLinkedList {
      *   This method inserts a value into the end of the list.
      *   Method Return: None
      */
-    /*
-        Method Name: add
-        Method Parameters: 
-            element:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     add(element){ this.append(element); }
     
     /*
@@ -225,12 +171,6 @@ class NotSamLinkedList {
      *   This method calculates then returns the size of the list.
      *   Method Return: int (Size of the list)
      */
-    /*
-        Method Name: getSize
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getSize(){
         let current = this.head;
         let size = 0;
@@ -249,12 +189,6 @@ class NotSamLinkedList {
      *   This method calculates then returns the size of the list.
      *   Method Return: int (Size of the list)
      */
-    /*
-        Method Name: getLength
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLength(){
         return this.getSize();
     }
@@ -266,12 +200,6 @@ class NotSamLinkedList {
      *   This method prints every element in the list
      *   Method Return: None
      */
-    /*
-        Method Name: print
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     print(){
         if (this.getSize() == 0){
             console.error("List Empty --> cannot print!!");
@@ -297,14 +225,6 @@ class NotSamLinkedList {
      *   This method returns a value from the list.
      *   Method Return: double
      */
-    /*
-        Method Name: get
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     get(index){
         let node = this.getNode(index);
         return node.value;
@@ -319,14 +239,6 @@ class NotSamLinkedList {
      *   This method returns a value from the list.
      *   Method Return: DLLNode
      */
-    /*
-        Method Name: getNode
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNode(index){
         // If the index is out of bounds
         if (this.getSize() < index + 1 || index < 0){
@@ -352,14 +264,6 @@ class NotSamLinkedList {
         Method Description: Check if the linked list includes a value
         Method Return: boolean, true -> list has the value, false -> list does NOT have the value
     */
-    /*
-        Method Name: has
-        Method Parameters: 
-            e:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     has(e){
         return (this.search(e) != -1);
     }
@@ -371,14 +275,6 @@ class NotSamLinkedList {
                 Value to be checked
         Method Description: Search the linked list for a value and return the index found (-1 if not found)
         Method Return: int
-    */
-    /*
-        Method Name: search
-        Method Parameters: 
-            e:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     search(e){
         let index = -1;
@@ -402,14 +298,6 @@ class NotSamLinkedList {
                 Index at which to find element that is being looked for
         Method Description: Remove the element @ index {index}
         Method Return: void
-    */
-    /*
-        Method Name: remove
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     remove(index){
         let size = this.getSize();
@@ -448,16 +336,6 @@ class NotSamLinkedList {
         Method Description: Put value into position {index}
         Method Return: void
     */
-    /*
-        Method Name: set
-        Method Parameters: 
-            index:
-                TODO
-             value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     set(index, value){
         let node = this.getNode(index);
         node.value = value;
@@ -468,12 +346,6 @@ class NotSamLinkedList {
         Method Parameters: None
         Method Description: Determine if the array list is empty
         Method Return: boolean, true -> empty, false -> not empty
-    */
-    /*
-        Method Name: isEmpty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isEmpty(){
         return this.head == null;
@@ -486,14 +358,6 @@ class NotSamLinkedList {
                 Index at which to pop the element
         Method Description: Remove the element and return it
         Method Return: Object (Unknown type)
-    */
-    /*
-        Method Name: pop
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     pop(index){
         if (!((index >= 0 && index < this.getSize()))){
@@ -526,12 +390,6 @@ class NotSamLinkedList {
         Method Description: Returns the last node
         Method Return: DLLNode
     */
-    /*
-        Method Name: getLastNode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLastNode(){
         return this.end;
     }
@@ -543,14 +401,6 @@ class NotSamLinkedList {
                 A function that takes a single parameter and returns a boolean, true -> delete element, false -> don't delete
         Method Description: Deletes all elements for which the conditionFunction return true
         Method Return: void
-    */
-    /*
-        Method Name: deleteWithCondition
-        Method Parameters: 
-            conditionFunction:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     deleteWithCondition(conditionFunction){
         if (this.isEmpty()){ return; }

@@ -9,12 +9,6 @@ class NSEventHandler {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.events = [];
     }
@@ -26,14 +20,6 @@ class NSEventHandler {
                 A string representing the name of an event
         Method Description: Finds an event a given name
         Method Return: NSEvent
-    */
-    /*
-        Method Name: getEvent
-        Method Parameters: 
-            eventName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getEvent(eventName){
         for (let event of this.events){
@@ -52,14 +38,6 @@ class NSEventHandler {
         Method Description: Checks if an event with the given name exists
         Method Return: Boolean
     */
-    /*
-        Method Name: hasEvent
-        Method Parameters: 
-            eventName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasEvent(eventName){
         return this.getEvent(eventName) != null;
     }
@@ -71,14 +49,6 @@ class NSEventHandler {
                 A string representing the name of an event
         Method Description: Finds or creates an event
         Method Return: NSEvent
-    */
-    /*
-        Method Name: getOrCreate
-        Method Parameters: 
-            eventName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getOrCreate(eventName){
         let event;
@@ -103,18 +73,6 @@ class NSEventHandler {
         Method Description: Adds a handler for an event
         Method Return: Integer
     */
-    /*
-        Method Name: addHandler
-        Method Parameters: 
-            eventName:
-                TODO
-             handlerFunction:
-                TODO
-             priority=0:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addHandler(eventName, handlerFunction, priority=0){
         let event = this.getOrCreate(eventName);
         let handlerID = event.addHandler(handlerFunction, priority);
@@ -131,16 +89,6 @@ class NSEventHandler {
         Method Description: Removes a handler from an event
         Method Return: void
     */
-    /*
-        Method Name: removeHandler
-        Method Parameters: 
-            eventName:
-                TODO
-             handlerID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     removeHandler(eventName, handlerID){
         if (!this.hasEvent(eventName)){
             throw new Error("Event does not exist: " + eventName);
@@ -156,14 +104,6 @@ class NSEventHandler {
                 Details to pass on to the handlers
         Method Description: Passes information to event handlers
         Method Return: void
-    */
-    /*
-        Method Name: emit
-        Method Parameters: 
-            eventDetails:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     emit(eventDetails){
         let event = this.getOrCreate(eventDetails["name"]);
@@ -182,14 +122,6 @@ class NSEvent {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            name:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(name){
         this.name = name;
         this.currentHandlerIndex = 0;
@@ -201,12 +133,6 @@ class NSEvent {
         Method Parameters: None
         Method Description: Getter
         Method Return: String
-    */
-    /*
-        Method Name: getName
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getName(){
         return this.name;
@@ -221,16 +147,6 @@ class NSEvent {
                 A rating for the priority fo this handler (lower integer -> higher priority)
         Method Description: Adds a handler to an event
         Method Return: Integer
-    */
-    /*
-        Method Name: addHandler
-        Method Parameters: 
-            handlerFunction:
-                TODO
-             priority:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     addHandler(handlerFunction, priority){
         let handlerID = this.currentHandlerIndex;
@@ -249,14 +165,6 @@ class NSEvent {
                 An id to identify a specificer event handler method
         Method Description: Removes an event handler
         Method Return: void
-    */
-    /*
-        Method Name: removeHandler
-        Method Parameters: 
-            handlerID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     removeHandler(handlerID){
         let foundIndex = -1;
@@ -291,14 +199,6 @@ class NSEvent {
                 Details to pass on to the handlers
         Method Description: Passes information to event handlers
         Method Return: void
-    */
-    /*
-        Method Name: emit
-        Method Parameters: 
-            eventDetails:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     emit(eventDetails){
         for (let handlerObject of this.handlers){

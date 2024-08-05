@@ -24,16 +24,6 @@ class TeamCombatManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            teams:
-                TODO
-             game:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(teams, game){
         this.planes = {};
         this.bullets = {};
@@ -56,14 +46,6 @@ class TeamCombatManager {
         Method Description: Removes all planes and adds a bunch of entities
         Method Return: void
     */
-    /*
-        Method Name: setEntities
-        Method Parameters: 
-            entities:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setEntities(entities){
         this.clear();
         for (let entity of entities){
@@ -80,12 +62,6 @@ class TeamCombatManager {
         Method Description: Checks if collisions are disabled
         Method Return: Boolean
     */
-    /*
-        Method Name: hasCollisionsDisabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasCollisionsDisabled(){
         return this.collisionsDisabled;
     }
@@ -95,12 +71,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Disables collisions
         Method Return: void
-    */
-    /*
-        Method Name: disableCollisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     disableCollisions(){
         this.collisionsDisabled = true;
@@ -114,14 +84,6 @@ class TeamCombatManager {
         Method Description: Finds all planes from an alliance
         Method Return: NotSamLinkedList of planes
     */
-    /*
-        Method Name: getAllPlanesFromAlliance
-        Method Parameters: 
-            allianceName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAllPlanesFromAlliance(allianceName){
         return this.planes[allianceName];
     }
@@ -131,12 +93,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Removes all planes and all bullets
         Method Return: void
-    */
-    /*
-        Method Name: clear
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     clear(){
         this.clearPlanes();
@@ -151,12 +107,6 @@ class TeamCombatManager {
         Method Description: Removes all planes
         Method Return: void
     */
-    /*
-        Method Name: clearPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     clearPlanes(){
         for (let team of this.teams){
             this.planes[team].clear();
@@ -168,12 +118,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Removes all bullets
         Method Return: void
-    */
-    /*
-        Method Name: clearBullets
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     clearBullets(){
         for (let team of this.teams){
@@ -188,14 +132,6 @@ class TeamCombatManager {
                 Plane or bullet or bomb or a building
         Method Description: Adds either a plane or a bullet or a bomb or a building
         Method Return: void
-    */
-    /*
-        Method Name: addEntity
-        Method Parameters: 
-            entity:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     addEntity(entity){
         if (entity instanceof Plane){
@@ -217,14 +153,6 @@ class TeamCombatManager {
         Method Description: Determines if it contains an entity with the provided ID
         Method Return: boolean, true -> has entity, false -> does not have entity
     */
-    /*
-        Method Name: hasEntity
-        Method Parameters: 
-            entityID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasEntity(entityID){
         return this.getEntity(entityID) != null;
     }
@@ -236,14 +164,6 @@ class TeamCombatManager {
                 The id of an entity
         Method Description: Finds an entity if it exists
         Method Return: Entity
-    */
-    /*
-        Method Name: getEntity
-        Method Parameters: 
-            entityID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getEntity(entityID){
         for (let team of this.teams){
@@ -269,14 +189,6 @@ class TeamCombatManager {
         Method Description: Adds a plane to the list of planes, also sets the ID
         Method Return: void
     */
-    /*
-        Method Name: addPlane
-        Method Parameters: 
-            plane:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addPlane(plane){
         let team = planeModelToAlliance(plane.getPlaneClass());
         let planeLL = this.planes[team];
@@ -295,14 +207,6 @@ class TeamCombatManager {
         Method Description: Adds a building to the game
         Method Return: void
     */
-    /*
-        Method Name: addBuilding
-        Method Parameters: 
-            building:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addBuilding(building){
         building.setID("building_" + this.buildings.getLength());
         this.buildings.push(building);
@@ -313,12 +217,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Getter
         Method Return: A linked list of buildings
-    */
-    /*
-        Method Name: getBuildings
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getBuildings(){
         return this.buildings;
@@ -331,14 +229,6 @@ class TeamCombatManager {
                 A bomb to add
         Method Description: Adds a bomb to the list of bombs, also sets the ID
         Method Return: void
-    */
-    /*
-        Method Name: addBomb
-        Method Parameters: 
-            bomb:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     addBomb(bomb){
         let bombArray = this.bombs;
@@ -370,14 +260,6 @@ class TeamCombatManager {
         Method Description: Adds a bullet to the list of bullets, also sets the ID
         Method Return: void
     */
-    /*
-        Method Name: addBullet
-        Method Parameters: 
-            bullet:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addBullet(bullet){
         let team = bullet.getAlliance();
         let bulletArray = this.bullets[team];
@@ -406,12 +288,6 @@ class TeamCombatManager {
         Method Description: Makes things happen within a tick
         Method Return: void
     */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     tick(){
         for (let team of this.teams){
             for (let [plane, pIndex] of this.planes[team]){
@@ -436,12 +312,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Checks for collisions between planes and bullets
         Method Return: void
-    */
-    /*
-        Method Name: checkCollisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkCollisions(){
         if (this.hasCollisionsDisabled()){ return; }
@@ -477,12 +347,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Checks each bullet to see if it collides with the world border
         Method Return: void
-    */
-    /*
-        Method Name: checkBulletCollisionsWithWorldBorder
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkBulletCollisionsWithWorldBorder(){
         let planesLeftX = Number.MAX_SAFE_INTEGER;
@@ -526,16 +390,6 @@ class TeamCombatManager {
                 Another alliance
         Method Description: Checks for collisions between planes of 'team' and bullets of 'otherTeam' and other things to determine if bullet is worth keeping aroun
         Method Return: void
-    */
-    /*
-        Method Name: checkBulletCollisionsFromTeamToTeam
-        Method Parameters: 
-            team:
-                TODO
-             otherTeam:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     checkBulletCollisionsFromTeamToTeam(team, otherTeam){
         // Check for bullet too far from planes
@@ -631,12 +485,6 @@ class TeamCombatManager {
         Method Description: Determines the number of entities that exist
         Method Return: int
     */
-    /*
-        Method Name: getNumberOfEntities
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNumberOfEntities(){
         let count = 0;
         for (let team of this.teams){
@@ -661,20 +509,6 @@ class TeamCombatManager {
                 The time used to interpolate the positions of the planes
         Method Description: Displays all entities that aren't excluded
         Method Return: void
-    */
-    /*
-        Method Name: displayAll
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-             excludeID:
-                TODO
-             displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     displayAll(lX, bY, excludeID, displayTime){
         for (let team of this.teams){
@@ -708,12 +542,6 @@ class TeamCombatManager {
         Method Description: Gathers a list of all living planes
         Method Return: List of Plane
     */
-    /*
-        Method Name: getLivingPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLivingPlanes(){
         let planes = [];
         for (let team of this.teams){
@@ -732,12 +560,6 @@ class TeamCombatManager {
         Method Description: Gathers a list of all planes
         Method Return: List of Plane
     */
-    /*
-        Method Name: getAllPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAllPlanes(){
         let planes = [];
         for (let team of this.teams){
@@ -753,12 +575,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Find all the dead planes
         Method Return: List of Plane
-    */
-    /*
-        Method Name: getDeadPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getDeadPlanes(){
         let planes = [];
@@ -778,12 +594,6 @@ class TeamCombatManager {
         Method Description: Gathers a list of all living bullets
         Method Return: List of Bullets
     */
-    /*
-        Method Name: getAllBullets
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAllBullets(){
         let bullets = [];
         for (let team of this.teams){
@@ -802,12 +612,6 @@ class TeamCombatManager {
         Method Description: Getter
         Method Return: LinkedList of Bombs
     */
-    /*
-        Method Name: getBombs
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBombs(){
         return this.bombs;
     }
@@ -819,14 +623,6 @@ class TeamCombatManager {
                 Team of an alliance
         Method Description: Counts living entities of an alliance
         Method Return: int
-    */
-    /*
-        Method Name: countAlliance
-        Method Parameters: 
-            allianceName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     countAlliance(allianceName){
         let aliveCount = 0;
@@ -848,16 +644,6 @@ class TeamCombatManager {
         Method Description: Records a kill that takes place
         Method Return: void
     */
-    /*
-        Method Name: handleKill
-        Method Parameters: 
-            bullet:
-                TODO
-             deadPlane:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     handleKill(bullet, deadPlane){
         let shooter = this.getEntity(bullet.getShooterID());
         // If human 
@@ -876,14 +662,6 @@ class TeamCombatManager {
         Method Description: Finds a plane with a given ID
         Method Return: Plane Object
     */
-    /*
-        Method Name: getPlane
-        Method Parameters: 
-            id:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getPlane(id){
         for (let plane of this.getAllPlanes()){
             if (plane.getID() == id){
@@ -898,12 +676,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Creates a JSON representation of every plane
         Method Return: List of JSON Objects
-    */
-    /*
-        Method Name: getPlaneJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getPlaneJSON(){
         let planeJSON = [];
@@ -921,12 +693,6 @@ class TeamCombatManager {
         Method Description: Creates a JSON representation of every bullet
         Method Return: List of JSON Objects
     */
-    /*
-        Method Name: getBulletJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBulletJSON(){
         let bulletJSON = [];
         for (let bullet of this.getAllBullets()){
@@ -941,12 +707,6 @@ class TeamCombatManager {
         Method Description: Creates a JSON representation of every bomb
         Method Return: List of JSON Objects
     */
-    /*
-        Method Name: getBombJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBombJSON(){
         let bombJSON = [];
         for (let [bomb, bombIndex] of this.bombs){
@@ -960,12 +720,6 @@ class TeamCombatManager {
         Method Parameters: None
         Method Description: Creates a JSON representation of every building
         Method Return: List of JSON Objects
-    */
-    /*
-        Method Name: getBuildingJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getBuildingJSON(){
         let buildingJSON = [];
@@ -982,14 +736,6 @@ class TeamCombatManager {
                 A list of json representations of buildings
         Method Description: Loads new buildings into the game
         Method Return: void
-    */
-    /*
-        Method Name: fromBuildingJSON
-        Method Parameters: 
-            buildingsJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     fromBuildingJSON(buildingsJSON){
         let index = 0;
@@ -1012,14 +758,6 @@ class TeamCombatManager {
         Method Description: Loads new bombs into the game
         Method Return: void
     */
-    /*
-        Method Name: fromBombJSON
-        Method Parameters: 
-            bombsJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     fromBombJSON(bombsJSON){
         for (let bombJSON of bombsJSON){
             let index = bombJSON["index"];
@@ -1038,14 +776,6 @@ class TeamCombatManager {
                 A list of json representations of bullets
         Method Description: Loads new bullets into the game
         Method Return: void
-    */
-    /*
-        Method Name: fromBulletJSON
-        Method Parameters: 
-            bulletsJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     fromBulletJSON(bulletsJSON){
         for (let bulletJSON of bulletsJSON){

@@ -10,12 +10,6 @@ class CampaignMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.setup();
@@ -26,12 +20,6 @@ class CampaignMenu extends Menu {
         Method Parameters: None
         Method Description: Setup components in the menu
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         // Background
@@ -89,12 +77,6 @@ class CampaignMenu extends Menu {
         Method Description: Selects the next mission
         Method Return: void
     */
-    /*
-        Method Name: next
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     next(){
         if (PROGRAM_DATA["missions"].length < 2){ return; }
         this.missionIndex = (this.missionIndex + 1) % PROGRAM_DATA["missions"].length;
@@ -107,12 +89,6 @@ class CampaignMenu extends Menu {
         Method Description: Selects the previous mission
         Method Return: void
     */
-    /*
-        Method Name: previous
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     previous(){
         if (PROGRAM_DATA["missions"].length < 2){ return; }
         this.missionIndex = this.missionIndex == 0 ? PROGRAM_DATA["missions"].length - 1 : (this.missionIndex - 1);
@@ -124,12 +100,6 @@ class CampaignMenu extends Menu {
         Method Parameters: None
         Method Description: Loads the current mission
         Method Return: void
-    */
-    /*
-        Method Name: loadCurrentMission
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     loadCurrentMission(){
         this.missionDetailsTextComponent.setText(PROGRAM_DATA["missions"][this.missionIndex]["description"]);

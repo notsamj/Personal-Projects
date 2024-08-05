@@ -14,12 +14,6 @@ class AfterMatchStats {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.reset();
     }
@@ -29,12 +23,6 @@ class AfterMatchStats {
         Method Parameters: None
         Method Description: Initializes an instance of AfterMatchStats
         Method Return: void
-    */
-    /*
-        Method Name: reset
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     reset(){
         this.winner = "None";
@@ -49,14 +37,6 @@ class AfterMatchStats {
                 A string representing the type of plane
         Method Description: Updates the number of kills of the given plane type
         Method Return: void
-    */
-    /*
-        Method Name: addBotKill
-        Method Parameters: 
-            planeClass:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     addBotKill(planeClass){
         // If the number of kills for this plane class has not previously been updated then initialize it to zero
@@ -77,16 +57,6 @@ class AfterMatchStats {
         Method Description: Updates the number of kills of the player
         Method Return: void
     */
-    /*
-        Method Name: addPlayerKill
-        Method Parameters: 
-            userName:
-                TODO
-             alliance:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addPlayerKill(userName, alliance){
         if (!objectHasKey(this.playerKillCounts[alliance], userName)){
             this.playerKillCounts[alliance][userName] = 1;
@@ -101,12 +71,6 @@ class AfterMatchStats {
         Method Description: Determines the colour of the winning team
         Method Return: String
     */
-    /*
-        Method Name: getWinnerColour
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getWinnerColour(){
         return AfterMatchStats.getTeamColour(this.winner);
     }
@@ -119,14 +83,6 @@ class AfterMatchStats {
         Method Description: Sets the winner variable to the given winning team
         Method Return: void
     */
-    /*
-        Method Name: setWinner
-        Method Parameters: 
-            winner:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setWinner(winner){
         this.winner = winner;
     }
@@ -136,12 +92,6 @@ class AfterMatchStats {
         Method Parameters: None
         Method Description: Getter
         Method Return: String
-    */
-    /*
-        Method Name: getWinner
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getWinner(){
         return this.winner;
@@ -154,14 +104,6 @@ class AfterMatchStats {
                 A string with the name of an alliance
         Method Description: Creates a string representing information about the number of kills achieved by an alliance
         Method Return: String
-    */
-    /*
-        Method Name: makeTeamText
-        Method Parameters: 
-            team:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     makeTeamText(team){
         let text = team + " Total Kills:";
@@ -196,12 +138,6 @@ class AfterMatchStats {
         Method Description: Displays the results of the match (number of kills by team) on the canvas
         Method Return: void
     */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(){
         let winnerText = "Winner: " + this.winner;
         let axisText = this.makeTeamText("Axis");
@@ -220,14 +156,6 @@ class AfterMatchStats {
         Method Description: Determines string the colour assigned to a given alliance
         Method Return: String
     */
-    /*
-        Method Name: getTeamColour
-        Method Parameters: 
-            team:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static getTeamColour(team){
         return PROGRAM_DATA["team_to_colour"][team];
     }
@@ -237,12 +165,6 @@ class AfterMatchStats {
         Method Parameters: None
         Method Description: Create a JSON representation of the current stats
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         return {
@@ -259,14 +181,6 @@ class AfterMatchStats {
                 A Json representation of an aftermatchstats instance
         Method Description: Load instance details from a JSON object
         Method Return: void
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            statsObject:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     fromJSON(statsObject){
         this.winner = statsObject["winner"];

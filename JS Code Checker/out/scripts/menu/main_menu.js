@@ -9,12 +9,6 @@ class MainMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.setup();
@@ -25,12 +19,6 @@ class MainMenu extends Menu {
         Method Parameters: None
         Method Description: Setup components in the menu
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         let buttonSizeX = 800;

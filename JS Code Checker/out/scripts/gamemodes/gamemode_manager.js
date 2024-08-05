@@ -9,12 +9,6 @@ class GamemodeManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.gamemodeClient = null;
     }
@@ -25,12 +19,6 @@ class GamemodeManager {
         Method Description: Checks if there is a gamemode running at the moment
         Method Return: Boolean
     */
-    /*
-        Method Name: hasActiveGamemode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasActiveGamemode(){
         return this.gamemodeClient != null;
     }
@@ -40,12 +28,6 @@ class GamemodeManager {
         Method Parameters: None
         Method Description: Getter
         Method Return: GamemodeClient
-    */
-    /*
-        Method Name: getActiveGamemode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getActiveGamemode(){
         return this.gamemodeClient;
@@ -59,14 +41,6 @@ class GamemodeManager {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setActiveGamemode
-        Method Parameters: 
-            newGamemodeClient:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setActiveGamemode(newGamemodeClient){
         this.gamemodeClient = newGamemodeClient;
     }
@@ -77,12 +51,6 @@ class GamemodeManager {
         Method Description: Removes the active gamemode
         Method Return: void
     */
-    /*
-        Method Name: deleteActiveGamemode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     deleteActiveGamemode(){
         this.gamemodeClient = null;
     }
@@ -92,12 +60,6 @@ class GamemodeManager {
         Method Parameters: None
         Method Description: Tells the current client to run a tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async tick(){
         if (!this.hasActiveGamemode()){ return; }
@@ -111,12 +73,6 @@ class GamemodeManager {
         Method Parameters: None
         Method Description: Tells the gamemode client to display
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         this.gamemodeClient.display();

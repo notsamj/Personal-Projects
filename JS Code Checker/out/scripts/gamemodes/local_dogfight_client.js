@@ -11,14 +11,6 @@ class LocalDogfightClient extends LocalClient {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            dogfightJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(dogfightJSON){
         super(new LocalDogfight(dogfightJSON));
     }

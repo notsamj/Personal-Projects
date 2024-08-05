@@ -9,12 +9,6 @@ class HostMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
 
@@ -51,12 +45,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Attempts to switch the current game mode to Dogfight by contacting the server
         Method Return: void
-    */
-    /*
-        Method Name: switchToDogfight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async switchToDogfight(){
         if (this.switchGamemodeLock.isLocked()){ return; }
@@ -116,14 +104,6 @@ class HostMenu extends Menu {
         Method Description: Creates a list of possible planes for a user to fly in a mission
         Method Return: List of plane models
     */
-    /*
-        Method Name: createUserMissionPlaneSelection
-        Method Parameters: 
-            mission:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     createUserMissionPlaneSelection(mission){
         let userPlanes = ["freecam"];
         for (let planeName of mission["user_planes"]){
@@ -138,12 +118,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Tries to switch the game mode to mission by contacting the server
         Method Return: void
-    */
-    /*
-        Method Name: switchToMission
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async switchToMission(){
         if (this.switchGamemodeLock.isLocked()){ return; }
@@ -201,12 +175,6 @@ class HostMenu extends Menu {
         Method Description: Resets the settings of the menu
         Method Return: void
     */
-    /*
-        Method Name: resetSettings
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     resetSettings(){
         // Reset the settings
         this.userPlaneIndex = 0;
@@ -233,12 +201,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Sets up the menu interface
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         let addRemoveButtonSize = 50;
@@ -472,12 +434,6 @@ class HostMenu extends Menu {
         Method Description: Selects the next mission
         Method Return: void
     */
-    /*
-        Method Name: next
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async next(){
         if (PROGRAM_DATA["missions"].length < 2){ return; }
         if (this.switchGamemodeLock.isLocked()){ return; }
@@ -498,12 +454,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Selects the previous mission
         Method Return: void
-    */
-    /*
-        Method Name: previous
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async previous(){
         if (PROGRAM_DATA["missions"].length < 2){ return; }
@@ -527,12 +477,6 @@ class HostMenu extends Menu {
         Method Description: Switches between the actively shown planes
         Method Return: void
     */
-    /*
-        Method Name: switchPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     switchPlanes(){
         this.userPlaneIndex = (this.userPlaneIndex + 1) % this.userPlanes.length;
         let planeName = this.userPlanes[this.userPlaneIndex];
@@ -545,12 +489,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Switches between the actively shown axis planes
         Method Return: void
-    */
-    /*
-        Method Name: switchAxisPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     switchAxisPlanes(){
         this.axisPlaneIndex = (this.axisPlaneIndex + 1) % this.axisPlanes.length;
@@ -565,12 +503,6 @@ class HostMenu extends Menu {
         Method Description: Switches between the actively shown ally planes
         Method Return: void
     */
-    /*
-        Method Name: switchAlliedPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     switchAlliedPlanes(){
         this.alliedPlaneIndex = (this.alliedPlaneIndex + 1) % this.alliedPlanes.length;
         let planeName = this.alliedPlanes[this.alliedPlaneIndex];
@@ -583,12 +515,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Creates a list of planes for the user to choose between
         Method Return: void
-    */
-    /*
-        Method Name: createUserPlaneSelection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     createUserPlaneSelection(){
         let userPlanes = ["freecam"];
@@ -603,12 +529,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Creates a list of ally planes for the user to choose between
         Method Return: void
-    */
-    /*
-        Method Name: createAlliedPlaneSelection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     createAlliedPlaneSelection(){
         let alliedPlanes = [];
@@ -626,12 +546,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Creates a list of axis planes for the user to choose between
         Method Return: void
-    */
-    /*
-        Method Name: createAxisPlaneSelection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     createAxisPlaneSelection(){
         let axisPlanes = [];
@@ -653,16 +567,6 @@ class HostMenu extends Menu {
                 How many (or negative) planes are added/removed from the count
         Method Description: Modifies the counts of planes
         Method Return: void
-    */
-    /*
-        Method Name: modifyDisplayedBotPlaneCount
-        Method Parameters: 
-            alliance:
-                TODO
-             amount:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     modifyDisplayedBotPlaneCount(alliance, amount){
         // Determine which plane is relevant
@@ -692,12 +596,6 @@ class HostMenu extends Menu {
         Method Description: Modifies the displayed details about the number of bots
         Method Return: void
     */
-    /*
-        Method Name: updateBotDetails
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     updateBotDetails(){
         this.botDetailsComponent.update(this.planeCounts);
     }
@@ -707,12 +605,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Switches from this menu to the main menu
         Method Return: void
-    */
-    /*
-        Method Name: goToMainMenu
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     goToMainMenu(){
         SERVER_CONNECTION.sendJSON({"action": "leave_game"});
@@ -725,12 +617,6 @@ class HostMenu extends Menu {
         Method Description: Cycles the ally difficulty
         Method Return: void
         Note: There are many ways to do this. Maybe some are better? Definitely some are cleaner. It's not a big anyway idc.
-    */
-    /*
-        Method Name: cycleAxisDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     cycleAxisDifficulty(){
         let currentIndex = 0;
@@ -753,12 +639,6 @@ class HostMenu extends Menu {
         Method Return: void
         Note: There are many ways to do this. Maybe some are better? Definitely some are cleaner. It's not a big anyway idc.
     */
-    /*
-        Method Name: cycleAllyDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     cycleAllyDifficulty(){
         let currentIndex = 0;
         for (let key of Object.keys(PROGRAM_DATA["ai"]["fighter_plane"]["bias_ranges"])){
@@ -779,12 +659,6 @@ class HostMenu extends Menu {
         Method Description: Getter
         Method Return: void
     */
-    /*
-        Method Name: getAllyDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAllyDifficulty(){
         return this.allyDifficulty;
     }
@@ -794,12 +668,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Getter
         Method Return: void
-    */
-    /*
-        Method Name: getAxisDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getAxisDifficulty(){
         return this.axisDifficulty;
@@ -811,12 +679,6 @@ class HostMenu extends Menu {
         Method Parameters: None
         Method Description: Sends a JSON object of settings to the server
         Method Return: void
-    */
-    /*
-        Method Name: sendSettingUpdateToServer
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     sendSettingUpdateToServer(){
         let settings = {

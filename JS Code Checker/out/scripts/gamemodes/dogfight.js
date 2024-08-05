@@ -13,12 +13,6 @@ class Dogfight extends Gamemode {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
     }
@@ -28,12 +22,6 @@ class Dogfight extends Gamemode {
         Method Parameters: None
         Method Description: Run the actions that take place during a tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async tick(){
         if (this.tickInProgressLock.notReady() || !this.isRunning() || this.numTicks >= this.getExpectedTicks()){ return; }
@@ -52,12 +40,6 @@ class Dogfight extends Gamemode {
         Method Description: Provides information about whether the dogfight is just a test
         Method Return: Boolean
     */
-    /*
-        Method Name: isRunningATestSession
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isRunningATestSession(){
         return this.isATestSession;
     }
@@ -67,12 +49,6 @@ class Dogfight extends Gamemode {
         Method Parameters: None
         Method Description: Checks if the game is ready to end
         Method Return: void
-    */
-    /*
-        Method Name: checkForEnd
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkForEnd(){
         let allyCount = 0;
@@ -102,12 +78,6 @@ class Dogfight extends Gamemode {
         Method Parameters: None
         Method Description: Determine if this is a test session (not a real fight so no end condition)
         Method Return: boolean, true -> this is determiend to be a test session, false -> this isn't detewrmined to be a test session
-    */
-    /*
-        Method Name: isThisATestSession
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isThisATestSession(){
         let allyCount = 0;

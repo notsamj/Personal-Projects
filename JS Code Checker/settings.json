@@ -3,7 +3,8 @@
 		"default": {
 			"remove_console_logs": false,
 			"print_summary": true,
-			"ignore_file_with_zero_changes_in_log": true
+			"ignore_file_with_zero_changes_in_log": true,
+			"ignore_counters_with_zero_changes_in_log": true
 		},
 
 		"default_with_no_logs": {

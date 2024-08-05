@@ -15,18 +15,6 @@ class SpectatorRadar extends Radar {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            spectatorCamera:
-                TODO
-             tickLockLength:
-                TODO
-             enabled=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(spectatorCamera, tickLockLength, enabled=true){
         super(spectatorCamera, tickLockLength, enabled);
     }
@@ -36,12 +24,6 @@ class SpectatorRadar extends Radar {
         Method Parameters: None
         Method Description: Updates the radar
         Method Return: void
-    */
-    /*
-        Method Name: update
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     update(){
         this.resetRadar();

@@ -11,14 +11,6 @@ class RemoteClient extends GamemodeClient {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            gamemode:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(gamemode){
         super(gamemode);
         this.asyncUpdateManager = new AsyncUpdateManager();
@@ -37,12 +29,6 @@ class RemoteClient extends GamemodeClient {
         Method Description: Getter
         Method Return: AsyncUpdateManager
     */
-    /*
-        Method Name: getAsyncUpdateManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAsyncUpdateManager(){
         return this.asyncUpdateManager;
     }
@@ -52,12 +38,6 @@ class RemoteClient extends GamemodeClient {
         Method Parameters: None
         Method Description: Getter
         Method Return: Integer
-    */
-    /*
-        Method Name: getLastTickTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getLastTickTime(){
         return this.lastTickTime;
@@ -69,12 +49,6 @@ class RemoteClient extends GamemodeClient {
         Method Description: Provides information that the game is not running locally. This game is run by a server and the client is subservient to the server.
         Method Return: Boolean
     */
-    /*
-        Method Name: runsLocally
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     runsLocally(){ return false; }
 
     /*
@@ -83,12 +57,6 @@ class RemoteClient extends GamemodeClient {
         Method Description: Provides information that the game is not paused. This type of game cannot pause.
         Method Return: Boolean
     */
-    /*
-        Method Name: isPaused
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isPaused(){ return false; }
 
     /*
@@ -96,12 +64,6 @@ class RemoteClient extends GamemodeClient {
         Method Parameters: None
         Method Description: Communicates to the server that the user is exiting
         Method Return: void
-    */
-    /*
-        Method Name: end
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     end(){
         this.translator.end();
@@ -114,14 +76,6 @@ class RemoteClient extends GamemodeClient {
                 A message object containg information about a plane's movement
         Method Description: Updates plane's positions if the information provided is very recent. This makes the game less choppy.
         Method Return: void
-    */
-    /*
-        Method Name: handlePlaneMovementUpdate
-        Method Parameters: 
-            messageJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     handlePlaneMovementUpdate(messageJSON){
         if (objectHasKey(messageJSON, "game_over") && messageJSON["game_over"]){ return; }
@@ -150,12 +104,6 @@ class RemoteClient extends GamemodeClient {
         Method Description: Determines the expected number of ticks that have occured
         Method Return: integer
     */
-    /*
-        Method Name: getExpectedTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getExpectedTicks(){
         return Math.floor((Date.now() - this.gamemode.getStartTime()) / PROGRAM_DATA["settings"]["ms_between_ticks"]);
     }
@@ -165,12 +113,6 @@ class RemoteClient extends GamemodeClient {
         Method Parameters: None
         Method Description: Handles all operations that happen every tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async tick(){
         if (this.tickInProgressLock.notReady() || !this.isRunning() || this.gamemode.getNumTicks() >= this.getExpectedTicks()){ return; }
@@ -202,12 +144,6 @@ class RemoteClient extends GamemodeClient {
         Method Description: Requests a state from the server
         Method Return: void
     */
-    /*
-        Method Name: requestStateFromServer
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async requestStateFromServer(){
         await this.stateLock.awaitUnlock(true);
         // Send a request and when received then update the last state from server
@@ -220,12 +156,6 @@ class RemoteClient extends GamemodeClient {
         Method Parameters: None
         Method Description: Requests a state from the server
         Method Return: void
-    */
-    /*
-        Method Name: sendLocalPlaneData
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async sendLocalPlaneData(){
         // Check if the client is a freecam or a plane, if a plane then send its current position JSON to server
@@ -244,12 +174,6 @@ class RemoteClient extends GamemodeClient {
         Method Description: Loads the last received state from the server
         Method Return: void
     */
-    /*
-        Method Name: loadStateFromServer
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async loadStateFromServer(){
         // Update the game based on the server's last state
         await this.stateLock.awaitUnlock(true);
@@ -267,12 +191,6 @@ class RemoteClient extends GamemodeClient {
         Method Parameters: None
         Method Description: Determines if the game is over
         Method Return: Boolean
-    */
-    /*
-        Method Name: isGameOver
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isGameOver(){
         return this.gameOver;

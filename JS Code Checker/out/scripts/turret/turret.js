@@ -32,30 +32,6 @@ class Turret {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-             fov1:
-                TODO
-             fov2:
-                TODO
-             rateOfFire:
-                TODO
-             gamemode:
-                TODO
-             bulletHeatCapacity:
-                TODO
-             coolingTimeMS:
-                TODO
-             bulletDamage:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(x, y, fov1, fov2, rateOfFire, gamemode, bulletHeatCapacity, coolingTimeMS, bulletDamage){
         this.x = x;
         this.y = y;
@@ -81,12 +57,6 @@ class Turret {
         Method Return: Float
     */
 
-    /*
-        Method Name: getShootingAngle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getShootingAngle(){
         return this.angle;
     }
@@ -98,14 +68,6 @@ class Turret {
                 A json representation of the turret
         Method Description: Loads information from the json representation
         Method Return: void
-    */
-    /*
-        Method Name: loadImportantData
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     loadImportantData(rep){
         this.shootCD.setTicksLeft(rep["shoot_cd"]);
@@ -119,14 +81,6 @@ class Turret {
         Method Description: Loads decisions from the json representation
         Method Return: void
     */
-    /*
-        Method Name: loadDecisions
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     loadDecisions(rep){
         this.decisions = rep["decisions"];
     }
@@ -139,14 +93,6 @@ class Turret {
         Method Description: Loads information from the json representation on first creation
         Method Return: void
     */
-    /*
-        Method Name: initFromJSON
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     initFromJSON(rep){
         this.loadImportantData(rep);
         this.loadDecisions(rep);
@@ -158,12 +104,6 @@ class Turret {
         Method Parameters: None
         Method Description: Conduct decisions to do each tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         this.shootCD.tick();
@@ -193,12 +133,6 @@ class Turret {
         Method Description: Clear decisions so new decisions reflect current priorities
         Method Return: void
     */
-    /*
-        Method Name: resetDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     resetDecisions(){
         this.decisions["shooting"] = false;
         this.decisions["angle"] = this.getShootingAngle(); // Don't move
@@ -210,12 +144,6 @@ class Turret {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getX(){
         return this.x;
     }
@@ -225,12 +153,6 @@ class Turret {
         Method Parameters: None
         Method Description: Getter
         Method Return: float
-    */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getY(){
         return this.y;
@@ -242,12 +164,6 @@ class Turret {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getXVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getXVelocity(){
         return 0;
     }
@@ -257,12 +173,6 @@ class Turret {
         Method Parameters: None
         Method Description: Getter
         Method Return: float
-    */
-    /*
-        Method Name: getYVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getYVelocity(){
         return 0;
@@ -293,12 +203,6 @@ class Turret {
         Method Parameters: None
         Method Description: Determines if the turret is ready to shoot
         Method Return: true -> ready, false -> not ready
-    */
-    /*
-        Method Name: readyToShoot
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     readyToShoot(){
         return this.shootCD.isReady();

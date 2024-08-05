@@ -15,10 +15,20 @@ class GamemodeRemoteTranslator {
     }
 
     /*
+        TODO:
+            Do this
+            then
+            do that
+    */
+
+    // TODO: Do something else
+
+    /*
         Method Name: getState
         Method Parameters: None
         Method Description: Requests a state from the server. Returns the last received state.
         Method Return: JSON Object representing the state of a Dogfight game
+                TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO 
     */
     async getState(){
         if (this.getStateLock.isReady()){

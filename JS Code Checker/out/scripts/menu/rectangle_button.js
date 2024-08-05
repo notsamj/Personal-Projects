@@ -25,28 +25,6 @@ class RectangleButton extends Component {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            textStr:
-                TODO
-             colour:
-                TODO
-             textColour:
-                TODO
-             x:
-                TODO
-             y:
-                TODO
-             width:
-                TODO
-             height:
-                TODO
-             callBack:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(textStr, colour, textColour, x, y, width, height, callBack){
         super();
         this.textStr = textStr;
@@ -65,12 +43,6 @@ class RectangleButton extends Component {
         Method Description: Determines the text value of this component. Depends on whether it is set as a function or a value.
         Method Return: String
     */
-    /*
-        Method Name: getText
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getText(){
         if (typeof this.textStr === "function"){
             return this.textStr();
@@ -85,14 +57,6 @@ class RectangleButton extends Component {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setText
-        Method Parameters: 
-            textStr:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setText(textStr){
         this.textStr = textStr;
     }
@@ -102,12 +66,6 @@ class RectangleButton extends Component {
         Method Parameters: None
         Method Description: Determines the x value of this component. Depends on whether it is set as a function of the screen dimensions or static.
         Method Return: int
-    */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getX(){
         if (typeof this.x === "function"){
@@ -123,12 +81,6 @@ class RectangleButton extends Component {
         Method Description: Determines the y value of this component. Depends on whether it is set as a function of the screen dimensions or static.
         Method Return: int
     */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getY(){
         if (typeof this.y === "function"){
             return this.y(getScreenHeight());
@@ -142,12 +94,6 @@ class RectangleButton extends Component {
         Method Parameters: None
         Method Description: Determines the width value of this component. Depends on whether it is set as a function of the screen dimensions or static.
         Method Return: int
-    */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getWidth(){
         if (typeof this.width === "function"){
@@ -163,12 +109,6 @@ class RectangleButton extends Component {
         Method Description: Determines the height value of this component. Depends on whether it is set as a function of the screen dimensions or static.
         Method Return: int
     */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getHeight(){
         if (typeof this.height === "function"){
             return this.height(getScreenHeight());
@@ -182,12 +122,6 @@ class RectangleButton extends Component {
         Method Parameters: None
         Method Description: Displays the rectangle on the screen
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         Menu.makeRectangleWithText(this.getText(), this.colour, this.textColour, this.getX(), this.getY(), this.getWidth(), this.getHeight());
@@ -203,16 +137,6 @@ class RectangleButton extends Component {
         Method Description: Determines whether the rectangle covers a point on the screen
         Method Return: boolean, true -> covers, false -> does not cover
     */
-    /*
-        Method Name: covers
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     covers(x, y){
         return x >= this.getX() && x <= this.getX() + this.getWidth() && y <= this.getY() && y >= this.getY() - this.getHeight();
     }
@@ -224,14 +148,6 @@ class RectangleButton extends Component {
                 The menu responsible for the click
         Method Description: Handles what occurs when clicked on
         Method Return: void
-    */
-    /*
-        Method Name: clicked
-        Method Parameters: 
-            instance:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     clicked(instance){
         if (this.isDisabled() || !this.isDisplayEnabled()){ return; }
@@ -245,14 +161,6 @@ class RectangleButton extends Component {
                 A string representing a colour
         Method Description: Setter
         Method Return: void
-    */
-    /*
-        Method Name: setColour
-        Method Parameters: 
-            colour:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setColour(colour){
         this.colour = colour; 

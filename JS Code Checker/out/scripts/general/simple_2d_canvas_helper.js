@@ -18,20 +18,6 @@ class Colour {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            r:
-                TODO
-            g:
-                TODO
-            b:
-                TODO
-            a=1:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(r,g,b,a=1){
         this.red = r;
         this.green = g;
@@ -45,12 +31,6 @@ class Colour {
         Method Description: Getter
         Method Return: Integer in range [0,255]
     */
-    /*
-        Method Name: getRed
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getRed(){
         return this.red;
     }
@@ -61,12 +41,6 @@ class Colour {
         Method Description: Getter
         Method Return: Integer in range [0,255]
     */
-    /*
-        Method Name: getBlue
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBlue(){
         return this.blue;
     }
@@ -76,12 +50,6 @@ class Colour {
         Method Parameters: None
         Method Description: Getter
         Method Return: Integer in range [0,255]
-    */
-    /*
-        Method Name: getGreen
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getGreen(){
         return this.green;
@@ -94,14 +62,6 @@ class Colour {
                 The multiplier to multiply the brightness by
         Method Description: Modifies the brightness of the colour
         Method Return: void
-    */
-    /*
-        Method Name: modifyBrightness
-        Method Parameters: 
-            multiplier:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     modifyBrightness(multiplier){
         this.red = Math.floor(Math.min(255, this.red * multiplier));
@@ -117,14 +77,6 @@ class Colour {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setAlpha
-        Method Parameters: 
-            newAlphaValue:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setAlpha(newAlphaValue){
         this.alpha = newAlphaValue;
     }
@@ -134,12 +86,6 @@ class Colour {
         Method Parameters: None
         Method Description: Creates a string representation of the colour
         Method Return: String
-    */
-    /*
-        Method Name: toString
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toString(){
         return `rgba(${this.red},${this.green},${this.blue},${this.alpha})`
@@ -152,14 +98,6 @@ class Colour {
                 A hexidecimal colour code string. e.g. "#ff00ff" = 255 red 0 blue 255 green 1 alpha
         Method Description: Creates a Colour instance from a colour code
         Method Return: Colour
-    */
-    /*
-        Method Name: fromCode
-        Method Parameters: 
-            code:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static fromCode(code){
         let red = Number("0x" + code.charAt(1) + code.charAt(2));
@@ -175,14 +113,6 @@ class Colour {
                 A Colour instance
         Method Description: Modifies a colour by adding another to it. Does not affect the opacity.
         Method Return: void
-    */
-    /*
-        Method Name: addColour
-        Method Parameters: 
-            colour:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     addColour(colour){
         this.red = Math.min(255, this.red + colour.getRed());
@@ -201,16 +131,6 @@ class Colour {
     Method Description: Translates the origin in 2d
     Method Return: void
 */
-/*
-    Method Name: translate
-    Method Parameters: 
-        x:
-            TODO
-         y:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function translate(x, y){
     drawingContext.translate(x,y);
 }
@@ -222,14 +142,6 @@ function translate(x, y){
             The number of radians to rotate
     Method Description: rotates the origin in 2d
     Method Return: void
-*/
-/*
-    Method Name: rotate
-    Method Parameters: 
-        rads:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function rotate(rads){
     drawingContext.rotate(rads);
@@ -244,16 +156,6 @@ function rotate(rads){
             The y factor to scale
     Method Description: Changes the scale of the canvas drawing context
     Method Return: void
-*/
-/*
-    Method Name: scale
-    Method Parameters: 
-        x:
-            TODO
-         y:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function scale(x, y){
     drawingContext.scale(x,y);
@@ -274,22 +176,6 @@ function scale(x, y){
             The height of the rectangle (pixels)
     Method Description: Creates a rectangle with a stroke border around it
     Method Return: void
-*/
-/*
-    Method Name: strokeRectangle
-    Method Parameters: 
-        colourObject:
-            TODO
-         x:
-            TODO
-         y:
-            TODO
-         width:
-            TODO
-         height:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function strokeRectangle(colourObject, x, y, width, height){
     updateFillColour(colourObject);
@@ -315,22 +201,6 @@ function strokeRectangle(colourObject, x, y, width, height){
     Method Description: Creates a rectangle
     Method Return: void
 */
-/*
-    Method Name: noStrokeRectangle
-    Method Parameters: 
-        colourObject:
-            TODO
-         x:
-            TODO
-         y:
-            TODO
-         width:
-            TODO
-         height:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function noStrokeRectangle(colourObject, x, y, width, height){
     updateFillColour(colourObject);
     drawingContext.beginPath();
@@ -351,20 +221,6 @@ function noStrokeRectangle(colourObject, x, y, width, height){
             The diameter (in pixels) of the circle
     Method Description: Creates a circle with a stroke around it on the canvas
     Method Return: void
-*/
-/*
-    Method Name: strokeCircle
-    Method Parameters: 
-        colourObject:
-            TODO
-         x:
-            TODO
-         y:
-            TODO
-         diameter:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function strokeCircle(colourObject, x, y, diameter){
     updateFillColour(colourObject);
@@ -388,20 +244,6 @@ function strokeCircle(colourObject, x, y, diameter){
     Method Description: Creates a circle on the canvas
     Method Return: void
 */
-/*
-    Method Name: noStrokeCircle
-    Method Parameters: 
-        colourObject:
-            TODO
-         x:
-            TODO
-         y:
-            TODO
-         diameter:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function noStrokeCircle(colourObject, x, y, diameter){
     updateFillColour(colourObject);
     drawingContext.beginPath();
@@ -417,14 +259,6 @@ function noStrokeCircle(colourObject, x, y, diameter){
     Method Description: Updates the current font size / text size of the drawing context
     Method Return: void
 */
-/*
-    Method Name: updateFontSize
-    Method Parameters: 
-        newTextSize:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function updateFontSize(newTextSize){
     drawingContext.font = newTextSize.toString() + "px " + PROGRAM_DATA["ui"]["font_family"];
 }
@@ -437,14 +271,6 @@ function updateFontSize(newTextSize){
     Method Description: Calculates the pixel width of a piece of text with the given font & font size
     Method Return: Integer
 */
-/*
-    Method Name: measureTextWidth
-    Method Parameters: 
-        line:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function measureTextWidth(line){
     return drawingContext.measureText(line).width;
 }
@@ -456,14 +282,6 @@ function measureTextWidth(line){
             A Colour instance
     Method Description: Updates the current fill colour of the drawing context
     Method Return: void
-*/
-/*
-    Method Name: updateFillColour
-    Method Parameters: 
-        colourObject:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function updateFillColour(colourObject){
     drawingContext.fillStyle = colourObject.toString();
@@ -492,30 +310,6 @@ function updateFillColour(colourObject){
             A string specifing the vertical alignment of the text
     Method Description: Creates text on the screen
     Method Return: void
-*/
-/*
-    Method Name: makeText
-    Method Parameters: 
-        textStr:
-            TODO
-         screenX:
-            TODO
-         screenY:
-            TODO
-         boxWidth:
-            TODO
-         boxHeight:
-            TODO
-         textColour:
-            TODO
-         textSize:
-            TODO
-         alignLR:
-            TODO
-         alignTB:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function makeText(textStr, screenX, screenY, boxWidth, boxHeight, textColour, textSize, alignLR, alignTB){
     updateFontSize(textSize);
@@ -549,18 +343,6 @@ function makeText(textStr, screenX, screenY, boxWidth, boxHeight, textColour, te
     Method Description: Displays an image on the screen
     Method Return: void
 */
-/*
-    Method Name: displayImage
-    Method Parameters: 
-        image:
-            TODO
-         x:
-            TODO
-         y:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function displayImage(image, x, y){
     drawingContext.drawImage(image, x, y);
 }
@@ -571,12 +353,6 @@ function displayImage(image, x, y){
     Method Description: Gets the screen width modified by the zoom setting
     Method Return: Integer
 */
-/*
-    Method Name: getZoomedScreenWidth
-    Method Parameters: None
-    Method Description: TODO
-    Method Return: TODO
-*/
 function getZoomedScreenWidth(){
     return Math.ceil(getScreenWidth() / gameZoom);
 }
@@ -586,12 +362,6 @@ function getZoomedScreenWidth(){
     Method Parameters: None
     Method Description: Gets the screen height modified by the zoom setting
     Method Return: Integer
-*/
-/*
-    Method Name: getZoomedScreenHeight
-    Method Parameters: None
-    Method Description: TODO
-    Method Return: TODO
 */
 function getZoomedScreenHeight(){
     return Math.ceil(getScreenHeight() / gameZoom);

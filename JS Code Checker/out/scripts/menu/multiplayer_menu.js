@@ -9,12 +9,6 @@ class MultiplayerMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.setup();
@@ -27,12 +21,6 @@ class MultiplayerMenu extends Menu {
         Method Parameters: None
         Method Description: Sets up the interface
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         // Background
@@ -93,12 +81,6 @@ class MultiplayerMenu extends Menu {
         Method Description: Finds out about active games from the server
         Method Return: void
     */
-    /*
-        Method Name: refresh
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async refresh(){
         // Disable the button so it can't be clicked until refresh is complete. And show it as grey
         this.refreshButton.disable();
@@ -126,14 +108,6 @@ class MultiplayerMenu extends Menu {
         Method Description: Updates the screen repeting on the server's response to a refresh request 
         Method Return: void
     */
-    /*
-        Method Name: updateScreen
-        Method Parameters: 
-            response:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     updateScreen(response){
         this.joinWindow.hide();
         let availableToHost = response["server_free"];
@@ -152,12 +126,6 @@ class MultiplayerMenu extends Menu {
         Method Parameters: None
         Method Description: Tries to join the game
         Method Return: void
-    */
-    /*
-        Method Name: join
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async join(){
         console.log(this.hostLock.isLocked(), this.joinLock.isLocked())
@@ -193,14 +161,6 @@ class JoinWindow {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            menuInstance:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(menuInstance){
         this.setup(menuInstance);
     }
@@ -212,14 +172,6 @@ class JoinWindow {
                 The instance of the multiplayer menu
         Method Description: Sets up a join window
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: 
-            menuInstance:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(menuInstance){
         let windowSizeX = 600;
@@ -249,12 +201,6 @@ class JoinWindow {
         Method Description: Hides the join window
         Method Return: void
     */
-    /*
-        Method Name: hide
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hide(){
         this.joinButton.disableDisplay();
         this.serverDetails.disableDisplay();
@@ -267,14 +213,6 @@ class JoinWindow {
                 Response from the server to refresh request
         Method Description: Enables the display of the join window
         Method Return: void
-    */
-    /*
-        Method Name: show
-        Method Parameters: 
-            serverResponse:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     show(serverResponse){
         if (!serverResponse["game_in_progress"]){

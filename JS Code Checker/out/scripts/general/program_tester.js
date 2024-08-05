@@ -13,12 +13,6 @@ class ProgramTester {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.outputEnablers = new NotSamLinkedList();
         this.values = new NotSamLinkedList();
@@ -31,14 +25,6 @@ class ProgramTester {
                 Name of the output enabler to find
         Method Description: Finds an output enabler and returns it
         Method Return: OutputEnabler
-    */
-    /*
-        Method Name: getOutputEnabler
-        Method Parameters: 
-            enablerName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getOutputEnabler(enablerName){
         for (let [outputEnabler, index] of this.outputEnablers){
@@ -57,14 +43,6 @@ class ProgramTester {
         Method Description: Determines if an output enabler with a given name exists
         Method Return: Boolean
     */
-    /*
-        Method Name: hasOutputEnabler
-        Method Parameters: 
-            enablerName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasOutputEnabler(enablerName){
         return this.getOutputEnabler(enablerName) != null;
     }
@@ -76,14 +54,6 @@ class ProgramTester {
                 Name of the output enabler to create or find
         Method Description: Creates or finds an output enabler
         Method Return: OutputEnabler
-    */
-    /*
-        Method Name: getOrCreateOutputEnabler
-        Method Parameters: 
-            enablerName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getOrCreateOutputEnabler(enablerName){
         let outputEnabler;
@@ -103,14 +73,6 @@ class ProgramTester {
         Method Description: Enabes an output enabler
         Method Return: void
     */
-    /*
-        Method Name: enableOutput
-        Method Parameters: 
-            enablerName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     enableOutput(enablerName){
         let outputEnabler = this.getOrCreateOutputEnabler(enablerName);
         outputEnabler.enable();
@@ -126,16 +88,6 @@ class ProgramTester {
         Method Description: Try to output a value if a certain output enabler is enabled. The function then disables the output enabler.
         Method Return: void
     */
-    /*
-        Method Name: tryToOutput
-        Method Parameters: 
-            enablerName:
-                TODO
-             value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     tryToOutput(enablerName, value){
         let outputEnabler = this.getOrCreateOutputEnabler(enablerName);
         if (outputEnabler.isDisabled()){ return; }
@@ -150,14 +102,6 @@ class ProgramTester {
                 The name of the value to find
         Method Description: Finds a value that matches the name provided
         Method Return: ValueAnalysis
-    */
-    /*
-        Method Name: getValue
-        Method Parameters: 
-            valueName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getValue(valueName){
         for (let [value, index] of this.values){
@@ -176,14 +120,6 @@ class ProgramTester {
         Method Description: Determines if an value with a given name exists
         Method Return: Boolean
     */
-    /*
-        Method Name: hasValue
-        Method Parameters: 
-            valueName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasValue(valueName){
         return this.getValue(valueName) != null;
     }
@@ -195,14 +131,6 @@ class ProgramTester {
                 Name of the value to create or find
         Method Description: Creates or finds a value
         Method Return: ValueAnalysis
-    */
-    /*
-        Method Name: getOrCreateValue
-        Method Parameters: 
-            valueName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getOrCreateValue(valueName){
         let value;
@@ -225,16 +153,6 @@ class ProgramTester {
         Method Description: Records a new value with a given value name
         Method Return: void
     */
-    /*
-        Method Name: recordValue
-        Method Parameters: 
-            valueName:
-                TODO
-             value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     recordValue(valueName, value){
         let valueAnalysis = this.getOrCreateValue(valueName);
         valueAnalysis.record(value);
@@ -252,14 +170,6 @@ class ValueAnalysis {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            name:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(name){
         this.name = name;
         this.lastValue = null;
@@ -273,12 +183,6 @@ class ValueAnalysis {
         Method Description: Getter
         Method Return: String
     */
-    /*
-        Method Name: getName
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getName(){ return this.name; }
 
     /*
@@ -288,14 +192,6 @@ class ValueAnalysis {
                 A value to record (Number)
         Method Description: Records a value and the time at which it was received
         Method Return: void
-    */
-    /*
-        Method Name: record
-        Method Parameters: 
-            value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     record(value){
         this.times.push(Date.now());
@@ -312,12 +208,6 @@ class ValueAnalysis {
         Method Description: Prints information about the value
         Method Return: void
     */
-    /*
-        Method Name: print
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     print(){
         let mean = this.mean();
         let median = this.median();
@@ -331,12 +221,6 @@ class ValueAnalysis {
         Method Parameters: None
         Method Description: Determines the mean value collected
         Method Return: Number
-    */
-    /*
-        Method Name: mean
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     mean(){
         let sum = 0;
@@ -352,12 +236,6 @@ class ValueAnalysis {
         Method Description: Determines the median value collected
         Method Return: Number
     */
-    /*
-        Method Name: median
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     median(){
         if (this.differences.length == 0){ return null; }
         let sorted = copyArray(this.differences).sort();
@@ -369,12 +247,6 @@ class ValueAnalysis {
         Method Parameters: None
         Method Description: Determines the maximum value collected
         Method Return: Number
-    */
-    /*
-        Method Name: max
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     max(){
         let maxValue = null;
@@ -391,12 +263,6 @@ class ValueAnalysis {
         Method Parameters: None
         Method Description: Determines the minimum value collected
         Method Return: Number
-    */
-    /*
-        Method Name: min
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     min(){
         let minValue = null;
@@ -420,14 +286,6 @@ class OutputEnabler {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            name:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(name){
         this.name = name;
         this.outputLock = new Lock();
@@ -440,12 +298,6 @@ class OutputEnabler {
         Method Description: Getter
         Method Return: String
     */
-    /*
-        Method Name: getName
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getName(){
         return this.name;
     }
@@ -455,12 +307,6 @@ class OutputEnabler {
         Method Parameters: None
         Method Description: Determines if the output enabled is enabled
         Method Return: Boolean
-    */
-    /*
-        Method Name: isEnabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isEnabled(){
         return this.outputLock.isUnlocked();
@@ -472,12 +318,6 @@ class OutputEnabler {
         Method Description: Determines if the output enabled is disabled
         Method Return: Boolean
     */
-    /*
-        Method Name: isDisabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isDisabled(){
         return !this.isEnabled();
     }
@@ -488,12 +328,6 @@ class OutputEnabler {
         Method Description: Disables the output enabler
         Method Return: void
     */
-    /*
-        Method Name: disable
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     disable(){
         this.outputLock.lock();
     }
@@ -503,12 +337,6 @@ class OutputEnabler {
         Method Parameters: None
         Method Description: Enables the output enabler
         Method Return: void
-    */
-    /*
-        Method Name: enable
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     enable(){
         this.outputLock.unlock();

@@ -92,10 +92,12 @@ function isPrecededBy(sourceString, characterIndex, subString){
 	return true;
 }
 
+/*
+TODO: Remove I think this has some issues
 function isPrecededByIgnoreWhiteSpace(sourceString, characterIndex, subString){
 	let whiteSpace = /\s/;
 	if (characterIndex < subString.length){ return false; }
-	let j = 0;
+	let j = 1;
 	let wsCount = 0;
 	for (let i = characterIndex - 1; i >= characterIndex - subString.length - wsCount; i--){
 		// Ignore white space
@@ -109,6 +111,31 @@ function isPrecededByIgnoreWhiteSpace(sourceString, characterIndex, subString){
 		j++;
 	}
 	return true;
+}
+*/
+function isPrecededByIgnoreWhiteSpace(sourceString, characterIndex, subString){
+	let whiteSpace = /\s/;
+	let i = characterIndex - 1;
+	let matchCount = 0;
+	let requiredMatches = subString.length;
+	while (i >= 0){
+		let currentCharacter = sourceString[i];
+		let isWhiteSpace = whiteSpace.test(currentCharacter);
+		if (isWhiteSpace){
+			i--;
+			continue;
+		}
+		// If the character does not match then it doesn't precede
+		if (currentCharacter != subString[subString.length - 1 - matchCount]){
+			return false;
+		}
+		matchCount++;
+		if (matchCount == requiredMatches){
+			return true;
+		}
+		i--;
+	}
+	return false;
 }
 
 function searchForSubstringInStringAfter(subString, sourceString, startPoint){
@@ -159,7 +186,7 @@ function collectCharactersUntilMeetingChar(sourceString, charIndex, charToLookFo
 
 function collectCharactersUntilMeetingStr(sourceString, characterIndex, str){
 	let subString = "";
-	for (let i = charIndex; i < sourceString.length - str.length + 1; i++){
+	for (let i = characterIndex; i < sourceString.length - str.length + 1; i++){
 		let meetingStr = true;
 		for (let j = i; j < i + str.length; j++){
 			if (sourceString[j] != str[j-i]){
@@ -179,7 +206,7 @@ function countOccurancesOfSubString(sourceString, subString){
 	let occurances = 0;
 	for (let i = 0; i < sourceString.length - subString.length + 1; i++){
 		let match = true;
-		for (let j = 0; j < i + subString.length; j++){
+		for (let j = i; j < i + subString.length; j++){
 			if (sourceString[j] != subString[j-i]){
 				match = false;
 				break;

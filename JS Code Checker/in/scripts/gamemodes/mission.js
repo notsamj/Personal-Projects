@@ -411,6 +411,10 @@ class Mission extends Gamemode {
         return buildings;
     }
 }
+
+function myTestFunction(a, b, c){
+    return a + b * c;
+}
 // If using NodeJS -> Export the class
 if (typeof window === "undefined"){
     module.exports=Mission;

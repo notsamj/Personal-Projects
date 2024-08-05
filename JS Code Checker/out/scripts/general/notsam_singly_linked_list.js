@@ -16,14 +16,6 @@ class NotSamSinglyLinkedList {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            array=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(array=null){
         this.head = null;
         if (array != null){
@@ -38,14 +30,6 @@ class NotSamSinglyLinkedList {
                 An array used to initialize the data for this list
         Method Description: Adds all elements from array to the list
         Method Return: void
-    */
-    /*
-        Method Name: convertFromArray
-        Method Parameters: 
-            array:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     convertFromArray(array){
         for (let i = 0; i < array.length; i++){
@@ -62,14 +46,6 @@ class NotSamSinglyLinkedList {
      *   This method inserts a value into the end of the list.
      *   Method Return: None
      */
-    /*
-        Method Name: append
-        Method Parameters: 
-            value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     append(value){
         this.insert(value);
     }
@@ -134,14 +110,6 @@ class NotSamSinglyLinkedList {
      *   This method inserts a value into the end of the list.
      *   Method Return: None
      */
-    /*
-        Method Name: push
-        Method Parameters: 
-            element:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     push(element){ this.insert(element); }
     
     /*
@@ -151,12 +119,6 @@ class NotSamSinglyLinkedList {
      *   This method calculates then returns the size of the list.
      *   Method Return: int (Size of the list)
      */
-    /*
-        Method Name: getSize
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getSize(){
         let current = this.head;
         let size = 0;
@@ -175,12 +137,6 @@ class NotSamSinglyLinkedList {
      *   This method calculates then returns the size of the list.
      *   Method Return: int (Size of the list)
      */
-    /*
-        Method Name: getLength
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLength(){
         return this.getSize();
     }
@@ -192,12 +148,6 @@ class NotSamSinglyLinkedList {
      *   This method prints every element in the list
      *   Method Return: None
      */
-    /*
-        Method Name: print
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     print(){
         if (this.getSize() == 0){
             console.log("List Empty --> cannot print!!");
@@ -223,14 +173,6 @@ class NotSamSinglyLinkedList {
      *   This method returns a value from the list.
      *   Method Return: double
      */
-    /*
-        Method Name: get
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     get(index){
         let node = this.getNode(index);
         return node.value;
@@ -245,14 +187,6 @@ class NotSamSinglyLinkedList {
      *   This method returns a value from the list.
      *   Method Return: SLLNode
      */
-    /*
-        Method Name: getNode
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNode(index){
         // If the index is out of bounds
         if (this.getSize() < index + 1 || index < 0){
@@ -278,14 +212,6 @@ class NotSamSinglyLinkedList {
         Method Description: Check if the linked list includes a value
         Method Return: boolean, true -> list has the value, false -> list does NOT have the value
     */
-    /*
-        Method Name: has
-        Method Parameters: 
-            e:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     has(e){
         return (this.search(e) != -1);
     }
@@ -297,14 +223,6 @@ class NotSamSinglyLinkedList {
                 Value to be checked
         Method Description: Search the linked list for a value and return the index found (-1 if not found)
         Method Return: int
-    */
-    /*
-        Method Name: search
-        Method Parameters: 
-            e:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     search(e){
         let index = -1;
@@ -329,14 +247,6 @@ class NotSamSinglyLinkedList {
         Method Description: Remove the element @ index {index}
         Method Return: void
     */
-    /*
-        Method Name: remove
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     remove(index){
         if (!((index >= 0 && index < this.getSize()))){
             return;
@@ -360,16 +270,6 @@ class NotSamSinglyLinkedList {
         Method Description: Put value into position {index}
         Method Return: void
     */
-    /*
-        Method Name: set
-        Method Parameters: 
-            index:
-                TODO
-             value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     set(index, value){
         let node = this.getNode(index);
         node.value = value;
@@ -380,12 +280,6 @@ class NotSamSinglyLinkedList {
         Method Parameters: None
         Method Description: Determine if the array list is empty
         Method Return: boolean, true -> empty, false -> not empty
-    */
-    /*
-        Method Name: isEmpty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isEmpty(){
         return this.getSize() == 0;
@@ -398,14 +292,6 @@ class NotSamSinglyLinkedList {
                 Index at which to pop the element
         Method Description: Remove the element and return it
         Method Return: Object (Unknown type)
-    */
-    /*
-        Method Name: pop
-        Method Parameters: 
-            index:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     pop(index){
         if (!((index >= 0 && index < this.getSize()))){
@@ -437,12 +323,6 @@ class NotSamSinglyLinkedList {
         Method Parameters: None
         Method Description: Get the last node from the list
         Method Return: void
-    */
-    /*
-        Method Name: getLastNode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getLastNode(){
         if (this.isEmpty()){ return; }

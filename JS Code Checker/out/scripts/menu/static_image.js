@@ -19,22 +19,6 @@ class StaticImage extends Component {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            image:
-                TODO
-             x:
-                TODO
-             y:
-                TODO
-             maxWidth=null:
-                TODO
-             maxHeight=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(image, x, y, maxWidth=null, maxHeight=null){
         super();
         this.image = image;
@@ -51,12 +35,6 @@ class StaticImage extends Component {
         Method Description: Gets the max width if it exists, otherwise gets current width
         Method Return: int
     */
-    /*
-        Method Name: getMaxWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMaxWidth(){
         if (this.maxWidth == null){
             return this.getWidth();
@@ -70,12 +48,6 @@ class StaticImage extends Component {
         Method Description: Gets the max height if it exists, otherwise gets current height
         Method Return: int
     */
-    /*
-        Method Name: getMaxHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMaxHeight(){
         if (this.maxWidth == null){
             return this.getHeight();
@@ -88,12 +60,6 @@ class StaticImage extends Component {
         Method Parameters: None
         Method Description: Determines the x value of this component. Depends on whether it is set as a function of the screen dimensions or static.
         Method Return: int
-    */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getX(){
         if (typeof this.x === "function"){
@@ -109,12 +75,6 @@ class StaticImage extends Component {
         Method Description: Determines the y value of this component. Depends on whether it is set as a function of the screen dimensions or static.
         Method Return: int
     */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getY(){
         if (typeof this.y === "function"){
             return this.y(getScreenHeight());
@@ -129,12 +89,6 @@ class StaticImage extends Component {
         Method Description: Getter
         Method Return: int
     */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getWidth(){
         return this.image.width;
     }
@@ -144,12 +98,6 @@ class StaticImage extends Component {
         Method Parameters: None
         Method Description: Getter
         Method Return: int
-    */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getHeight(){
         return this.image.height;
@@ -163,14 +111,6 @@ class StaticImage extends Component {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setImage
-        Method Parameters: 
-            image:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setImage(image){
         this.image = image;
     }
@@ -182,14 +122,6 @@ class StaticImage extends Component {
                 The x location of the top left corner
         Method Description: Setter
         Method Return: void
-    */
-    /*
-        Method Name: setX
-        Method Parameters: 
-            x:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setX(x){
         this.x = x;
@@ -203,14 +135,6 @@ class StaticImage extends Component {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setY
-        Method Parameters: 
-            y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setY(y){
         this.y = y;
     }
@@ -221,12 +145,6 @@ class StaticImage extends Component {
         Method Description: Getter
         Method Return: Image
     */
-    /*
-        Method Name: getImage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getImage(){
         return this.image;
     }
@@ -236,12 +154,6 @@ class StaticImage extends Component {
         Method Parameters: None
         Method Description: Display the image on the screen
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         if (!this.isDisplayEnabled()){ return; }
@@ -276,16 +188,6 @@ class StaticImage extends Component {
         Method Description: Determines whether the image covers a point on the screen
         Method Return: boolean, true -> covers, false -> does not cover
     */
-    /*
-        Method Name: covers
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     covers(x, y){
         return x >= this.getX() && x <= this.getX() + this.getMaxWidth() && y <= this.getY() && y >= this.getY() - this.getMaxHeight();
     }
@@ -298,14 +200,6 @@ class StaticImage extends Component {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setOnClick
-        Method Parameters: 
-            func:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setOnClick(func){
         this.onClick = func;
     }
@@ -315,12 +209,6 @@ class StaticImage extends Component {
         Method Parameters: None
         Method Description: Calls the onClick handler function
         Method Return: void
-    */
-    /*
-        Method Name: clicked
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     clicked(){
         if (this.onClick == null){ return; }

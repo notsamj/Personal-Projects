@@ -30,12 +30,6 @@ class Propeller {
         Method Description: Determine the x location of the propeller
         Method Return: Number
     */
-    /*
-        Method Name: getInterpolatedX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getInterpolatedX(){
         let planeAngleRAD = this.plane.getInterpolatedAngle();
         let rotatedX = Math.cos(planeAngleRAD) * (this.xOffset * (this.plane.isFacingRight() ? 1 : -1)) - Math.sin(planeAngleRAD) * this.yOffset + this.plane.getInterpolatedX();
@@ -47,12 +41,6 @@ class Propeller {
         Method Parameters: None
         Method Description: Determine the y location of the propeller
         Method Return: Number
-    */
-    /*
-        Method Name: getInterpolatedY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getInterpolatedY(){
         let planeAngleRAD = this.plane.getInterpolatedAngle();
@@ -71,18 +59,6 @@ class Propeller {
                 The time used to interpolate the positions of the planes
         Method Description: Displays a plane on the screen (if it is within the bounds)
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-             displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(lX, bY, displayTime){
         let rX = lX + getZoomedScreenWidth() - 1;

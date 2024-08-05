@@ -9,12 +9,6 @@ class MenuManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
     }
 
@@ -45,12 +39,6 @@ class MenuManager {
         Method Description: Determine the width of the screen
         Method Return: void
     */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getWidth(){
         return getScreenWidth();
     }
@@ -60,12 +48,6 @@ class MenuManager {
         Method Parameters: None
         Method Description: Determine the height of the screen
         Method Return: void
-    */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getHeight(){
         return getScreenHeight();
@@ -77,12 +59,6 @@ class MenuManager {
         Method Description: Determine if there is an active menu displayed
         Method Return: Boolean
     */
-    /*
-        Method Name: hasActiveMenu
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasActiveMenu(){
         return this.activeMenu != null;
     }
@@ -92,12 +68,6 @@ class MenuManager {
         Method Parameters: None
         Method Description: Display the active menu on the screen and temporary messages
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         if (!this.hasActiveMenu()){ return; }
@@ -123,16 +93,6 @@ class MenuManager {
         Method Description: Handles the event of a user click
         Method Return: void
     */
-    /*
-        Method Name: click
-        Method Parameters: 
-            screenX:
-                TODO
-             screenY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     click(screenX, screenY){
         if (!this.hasActiveMenu()){ return; }
         this.activeMenu.click(screenX, this.changeFromScreenY(screenY));
@@ -146,14 +106,6 @@ class MenuManager {
         Method Description: Converts a screen y to a game y
         Method Return: int
     */
-    /*
-        Method Name: changeFromScreenY
-        Method Parameters: 
-            y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     changeFromScreenY(y){
         return this.getHeight() - y;
     }
@@ -166,14 +118,6 @@ class MenuManager {
         Method Description: Converts a game y to a screen y
         Method Return: int
     */
-    /*
-        Method Name: changeToScreenY
-        Method Parameters: 
-            y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     changeToScreenY(y){ return this.changeFromScreenY(y); }
 
     /*
@@ -181,12 +125,6 @@ class MenuManager {
         Method Parameters: None
         Method Description: Sets up listeners for clicks and escape
         Method Return: void
-    */
-    /*
-        Method Name: setupClickListener
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     static setupClickListener(){
         document.getElementById("canvas").addEventListener("click", (event) => {
@@ -205,12 +143,6 @@ class MenuManager {
         Method Description: Called when focus is lost and launches the pause menu
         Method Return: void
     */
-    /*
-        Method Name: lostFocus
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     lostFocus(){
         if (!this.hasActiveMenu()){
             this.switchTo("pauseMenu");
@@ -222,12 +154,6 @@ class MenuManager {
         Method Parameters: None
         Method Description: Called when escape key is pressed and launches the pause menu (or gets away from it)
         Method Return: void
-    */
-    /*
-        Method Name: escapeKey
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     escapeKey(){
         if (this.activeMenu == this.pauseMenu){
@@ -244,14 +170,6 @@ class MenuManager {
                 String, name of new menu
         Method Description: Switches to desired menu
         Method Return: void
-    */
-    /*
-        Method Name: switchTo
-        Method Parameters: 
-            newMenu:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     switchTo(newMenu){
         if (newMenu == "main"){
@@ -292,14 +210,6 @@ class MenuManager {
         Method Description: Gets a menu instance by its name
         Method Return: Menu
     */
-    /*
-        Method Name: getMenuByName
-        Method Parameters: 
-            menuName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMenuByName(menuName){
         if (menuName == "main"){
             return this.mainMenu;
@@ -338,18 +248,6 @@ class MenuManager {
         Method Description: Adds a temporary message onto the screen
         Method Return: void
     */
-    /*
-        Method Name: addTemporaryMessage
-        Method Parameters: 
-            message:
-                TODO
-             colour:
-                TODO
-             timeMS=Infinity:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addTemporaryMessage(message, colour, timeMS=Infinity){
         this.temporaryMessages.add(new TemporaryMessage(message, colour, timeMS));
     }
@@ -366,18 +264,6 @@ class TemporaryMessage {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            message:
-                TODO
-             colour:
-                TODO
-             timeMS:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(message, colour, timeMS){
         this.message = message;
         this.colour = colour;
@@ -391,12 +277,6 @@ class TemporaryMessage {
         Method Description: Displays the message on the screen
         Method Return: void
     */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(){
         Menu.makeText(this.message, this.colour, 0, getScreenHeight(), getScreenWidth(), getScreenHeight(), "center", "middle");
     }
@@ -406,12 +286,6 @@ class TemporaryMessage {
         Method Parameters: None
         Method Description: Checks if the message is expired
         Method Return: Boolean
-    */
-    /*
-        Method Name: isExpired
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isExpired(){
         return this.expiryLock.isReady();

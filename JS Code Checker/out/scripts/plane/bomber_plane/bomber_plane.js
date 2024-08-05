@@ -22,18 +22,6 @@ class BomberPlane extends Plane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             autonomous:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, gamemode, autonomous){
         super(planeClass, gamemode, autonomous);
         this.decisions["bombing"] = false;
@@ -50,12 +38,6 @@ class BomberPlane extends Plane {
         Method Description: Calculate how far the bomb will travel (in x) while falling
         Method Return: float
     */
-    /*
-        Method Name: getBombHitX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBombHitX(){
         return this.x + this.getBombXAirTravel() * (this.isFacingRight() ? 1 : -1);
     }
@@ -65,12 +47,6 @@ class BomberPlane extends Plane {
         Method Parameters: None
         Method Description: Calculate how far the bomb will travel (in x) while falling
         Method Return: float
-    */
-    /*
-        Method Name: getBombXAirTravel
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getBombXAirTravel(){
         // If the plane is at/below ground don't bother with computation
@@ -97,12 +73,6 @@ class BomberPlane extends Plane {
         Method Description: Calculate the the initial y velocity of the bomb
         Method Return: float
     */
-    /*
-        Method Name: bombInitialYVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     bombInitialYVelocity(){
         return this.getYVelocity() + PROGRAM_DATA["bomb_data"]["initial_y_velocity"]; 
     }
@@ -114,14 +84,6 @@ class BomberPlane extends Plane {
                 A Json representation of the plane sent by the server
         Method Description: Loads important data received from the server
         Method Return: void
-    */
-    /*
-        Method Name: loadImportantData
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     loadImportantData(rep){
         // This is always local being received from the server
@@ -141,14 +103,6 @@ class BomberPlane extends Plane {
         Method Description: Loads important decisions received from the server
         Method Return: void
     */
-    /*
-        Method Name: loadDecisions
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     loadDecisions(rep){
         this.decisions["bombing"] = rep["decisions"]["bombing"];
         for (let i = 0; i < this.guns.length; i++){
@@ -161,12 +115,6 @@ class BomberPlane extends Plane {
         Method Parameters: None
         Method Description: Calculates the location of the gun on the x axis. Takes into account the angle of the attached plane and its offset.
         Method Return: float
-    */
-    /*
-        Method Name: getBombBayX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getBombBayX(){
         let planeAngleRAD = this.getNoseAngle();
@@ -183,12 +131,6 @@ class BomberPlane extends Plane {
         Method Description: Calculates the location of the gun on the y axis. Takes into account the angle of the attached plane and its offset.
         Method Return: float
     */
-    /*
-        Method Name: getBombBayY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBombBayY(){
         let planeAngleRAD = this.getNoseAngle();
         if (!this.isFacingRight()){
@@ -204,12 +146,6 @@ class BomberPlane extends Plane {
         Method Description: Drops a bomb from the bomber
         Method Return: void
     */
-    /*
-        Method Name: dropBomb
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     dropBomb(){
         this.gamemode.getSoundManager().play("bomb", this.getX(), this.getY());
         this.gamemode.getTeamCombatManager().addBomb(new Bomb(this.getBombBayX(), this.getBombBayY(), this.gamemode, this.getXVelocity(), this.getYVelocity(), this.gamemode.getNumTicks(), this.planeClass));
@@ -222,14 +158,6 @@ class BomberPlane extends Plane {
                 The current time in miliseconds
         Method Description: Display the HUD of the bomber plane
         Method Return: void
-    */
-    /*
-        Method Name: displayHUD
-        Method Parameters: 
-            displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     displayHUD(displayTime){
         let i = 0;
@@ -250,18 +178,6 @@ class BomberPlane extends Plane {
                 The time used to interpolate the positions of the planes
         Method Description: Displays a bomber plane on the screen (if it is within the bounds)
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-             displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(lX, bY, displayTime){
         let rX = lX + getZoomedScreenWidth() - 1;

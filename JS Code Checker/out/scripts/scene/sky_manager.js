@@ -11,14 +11,6 @@ class SkyManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            scene:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(scene){
         this.cloudClusters = new NotSamLinkedList();
         this.scene = scene;
@@ -36,12 +28,6 @@ class SkyManager {
         Method Description: Calculates the brightness of the sky
         Method Return: Number
     */
-    /*
-        Method Name: getSkyBrightness
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getSkyBrightness(){
         return 1 - Math.abs(PROGRAM_DATA["sky_generation"]["current_hour"] - 12) / 12;
     }
@@ -51,12 +37,6 @@ class SkyManager {
         Method Parameters: None
         Method Description: Determines the sky tint
         Method Return: Colour
-    */
-    /*
-        Method Name: getSkyTint
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getSkyTint(){
         let currentHour = PROGRAM_DATA["sky_generation"]["current_hour"];
@@ -83,16 +63,6 @@ class SkyManager {
         Method Description: Displays the sky and clouds
         Method Return: void
     */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(lX, bY){
         this.displaySky();
         this.displayClouds(lX, bY);
@@ -107,12 +77,6 @@ class SkyManager {
                 The bottom left y displayed on the canvas relative to the focused entity
         Method Description: Displays the sky
         Method Return: void
-    */
-    /*
-        Method Name: displaySky
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     displaySky(){
         // Fill the entire screen with the sky background
@@ -177,16 +141,6 @@ class SkyManager {
         Method Description: Displays clouds in the 1-4 quadrants shown on screen.
         Method Return: void
     */
-    /*
-        Method Name: displayClouds
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     displayClouds(lX, bY){
         let rX = lX + getZoomedScreenWidth() - 1;
         let tY = bY + getZoomedScreenHeight() - 1;
@@ -223,16 +177,6 @@ class SkyManager {
         Method Description: Finds a cloud cluster with the given identifiers and return it
         Method Return: CloudCluster
     */
-    /*
-        Method Name: getCloudCluster
-        Method Parameters: 
-            quadrantX:
-                TODO
-             quadrantY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getCloudCluster(quadrantX, quadrantY){
         let cC = null;
         // Find the Cloud Cluster if it exists
@@ -259,16 +203,6 @@ class SkyManager {
                 The bottom left y displayed on the canvas relative to the focused entity
         Method Description: Deletes all clusters that are a sufficient distance from the area currently being shown on screen
         Method Return: void
-    */
-    /*
-        Method Name: deleteFarClusters
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     deleteFarClusters(lX, bY){
         let cX = lX + 0.5 * getZoomedScreenWidth();
@@ -303,18 +237,6 @@ class CloudCluster {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            quadrantX:
-                TODO
-             quadrantY:
-                TODO
-             scene:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(quadrantX, quadrantY, scene){
         this.quadrantX = quadrantX;
         this.quadrantY = quadrantY;
@@ -328,12 +250,6 @@ class CloudCluster {
         Method Description: Getter
         Method Return: Integer
     */
-    /*
-        Method Name: getQuadrantX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getQuadrantX(){
         return this.quadrantX;
     }
@@ -343,12 +259,6 @@ class CloudCluster {
         Method Parameters: None
         Method Description: Getter
         Method Return: Integer
-    */
-    /*
-        Method Name: getQuadrantY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getQuadrantY(){
         return this.quadrantY;
@@ -361,14 +271,6 @@ class CloudCluster {
                 A scene to put the cloud sin
         Method Description: Creates many cloud objects
         Method Return: void
-    */
-    /*
-        Method Name: createClouds
-        Method Parameters: 
-            scene:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     createClouds(scene){
         let leftX = this.quadrantX * PROGRAM_DATA["sky_generation"]["cloud_generation"]["cloud_cluster_width"];
@@ -398,16 +300,6 @@ class CloudCluster {
         Method Description: Displays all the clouds in the cluster
         Method Return: void
     */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(lX, bY){
         for (let cloud of this.clouds){
             cloud.display(lX, bY);
@@ -430,16 +322,6 @@ class Cloud {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            circles:
-                TODO
-             scene:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(circles, scene){
         this.circles = circles;
         this.scene = scene;
@@ -454,16 +336,6 @@ class Cloud {
                 The bottom left y displayed on the canvas relative to the focused entity
         Method Description: Displays all the circles in the cloud.
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(lX, bY){
         for (let circleObject of this.circles){
@@ -489,20 +361,6 @@ class Cloud {
                 The scene that the clouds are apart of
         Method Description: Creates a cirlce object given x, y, random number generator
         Method Return: Cloud
-    */
-    /*
-        Method Name: create
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-             random:
-                TODO
-             scene:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static create(x, y, random, scene){
         let circles = [];

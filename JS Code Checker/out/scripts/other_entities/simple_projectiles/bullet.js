@@ -32,30 +32,6 @@ class Bullet extends SimpleProjectile {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-             gamemode:
-                TODO
-             xVelocity:
-                TODO
-             yVelocity:
-                TODO
-             angleRAD:
-                TODO
-             shooterID:
-                TODO
-             shooterClass:
-                TODO
-             bulletDamage:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(x, y, gamemode, xVelocity, yVelocity, angleRAD, shooterID, shooterClass, bulletDamage){
         super(x, y, gamemode, xVelocity, yVelocity, gamemode.getNumTicks(), PROGRAM_DATA["bullet_data"]["radius"]);
         this.yVI += Math.sin(angleRAD) * PROGRAM_DATA["bullet_data"]["speed"];
@@ -71,12 +47,6 @@ class Bullet extends SimpleProjectile {
         Method Description: Determines the damage of the bullet
         Method Return: Number
     */
-    /*
-        Method Name: getDamage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getDamage(){
         return this.damage;
     }
@@ -88,14 +58,6 @@ class Bullet extends SimpleProjectile {
                 The time between ticks (in MS)
         Method Description: Determine movement and death each tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: 
-            timePassed:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(timePassed){
         // If below ground or too fast or too far away from planes to matter
@@ -111,12 +73,6 @@ class Bullet extends SimpleProjectile {
         Method Description: Determine movement and death each tick
         Method Return: String, alliance name
     */
-    /*
-        Method Name: getAlliance
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAlliance(){
         return planeModelToAlliance(this.shooterClass);
     }
@@ -126,12 +82,6 @@ class Bullet extends SimpleProjectile {
         Method Parameters: None
         Method Description: Provide the bullet image
         Method Return: Image
-    */
-    /*
-        Method Name: getImage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getImage(){
         return getImage("bullet");
@@ -143,12 +93,6 @@ class Bullet extends SimpleProjectile {
         Method Description: Provide the ID of the bullet's shooter
         Method Return: String
     */
-    /*
-        Method Name: getShooterID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getShooterID(){
         return this.shooterID;
     }
@@ -159,12 +103,6 @@ class Bullet extends SimpleProjectile {
         Method Description: Provide the type of plane that shot the bullet
         Method Return: Provide
     */
-    /*
-        Method Name: getShooterClass
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getShooterClass(){
         return this.shooterClass;
     }
@@ -174,12 +112,6 @@ class Bullet extends SimpleProjectile {
         Method Parameters: None
         Method Description: Determine if the bullet is too far away from the other planes that its effectively dead
         Method Return: boolean, true if expected to die, false otherwise
-    */
-    /*
-        Method Name: expectedToDie
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     expectedToDie(){
         let belowGround = this.getY() < 0;
@@ -197,14 +129,6 @@ class Bullet extends SimpleProjectile {
         Method Description: Checks if the bullet collides with another entity
         Method Return: boolean, true if collides, false otherwise
     */
-    /*
-        Method Name: collidesWith
-        Method Parameters: 
-            otherEntity:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     collidesWith(otherEntity){
         return Bullet.hitInTime(this.getHitbox(), this.getX(), this.getY(), this.getXVelocity(), this.getYVelocity(), otherEntity.getHitbox(), otherEntity.getX(), otherEntity.getY(), otherEntity.getXVelocity(), otherEntity.getYVelocity(), PROGRAM_DATA["settings"]["ms_between_ticks"]/1000);
     }
@@ -220,18 +144,6 @@ class Bullet extends SimpleProjectile {
                 Some simple information about the plane
         Method Description: Checks for a collision between this bullet and a plane
         Method Return: Boolean, true -> collides, false -> does not collide
-    */
-    /*
-        Method Name: collidesWithPlane
-        Method Parameters: 
-            plane:
-                TODO
-             simpleBulletData:
-                TODO
-             simplePlaneData:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     collidesWithPlane(plane, simpleBulletData, simplePlaneData){
         let h1 = this.getHitbox();
@@ -269,12 +181,6 @@ class Bullet extends SimpleProjectile {
         Method Description: Creates a JSON representation of the bullet
         Method Return: JSON object
     */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     toJSON(){
         return {
             "start_x": this.startX,
@@ -296,14 +202,6 @@ class Bullet extends SimpleProjectile {
                 Information about a bullet
         Method Description: Sets the attributes of a bullet from a json representation
         Method Return: void
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            jsonRepresentation:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     fromJSON(jsonRepresentation){
         this.dead = jsonRepresentation["dead"];
@@ -327,16 +225,6 @@ class Bullet extends SimpleProjectile {
         Method Description: Creates a bullet from a representation
         Method Return: JSON Object
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            bulletJSONObject:
-                TODO
-             game:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static fromJSON(bulletJSONObject, game){
         let x = bulletJSONObject["start_x"];
         let y = bulletJSONObject["start_y"];
@@ -357,18 +245,6 @@ class Bullet extends SimpleProjectile {
                 Time at which frame is displayed
         Method Description: Displays a bullet on the screen (if it is within the bounds)
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-             displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(lX, bY, displayTime){
         if (this.isDead()){ return; }

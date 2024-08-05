@@ -9,12 +9,6 @@ class ServerConnection {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.ip = USER_DATA["server_data"]["server_ip"];
         this.port = USER_DATA["server_data"]["server_port"];
@@ -42,14 +36,6 @@ class ServerConnection {
         Method Description: Sends a new plane update to the game
         Method Return: void
     */
-    /*
-        Method Name: handlePlaneMovementUpdate
-        Method Parameters: 
-            messageJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     handlePlaneMovementUpdate(messageJSON){
         if (GAMEMODE_MANAGER.getActiveGamemode() == null){ return; }
         // TODO: Incase activagmemode is null or not a client?
@@ -63,14 +49,6 @@ class ServerConnection {
                 A json object with a message from the server
         Method Description: Resets the participant plane type
         Method Return: void
-    */
-    /*
-        Method Name: handleResetParticipantType
-        Method Parameters: 
-            messageJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     handleResetParticipantType(messageJSON){
         if (messageJSON["type"] == "mission"){
@@ -86,12 +64,6 @@ class ServerConnection {
         Method Description: Checks if logged in
         Method Return: Boolean
     */
-    /*
-        Method Name: isLoggedIn
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isLoggedIn(){
         return this.connected && this.loggedIn;
     }
@@ -102,12 +74,6 @@ class ServerConnection {
         Method Description: Checks if the connection is active
         Method Return: Boolean
     */
-    /*
-        Method Name: isConnected
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isConnected(){
         return this.connected;
     }
@@ -117,12 +83,6 @@ class ServerConnection {
         Method Parameters: None
         Method Description: Resets the connection
         Method Return: void
-    */
-    /*
-        Method Name: reset
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async reset(){
         this.openedLock.lock();
@@ -136,12 +96,6 @@ class ServerConnection {
         Method Parameters: None
         Method Description: Starts up a connection to the server
         Method Return: void
-    */
-    /*
-        Method Name: setupConnection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async setupConnection(){
         if (this.setupSyncLock.isLocked()){ return; }
@@ -214,14 +168,6 @@ class ServerConnection {
         Method Description: Starts the game
         Method Return: void
     */
-    /*
-        Method Name: handleGameStart
-        Method Parameters: 
-            data:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     handleGameStart(data){
         let dataJSON = JSON.parse(data);
         if (!objectHasKey(dataJSON, "message")){
@@ -243,14 +189,6 @@ class ServerConnection {
         Method Description: Replies to a heartbeat
         Method Return: void
     */
-    /*
-        Method Name: receiveHeartBeat
-        Method Parameters: 
-            data:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     receiveHeartBeat(data){
         let dataJSON = JSON.parse(data);
         if (dataJSON["action"] == "ping"){
@@ -264,12 +202,6 @@ class ServerConnection {
         Method Description: Refreshs the server join menu
         Method Return: JSON if got a response, false if not
     */
-    /*
-        Method Name: refresh
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async refresh(){
         if (!this.isLoggedIn()){ await this.reset(); }
         return await MAIL_SERVICE.sendJSON("refresh", { "action": "refresh" });
@@ -281,12 +213,6 @@ class ServerConnection {
         Method Description: Requests to host a game
         Method Return: JSON if got a response, false if not
     */
-    /*
-        Method Name: hostRequest
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async hostRequest(){
         return await MAIL_SERVICE.sendJSON("host", { "action": "host" });
     }
@@ -297,12 +223,6 @@ class ServerConnection {
         Method Description: Requests to join a game
         Method Return: JSON if got a response, false if not
     */
-    /*
-        Method Name: joinRequest
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async joinRequest(){
         return await MAIL_SERVICE.sendJSON("join", { "action": "join" });
     }
@@ -312,14 +232,6 @@ class ServerConnection {
         Method Parameters: None
         Method Description: Sends out a message that the host has updated the game settings
         Method Return: void
-    */
-    /*
-        Method Name: hostUpdateSettings
-        Method Parameters: 
-            newSettings:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async hostUpdateSettings(newSettings){
         this.sendJSON({ "action": "update_settings", "new_settings": newSettings });
@@ -333,14 +245,6 @@ class ServerConnection {
         Method Description: Sends the user's update plane preference to the server
         Method Return: void
     */
-    /*
-        Method Name: updateUserPreference
-        Method Parameters: 
-            newPlaneType:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async updateUserPreference(newPlaneType){
         this.sendJSON({ "action": "plane_update", "plane_update": newPlaneType });
     }
@@ -350,12 +254,6 @@ class ServerConnection {
         Method Parameters: None
         Method Description: Sends a heart beat message to the server
         Method Return: void
-    */
-    /*
-        Method Name: sendHeartBeat
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async sendHeartBeat(){
         if (!this.heartBeatLock.isReady() || !this.isLoggedIn()){ return; }
@@ -381,18 +279,6 @@ class ServerConnection {
         Method Description: Sends a message to the server
         Method Return: JSON Object
     */
-    /*
-        Method Name: sendMail
-        Method Parameters: 
-            jsonObject:
-                TODO
-             mailBox:
-                TODO
-             timeout=1000:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async sendMail(jsonObject, mailBox, timeout=1000){
         return await MAIL_SERVICE.sendJSON(mailBox, jsonObject, timeout);
     }
@@ -404,14 +290,6 @@ class ServerConnection {
                 A json object to send to the server
         Method Description: Sends a json object to the server
         Method Return: void
-    */
-    /*
-        Method Name: sendJSON
-        Method Parameters: 
-            jsonObject:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     sendJSON(jsonObject){
         jsonObject["password"] = USER_DATA["server_data"]["password"]
@@ -426,14 +304,6 @@ class ServerConnection {
         Method Description: Sends a string to the server. Encrypts it first.
         Method Return: void
     */
-    /*
-        Method Name: send
-        Method Parameters: 
-            message:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     send(message){
         this.socket.send(this.sc.encrypt(message));
     }
@@ -443,12 +313,6 @@ class ServerConnection {
         Method Parameters: None
         Method Description: Checks if the connection is setup
         Method Return: Boolean
-    */
-    /*
-        Method Name: isSetup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isSetup(){
         return this.setup;
@@ -462,14 +326,6 @@ class ServerConnection {
         Method Description: Prints an error message to the screen
         Method Return: void
     */
-    /*
-        Method Name: handleError
-        Method Parameters: 
-            message:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     handleError(message){
         MENU_MANAGER.addTemporaryMessage(message, "#ff0000", 10000);
     }
@@ -479,12 +335,6 @@ class ServerConnection {
         Method Parameters: None
         Method Description: Make appropriate arrangements when the lobby ends
         Method Return: void
-    */
-    /*
-        Method Name: handleLobbyEnd
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     handleLobbyEnd(){
         MENU_MANAGER.addTemporaryMessage("Lobby ended", "yellow", 5000);

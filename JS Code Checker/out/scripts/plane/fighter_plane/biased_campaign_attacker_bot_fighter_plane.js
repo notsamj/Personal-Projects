@@ -25,20 +25,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             biases:
-                TODO
-             autonomous=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, gamemode, biases, autonomous=true){
         super(planeClass, gamemode, biases, autonomous);
         this.startingThrottle = this.throttle;
@@ -54,16 +40,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Description: Creates a new Biased Campaign Attacker Bot Fighter Plane
         Method Return: BiasedCampaignAttackerBotFighterPlane
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-             gamemode:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static fromJSON(rep, gamemode){
         let planeClass = rep["basic"]["plane_class"];
         let fp = new BiasedCampaignAttackerBotFighterPlane(planeClass, gamemode, rep["biases"], false);  // In all circumstances when loading a bot from a JSON it will not be autonomous
@@ -76,12 +52,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Parameters: None
         Method Description: Makes decisions for the plane for the next tick
         Method Return: void
-    */
-    /*
-        Method Name: makeDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     makeDecisions(){
         // Only make decisions if autonomous
@@ -121,14 +91,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Description: Sets attributes of a fighter plane from a JSON representation
         Method Return: void
     */
-    /*
-        Method Name: initFromJSON
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     initFromJSON(rep){
         this.id = rep["basic"]["id"];
         this.health = rep["basic"]["health"];
@@ -152,12 +114,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Parameters: None
         Method Description: Creates a JSON representation of the fighter plane
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         let rep = {};
@@ -190,12 +146,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Description: Determine what to do when there is no enemy
         Method Return: void
     */
-    /*
-        Method Name: handleWhenNoEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     handleWhenNoEnemy(){
         this.cruiseByBomber();
     }
@@ -205,12 +155,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Parameters: None
         Method Description: Finds the furthest (highest x value) living bomber
         Method Return: Bomber
-    */
-    /*
-        Method Name: findMyBomber
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     findMyBomber(){
         let furthestBomber = null;
@@ -230,12 +174,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Parameters: None
         Method Description: Makes decisions to cruise near a bomber
         Method Return: void
-    */
-    /*
-        Method Name: cruiseByBomber
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     cruiseByBomber(){
         let bomber = this.findMyBomber();
@@ -301,18 +239,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Description: Determines what throttle this plane should use to match the speed of a bomber but taking into account more information than calculateThrottleToMatchSpeed
         Method Return: Number
     */
-    /*
-        Method Name: calculateThrottleToRealisticallyMatchSpeed
-        Method Parameters: 
-            desiredThrottle:
-                TODO
-             bomberX:
-                TODO
-             bomberSpeed:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     calculateThrottleToRealisticallyMatchSpeed(desiredThrottle, bomberX, bomberSpeed){
         let displacementToBomber = bomberX - this.getX();
         // If fairly close to bomber then use the desired throttle
@@ -333,14 +259,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Description: Determines what throttle this plane should use to match the speed of a bomber
         Method Return: Number
     */
-    /*
-        Method Name: calculateThrottleToMatchSpeed
-        Method Parameters: 
-            bomberSpeed:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     calculateThrottleToMatchSpeed(bomberSpeed){
         let dragAtBomberSpeed = Math.sqrt(Math.abs(bomberSpeed));
         return dragAtBomberSpeed / this.throttleConstant;
@@ -351,12 +269,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
         Method Parameters: None
         Method Description: Determine the id of the current enemy
         Method Return: void
-    */
-    /*
-        Method Name: updateEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     updateEnemy(){
         // If we have an enemy already and its close then don't update
@@ -396,18 +308,6 @@ class BiasedCampaignAttackerBotFighterPlane extends BiasedBotFighterPlane {
                 The current difficulty setting
         Method Description: Return a new biased campaign attacker plane
         Method Return: BiasedCampaignAttackerBotFighterPlane
-    */
-    /*
-        Method Name: createBiasedPlane
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             difficulty:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static createBiasedPlane(planeClass, gamemode, difficulty){
         let biases = BiasedBotFighterPlane.createBiases(difficulty);

@@ -47,12 +47,6 @@ class QuantitySlider extends OptionSlider {
         Method Description: Updates the x positition of the slider
         Method Return: void
     */
-    /*
-        Method Name: updateSliderX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     updateSliderX(){
         let currentValue = this.accessValue();
         let currentPercentage = (currentValue - this.minValue) / (this.maxValue - this.minValue);
@@ -67,14 +61,6 @@ class QuantitySlider extends OptionSlider {
                 Current mosue x position
         Method Description: Move the slider to match the user input
         Method Return: void
-    */
-    /*
-        Method Name: moveToX
-        Method Parameters: 
-            mouseX:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     moveToX(mouseX){
         // Update the slider position

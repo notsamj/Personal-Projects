@@ -13,16 +13,6 @@ class GunHeatManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            bulletHeatCapacity:
-                TODO
-             coolingTimeMS:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(bulletHeatCapacity, coolingTimeMS){
         this.bulletHeatCapacity = bulletHeatCapacity;
         this.maxCoolingDelayTicks = Math.ceil(PROGRAM_DATA["heat_bar"]["cooling_delay_ms"] / PROGRAM_DATA["settings"]["ms_between_ticks"]);
@@ -39,12 +29,6 @@ class GunHeatManager {
         Method Description: Resets the gunheat manager
         Method Return: void
     */
-    /*
-        Method Name: reset
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     reset(){
         this.activelyShooting = false;
         this.emergencyCooling = false;
@@ -57,12 +41,6 @@ class GunHeatManager {
         Method Parameters: None
         Method Description: Determines which threshold is met by the current heat
         Method Return: String
-    */
-    /*
-        Method Name: getThreshold
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getThreshold(){
         let heatPercentage = this.heat/this.bulletHeatCapacity;
@@ -80,12 +58,6 @@ class GunHeatManager {
         Method Parameters: None
         Method Description: Handles the cooling that takes place
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         // If on cooling delay
@@ -114,12 +86,6 @@ class GunHeatManager {
         Method Description: Checks if the turret is actively shooting
         Method Return: Boolean
     */
-    /*
-        Method Name: isActivelyShooting
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isActivelyShooting(){
         return this.activelyShooting;
     }
@@ -131,14 +97,6 @@ class GunHeatManager {
                 The milliseconds since the last tick
         Method Description: Determines the heat of the gun at a given time after the last tick
         Method Return: Float
-    */
-    /*
-        Method Name: getInterpolatedHeat
-        Method Parameters: 
-            timePassed:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getInterpolatedHeat(timePassed){
         // Don't interpolated if still on cooling delay
@@ -152,12 +110,6 @@ class GunHeatManager {
         Method Description: Checks if the gun heat manager is performing emergency cooling
         Method Return: Boolean
     */
-    /*
-        Method Name: isCooling
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isCooling(){
         return this.emergencyCooling;
     }
@@ -168,12 +120,6 @@ class GunHeatManager {
         Method Description: Increases the heat as a shot has occured
         Method Return: void
         Note: Assumes canShoot has been checked
-    */
-    /*
-        Method Name: shoot
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     shoot(){
         this.activelyShooting = true;
@@ -191,12 +137,6 @@ class GunHeatManager {
         Method Description: Checks if the gun can shoot based on its heat
         Method Return: Boolean
     */
-    /*
-        Method Name: canShoot
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     canShoot(){
         return !this.isCooling();
     }
@@ -210,16 +150,6 @@ class GunHeatManager {
                 The offset of the turret heat indicator on the screen 0 -> first indicator to display, 1 -> indicator displayed above zero, etc...
         Method Description: Displays the heat bar on the screen
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            timePassed:
-                TODO
-             offset=0:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(timePassed, offset=0){
         let shareBorderOffset = offset > 0 ? 1 : 0; 

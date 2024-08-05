@@ -9,12 +9,6 @@ class RemoteMission extends Gamemode {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.planes = [];
@@ -39,12 +33,6 @@ class RemoteMission extends Gamemode {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: PlaneGameScene
     */
-    /*
-        Method Name: getScene
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getScene(){ return this.client.getScene(); }
 
     /*
@@ -52,12 +40,6 @@ class RemoteMission extends Gamemode {
         Method Parameters: None
         Method Description: Getter
         Method Return: Entity
-    */
-    /*
-        Method Name: getUserEntity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getUserEntity(){
         return this.userEntity;
@@ -69,12 +51,6 @@ class RemoteMission extends Gamemode {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: Integer
     */
-    /*
-        Method Name: getLastTickTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLastTickTime(){
         return this.client.getLastTickTime();
     }
@@ -84,14 +60,6 @@ class RemoteMission extends Gamemode {
         Method Parameters: None
         Method Description: Loads a state
         Method Return: void
-    */
-    /*
-        Method Name: loadState
-        Method Parameters: 
-            state:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async loadState(state){
         if (state == null){ return; }
@@ -163,14 +131,6 @@ class RemoteMission extends Gamemode {
         Method Description: Adds a new plane to the game
         Method Return: void
     */
-    /*
-        Method Name: addNewPlane
-        Method Parameters: 
-            planeObject:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addNewPlane(planeObject){
         let isFighter = planeModelToType(planeObject["basic"]["plane_class"]) == "Fighter";
         let attackerAlliance = this.missionObject["attackers"];
@@ -196,12 +156,6 @@ class RemoteMission extends Gamemode {
         Method Description: Displays relevant information to the user
         Method Return: void
     */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(){
         this.getScene().display();
         if (this.isGameOver()){
@@ -216,12 +170,6 @@ class RemoteMission extends Gamemode {
         Method Parameters: None
         Method Description: Updates the HUD with information from the game
         Method Return: void
-    */
-    /*
-        Method Name: updateHUD
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     updateHUD(){
         let allyLock = this.attackerSpawnLock;
@@ -260,16 +208,6 @@ class RemoteMission extends Gamemode {
                 A translator for communicating with the server
         Method Description: Prepares the game mode from a state
         Method Return: void
-    */
-    /*
-        Method Name: startUp
-        Method Parameters: 
-            client:
-                TODO
-             translator:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async startUp(client, translator){
         this.client = client;

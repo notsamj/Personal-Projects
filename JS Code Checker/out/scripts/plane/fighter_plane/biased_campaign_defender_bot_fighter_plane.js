@@ -23,20 +23,6 @@ class BiasedCampaignDefenderBotFighterPlane extends BiasedBotFighterPlane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             game:
-                TODO
-             biases:
-                TODO
-             autonomous=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, game, biases, autonomous=true){
         super(planeClass, game, biases, autonomous);
     }
@@ -51,16 +37,6 @@ class BiasedCampaignDefenderBotFighterPlane extends BiasedBotFighterPlane {
         Method Description: Creates a new Fighter Plane
         Method Return: BiasedCampaignDefenderBotFighterPlane
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-             game:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static fromJSON(rep, game){
         let planeClass = rep["basic"]["plane_class"];
         let fp = new BiasedCampaignDefenderBotFighterPlane(planeClass, game, rep["biases"], false); // In all circumstances when loading a bot from a JSON it will not be autonomous
@@ -73,12 +49,6 @@ class BiasedCampaignDefenderBotFighterPlane extends BiasedBotFighterPlane {
         Method Parameters: None
         Method Description: Determine the id of the current enemy
         Method Return: void
-    */
-    /*
-        Method Name: updateEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     updateEnemy(){
         // If we have an enemy already and its close then don't update
@@ -116,18 +86,6 @@ class BiasedCampaignDefenderBotFighterPlane extends BiasedBotFighterPlane {
                 The current difficulty setting
         Method Description: Return a new biased campaign defender plane
         Method Return: BiasedCampaignDefenderBotFighterPlane
-    */
-    /*
-        Method Name: createBiasedPlane
-        Method Parameters: 
-            planeClass:
-                TODO
-             game:
-                TODO
-             difficulty:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static createBiasedPlane(planeClass, game, difficulty){
         let biases = BiasedBotFighterPlane.createBiases(difficulty);

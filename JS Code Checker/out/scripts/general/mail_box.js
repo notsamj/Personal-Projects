@@ -11,14 +11,6 @@ class MailBox {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            sendFunc:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(sendFunc){
         this.sendFunc = sendFunc;
         this.promiseResolve = null;
@@ -31,12 +23,6 @@ class MailBox {
         Method Description: Provide information whether the mailbox is awaiting a response
         Method Return: Boolean
     */
-    /*
-        Method Name: isAwaiting
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isAwaiting(){
         return this.awaiting;
     }
@@ -48,14 +34,6 @@ class MailBox {
                 A message to deliver
         Method Description: Deliver a message received and stop waiting
         Method Return: void
-    */
-    /*
-        Method Name: deliver
-        Method Parameters: 
-            message:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     deliver(message){
         if (this.promiseResolve != null){
@@ -72,14 +50,6 @@ class MailBox {
         Method Description: Send a message and await for a response
         Method Return: void
     */
-    /*
-        Method Name: send
-        Method Parameters: 
-            message:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     send(message){
         this.awaiting = true;
         return new Promise((resolve, reject) => {
@@ -93,12 +63,6 @@ class MailBox {
         Method Parameters: None
         Method Description: Wait for a message to come
         Method Return: void
-    */
-    /*
-        Method Name: await
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     await(){
         this.awaiting = true;

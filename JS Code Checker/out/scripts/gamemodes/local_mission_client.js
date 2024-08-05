@@ -13,16 +13,6 @@ class LocalMissionClient extends LocalClient {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            missionObject:
-                TODO
-             missionSetupJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(missionObject, missionSetupJSON){
         super(new LocalMission(missionObject, missionSetupJSON));
     }

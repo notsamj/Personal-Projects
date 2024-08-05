@@ -15,12 +15,6 @@ class SoundManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.soundQueue = new NotSamLinkedList();
         this.sounds = [];
@@ -33,12 +27,6 @@ class SoundManager {
         Method Parameters: None
         Method Description: Loads all the sounds that are identified in the file data
         Method Return: void
-    */
-    /*
-        Method Name: loadSounds
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     loadSounds(){
         for (let soundData of PROGRAM_DATA["sound_data"]["sounds"]){
@@ -58,18 +46,6 @@ class SoundManager {
         Method Description: Prepares to play a sound when playAll is next called
         Method Return: void
     */
-    /*
-        Method Name: play
-        Method Parameters: 
-            soundName:
-                TODO
-             x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     play(soundName, x, y){
         if (!this.hasSound(soundName)){
             return;
@@ -84,14 +60,6 @@ class SoundManager {
                 The name of the sound to find
         Method Description: Finds a sound and returns it
         Method Return: Sound
-    */
-    /*
-        Method Name: findSound
-        Method Parameters: 
-            soundName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     findSound(soundName){
         for (let sound of this.sounds){
@@ -109,14 +77,6 @@ class SoundManager {
                 The name of the sound to find
         Method Description: Determines if a sound is present
         Method Return: Boolean, true -> sound is present, false -> sound is not present.
-    */
-    /*
-        Method Name: hasSound
-        Method Parameters: 
-            soundName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     hasSound(soundName){
         return this.findSound(soundName) != null;
@@ -136,20 +96,6 @@ class SoundManager {
         Method Description: Plays all the sounds within a specified game coordinate area. It first prepares to pause all sounds then determines which need not be paused and then pauses all that are not needed to be playing.
         Method Return: void
     */
-    /*
-        Method Name: playAll
-        Method Parameters: 
-            lX:
-                TODO
-             rX:
-                TODO
-             bY:
-                TODO
-             tY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     playAll(lX, rX, bY, tY){
         this.prepareToPauseAll();
         // Play all sounds that take place on the screen
@@ -167,12 +113,6 @@ class SoundManager {
         Method Description: Prepares to pause all active sounds
         Method Return: void
     */
-    /*
-        Method Name: prepareToPauseAll
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     prepareToPauseAll(){
         for (let sound of this.sounds){
             sound.prepareToPause();
@@ -185,12 +125,6 @@ class SoundManager {
         Method Description: Pauses all active sounds that are prepared
         Method Return: void
     */
-    /*
-        Method Name: pauseAllIfPrepared
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     pauseAllIfPrepared(){
         for (let sound of this.sounds){
             sound.pauseIfPrepared();
@@ -202,12 +136,6 @@ class SoundManager {
         Method Parameters: None
         Method Description: Pauses all active sounds
         Method Return: void
-    */
-    /*
-        Method Name: pauseAll
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     pauseAll(){
         for (let sound of this.sounds){
@@ -224,16 +152,6 @@ class SoundManager {
                 The new volume for the sound
         Method Description: Updates the volume of a sound
         Method Return: void
-    */
-    /*
-        Method Name: updateVolume
-        Method Parameters: 
-            soundName:
-                TODO
-             newVolume:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     updateVolume(soundName, newVolume){
         setLocalStorage(soundName, newVolume);
@@ -257,14 +175,6 @@ class SoundManager {
         Method Description: Determines the volume of a sound
         Method Return: int
     */
-    /*
-        Method Name: getVolume
-        Method Parameters: 
-            soundName:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getVolume(soundName){
         if (soundName == "main volume"){
             return this.mainVolume;
@@ -280,12 +190,6 @@ class SoundManager {
         Method Description: Creates a list of JSON representations of sound requests
         Method Return: List of JSON Objects
     */
-    /*
-        Method Name: getSoundRequestList
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getSoundRequestList(){
         let soundRequestList = [];
         for (let [soundRequest, sRI] of this.soundQueue){
@@ -300,12 +204,6 @@ class SoundManager {
         Method Description: Removes all queued sound requests
         Method Return: void
     */
-    /*
-        Method Name: clearRequests
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     clearRequests(){
         this.soundQueue.clear();
     }
@@ -317,14 +215,6 @@ class SoundManager {
                 A list of JSON representions of sound requests
         Method Description: Creates many sound requests from a list of JSON representations
         Method Return: void
-    */
-    /*
-        Method Name: fromSoundRequestList
-        Method Parameters: 
-            soundRequestList:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     fromSoundRequestList(soundRequestList){
         for (let requestObject of soundRequestList){
@@ -350,18 +240,6 @@ class SoundRequest {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            sound:
-                TODO
-             x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(sound, x, y){
         this.sound = sound;
         this.x = x;
@@ -382,20 +260,6 @@ class SoundRequest {
         Method Description: Plays the sound IF it is within the specified game region.
         Method Return: void
     */
-    /*
-        Method Name: tryToPlay
-        Method Parameters: 
-            lX:
-                TODO
-             rX:
-                TODO
-             bY:
-                TODO
-             tY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     tryToPlay(lX, rX, bY, tY){
         if (this.x >= lX && this.x <= rX && this.y >= bY && this.y <= tY){
             this.sound.play();
@@ -407,12 +271,6 @@ class SoundRequest {
         Method Parameters: None
         Method Description: Creates a json representation of a sound request
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         return {"x": this.x, "y": this.y, "sound": this.sound.getName()}
@@ -427,16 +285,6 @@ class SoundRequest {
                 A JSON representation of a sound request
         Method Description: Creates a JSON representation 
         Method Return: SoundRequest
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            soundManager:
-                TODO
-             jsonObject:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static fromJSON(soundManager, jsonObject){
         return new SoundRequest(soundManager.findSound(jsonObject["sound"]), jsonObject["x"], jsonObject["y"]);
@@ -460,18 +308,6 @@ class Sound {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            soundName:
-                TODO
-             soundType:
-                TODO
-             mainVolume:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(soundName, soundType, mainVolume){
         this.name = soundName;
         this.ongoing = soundType == "ongoing";
@@ -490,12 +326,6 @@ class Sound {
         Method Description: Getter
         Method Return: void
     */
-    /*
-        Method Name: getName
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getName(){
         return this.name;
     }
@@ -505,12 +335,6 @@ class Sound {
         Method Parameters: None
         Method Description: Plays the sound
         Method Return: void
-    */
-    /*
-        Method Name: play
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     play(){
         // Already playing....
@@ -527,12 +351,6 @@ class Sound {
         Method Description: Determines if the sound is currently running
         Method Return: Boolean, true -> is running, false -> is not running
     */
-    /*
-        Method Name: isRunning
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isRunning(){
         return this.audio.currentTime < this.audio.duration && this.running;
     }
@@ -542,12 +360,6 @@ class Sound {
         Method Parameters: None
         Method Description: Pauses a sound (if it is running)
         Method Return: void
-    */
-    /*
-        Method Name: pause
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     pause(){
         // Ongoing sounds can be paused but not discrete sounds
@@ -566,14 +378,6 @@ class Sound {
         Method Description: Adjusts the volume of a sound based on the main program volume
         Method Return: void
     */
-    /*
-        Method Name: adjustByMainVolume
-        Method Parameters: 
-            mainVolume:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     adjustByMainVolume(mainVolume){
         this.updateVolume(this.volume, mainVolume);
     }
@@ -588,16 +392,6 @@ class Sound {
         Method Description: Adjusts the volume of a sound based on the main program volume and its own volume value.
         Method Return: void
     */
-    /*
-        Method Name: updateVolume
-        Method Parameters: 
-            newVolume:
-                TODO
-             mainVolume:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     updateVolume(newVolume, mainVolume){
         this.volume = newVolume;
         this.audio.volume = (newVolume / 100) * (mainVolume / 100);
@@ -609,12 +403,6 @@ class Sound {
         Method Description: Getter
         Method Return: void
     */
-    /*
-        Method Name: getVolume
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getVolume(){
         return this.volume;
     }
@@ -624,12 +412,6 @@ class Sound {
         Method Parameters: None
         Method Description: Prepares the sound to pause unless otherwise told not to pause. This is so that continous sounds can be played without pause but stopped when they are no longer needed.
         Method Return: void
-    */
-    /*
-        Method Name: prepareToPause
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     prepareToPause(){
         if (!this.ongoing){ return; }
@@ -645,12 +427,6 @@ class Sound {
         Method Parameters: None
         Method Description: Pauses a sound if it is not needed at the moment
         Method Return: void
-    */
-    /*
-        Method Name: pauseIfPrepared
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     pauseIfPrepared(){
         if (!this.ongoing){ return; }

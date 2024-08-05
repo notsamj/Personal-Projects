@@ -9,12 +9,6 @@ class MissionStartMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.userPlanes = ["freecam"];
@@ -31,14 +25,6 @@ class MissionStartMenu extends Menu {
         Method Description: Sets the current mission to the mission at the index
         Method Return: void
     */
-    /*
-        Method Name: loadMission
-        Method Parameters: 
-            missionIndex:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     loadMission(missionIndex){
         this.mission = PROGRAM_DATA["missions"][missionIndex];
         this.userPlanes = this.createUserPlaneSelection();
@@ -53,12 +39,6 @@ class MissionStartMenu extends Menu {
         Method Parameters: None
         Method Description: Sets up the menu interface
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         let difficultyButtonSize = 150;
@@ -133,12 +113,6 @@ class MissionStartMenu extends Menu {
         Method Description: Creates a JSON representation of the mission customized by the user
         Method Return: JSON Object
     */
-    /*
-        Method Name: createJSONRep
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     createJSONRep(){
         let jsonRep = {};
         jsonRep["users"] = [];
@@ -164,12 +138,6 @@ class MissionStartMenu extends Menu {
         Method Description: Switches between the actively shown planes
         Method Return: void
     */
-    /*
-        Method Name: switchPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     switchPlanes(){
         this.userPlaneIndex = (this.userPlaneIndex + 1) % this.userPlanes.length;
         let planeName = this.userPlanes[this.userPlaneIndex];
@@ -181,12 +149,6 @@ class MissionStartMenu extends Menu {
         Method Parameters: None
         Method Description: Creates a list of planes for the user to choose between
         Method Return: void
-    */
-    /*
-        Method Name: createUserPlaneSelection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     createUserPlaneSelection(){
         let userPlanes = ["freecam"];
@@ -202,12 +164,6 @@ class MissionStartMenu extends Menu {
         Method Description: Switches from this menu to the game
         Method Return: void
     */
-    /*
-        Method Name: goToGame
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     goToGame(){
         MENU_MANAGER.switchTo("game");
     }
@@ -217,12 +173,6 @@ class MissionStartMenu extends Menu {
         Method Parameters: None
         Method Description: Switches from this menu to the main menu
         Method Return: void
-    */
-    /*
-        Method Name: goToMainMenu
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     goToMainMenu(){
         MENU_MANAGER.switchTo("main");
@@ -234,12 +184,6 @@ class MissionStartMenu extends Menu {
         Method Description: Cycles the ally difficulty
         Method Return: void
         Note: There are many ways to do this. Maybe some are better? Definitely some are cleaner. It's not a big anyway idc.
-    */
-    /*
-        Method Name: cycleAxisDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     cycleAxisDifficulty(){
         let currentIndex = 0;
@@ -261,12 +205,6 @@ class MissionStartMenu extends Menu {
         Method Return: void
         Note: There are many ways to do this. Maybe some are better? Definitely some are cleaner. It's not a big anyway idc.
     */
-    /*
-        Method Name: cycleAllyDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     cycleAllyDifficulty(){
         let currentIndex = 0;
         for (let key of Object.keys(PROGRAM_DATA["ai"]["fighter_plane"]["bias_ranges"])){
@@ -286,12 +224,6 @@ class MissionStartMenu extends Menu {
         Method Description: Getter
         Method Return: void
     */
-    /*
-        Method Name: getAllyDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAllyDifficulty(){
         return this.allyDifficulty;
     }
@@ -301,12 +233,6 @@ class MissionStartMenu extends Menu {
         Method Parameters: None
         Method Description: Getter
         Method Return: void
-    */
-    /*
-        Method Name: getAxisDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getAxisDifficulty(){
         return this.axisDifficulty;

@@ -993,20 +993,6 @@ class RetroGameScene {
         Method Description: Determines the top left corner where an image should be displayed
         Method Return: int
     */
-    /*
-        Method Name: getDisplayX
-        Method Parameters: 
-            centerX:
-                TODO
-             width:
-                TODO
-             lX:
-                TODO
-             round=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getDisplayX(centerX, width, lX, round=false){
         // Find relative to bottom left corner
         let displayX = (centerX - lX) * gameZoom;
@@ -1037,20 +1023,6 @@ class RetroGameScene {
                 If rounded down to nearest pixel
         Method Description: Determines the top left corner where an image should be displayed
         Method Return: int
-    */
-    /*
-        Method Name: getDisplayY
-        Method Parameters: 
-            centerY:
-                TODO
-             height:
-                TODO
-             bY:
-                TODO
-             round=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getDisplayY(centerY, height, bY, round=false){
         // Find relative to bottom left corner

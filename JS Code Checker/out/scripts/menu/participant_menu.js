@@ -9,12 +9,6 @@ class ParticipantMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.userPlanes = this.createDogfightUserSelection();
@@ -28,12 +22,6 @@ class ParticipantMenu extends Menu {
         Method Parameters: None
         Method Description: Resets the settings of the menu so they user can choose a new plane
         Method Return: void
-    */
-    /*
-        Method Name: resetSettings
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     resetSettings(){
         this.userPlaneIndex = 0;
@@ -49,14 +37,6 @@ class ParticipantMenu extends Menu {
                 A Json object with details about a mission
         Method Description: Resets settings and the plane selection based on the game mode
         Method Return: void
-    */
-    /*
-        Method Name: resetParticipantType
-        Method Parameters: 
-            mission=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     resetParticipantType(mission=null){
         let dogfightNotMission = mission == null;
@@ -76,14 +56,6 @@ class ParticipantMenu extends Menu {
         Method Description: Creates list of plane models for the user to choose from
         Method Return: List of plane models
     */
-    /*
-        Method Name: createMissionPlanes
-        Method Parameters: 
-            mission:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     createMissionPlanes(mission){
         let userPlanes = ["freecam"];
         for (let planeName of mission["user_planes"]){
@@ -97,12 +69,6 @@ class ParticipantMenu extends Menu {
         Method Parameters: None
         Method Description: Sets up the menu interface
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         let addRemoveButtonSize = 50;
@@ -143,12 +109,6 @@ class ParticipantMenu extends Menu {
         Method Description: Switches between the actively shown planes
         Method Return: void
     */
-    /*
-        Method Name: switchPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     switchPlanes(){
         this.userPlaneIndex = (this.userPlaneIndex + 1) % this.userPlanes.length;
         let planeName = this.userPlanes[this.userPlaneIndex];
@@ -161,12 +121,6 @@ class ParticipantMenu extends Menu {
         Method Parameters: None
         Method Description: Creates a list of planes for the user to choose between
         Method Return: void
-    */
-    /*
-        Method Name: createDogfightUserSelection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     createDogfightUserSelection(){
         let userPlanes = ["freecam"];
@@ -182,12 +136,6 @@ class ParticipantMenu extends Menu {
         Method Description: Switches from this menu to the game
         Method Return: void
     */
-    /*
-        Method Name: goToGame
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     goToGame(){
         MENU_MANAGER.switchTo("game");
     }
@@ -197,12 +145,6 @@ class ParticipantMenu extends Menu {
         Method Parameters: None
         Method Description: Switches from this menu to the main menu
         Method Return: void
-    */
-    /*
-        Method Name: goToMainMenu
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     goToMainMenu(){
         SERVER_CONNECTION.sendJSON({"action": "leave_game"});

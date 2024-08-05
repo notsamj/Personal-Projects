@@ -6,14 +6,6 @@
     Method Description: Loads an image an returns it
     Method Return: Image
 */
-/*
-    Method Name: loadLocalImage
-    Method Parameters: 
-        url:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 async function loadLocalImage(url){
     console.log("Loading image", url);
     let newImage = null;
@@ -76,14 +68,6 @@ async function loadToImages(imageName, type=".png"){
     Method Return: void
     Note: This is a relic from when planes has 720 images. It should be redone.
 */
-/*
-    Method Name: loadRotatedImages
-    Method Parameters: 
-        name:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 async function loadRotatedImages(name){
     IMAGES[name] = await loadLocalImage("images/" + name + "/" + name + ".png");
 }
@@ -94,12 +78,6 @@ async function loadRotatedImages(name){
     Method Description: Loads all the images of all planes.
     Method Return: void
     Note: This is a relic from when planes has 720 images and took a long time to load. It should be redone.
-*/
-/*
-    Method Name: loadPlanes
-    Method Parameters: None
-    Method Description: TODO
-    Method Return: TODO
 */
 async function loadPlanes(){
     for (const [planeName, planeDetails] of Object.entries(PROGRAM_DATA["plane_data"])) {
@@ -121,16 +99,6 @@ class PlaneGameScene {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            gamemode=null:
-                TODO
-             visualEffectManager=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(gamemode=null, visualEffectManager=null){
         this.gamemode = gamemode;
         this.skyManager = new SkyManager(this);
@@ -147,12 +115,6 @@ class PlaneGameScene {
         Method Description: Checks whether this has a visual effect manager
         Method Return: Boolean
     */
-    /*
-        Method Name: hasVisualEffectManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasVisualEffectManager(){
         return this.visualEffectManager != null;
     }
@@ -162,12 +124,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Determines whether there is currently a focused entity
         Method Return: boolean, true -> there is an entity focused, false -> there is no entity focused
-    */
-    /*
-        Method Name: hasEntityFocused
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     hasEntityFocused(){
         return this.focusedEntity != null;
@@ -186,20 +142,6 @@ class PlaneGameScene {
                 If rounded down to nearest pixel
         Method Description: Determines the top left corner where an image should be displayed
         Method Return: int
-    */
-    /*
-        Method Name: getDisplayX
-        Method Parameters: 
-            centerX:
-                TODO
-             width:
-                TODO
-             lX:
-                TODO
-             round=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getDisplayX(centerX, width, lX, round=false){
         // Find relative to bottom left corner
@@ -232,20 +174,6 @@ class PlaneGameScene {
         Method Description: Determines the top left corner where an image should be displayed
         Method Return: int
     */
-    /*
-        Method Name: getDisplayY
-        Method Parameters: 
-            centerY:
-                TODO
-             height:
-                TODO
-             bY:
-                TODO
-             round=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getDisplayY(centerY, height, bY, round=false){
         // Find relative to bottom left corner
         let displayY = (centerY - bY) * gameZoom;
@@ -270,14 +198,6 @@ class PlaneGameScene {
                 The id of an entity to be deleted
         Method Description: Removes an entity from the scene
         Method Return: void
-    */
-    /*
-        Method Name: delete
-        Method Parameters: 
-            entityID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     delete(entityID){
         // No focused entity anmore 
@@ -306,14 +226,6 @@ class PlaneGameScene {
         Method Description: Set the focus of the scene to a particular entity
         Method Return: void
     */
-    /*
-        Method Name: setFocusedEntity
-        Method Parameters: 
-            entity:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setFocusedEntity(entity){
         this.focusedEntity = entity;
     }
@@ -325,14 +237,6 @@ class PlaneGameScene {
                 An x coordinate in the game coordinate system
         Method Description: Transforms an game x to a screen x
         Method Return: float
-    */
-    /*
-        Method Name: changeToScreenX
-        Method Parameters: 
-            x:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     changeToScreenX(x){
         return x; // Doesn't need to be changed ATM
@@ -346,14 +250,6 @@ class PlaneGameScene {
         Method Description: Transforms an game y to a screen y
         Method Return: float
     */
-    /*
-        Method Name: changeToScreenY
-        Method Parameters: 
-            y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     changeToScreenY(y){
         return getScreenHeight() - y;
     }
@@ -366,14 +262,6 @@ class PlaneGameScene {
         Method Description: Transforms an screen y to a game y
         Method Return: float
     */
-    /*
-        Method Name: changeFromScreenY
-        Method Parameters: 
-            y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     changeFromScreenY(y){
         return this.changeToScreenY(y);
     }
@@ -383,12 +271,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Getter
         Method Return: NotSamLinkedList of entities
-    */
-    /*
-        Method Name: getEntities
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getEntities(){
         return this.entities;
@@ -400,12 +282,6 @@ class PlaneGameScene {
         Method Description: Determine width of the screen
         Method Return: Integer
     */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getWidth(){
         return getZoomedScreenWidth();
     }
@@ -415,12 +291,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Determine Height of the screen
         Method Return: Integer
-    */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getHeight(){
         return getZoomedScreenHeight();
@@ -442,12 +312,6 @@ class PlaneGameScene {
         Method Description: Getter
         Method Return: SkyManager
     */
-    /*
-        Method Name: getSkyManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getSkyManager(){
         return this.skyManager;
     }
@@ -457,12 +321,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Getter
         Method Return: Gamemode
-    */
-    /*
-        Method Name: getGamemode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getGamemode(){
         return this.gamemode;
@@ -474,12 +332,6 @@ class PlaneGameScene {
         Method Description: Checks if bullet physics are enabled
         Method Return: void
     */
-    /*
-        Method Name: areBulletPhysicsEnabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     areBulletPhysicsEnabled(){
         return this.gamemode.areBulletPhysicsEnabled();
     }
@@ -490,12 +342,6 @@ class PlaneGameScene {
         Method Description: Getter
         Method Return: TeamCombatManager
     */
-    /*
-        Method Name: getTeamCombatManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getTeamCombatManager(){
         return this.gamemode.getTeamCombatManager();
     }
@@ -505,12 +351,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Makes a list of all entities that are "good to follow" and return it
         Method Return: Array of enities
-    */
-    /*
-        Method Name: getGoodToFollowEntities
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getGoodToFollowEntities(){
         let entities = this.getEntities();
@@ -536,14 +376,6 @@ class PlaneGameScene {
         Method Description: Removes all planes and adds a bunch of entities
         Method Return: void
     */
-    /*
-        Method Name: setEntities
-        Method Parameters: 
-            entities:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setEntities(entities){
         this.entities.clear();
         for (let entity of entities){
@@ -564,14 +396,6 @@ class PlaneGameScene {
         Method Description: Adds an entity to the scene
         Method Return: void
     */
-    /*
-        Method Name: addEntity
-        Method Parameters: 
-            entity:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addEntity(entity){
         this.entities.push(entity);
     }
@@ -583,14 +407,6 @@ class PlaneGameScene {
                 The id of an entity
         Method Description: Checks if an entity with the given id exists
         Method Return: boolean, true -> has entity, false -> does not have the entity
-    */
-    /*
-        Method Name: hasEntity
-        Method Parameters: 
-            entityID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     hasEntity(entityID){
         return this.getEntity(entityID) != null;
@@ -604,14 +420,6 @@ class PlaneGameScene {
                 The id of an entity
         Method Description: Finds an entity if it exists
         Method Return: Entity
-    */
-    /*
-        Method Name: getEntity
-        Method Parameters: 
-            entityID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getEntity(entityID){
         for (let [entity, entityIndex] of this.entities){
@@ -640,12 +448,6 @@ class PlaneGameScene {
         Method Description: Getter
         Method Return: Entity
     */
-    /*
-        Method Name: getFocusedEntity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getFocusedEntity(){
         return this.focusedEntity;
     }
@@ -657,14 +459,6 @@ class PlaneGameScene {
                 A plane object
         Method Description: Adds a plane to the scene
         Method Return: void
-    */
-    /*
-        Method Name: addPlane
-        Method Parameters: 
-            plane:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     addPlane(plane){
         this.gamemode.getTeamCombatManager().addPlane(plane);
@@ -678,14 +472,6 @@ class PlaneGameScene {
         Method Description: Adds a bullet to the scene
         Method Return: void
     */
-    /*
-        Method Name: addBullet
-        Method Parameters: 
-            bullet:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addBullet(bullet){
         this.gamemode.getTeamCombatManager().addBullet(bullet);
     }
@@ -698,14 +484,6 @@ class PlaneGameScene {
         Method Description: Adds a bomb to the scene
         Method Return: void
     */
-    /*
-        Method Name: addBomb
-        Method Parameters: 
-            bomb:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     addBomb(bomb){
         this.addEntity(bomb);
     }
@@ -715,12 +493,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Makes things happen within a tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async tick(){
         if (!this.ticksEnabled){ return; }
@@ -740,12 +512,6 @@ class PlaneGameScene {
         Method Return: int
         Note: May not count freecam and in the future may need modification
     */
-    /*
-        Method Name: getNumberOfEntities
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNumberOfEntities(){
         return this.gamemode.getTeamCombatManager().getNumberOfEntities() + this.entities.getLength();
     }
@@ -755,12 +521,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Displays the HUD on the screen
         Method Return: void
-    */
-    /*
-        Method Name: displayHUD
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     displayHUD(){
         let x = 0;
@@ -809,16 +569,6 @@ class PlaneGameScene {
         Method Description: Displays background on the screen
         Method Return: void
     */
-    /*
-        Method Name: displayBackground
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     displayBackground(lX, bY){
         this.skyManager.displaySky();
         let lXP = Math.floor(lX);
@@ -860,12 +610,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Displays the whole scene on the screen
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         if (!this.displayEnabled){ return; }
@@ -925,12 +669,6 @@ class PlaneGameScene {
         Method Description: Enables every aspect of the scene
         Method Return: void
     */
-    /*
-        Method Name: enable
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     enable(){
         this.enableTicks();
         this.enableDisplay();
@@ -941,12 +679,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Disables every aspect of the scene
         Method Return: void
-    */
-    /*
-        Method Name: disable
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     disable(){
         this.disableTicks();
@@ -959,12 +691,6 @@ class PlaneGameScene {
         Method Description: Enables ticks for the scene
         Method Return: void
     */
-    /*
-        Method Name: enableTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     enableTicks(){
         this.ticksEnabled = true;
     }
@@ -974,12 +700,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Disables ticks for the scene
         Method Return: void
-    */
-    /*
-        Method Name: disableTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     disableTicks(){
         this.ticksEnabled = false;
@@ -991,12 +711,6 @@ class PlaneGameScene {
         Method Description: Getter
         Method Return: Boolean
     */
-    /*
-        Method Name: hasTicksEnabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasTicksEnabled(){
         return this.ticksEnabled;
     }
@@ -1007,12 +721,6 @@ class PlaneGameScene {
         Method Description: Enables display for the scene
         Method Return: void
     */
-    /*
-        Method Name: enableDisplay
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     enableDisplay(){
         this.displayEnabled = true;
     }
@@ -1022,12 +730,6 @@ class PlaneGameScene {
         Method Parameters: None
         Method Description: Disables display for the scene
         Method Return: void
-    */
-    /*
-        Method Name: disableDisplay
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     disableDisplay(){
         this.displayEnabled = false;

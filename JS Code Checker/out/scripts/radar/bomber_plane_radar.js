@@ -19,18 +19,6 @@ class BomberPlaneRadar extends PlaneRadar {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            plane:
-                TODO
-             tickLockLength:
-                TODO
-             enabled=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(plane, tickLockLength, enabled=true){
         super(plane, tickLockLength, enabled);
     }
@@ -40,12 +28,6 @@ class BomberPlaneRadar extends PlaneRadar {
         Method Parameters: None
         Method Description: Updates the radar
         Method Return: void
-    */
-    /*
-        Method Name: update
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     update(){
         super.update();

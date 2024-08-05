@@ -9,12 +9,6 @@ class PerformanceTimer {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.nodes = [];
     }
@@ -26,14 +20,6 @@ class PerformanceTimer {
                 Name of the timer
         Method Description: Finds a node with a given name, if not found then create it, returns it.
         Method Return: PerformanceTimerNode
-    */
-    /*
-        Method Name: get
-        Method Parameters: 
-            name:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     get(name){
         let node = null;
@@ -55,14 +41,6 @@ class PerformanceTimer {
         Method Description: Finds a node with a given name, if not found return null
         Method Return: PerformanceTimerNode
     */
-    /*
-        Method Name: find
-        Method Parameters: 
-            name:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     find(name){
         for (let node of this.nodes){
             if (node.getName() == name){
@@ -80,14 +58,6 @@ class PerformanceTimer {
         Method Description: Determines if a node with the given name exists
         Method Return: Boolean, true -> has, false -> does not have
     */
-    /*
-        Method Name: has
-        Method Parameters: 
-            name:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     has(name){
         return this.find(name) != null;
     }
@@ -97,12 +67,6 @@ class PerformanceTimer {
         Method Parameters: None
         Method Description: Sorts timers high to low (average time) and prints to console
         Method Return: void
-    */
-    /*
-        Method Name: view
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     view(){
         this.nodes.sort((e1, e2) => {
@@ -119,12 +83,6 @@ class PerformanceTimer {
         Method Parameters: None
         Method Description: Resets all timers
         Method Return: void
-    */
-    /*
-        Method Name: reset
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     reset(){
         for (let node of this.nodes){
@@ -146,14 +104,6 @@ class PerformanceTimerNode {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            name:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(name){
         this.name = name;
         this.startTime = Date.now();
@@ -166,12 +116,6 @@ class PerformanceTimerNode {
         Method Description: Getter
         Method Return: String
     */
-    /*
-        Method Name: getName
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getName(){
         return this.name;
     }
@@ -181,12 +125,6 @@ class PerformanceTimerNode {
         Method Parameters: None
         Method Description: Sets the start time
         Method Return: void
-    */
-    /*
-        Method Name: start
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     start(){
         this.startTime = Date.now();
@@ -198,12 +136,6 @@ class PerformanceTimerNode {
         Method Description: Records the time
         Method Return: void
     */
-    /*
-        Method Name: end
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     end(){
         this.runTimes.push(Date.now() - this.startTime);
     }
@@ -213,12 +145,6 @@ class PerformanceTimerNode {
         Method Parameters: None
         Method Description: Calculates the average time, -1 if none
         Method Return: void
-    */
-    /*
-        Method Name: getMeanTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getMeanTime(){
         // Can't divide by 0 so -1 to signify 0 runs
@@ -234,12 +160,6 @@ class PerformanceTimerNode {
         Method Description: Calculates the max time, -1 if none
         Method Return: void
     */
-    /*
-        Method Name: getMaxTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMaxTime(){
         // Can't divide by 0 so -1 to signify 0 runs
         if (this.runTimes.length == 0){
@@ -253,12 +173,6 @@ class PerformanceTimerNode {
         Method Parameters: None
         Method Description: Calculates the min time, -1 if none
         Method Return: void
-    */
-    /*
-        Method Name: getMinTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getMinTime(){
         // Can't divide by 0 so -1 to signify 0 runs
@@ -274,12 +188,6 @@ class PerformanceTimerNode {
         Method Description: Calculates the median time, -1 if none
         Method Return: void
     */
-    /*
-        Method Name: getMedianTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMedianTime(){
         // Can't divide by 0 so -1 to signify 0 runs
         if (this.runTimes.length == 0){
@@ -294,12 +202,6 @@ class PerformanceTimerNode {
         Method Description: Reset the timer
         Method Return: void
     */
-    /*
-        Method Name: reset
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     reset(){
         this.runTotalTime = 0;
         this.runCount = 0;
@@ -310,12 +212,6 @@ class PerformanceTimerNode {
         Method Parameters: None
         Method Description: Finds the last recorded time
         Method Return: Integer
-    */
-    /*
-        Method Name: getLastTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getLastTime(){
         return this.runTimes[this.runTimes.length-1];

@@ -9,12 +9,6 @@ class DogfightMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.planeCounts = {};
@@ -38,12 +32,6 @@ class DogfightMenu extends Menu {
         Method Parameters: None
         Method Description: Sets up the menu interface
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         let addRemoveButtonSize = 50;
@@ -199,12 +187,6 @@ class DogfightMenu extends Menu {
         Method Description: Creates a JSON representation of the dogfight customized by the user
         Method Return: JSON Object
     */
-    /*
-        Method Name: createJSONRep
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     createJSONRep(){
         let jsonRep = {};
         jsonRep["users"] = [];
@@ -232,12 +214,6 @@ class DogfightMenu extends Menu {
         Method Description: Switches between the actively shown planes
         Method Return: void
     */
-    /*
-        Method Name: switchPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     switchPlanes(){
         this.userPlaneIndex = (this.userPlaneIndex + 1) % this.userPlanes.length;
         let planeName = this.userPlanes[this.userPlaneIndex];
@@ -249,12 +225,6 @@ class DogfightMenu extends Menu {
         Method Parameters: None
         Method Description: Switches between the actively shown axis planes
         Method Return: void
-    */
-    /*
-        Method Name: switchAxisPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     switchAxisPlanes(){
         this.axisPlaneIndex = (this.axisPlaneIndex + 1) % this.axisPlanes.length;
@@ -269,12 +239,6 @@ class DogfightMenu extends Menu {
         Method Description: Switches between the actively shown ally planes
         Method Return: void
     */
-    /*
-        Method Name: switchAlliedPlanes
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     switchAlliedPlanes(){
         this.alliedPlaneIndex = (this.alliedPlaneIndex + 1) % this.alliedPlanes.length;
         let planeName = this.alliedPlanes[this.alliedPlaneIndex];
@@ -287,12 +251,6 @@ class DogfightMenu extends Menu {
         Method Parameters: None
         Method Description: Creates a list of planes for the user to choose between
         Method Return: void
-    */
-    /*
-        Method Name: createUserPlaneSelection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     createUserPlaneSelection(){
         let userPlanes = ["freecam"];
@@ -307,12 +265,6 @@ class DogfightMenu extends Menu {
         Method Parameters: None
         Method Description: Creates a list of ally planes for the user to choose between
         Method Return: void
-    */
-    /*
-        Method Name: createAlliedPlaneSelection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     createAlliedPlaneSelection(){
         let alliedPlanes = [];
@@ -330,12 +282,6 @@ class DogfightMenu extends Menu {
         Method Parameters: None
         Method Description: Creates a list of axis planes for the user to choose between
         Method Return: void
-    */
-    /*
-        Method Name: createAxisPlaneSelection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     createAxisPlaneSelection(){
         let axisPlanes = [];
@@ -357,16 +303,6 @@ class DogfightMenu extends Menu {
                 How many (or negative) planes are added/removed from the count
         Method Description: Modifies the counts of planes
         Method Return: void
-    */
-    /*
-        Method Name: modifyDisplayedBotPlaneCount
-        Method Parameters: 
-            alliance:
-                TODO
-             amount:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     modifyDisplayedBotPlaneCount(alliance, amount){
         // Determine which plane is relevant
@@ -395,12 +331,6 @@ class DogfightMenu extends Menu {
         Method Description: Modifies the displayed details about the number of bots
         Method Return: void
     */
-    /*
-        Method Name: updateBotDetails
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     updateBotDetails(){
         this.botDetailsComponent.update(this.planeCounts);
     }
@@ -410,12 +340,6 @@ class DogfightMenu extends Menu {
         Method Parameters: None
         Method Description: Switches from this menu to the game
         Method Return: void
-    */
-    /*
-        Method Name: goToGame
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     goToGame(){
         MENU_MANAGER.switchTo("game");
@@ -427,12 +351,6 @@ class DogfightMenu extends Menu {
         Method Description: Switches from this menu to the main menu
         Method Return: void
     */
-    /*
-        Method Name: goToMainMenu
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     goToMainMenu(){
         MENU_MANAGER.switchTo("main");
     }
@@ -443,12 +361,6 @@ class DogfightMenu extends Menu {
         Method Description: Cycles the ally difficulty
         Method Return: void
         Note: There are many ways to do this. Maybe some are better? Definitely some are cleaner. It's not a big anyway idc.
-    */
-    /*
-        Method Name: cycleAxisDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     cycleAxisDifficulty(){
         let currentIndex = 0;
@@ -470,12 +382,6 @@ class DogfightMenu extends Menu {
         Method Return: void
         Note: There are many ways to do this. Maybe some are better? Definitely some are cleaner. It's not a big anyway idc.
     */
-    /*
-        Method Name: cycleAllyDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     cycleAllyDifficulty(){
         let currentIndex = 0;
         for (let key of Object.keys(PROGRAM_DATA["ai"]["fighter_plane"]["bias_ranges"])){
@@ -495,12 +401,6 @@ class DogfightMenu extends Menu {
         Method Description: Getter
         Method Return: void
     */
-    /*
-        Method Name: getAllyDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAllyDifficulty(){
         return this.allyDifficulty;
     }
@@ -510,12 +410,6 @@ class DogfightMenu extends Menu {
         Method Parameters: None
         Method Description: Getter
         Method Return: void
-    */
-    /*
-        Method Name: getAxisDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getAxisDifficulty(){
         return this.axisDifficulty;
@@ -537,16 +431,6 @@ class BotDetails {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            menuInstance:
-                TODO
-             botDetailsY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(menuInstance, botDetailsY){
         this.countStrings = {};
         this.setup(menuInstance, botDetailsY);
@@ -561,16 +445,6 @@ class BotDetails {
                 The y location of the top of bot details
         Method Description: Sets up the bot details
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: 
-            menuInstance:
-                TODO
-             botDetailsY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(menuInstance, botDetailsY){
         let botHeaderX = (innerWidth) => { return 1200; }
@@ -618,14 +492,6 @@ class BotDetails {
                 The number of bots of each type
         Method Description: Updates the UI based from the plane counts provided
         Method Return: void
-    */
-    /*
-        Method Name: update
-        Method Parameters: 
-            planeCounts:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     update(planeCounts){
         // Loop through all plane counts and determine total count per alliance

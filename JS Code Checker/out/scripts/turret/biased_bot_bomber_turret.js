@@ -37,32 +37,6 @@ class BiasedBotBomberTurret extends BotBomberTurret {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            xOffset:
-                TODO
-             yOffset:
-                TODO
-             fov1:
-                TODO
-             fov2:
-                TODO
-             rateOfFire:
-                TODO
-             plane:
-                TODO
-             biases:
-                TODO
-             bulletHeatCapacity:
-                TODO
-             coolingTimeMS:
-                TODO
-             bulletDamage:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(xOffset, yOffset, fov1, fov2, rateOfFire, plane, biases, bulletHeatCapacity, coolingTimeMS, bulletDamage){
         super(xOffset, yOffset, fov1, fov2, rateOfFire * biases["rate_of_fire_multiplier"], plane, bulletHeatCapacity, coolingTimeMS, bulletDamage);
         this.biases = biases;
@@ -80,18 +54,6 @@ class BiasedBotBomberTurret extends BotBomberTurret {
         Method Description: Creates an instance of a biased bot bomber turret and returns it
         Method Return: BiasedBotBomberTurret
     */
-    /*
-        Method Name: create
-        Method Parameters: 
-            gunObject:
-                TODO
-             plane:
-                TODO
-             biases:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static create(gunObject, plane, biases){
         return new BiasedBotBomberTurret(gunObject["x_offset"], gunObject["y_offset"], toRadians(gunObject["fov_1"]), toRadians(gunObject["fov_2"]), gunObject["rate_of_fire"], plane, biases, gunObject["bullet_heat_capacity"], gunObject["cooling_time_ms"], gunObject["bullet_damage"]);
     }
@@ -103,14 +65,6 @@ class BiasedBotBomberTurret extends BotBomberTurret {
                 A list of enemy planes
         Method Description: Checks if the turret should shoot. If so, it makes the decision to shoot at the enemy.
         Method Return: void
-    */
-    /*
-        Method Name: checkShoot
-        Method Parameters: 
-            enemyList:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     checkShoot(enemyList){
         let angleBefore = this.decisions["angle"];
@@ -135,14 +89,6 @@ class BiasedBotBomberTurret extends BotBomberTurret {
                 A new shooting angle to try and match
         Method Description: Adjusts the current angle to match a provided angle
         Method Return: void
-    */
-    /*
-        Method Name: adjustAngleToMatch
-        Method Parameters: 
-            newShootingAngle:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     adjustAngleToMatch(newShootingAngle){
         let currentShootingAngle = this.getShootingAngle();

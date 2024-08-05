@@ -11,14 +11,6 @@ class LocalDogfight extends Dogfight {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            dogfightJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(dogfightJSON){
         super();
         this.userEntity = null; // Needed so it can provided to the client later
@@ -36,12 +28,6 @@ class LocalDogfight extends Dogfight {
         Method Description: Determines the expected number of ticks that have occured. Overridden here to enable pausing.
         Method Return: integer
     */
-    /*
-        Method Name: getExpectedTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getExpectedTicks(){
         return this.client.getExpectedTicks();
     }
@@ -52,12 +38,6 @@ class LocalDogfight extends Dogfight {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: PlaneGameScene
     */
-    /*
-        Method Name: getScene
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getScene(){ return this.client.getScene(); }
 
     /*
@@ -67,14 +47,6 @@ class LocalDogfight extends Dogfight {
                 A client object associated with this dogfight
         Method Description: Attaches the client and sets up the game
         Method Return: void
-    */
-    /*
-        Method Name: attachToClient
-        Method Parameters: 
-            client:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     attachToClient(client){
         this.client = client;
@@ -89,12 +61,6 @@ class LocalDogfight extends Dogfight {
         Method Description: Getter
         Method Return: Entity
     */
-    /*
-        Method Name: getUserEntity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getUserEntity(){
         return this.userEntity;
     }
@@ -105,12 +71,6 @@ class LocalDogfight extends Dogfight {
         Method Description: Checks if the gamemode is run locally, true for local dogfight
         Method Return: Boolean
     */
-    /*
-        Method Name: runsLocally
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     runsLocally(){
         return true;
     }
@@ -120,12 +80,6 @@ class LocalDogfight extends Dogfight {
         Method Parameters: None
         Method Description: Run the actions that take place during a tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async tick(){
         if (this.tickInProgressLock.notReady() || !this.isRunning() || this.numTicks >= this.getExpectedTicks() || this.isPaused()){ return; }
@@ -143,14 +97,6 @@ class LocalDogfight extends Dogfight {
                 Provides details about a dogfight in the JSON format
         Method Description: Adds planes to a dogfight at the start
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: 
-            dogfightJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(dogfightJSON){
         let allyX = PROGRAM_DATA["dogfight_settings"]["ally_spawn_x"];
@@ -225,12 +171,6 @@ class LocalDogfight extends Dogfight {
         Method Parameters: None
         Method Description: Display stats if the fight is over
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         this.getScene().display();

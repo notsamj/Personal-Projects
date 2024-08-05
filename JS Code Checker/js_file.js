@@ -40,10 +40,11 @@ class JSFile {
 		let singleLineTODOs = [...this.fileDataStr.matchAll(singleLineTODORegex)];
 		let singleLineTODOData = [];
 
-		for (let singleLineTODOStr of singleLineTODOs){
-			let charIndex = searchForSubstringInString(singleLineTODOStr, this.fileDataStr);
+		for (let singleLineTODOMatch of singleLineTODOs){
+			let singleLineTODOStr = singleLineTODOMatch[0];
+			let charIndex = singleLineTODOMatch["index"];
 			let lineNumber = whatLineInString(this.fileDataStr, charIndex);
-			let todoContentsStr = collectCharactersUntilMeetingChar(this.fileDataStr, charIndex, '\n'); 
+			let todoContentsStr = collectCharactersUntilMeetingChar(this.fileDataStr, charIndex, '\n');
 			singleLineTODOData.push({"line_number": lineNumber, "todo_str": todoContentsStr});
 		}
 		this.dataCollector.setValue("single_line_todos", singleLineTODOData);
@@ -53,8 +54,9 @@ class JSFile {
 		let multiLineTODOs = [...this.fileDataStr.matchAll(multiLineTODORegex)];
 		let multiLineTODOData = [];
 
-		for (let multiLineTODOStr of multiLineTODOs){
-			let charIndex = searchForSubstringInString(multiLineTODOStr, this.fileDataStr);
+		for (let multiLineTODOMatch of multiLineTODOs){
+			let multiLineTODOStr = multiLineTODOMatch[0];
+			let charIndex = multiLineTODOMatch["index"];
 			let lineNumber = whatLineInString(this.fileDataStr, charIndex);
 			let todoContentsStr = collectCharactersUntilMeetingStr(this.fileDataStr, charIndex, "*/"); 
 			multiLineTODOData.push({"line_number": lineNumber, "todo_str": todoContentsStr});
@@ -190,23 +192,24 @@ class JSFile {
 	commentMethodOrFunction(mFDetails){
 		let charIndex = mFDetails["char_index"];
 		//console.log(mFDetails["name"], isPrecededByIgnoreWhiteSpace(this.fileDataStr, mFDetails["char_index"], "*/"))
-		// If comment already exists then ignore.
-		if (isPrecededByIgnoreWhiteSpace(this.fileDataStr, mFDetails["char_index"], "*/")){
-			return;
-		}
 		let isMethod = true;
-		if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "async function ")){
+		if (isPrecededBy(this.fileDataStr, charIndex, "async function ")){
 			charIndex -= "async function ".length;
 			isMethod = false;
-		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "static async ")){
+		}else if (isPrecededBy(this.fileDataStr, charIndex, "static async ")){
 			charIndex -= "static async ".length;
-		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "async ")){
+		}else if (isPrecededBy(this.fileDataStr, charIndex, "async ")){
 			charIndex -= "async ".length;
-		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "function ")){
+		}else if (isPrecededBy(this.fileDataStr, charIndex, "function ")){
 			charIndex -= "function ".length;
 			isMethod = false;
-		}else if (isPrecededBy(this.fileDataStr, mFDetails["char_index"], "static ")){
+		}else if (isPrecededBy(this.fileDataStr, charIndex, "static ")){
 			charIndex -= "static ".length;
+		}
+
+		// If comment already exists then ignore.
+		if (isPrecededByIgnoreWhiteSpace(this.fileDataStr, charIndex, "*/")){
+			return;
 		}
 
 		// Record in DataCollector

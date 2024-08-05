@@ -32,30 +32,6 @@ class BomberTurret extends Turret {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            xOffset:
-                TODO
-             yOffset:
-                TODO
-             fov1:
-                TODO
-             fov2:
-                TODO
-             rateOfFire:
-                TODO
-             plane:
-                TODO
-             bulletHeatCapacity:
-                TODO
-             coolingTimeMS:
-                TODO
-             bulletDamage:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(xOffset, yOffset, fov1, fov2, rateOfFire, plane, bulletHeatCapacity, coolingTimeMS, bulletDamage){
         super(null, null, fov1, fov2, rateOfFire, plane.getGamemode(), bulletHeatCapacity, coolingTimeMS, bulletDamage);
         this.xOffset = xOffset;
@@ -74,16 +50,6 @@ class BomberTurret extends Turret {
         Method Description: Display the HUD of the bomber plane
         Method Return: void
     */
-    /*
-        Method Name: displayHUD
-        Method Parameters: 
-            timePassed:
-                TODO
-             offset:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     displayHUD(timePassed, offset){
         this.turretHeatManager.display(timePassed, offset);
     }
@@ -93,12 +59,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Conduct decisions to do each tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         this.shootCD.tick();
@@ -111,12 +71,6 @@ class BomberTurret extends Turret {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: Boolean
     */
-    /*
-        Method Name: isAutonomous
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isAutonomous(){
         return this.plane.isAutonomous();
     }
@@ -127,12 +81,6 @@ class BomberTurret extends Turret {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: Gamemode
     */
-    /*
-        Method Name: getGamemode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getGamemode(){
         return this.plane.getGamemode();
     }
@@ -142,12 +90,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Creates a JSON representation of the turret
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         let rep = {};
@@ -161,12 +103,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Shoots the turret, if it is ready and the angle is in an allowed range.
         Method Return: void
-    */
-    /*
-        Method Name: shoot
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     shoot(){
         let shootingAngleRAD = this.getShootingAngle();
@@ -191,12 +127,6 @@ class BomberTurret extends Turret {
         Method Description: Calculates the location of the turret on the x axis. Takes into account the angle of the attached plane and its offset.
         Method Return: float
     */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getX(){
         let planeAngleRAD = this.plane.getNoseAngle();
         if (!this.isFacingRight()){
@@ -211,12 +141,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Calculates the location of the turret on the y axis. Takes into account the angle of the attached plane and its offset.
         Method Return: float
-    */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getY(){
         let planeAngleRAD = this.plane.getNoseAngle();
@@ -233,12 +157,6 @@ class BomberTurret extends Turret {
         Method Description: Calculates the interpolated x of the turret
         Method Return: Number
     */
-    /*
-        Method Name: getInterpolatedX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getInterpolatedX(){
         let planeAngleRAD = this.plane.getInterpolatedAngle();
         let rotatedX = Math.cos(planeAngleRAD) * this.getXOffset() - Math.sin(planeAngleRAD) * this.getYOffset() + this.plane.getInterpolatedX();
@@ -250,12 +168,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Calculates the interpolated y of the turret
         Method Return: Number
-    */
-    /*
-        Method Name: getInterpolatedY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getInterpolatedY(){
         let planeAngleRAD = this.plane.getInterpolatedAngle();
@@ -269,12 +181,6 @@ class BomberTurret extends Turret {
         Method Description: Calculates the offset of the turret in relation to the x axis and considering the left/right orientation of the attached plane.
         Method Return: float
     */
-    /*
-        Method Name: getXOffset
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getXOffset(){
         return this.xOffset * (this.plane.isFacingRight() ? 1 : -1);
     }
@@ -285,12 +191,6 @@ class BomberTurret extends Turret {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getYOffset
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getYOffset(){
         return this.yOffset;
     }
@@ -300,12 +200,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Determines if the attacked plane is facing left/right
         Method Return: boolean, true -> facing right, false -> not facing right
-    */
-    /*
-        Method Name: isFacingRight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isFacingRight(){
         return this.plane.isFacingRight();
@@ -345,12 +239,6 @@ class BomberTurret extends Turret {
         Method Description: Determines the x velocity of the associated plane
         Method Return: float
     */
-    /*
-        Method Name: getXVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getXVelocity(){
         return this.plane.getXVelocity();
     }
@@ -360,12 +248,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Determines the y velocity of the associated plane
         Method Return: float
-    */
-    /*
-        Method Name: getYVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getYVelocity(){
         return this.plane.getYVelocity();
@@ -377,12 +259,6 @@ class BomberTurret extends Turret {
         Method Description: Determines the id of the associated plane
         Method Return: String
     */
-    /*
-        Method Name: getID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getID(){ return this.plane.getID(); }
 
     /*
@@ -390,12 +266,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Provides the current shooting angle
         Method Return: Float
-    */
-    /*
-        Method Name: getShootingAngle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getShootingAngle(){
         let shootingAngle = this.angle;
@@ -414,14 +284,6 @@ class BomberTurret extends Turret {
                 A new shooting angle to try and match
         Method Description: Adjusts the current angle to match a provided angle
         Method Return: void
-    */
-    /*
-        Method Name: adjustAngleToMatch
-        Method Parameters: 
-            newShootingAngle:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     adjustAngleToMatch(newShootingAngle){
         let currentShootingAngle = this.getShootingAngle();
@@ -451,12 +313,6 @@ class BomberTurret extends Turret {
         Method Parameters: None
         Method Description: Takes actions based on decisions
         Method Return: void
-    */
-    /*
-        Method Name: executeDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     executeDecisions(){
         // If decided to shoot

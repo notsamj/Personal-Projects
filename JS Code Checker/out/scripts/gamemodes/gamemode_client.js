@@ -11,14 +11,6 @@ class GamemodeClient {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            gamemode:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(gamemode){
         this.gamemode = gamemode;
         this.scene = new PlaneGameScene(this.gamemode, this.gamemode.getVisualEffectManager());
@@ -33,12 +25,6 @@ class GamemodeClient {
         Method Return: void
     */
 
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(){
         this.gamemode.display();
     }
@@ -48,12 +34,6 @@ class GamemodeClient {
         Method Parameters: None
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: Entity
-    */
-    /*
-        Method Name: getUserEntity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getUserEntity(){
         return this.gamemode.getUserEntity();
@@ -65,12 +45,6 @@ class GamemodeClient {
         Method Description: Provides information that this gamemode is running locally. Default value is true
         Method Return: Boolean
     */
-    /*
-        Method Name: runsLocally
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     runsLocally(){
         return true;
     }
@@ -80,12 +54,6 @@ class GamemodeClient {
         Method Parameters: None
         Method Description: Ensures that the focused object is either a living plane or a camera
         Method Return: void
-    */
-    /*
-        Method Name: updateCamera
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     updateCamera(){
         let userEntity = this.gamemode.getUserEntity();
@@ -115,12 +83,6 @@ class GamemodeClient {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: PlaneGameScene
     */
-    /*
-        Method Name: getScene
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getScene(){
         return this.scene;
     }
@@ -130,12 +92,6 @@ class GamemodeClient {
         Method Parameters: None
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: SoundManager
-    */
-    /*
-        Method Name: getSoundManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getSoundManager(){
         return this.gamemode.getSoundManager();
@@ -147,12 +103,6 @@ class GamemodeClient {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: AfterMatchStats
     */
-    /*
-        Method Name: getStatsManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getStatsManager(){
         return this.gamemode.getStatsManager();
     }
@@ -162,12 +112,6 @@ class GamemodeClient {
         Method Parameters: None
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: TeamCombatManager
-    */
-    /*
-        Method Name: getTeamCombatManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getTeamCombatManager(){
         return this.gamemode.getTeamCombatManager();
@@ -179,12 +123,6 @@ class GamemodeClient {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: Integer
     */
-    /*
-        Method Name: getNumTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNumTicks(){
         return this.gamemode.getNumTicks();
     }
@@ -194,12 +132,6 @@ class GamemodeClient {
         Method Parameters: None
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: Integer
-    */
-    /*
-        Method Name: getExpectedTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getExpectedTicks(){
         return this.gamemode.getExpectedTicks();
@@ -211,12 +143,6 @@ class GamemodeClient {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: Integer
     */
-    /*
-        Method Name: getLastTickTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLastTickTime(){
         return this.gamemode.getLastTickTime();
     }
@@ -226,12 +152,6 @@ class GamemodeClient {
         Method Parameters: None
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: Boolean
-    */
-    /*
-        Method Name: isRunning
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isRunning(){
         return this.gamemode.isRunning();
@@ -243,12 +163,6 @@ class GamemodeClient {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: void
     */
-    /*
-        Method Name: correctTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     correctTicks(){
         this.gamemode.correctTicks();
     }
@@ -258,12 +172,6 @@ class GamemodeClient {
         Method Parameters: None
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: void
-    */
-    /*
-        Method Name: end
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     end(){
         this.gamemode.end();
@@ -275,12 +183,6 @@ class GamemodeClient {
         Method Description: Pauses the game. Disabled by default
         Method Return: void
     */
-    /*
-        Method Name: pause
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     pause(){}
 
     /*
@@ -288,12 +190,6 @@ class GamemodeClient {
         Method Parameters: None
         Method Description: Unpauses the game. Disabled by default
         Method Return: void
-    */
-    /*
-        Method Name: unpause
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     unpause(){}
 }

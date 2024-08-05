@@ -9,12 +9,6 @@ class RemoteDogfightClient extends RemoteClient {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super(new RemoteDogfight());
     }

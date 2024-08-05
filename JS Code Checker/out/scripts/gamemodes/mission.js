@@ -30,17 +30,7 @@ class Mission extends Gamemode {
         Method Description: Constructor
         Method Return: Constructor
     */
-	/*
-    Method Name: constructor
-    Method Parameters: 
-        missionObject:
-            TODO
-         missionSetupJSON:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
-constructor(missionObject, missionSetupJSON){
+	constructor(missionObject, missionSetupJSON){
 		super();
 		this.missionObject = missionObject;
         this.allyDifficulty = missionSetupJSON["ally_difficulty"];
@@ -59,12 +49,6 @@ constructor(missionObject, missionSetupJSON){
         Method Description: Determine the difficulty of the attacking team
         Method Return: String
     */
-    /*
-        Method Name: getAttackerDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAttackerDifficulty(){
         return this.missionObject["attackers"] == "Allies" ? this.allyDifficulty : this.axisDifficulty;
     }
@@ -74,12 +58,6 @@ constructor(missionObject, missionSetupJSON){
         Method Parameters: None
         Method Description: Determine the difficulty of the defending team
         Method Return: String
-    */
-    /*
-        Method Name: getDefenderDifficulty
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getDefenderDifficulty(){
         return this.missionObject["defenders"] == "Allies" ? this.allyDifficulty : this.axisDifficulty;
@@ -91,12 +69,6 @@ constructor(missionObject, missionSetupJSON){
         Method Description: Getter
         Method Return: List of Building
     */
-    /*
-        Method Name: getBuildings
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBuildings(){
         return this.buildings;
     }
@@ -106,12 +78,6 @@ constructor(missionObject, missionSetupJSON){
         Method Parameters: None
         Method Description: Run the actions that take place during a tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async tick(){
         if (this.tickInProgressLock.notReady() || !this.isRunning() || this.numTicks >= this.getExpectedTicks() || this.isPaused()){ return; }
@@ -132,12 +98,6 @@ constructor(missionObject, missionSetupJSON){
         Method Description: Checks if the each side is ready to spawn, if so, spawn their planes
         Method Return: void
     */
-    /*
-        Method Name: checkSpawn
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     checkSpawn(){
         if (this.attackerSpawnLock.isReady()){
             this.spawnPlanes("attackers");
@@ -155,12 +115,6 @@ constructor(missionObject, missionSetupJSON){
         Method Description: Finds the user's fighter plane if it exists and its dead
         Method Return: FighterPlane
     */
-    /*
-        Method Name: findDeadUserFighterPlane
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     findDeadUserFighterPlane(){
         for (let plane of this.teamCombatManager.getDeadPlanes()){
             if (plane instanceof HumanFighterPlane){
@@ -177,14 +131,6 @@ constructor(missionObject, missionSetupJSON){
                 Attacker or defender side (String)
         Method Description: Spawns a set selection of planes for a team
         Method Return: void
-    */
-    /*
-        Method Name: spawnPlanes
-        Method Parameters: 
-            side:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     spawnPlanes(side){
         let existingPlanes = this.teamCombatManager.getAllPlanesFromAlliance(this.getAllianceFromSide(side));
@@ -261,14 +207,6 @@ constructor(missionObject, missionSetupJSON){
         Method Description: Checks the difficulty of planes on a given side/team
         Method Return: String
     */
-    /*
-        Method Name: getSideDifficulty
-        Method Parameters: 
-            side:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getSideDifficulty(side){
         return side == "attackers" ? this.getAttackerDifficulty() : this.getDefenderDifficulty();
     }
@@ -281,14 +219,6 @@ constructor(missionObject, missionSetupJSON){
         Method Description: Checks the alliance of planes on a given side/team
         Method Return: String
     */
-    /*
-        Method Name: getAllianceFromSide
-        Method Parameters: 
-            side:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAllianceFromSide(side){
         return this.missionObject[side];
     }
@@ -298,12 +228,6 @@ constructor(missionObject, missionSetupJSON){
         Method Parameters: None
         Method Description: Checks if the conditions to end the game are met
         Method Return: void
-    */
-    /*
-        Method Name: checkForEnd
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkForEnd(){
     	let livingBuildings = 0;
@@ -338,14 +262,6 @@ constructor(missionObject, missionSetupJSON){
         Method Description: Sets the winner and ends the game
         Method Return: void
     */
-    /*
-        Method Name: endGame
-        Method Parameters: 
-            attackerWon:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     endGame(attackerWon){
         this.statsManager.setWinner(attackerWon ? this.missionObject["attackers"] : this.missionObject["defenders"], "won!");
         this.running = false;
@@ -359,14 +275,6 @@ constructor(missionObject, missionSetupJSON){
                 Attackers or defenders (String) if only creating planes for this team. If null then both sides get planes.
         Method Description: Creates a set of bot planes.
         Method Return: List of Plane
-    */
-    /*
-        Method Name: createBotPlanes
-        Method Parameters: 
-            onlySide=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     createBotPlanes(onlySide=null){
         let allyDifficulty = this.allyDifficulty;
@@ -400,14 +308,6 @@ constructor(missionObject, missionSetupJSON){
         Method Return: void
     */
     
-    /*
-        Method Name: setupPlanes
-        Method Parameters: 
-            planes:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setupPlanes(planes){
         // Planes need to be placed at this point
         for (let plane of planes){
@@ -444,14 +344,6 @@ constructor(missionObject, missionSetupJSON){
                 Information about this specific instance of the mission
         Method Description: Creates all the planes at the start of the game
         Method Return: List of planes
-    */
-    /*
-        Method Name: createPlanes
-        Method Parameters: 
-            missionSetupJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     createPlanes(missionSetupJSON){
         let userList = missionSetupJSON["users"];
@@ -503,12 +395,6 @@ constructor(missionObject, missionSetupJSON){
         Method Description: Creates buildings based on specifications in the file
         Method Return: List of Building
     */
-    /*
-        Method Name: createBuildings
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     createBuildings(){
         let buildingRules = this.missionObject["buildings"];
         let difficultyBuildingRules = this.missionObject[this.getAttackerDifficulty()]["buildings"];
@@ -524,6 +410,22 @@ constructor(missionObject, missionSetupJSON){
         }
         return buildings;
     }
+}
+
+/*
+    Method Name: myTestFunction
+    Method Parameters: 
+        a:
+            TODO
+         b:
+            TODO
+         c:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+function myTestFunction(a, b, c){
+    return a + b * c;
 }
 // If using NodeJS -> Export the class
 if (typeof window === "undefined"){

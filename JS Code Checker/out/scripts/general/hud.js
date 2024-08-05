@@ -9,12 +9,6 @@ class HUD {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.hudElements = [];
     }
@@ -28,16 +22,6 @@ class HUD {
                 The value of the element
         Method Description: Updates an element of the HUD (creates if doesn't exist)
         Method Return: void
-    */
-    /*
-        Method Name: updateElement
-        Method Parameters: 
-            name:
-                TODO
-             value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     updateElement(name, value){
         let foundElement = null;
@@ -63,12 +47,6 @@ class HUD {
         Method Description: Displays the HUD
         Method Return: void
     */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(){
         let i = 1;
         for (let element of this.hudElements){
@@ -85,12 +63,6 @@ class HUD {
         Method Parameters: None
         Method Description: Clears all elements from the screen
         Method Return: void
-    */
-    /*
-        Method Name: clearAll
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     clearAll(){
         for (let element of this.hudElements){
@@ -110,16 +82,6 @@ class HUDElement {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            name:
-                TODO
-             value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(name, value){
         this.name = name;
         this.readyToDisplay = true;
@@ -135,14 +97,6 @@ class HUDElement {
         Method Description: Updates the value of an element. Allows it to be displayed on next display.
         Method Return: void
     */
-    /*
-        Method Name: update
-        Method Parameters: 
-            value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     update(value){
         this.value = value;
         this.readyToDisplay = true;
@@ -154,12 +108,6 @@ class HUDElement {
         Method Description: Getter
         Method Return: String
     */
-    /*
-        Method Name: getValue
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getValue(){
         return this.value;
     }
@@ -169,12 +117,6 @@ class HUDElement {
         Method Parameters: None
         Method Description: Getter
         Method Return: String
-    */
-    /*
-        Method Name: getName
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getName(){
         return this.name;
@@ -189,16 +131,6 @@ class HUDElement {
                 y coordinate to display at
         Method Description: Displays the hud element
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(x, y){
         let key = this.name + ": ";
@@ -215,12 +147,6 @@ class HUDElement {
         Method Description: Determines if the element should be displayed. Either it has been updated OR the extra time lock hasn't run out
         Method Return: boolean, true -> ready to display, false -> not ready to display
     */
-    /*
-        Method Name: isReadyToDisplay
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isReadyToDisplay(){
         return this.readyToDisplay || this.extraTimeLock.notReady();
     }
@@ -230,12 +156,6 @@ class HUDElement {
         Method Parameters: None
         Method Description: Removes an element from the screen. Requires it to be requested again to be displayed
         Method Return: void
-    */
-    /*
-        Method Name: clear
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     clear(){
         this.extraTimeLock.unlock();

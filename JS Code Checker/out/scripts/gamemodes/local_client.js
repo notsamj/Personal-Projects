@@ -24,12 +24,6 @@ class LocalClient extends GamemodeClient {
         Method Description: Checks if the client is paused
         Method Return: Boolean
     */
-    /*
-        Method Name: isPaused
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isPaused(){
         return this.paused;
     }
@@ -39,12 +33,6 @@ class LocalClient extends GamemodeClient {
         Method Parameters: None
         Method Description: Pauses the gamemode
         Method Return: void
-    */
-    /*
-        Method Name: pause
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     pause(){
         this.pausedTime = Date.now();
@@ -56,12 +44,6 @@ class LocalClient extends GamemodeClient {
         Method Parameters: None
         Method Description: Unpauses the gamemode
         Method Return: void
-    */
-    /*
-        Method Name: unpause
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     unpause(){
         // Switch to game automatically calls unpause whether its at the start of the game or from the pause method so need to ignore when not actually paused
@@ -78,12 +60,6 @@ class LocalClient extends GamemodeClient {
         Method Description: Instructs the gamemode to tick
         Method Return: void
     */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async tick(){
         if (this.isPaused()){ return; }
         await this.gamemode.tick();
@@ -94,12 +70,6 @@ class LocalClient extends GamemodeClient {
         Method Parameters: None
         Method Description: Determines the expected number of ticks that have occured. Overridden here to enable pausing.
         Method Return: integer
-    */
-    /*
-        Method Name: getExpectedTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getExpectedTicks(){
         return Math.floor((Date.now() - this.gamemode.getStartTime() - this.timeDebt) / PROGRAM_DATA["settings"]["ms_between_ticks"]);

@@ -18,16 +18,6 @@ class CooldownLock extends Lock{
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            cooldown:
-                TODO
-             ready=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(cooldown, ready=true){
         super(ready);
         this.cooldown = cooldown;
@@ -40,12 +30,6 @@ class CooldownLock extends Lock{
         Method Description: Locks the lock and sets the last locked time
         Method Return: void
     */
-    /*
-        Method Name: lock
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     lock(){
         super.lock();
         this.lastLocked = Date.now();
@@ -56,12 +40,6 @@ class CooldownLock extends Lock{
         Method Parameters: None
         Method Description: Determines if the lock is ready to be unlocked and returns the result
         Method Return: boolean, true -> ready, false -> not ready
-    */
-    /*
-        Method Name: isReady
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isReady(){
         if (Date.now() > this.lastLocked + this.cooldown){
@@ -75,12 +53,6 @@ class CooldownLock extends Lock{
         Method Parameters: None
         Method Description: Getter
         Method Return: long, the cooldown of the lock
-    */
-    /*
-        Method Name: getCooldown
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getCooldown(){
         return this.cooldown;

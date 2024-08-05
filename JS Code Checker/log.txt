@@ -1,906 +1,193 @@
 ----- Summary -----
-Number of statements: 5700
-Number of function comments added: 83
-Number of method comments added: 1281
+Number of statements: 5701
+Number of function comments added: 1
+Number of method comments added: 111
 Number of class comments added: 4
 Number of line-referencing console.logs updated: 2
 Number of old console.logs removed: 21
-Number of todos found: 3896
+Number of todos found: 361
 ----- sample_code.js -----
 Relative path: ./in/
 Number of statements: 305
-Number of function comments added: 0
-Number of method comments added: 79
+Number of method comments added: 77
 Number of class comments added: 2
 Number of line-referencing console.logs updated: 2
 Number of old console.logs removed: 5
-Number of todos found: 265
-Line 1: undefined/*
------ sample_code_2.js -----
-Relative path: ./in/sample_folder/
-Number of statements: 136
-Number of function comments added: 3
-Number of method comments added: 0
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 272
------ dogfight.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 25
-Number of function comments added: 0
-Number of method comments added: 5
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 282
+Number of todos found: 253
+Line 1189: // TODO: This should be variable in the future
 ----- gamemode.js -----
 Relative path: ./in/scripts/gamemodes/
 Number of statements: 42
-Number of function comments added: 0
-Number of method comments added: 22
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 326
------ gamemode_client.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 25
-Number of function comments added: 0
-Number of method comments added: 17
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 361
------ gamemode_manager.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 7
-Number of function comments added: 0
-Number of method comments added: 7
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 376
------ gamemode_remote_translator.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 8
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 385
+Number of method comments added: 1
+Number of todos found: 255
 ----- local_client.js -----
 Relative path: ./in/scripts/gamemodes/
 Number of statements: 13
-Number of function comments added: 0
-Number of method comments added: 6
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 398
------ local_dogfight.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 55
-Number of function comments added: 0
-Number of method comments added: 9
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 419
------ local_dogfight_client.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 1
-Number of function comments added: 0
 Number of method comments added: 1
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 422
+Number of todos found: 258
 ----- local_mission.js -----
 Relative path: ./in/scripts/gamemodes/
 Number of statements: 33
-Number of function comments added: 0
-Number of method comments added: 9
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 444
------ local_mission_client.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 1
-Number of function comments added: 0
-Number of method comments added: 1
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 448
+Number of todos found: 259
 ----- mission.js -----
 Relative path: ./in/scripts/gamemodes/
-Number of statements: 132
-Number of function comments added: 0
-Number of method comments added: 16
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 489
------ remote_client.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 41
-Number of function comments added: 0
-Number of method comments added: 13
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 517
+Number of statements: 133
+Number of function comments added: 1
+Number of todos found: 264
 ----- remote_dogfight.js -----
 Relative path: ./in/scripts/gamemodes/
 Number of statements: 68
-Number of function comments added: 0
-Number of method comments added: 8
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 1
-Number of todos found: 538
-Line 1: undefined/*
------ remote_dogfight_client.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 1
-Number of function comments added: 0
-Number of method comments added: 1
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 540
+Number of todos found: 265
+Line 76: // TODO: If tickdifference is great enough then take from server?
 ----- remote_mission.js -----
 Relative path: ./in/scripts/gamemodes/
 Number of statements: 84
-Number of function comments added: 0
-Number of method comments added: 9
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 1
-Number of todos found: 563
-Line 1: undefined/*
------ remote_mission_client.js -----
-Relative path: ./in/scripts/gamemodes/
-Number of statements: 1
-Number of function comments added: 0
-Number of method comments added: 1
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 565
------ async_update_manager.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 66
-Number of function comments added: 0
-Number of method comments added: 20
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 634
------ cooldown_lock.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 10
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 644
------ frame_rate_counter.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 19
-Number of function comments added: 0
-Number of method comments added: 8
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 663
+Number of todos found: 266
+Line 82: // TODO: If tickdifference is great enough then take from server?
 ----- helper_functions.js -----
 Relative path: ./in/scripts/general/
 Number of statements: 149
-Number of function comments added: 55
 Number of method comments added: 1
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 869
------ hitboxes.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 127
-Number of function comments added: 5
-Number of method comments added: 28
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 963
------ hud.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 28
-Number of function comments added: 0
-Number of method comments added: 11
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 992
------ infinite_loop_finder.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 7
-Number of function comments added: 0
-Number of method comments added: 3
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1000
------ lock.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 23
-Number of function comments added: 0
-Number of method comments added: 10
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1022
------ mail_box.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 11
-Number of function comments added: 0
-Number of method comments added: 5
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1035
+Number of todos found: 269
 ----- mail_service.js -----
 Relative path: ./in/scripts/general/
 Number of statements: 52
-Number of function comments added: 0
-Number of method comments added: 20
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 2
-Number of todos found: 1101
+Number of todos found: 269
 ----- notsam_array_list.js -----
 Relative path: ./in/scripts/general/
 Number of statements: 44
-Number of function comments added: 0
-Number of method comments added: 20
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1156
+Number of method comments added: 1
+Number of todos found: 272
 ----- notsam_linked_list.js -----
 Relative path: ./in/scripts/general/
 Number of statements: 96
-Number of function comments added: 0
-Number of method comments added: 21
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1215
+Number of method comments added: 1
+Number of todos found: 276
 ----- notsam_singly_linked_list.js -----
 Relative path: ./in/scripts/general/
 Number of statements: 72
-Number of function comments added: 0
-Number of method comments added: 17
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1262
------ ns_event_handler.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 34
-Number of function comments added: 0
-Number of method comments added: 12
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1300
------ performance_timer.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 31
-Number of function comments added: 0
-Number of method comments added: 16
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1336
------ program_tester.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 60
-Number of function comments added: 0
-Number of method comments added: 24
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1398
------ seeded_randomizer.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 12
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1411
------ simple_2d_canvas_helper.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 58
-Number of function comments added: 14
-Number of method comments added: 9
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1503
------ simple_cryptography.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 34
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1515
+Number of method comments added: 1
+Number of todos found: 279
 ----- sound_manager.js -----
 Relative path: ./in/scripts/general/
 Number of statements: 64
-Number of function comments added: 0
-Number of method comments added: 28
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1600
------ tick_lock.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 12
-Number of function comments added: 0
-Number of method comments added: 7
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1617
+Number of todos found: 280
 ----- user_input_manager.js -----
 Relative path: ./in/scripts/general/
 Number of statements: 39
-Number of function comments added: 0
-Number of method comments added: 21
 Number of class comments added: 1
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1676
------ value_history_manager.js -----
-Relative path: ./in/scripts/general/
-Number of statements: 74
-Number of function comments added: 0
-Number of method comments added: 20
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1745
------ animated_cloud_background.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 15
-Number of function comments added: 0
-Number of method comments added: 5
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1757
------ campaign_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 29
-Number of function comments added: 0
-Number of method comments added: 5
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1767
+Number of todos found: 281
 ----- component.js -----
 Relative path: ./in/scripts/menu/
 Number of statements: 13
-Number of function comments added: 0
-Number of method comments added: 13
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1793
------ dogfight_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 155
-Number of function comments added: 0
-Number of method comments added: 20
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1840
------ extra_settings_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 55
-Number of function comments added: 0
-Number of method comments added: 7
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1868
------ host_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 273
-Number of function comments added: 0
-Number of method comments added: 22
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1915
------ main_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 23
-Number of function comments added: 0
-Number of method comments added: 2
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1919
------ menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 30
-Number of function comments added: 0
-Number of method comments added: 8
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1947
+Number of method comments added: 3
+Number of todos found: 287
 ----- menu_manager.js -----
 Relative path: ./in/scripts/menu/
 Number of statements: 60
-Number of function comments added: 0
-Number of method comments added: 18
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 1995
------ mission_start_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 73
-Number of function comments added: 0
-Number of method comments added: 12
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2020
------ multiplayer_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 71
-Number of function comments added: 0
-Number of method comments added: 9
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2042
+Number of method comments added: 1
+Number of todos found: 289
 ----- option_slider.js -----
 Relative path: ./in/scripts/menu/
 Number of statements: 37
-Number of function comments added: 0
-Number of method comments added: 12
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2072
------ participant_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 38
-Number of function comments added: 0
-Number of method comments added: 9
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2092
------ pause_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 13
-Number of function comments added: 0
-Number of method comments added: 3
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2098
------ quantity_slider.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 15
-Number of function comments added: 0
 Number of method comments added: 2
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2103
------ rectangle_button.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 24
-Number of function comments added: 0
-Number of method comments added: 11
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2138
------ selection_slider.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 12
-Number of function comments added: 0
-Number of method comments added: 2
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2143
------ sound_menu.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 28
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2153
------ static_image.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 33
-Number of function comments added: 0
-Number of method comments added: 15
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2194
------ text_component.js -----
-Relative path: ./in/scripts/menu/
-Number of statements: 15
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2203
------ after_match_stats.js -----
-Relative path: ./in/scripts/misc/
-Number of statements: 31
-Number of function comments added: 0
-Number of method comments added: 12
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2234
------ gun_heat_manager.js -----
-Relative path: ./in/scripts/misc/
-Number of statements: 51
-Number of function comments added: 0
-Number of method comments added: 10
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2259
------ team_combat_manager.js -----
-Relative path: ./in/scripts/misc/
-Number of statements: 190
-Number of function comments added: 0
-Number of method comments added: 37
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2357
------ tick_scheduler.js -----
-Relative path: ./in/scripts/misc/
-Number of statements: 20
-Number of function comments added: 0
-Number of method comments added: 10
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2385
+Number of todos found: 294
 ----- visual_effect_manager.js -----
 Relative path: ./in/scripts/misc/
 Number of statements: 150
-Number of function comments added: 0
-Number of method comments added: 20
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2488
-Line 1: undefined/*
-Line 1: undefined/*
-Line 1: undefined/*
------ building.js -----
-Relative path: ./in/scripts/other_entities/
-Number of statements: 32
-Number of function comments added: 0
-Number of method comments added: 17
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2537
+Number of method comments added: 1
+Number of todos found: 304
+Line 68: // TODO: Come up with something better for this
+Line 102: // TODO: Come up with something better for this
+Line 122: // TODO: Come up with something better for this
 ----- entity.js -----
 Relative path: ./in/scripts/other_entities/
 Number of statements: 50
-Number of function comments added: 0
-Number of method comments added: 37
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2628
-Line 1: undefined/*
+Number of method comments added: 9
+Number of todos found: 323
+Line 43: // TODO: Clean this up
 ----- bomb.js -----
 Relative path: ./in/scripts/other_entities/simple_projectiles/
 Number of statements: 32
-Number of function comments added: 0
-Number of method comments added: 11
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 1
-Number of todos found: 2662
-Line 1: undefined// When this is opened in NodeJS, import the required files
------ bullet.js -----
-Relative path: ./in/scripts/other_entities/simple_projectiles/
-Number of statements: 58
-Number of function comments added: 0
-Number of method comments added: 14
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2710
------ simple_projectile.js -----
-Relative path: ./in/scripts/other_entities/simple_projectiles/
-Number of statements: 101
-Number of function comments added: 0
-Number of method comments added: 20
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2773
+Number of todos found: 324
+Line 97: // TODO: Remove
 ----- spectator_camera.js -----
 Relative path: ./in/scripts/other_entities/
 Number of statements: 121
-Number of function comments added: 0
-Number of method comments added: 24
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2827
-Line 1: undefined/*
+Number of todos found: 325
+Line 394: // TODO: Clean this up
 ----- biased_bot_bomber_plane.js -----
 Relative path: ./in/scripts/plane/bomber_plane/
 Number of statements: 34
-Number of function comments added: 0
-Number of method comments added: 6
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 1
-Number of todos found: 2845
+Number of todos found: 325
 ----- biased_campaign_bot_bomber_plane.js -----
 Relative path: ./in/scripts/plane/bomber_plane/
 Number of statements: 65
-Number of function comments added: 0
-Number of method comments added: 12
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 3
-Number of todos found: 2880
------ biased_dogfight_bot_bomber_plane.js -----
-Relative path: ./in/scripts/plane/bomber_plane/
-Number of statements: 112
-Number of function comments added: 0
-Number of method comments added: 17
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2930
+Number of todos found: 325
 ----- bomber_plane.js -----
 Relative path: ./in/scripts/plane/bomber_plane/
 Number of statements: 55
-Number of function comments added: 0
-Number of method comments added: 11
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 2963
-Line 1: undefined// If using NodeJS -> Do required imports
-Line 1: undefined// If using NodeJS -> Do required imports
------ human_bomber_plane.js -----
-Relative path: ./in/scripts/plane/bomber_plane/
-Number of statements: 98
-Number of function comments added: 0
-Number of method comments added: 21
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3017
------ biased_bot_fighter_plane.js -----
-Relative path: ./in/scripts/plane/fighter_plane/
-Number of statements: 163
-Number of function comments added: 0
-Number of method comments added: 26
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3100
------ biased_campaign_attacker_bot_fighter_plane.js -----
-Relative path: ./in/scripts/plane/fighter_plane/
-Number of statements: 79
-Number of function comments added: 0
-Number of method comments added: 12
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3138
------ biased_campaign_defender_bot_fighter_plane.js -----
-Relative path: ./in/scripts/plane/fighter_plane/
-Number of statements: 13
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3155
------ fighter_plane.js -----
-Relative path: ./in/scripts/plane/fighter_plane/
-Number of statements: 75
-Number of function comments added: 0
-Number of method comments added: 18
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3202
------ human_fighter_plane.js -----
-Relative path: ./in/scripts/plane/fighter_plane/
-Number of statements: 83
-Number of function comments added: 0
-Number of method comments added: 18
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3250
+Number of todos found: 327
+Line 94: // TODO: I need 1 function to load shoot lock tick timer and another function to load the deicison to shoot
+Line 109: // TODO: I need 1 function to load shoot lock tick timer and another function to load the deicison to shoot
 ----- plane.js -----
 Relative path: ./in/scripts/plane/
 Number of statements: 199
-Number of function comments added: 0
-Number of method comments added: 66
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3417
-Line 1: undefined// When this is opened in NodeJS, import the required files
+Number of method comments added: 3
+Number of todos found: 334
+Line 851: // TODO: Clean this up
 ----- propeller.js -----
 Relative path: ./in/scripts/plane/
 Number of statements: 40
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3430
------ bomber_plane_radar.js -----
-Relative path: ./in/scripts/radar/
-Number of statements: 5
-Number of function comments added: 0
-Number of method comments added: 2
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3437
------ plane_radar.js -----
-Relative path: ./in/scripts/radar/
-Number of statements: 13
-Number of function comments added: 0
-Number of method comments added: 2
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3444
+Number of method comments added: 1
+Number of todos found: 338
 ----- radar.js -----
 Relative path: ./in/scripts/radar/
 Number of statements: 92
-Number of function comments added: 0
-Number of method comments added: 13
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3481
------ spectator_radar.js -----
-Relative path: ./in/scripts/radar/
-Number of statements: 5
-Number of function comments added: 0
-Number of method comments added: 2
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3488
+Number of method comments added: 1
+Number of todos found: 340
 ----- plane_game_scene.js -----
 Relative path: ./in/scripts/scene/
 Number of statements: 140
-Number of function comments added: 3
-Number of method comments added: 42
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3608
-Line 1: undefined/*
-Line 1: undefined/*
+Number of method comments added: 4
+Number of todos found: 352
+Line 382: // TODO: This is somewhat ugly
+Line 624: // TODO: Switch to display x for all entities
 ----- sky_manager.js -----
 Relative path: ./in/scripts/scene/
 Number of statements: 92
-Number of function comments added: 0
-Number of method comments added: 16
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 1
-Number of todos found: 3664
-Line 1: undefined/*
+Number of todos found: 353
+Line 278: // TODO: Come up with something better?
 ----- server_connection.js -----
 Relative path: ./in/scripts/server_communication/
 Number of statements: 81
-Number of function comments added: 0
-Number of method comments added: 21
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 3
-Number of todos found: 3719
-Line 1: undefined/*
+Number of todos found: 354
+Line 41: // TODO: Incase activagmemode is null or not a client?
 ----- server_connection_dud.js -----
 Relative path: ./in/scripts/server_communication/
 Number of statements: 0
-Number of function comments added: 0
-Number of method comments added: 0
 Number of class comments added: 1
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3720
+Number of todos found: 355
 ----- biased_bot_bomber_turret.js -----
 Relative path: ./in/scripts/turret/
 Number of statements: 25
-Number of function comments added: 0
-Number of method comments added: 4
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 1
-Number of todos found: 3743
+Number of todos found: 355
 ----- bomber_turret.js -----
 Relative path: ./in/scripts/turret/
 Number of statements: 59
-Number of function comments added: 0
-Number of method comments added: 20
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 2
-Number of todos found: 3795
------ bot_bomber_turret.js -----
-Relative path: ./in/scripts/turret/
-Number of statements: 36
-Number of function comments added: 0
-Number of method comments added: 5
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3819
------ human_bomber_turret.js -----
-Relative path: ./in/scripts/turret/
-Number of statements: 22
-Number of function comments added: 0
-Number of method comments added: 8
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3847
+Number of todos found: 355
 ----- turret.js -----
 Relative path: ./in/scripts/turret/
 Number of statements: 29
-Number of function comments added: 0
-Number of method comments added: 15
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3889
------ ww2planegame.js -----
-Relative path: ./in/scripts/
-Number of statements: 136
-Number of function comments added: 3
-Number of method comments added: 0
-Number of class comments added: 0
-Number of line-referencing console.logs updated: 0
-Number of old console.logs removed: 0
-Number of todos found: 3896
+Number of method comments added: 3
+Number of todos found: 361

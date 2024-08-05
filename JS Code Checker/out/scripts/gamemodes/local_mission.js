@@ -13,16 +13,6 @@ class LocalMission extends Mission {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            missionObject:
-                TODO
-             missionSetupJSON:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(missionObject, missionSetupJSON){
         super(missionObject, missionSetupJSON);
         this.missionSetupJSON = missionSetupJSON;
@@ -35,12 +25,6 @@ class LocalMission extends Mission {
         Method Description: Determines the expected number of ticks that have occured. Overridden here to enable pausing.
         Method Return: integer
     */
-    /*
-        Method Name: getExpectedTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getExpectedTicks(){
         return this.client.getExpectedTicks();
     }
@@ -51,12 +35,6 @@ class LocalMission extends Mission {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: PlaneGameScene
     */
-    /*
-        Method Name: getScene
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getScene(){ return this.client.getScene(); }
 
     /*
@@ -66,14 +44,6 @@ class LocalMission extends Mission {
                 A client object associated with this mission
         Method Description: Attaches the client and sets up the game
         Method Return: void
-    */
-    /*
-        Method Name: attachToClient
-        Method Parameters: 
-            client:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     attachToClient(client){
         this.client = client;
@@ -100,12 +70,6 @@ class LocalMission extends Mission {
         Method Description: Getter
         Method Return: Entity
     */
-    /*
-        Method Name: getUserEntity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getUserEntity(){
         return this.userEntity;
     }
@@ -116,12 +80,6 @@ class LocalMission extends Mission {
         Method Description: Checks if the gamemode is run locally, true for local dogfight
         Method Return: Boolean
     */
-    /*
-        Method Name: runsLocally
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     runsLocally(){
         return true;
     }
@@ -131,12 +89,6 @@ class LocalMission extends Mission {
         Method Parameters: None
         Method Description: Run the actions that take place during a tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async tick(){
         if (this.tickInProgressLock.notReady() || !this.isRunning() || this.numTicks >= this.getExpectedTicks() || this.isPaused()){ return; }
@@ -151,12 +103,6 @@ class LocalMission extends Mission {
         Method Description: Updates the HUD with information from the game
         Method Return: void
         TODO: Merge this is one in remote mission client
-    */
-    /*
-        Method Name: updateHUD
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     updateHUD(){
         let allyLock = this.attackerSpawnLock;
@@ -191,12 +137,6 @@ class LocalMission extends Mission {
         Method Parameters: None
         Method Description: Displays information about the game on the screen.
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         this.updateHUD();

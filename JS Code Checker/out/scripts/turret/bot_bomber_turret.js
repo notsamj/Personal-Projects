@@ -36,30 +36,6 @@ class BotBomberTurret extends BomberTurret {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            xOffset:
-                TODO
-             yOffset:
-                TODO
-            fov1:
-                TODO
-             fov2:
-                TODO
-             rateOfFire:
-                TODO
-             plane:
-                TODO
-             bulletHeatCapacity:
-                TODO
-             coolingTimeMS:
-                TODO
-             bulletDamage:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(xOffset, yOffset,fov1, fov2, rateOfFire, plane, bulletHeatCapacity, coolingTimeMS, bulletDamage){
         super(xOffset, yOffset, fov1, fov2, rateOfFire, plane, bulletHeatCapacity, coolingTimeMS, bulletDamage);
     }
@@ -71,14 +47,6 @@ class BotBomberTurret extends BomberTurret {
                 A list of enemy planes
         Method Description: Makes decisions for what to do in the next tick
         Method Return: void
-    */
-    /*
-        Method Name: makeDecisions
-        Method Parameters: 
-            enemyList:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     makeDecisions(enemyList){
         // If it can't make its own decisions then skip this
@@ -94,14 +62,6 @@ class BotBomberTurret extends BomberTurret {
                 A list of enemy planes
         Method Description: Checks if the turret should shoot. If so, it makes the decision to shoot at the enemy.
         Method Return: void
-    */
-    /*
-        Method Name: checkShoot
-        Method Parameters: 
-            enemyList:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     checkShoot(enemyList){
         // Shoot if the enemy is in front
@@ -156,14 +116,6 @@ class BotBomberTurret extends BomberTurret {
         Method Description: Turn the plane in a given direction.
         Method Return: boolean, true if shot, false if not.
     */
-    /*
-        Method Name: isEnemyClose
-        Method Parameters: 
-            distanceToEnemy:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     isEnemyClose(distanceToEnemy){
         // If the distance is acceptable then the shot is good
         if (distanceToEnemy < this.plane.getMaxShootingDistance()){
@@ -184,16 +136,6 @@ class BotBomberTurret extends BomberTurret {
                 The bomber plane which the turret is attached to
         Method Description: Create a bot bomber turret
         Method Return: BotBomberTurret
-    */
-    /*
-        Method Name: create
-        Method Parameters: 
-            gunObject:
-                TODO
-             plane:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static create(gunObject, plane){
         return new BotBomberTurret(gunObject["x_offset"], gunObject["y_offset"], toRadians(gunObject["fov_1"]), toRadians(gunObject["fov_2"]), gunObject["rate_of_fire"], plane);

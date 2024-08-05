@@ -9,12 +9,6 @@ class PauseMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.setup();
@@ -25,12 +19,6 @@ class PauseMenu extends Menu {
         Method Parameters: None
         Method Description: Sets up the menu interface
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         let buttonSizeX = 800;
@@ -57,12 +45,6 @@ class PauseMenu extends Menu {
         Method Parameters: None
         Method Description: Switches from this menu to the main menu
         Method Return: void
-    */
-    /*
-        Method Name: goToMainMenu
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     goToMainMenu(){
         MENU_MANAGER.switchTo("main");

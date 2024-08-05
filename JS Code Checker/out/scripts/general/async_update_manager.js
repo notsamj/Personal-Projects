@@ -13,12 +13,6 @@ class AsyncUpdateManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.data = new NotSamLinkedList();
         this.syncLock = new Lock();
@@ -33,16 +27,6 @@ class AsyncUpdateManager {
                 The num ticks of the value that is being requested
         Method Description: Get the Node @ [id,numTicks]
         Method Return: AsyncUpdateNode
-    */
-    /*
-        Method Name: get
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async get(id, numTicks){
         await this.syncLock.awaitUnlock(true);
@@ -66,16 +50,6 @@ class AsyncUpdateManager {
         Method Description: Get the Value @ [id,numTicks]
         Method Return: Object (Unknown type)
     */
-    /*
-        Method Name: getValue
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async getValue(id, numTicks){
         let item = await this.get(id, numTicks);
         return item.getValue();
@@ -93,18 +67,6 @@ class AsyncUpdateManager {
         Method Description: Set the Value @ [id,numTicks]
         Method Return: Promise (implicit)
     */
-    /*
-        Method Name: modify
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-             jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async modify(id, numTicks, jsonOBJ){
         await this.get(id, numTicks).fromJSON(jsonOBJ);
     }
@@ -118,16 +80,6 @@ class AsyncUpdateManager {
                 The num ticks of the value that is being requested
         Method Description: Checks for the existence of a value
         Method Return: Boolean, true -> has, false -> does not have
-    */
-    /*
-        Method Name: has
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async has(id, numTicks){
         return await this.get(id, numTicks) != null;
@@ -147,20 +99,6 @@ class AsyncUpdateManager {
         Method Description: Set the value at the position to a new value
         Method Return: Promise (implicit)
     */
-    /*
-        Method Name: put
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-             value:
-                TODO
-             canBeOverwritten=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async put(id, numTicks, value, canBeOverwritten=true){
         await this.syncLock.awaitUnlock(true);
         if (await this.has(id, numTicks)){
@@ -179,12 +117,6 @@ class AsyncUpdateManager {
         Method Description: Get a JSON rep of the data structure
         Method Return: JSON Object
     */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async toJSON(){
         await this.syncLock.awaitUnlock(true);
         let dataList = [];
@@ -202,14 +134,6 @@ class AsyncUpdateManager {
                 A jason rep of the data structure
         Method Description: Fill up the AsyncUpdateManager from a json representation
         Method Return: Promise (implicit)
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async fromJSON(jsonOBJ){
         for (let nodeOBJ of jsonOBJ["data"]){
@@ -231,14 +155,6 @@ class AsyncUpdateManager {
         Method Description: Reset then fill up the AsyncUpdateManager from a json representation
         Method Return: Promise (implicit)
     */
-    /*
-        Method Name: importJSON
-        Method Parameters: 
-            jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async importJSON(jsonOBJ){
         await this.syncLock.awaitUnlock(true);
         this.data = new NotSamLinkedList();
@@ -256,14 +172,6 @@ class AsyncUpdateManager {
         Method Description: Delete old entries
         Method Return: Promise (implicit)
     */
-    /*
-        Method Name: deletionProcedure
-        Method Parameters: 
-            currentTicks:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async deletionProcedure(currentTicks){
         await this.syncLock.awaitUnlock(true);
         this.data.deleteWithCondition((node) => {
@@ -279,14 +187,6 @@ class AsyncUpdateManager {
                 identifier of a value
         Method Description: Find the latest entry for a given id
         Method Return: Promise (implicit)
-    */
-    /*
-        Method Name: findLast
-        Method Parameters: 
-            id:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async findLast(id){
         await this.syncLock.awaitUnlock(true);
@@ -311,16 +211,6 @@ class AsyncUpdateManager {
                 Inclusive, maximum tick to search up to
         Method Description: Find the latest entry for a given id up to and including the set point
         Method Return: Promise (implicit)
-    */
-    /*
-        Method Name: getLastUpTo
-        Method Parameters: 
-            id:
-                TODO
-             maxTickINCL:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async getLastUpTo(id, maxTickINCL){
         await this.syncLock.awaitUnlock(true);
@@ -357,20 +247,6 @@ class AsyncUpdateNode {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-             value:
-                TODO
-             canBeOverwritten=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(id, numTicks, value, canBeOverwritten=true){
         this.id = id;
         this.numTicks = numTicks;
@@ -384,12 +260,6 @@ class AsyncUpdateNode {
         Method Description: Getter
         Method Return: int
     */
-    /*
-        Method Name: getNumTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNumTicks(){
         return this.numTicks;
     }
@@ -400,12 +270,6 @@ class AsyncUpdateNode {
         Method Description: Getter
         Method Return: Unknown type
     */
-    /*
-        Method Name: getID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getID(){
         return this.id;
     }
@@ -415,12 +279,6 @@ class AsyncUpdateNode {
         Method Parameters: None
         Method Description: Getter
         Method Return: Unknown type
-    */
-    /*
-        Method Name: getValue
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getValue(){
         return this.value;
@@ -440,20 +298,6 @@ class AsyncUpdateNode {
         Method Description: Modify the properties of a node
         Method Return: void
     */
-    /*
-        Method Name: modify
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-             value:
-                TODO
-             canBeOverwritten=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     modify(id, numTicks, value, canBeOverwritten=true){
         if (!this.canBeOverwritten){ return; }
         this.id = id;
@@ -468,12 +312,6 @@ class AsyncUpdateNode {
         Method Description: Get a JSON rep of the node
         Method Return: JSON Object
     */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     toJSON(){
         return { "id": this.id, "num_ticks": this.numTicks, "value": this.value, "can_be_overwritten": this.canBeOverwritten };
     }
@@ -485,14 +323,6 @@ class AsyncUpdateNode {
                 A jason rep of the node
         Method Description: Modifies a node based on a JSON rep
         Method Return: void
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     fromJSON(jsonOBJ){
         if (!this.canBeOverwritten){
@@ -511,14 +341,6 @@ class AsyncUpdateNode {
                 A jason rep of the data structure
         Method Description: Creates a new from a JSON rep
         Method Return: AsyncUpdateNode
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static fromJSON(jsonOBJ){
         return new AsyncUpdateNode(jsonOBJ["id"], jsonOBJ["num_ticks"], jsonOBJ["value"], jsonOBJ["can_be_overwritten"])

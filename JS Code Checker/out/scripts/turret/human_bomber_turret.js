@@ -34,30 +34,6 @@ class HumanBomberTurret extends BomberTurret {
         Method Return: Constructor
     */
 
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            xOffset:
-                TODO
-             yOffset:
-                TODO
-             fov1:
-                TODO
-             fov2:
-                TODO
-             rateOfFire:
-                TODO
-             plane:
-                TODO
-             bulletHeatCapacity:
-                TODO
-             coolingTimeMS:
-                TODO
-             bulletDamage:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(xOffset, yOffset, fov1, fov2, rateOfFire, plane, bulletHeatCapacity, coolingTimeMS, bulletDamage){
         super(xOffset, yOffset, fov1, fov2, rateOfFire, plane, bulletHeatCapacity, coolingTimeMS, bulletDamage);
     }
@@ -70,14 +46,6 @@ class HumanBomberTurret extends BomberTurret {
         Method Description: Modifies the damage dealt by the human bomber turret
         Method Return: void
     */
-    /*
-        Method Name: applyDamageMultiplier
-        Method Parameters: 
-            multiplier:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     applyDamageMultiplier(multiplier){
         this.damage *= multiplier;
     }
@@ -87,12 +55,6 @@ class HumanBomberTurret extends BomberTurret {
         Method Parameters: None
         Method Description: Makes decisions for what to do in the next tick
         Method Return: void
-    */
-    /*
-        Method Name: makeDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     makeDecisions(){
         if (!this.isAutonomous()){ return; }
@@ -105,12 +67,6 @@ class HumanBomberTurret extends BomberTurret {
         Method Parameters: None
         Method Description: Calculates the location of the turret on the x axis. Takes into account the angle of the attached plane and its offset.
         Method Return: float
-    */
-    /*
-        Method Name: getTurretScreenX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getTurretScreenX(){
         let planeAngleRAD = this.plane.getNoseAngle();
@@ -126,12 +82,6 @@ class HumanBomberTurret extends BomberTurret {
         Method Description: Calculates the location of the turret on the x axis. Takes into account the angle of the attached plane and its offset.
         Method Return: float
     */
-    /*
-        Method Name: getTurretScreenY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getTurretScreenY(){
         let planeAngleRAD = this.plane.getNoseAngle();
         if (!this.isFacingRight()){
@@ -146,12 +96,6 @@ class HumanBomberTurret extends BomberTurret {
         Method Description: Determines the shooting angle of the turret by looking at the position of the user's mouse.
         Method Return: int
     */
-    /*
-        Method Name: getMouseAngle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMouseAngle(){
         let mouseScreenX = mouseX;
         let mouseScreenY = this.getGamemode().getScene().changeFromScreenY(mouseY);
@@ -165,12 +109,6 @@ class HumanBomberTurret extends BomberTurret {
         Method Parameters: None
         Method Description: Check if the user wishes to shoot and if so, shoots
         Method Return: void
-    */
-    /*
-        Method Name: checkShoot
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkShoot(){
         if (USER_INPUT_MANAGER.isActivated("bomber_shoot_input")){
@@ -193,16 +131,6 @@ class HumanBomberTurret extends BomberTurret {
                 The bomber plane which the turret is attached to
         Method Description: Create a bot bomber turret
         Method Return: HumanBomberTurret
-    */
-    /*
-        Method Name: create
-        Method Parameters: 
-            gunObject:
-                TODO
-             plane:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static create(gunObject, plane){
         return new HumanBomberTurret(gunObject["x_offset"], gunObject["y_offset"], toRadians(gunObject["fov_1"]), toRadians(gunObject["fov_2"]), gunObject["rate_of_fire"], plane, gunObject["bullet_heat_capacity"], gunObject["cooling_time_ms"], gunObject["bullet_damage"]);

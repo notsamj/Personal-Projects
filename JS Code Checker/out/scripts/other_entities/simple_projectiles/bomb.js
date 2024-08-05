@@ -28,26 +28,6 @@ class Bomb extends SimpleProjectile {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-             game:
-                TODO
-             xVelocity:
-                TODO
-             yVelocity:
-                TODO
-             currentTick:
-                TODO
-             bomberClass:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(x, y, game, xVelocity, yVelocity, currentTick, bomberClass){
         super(x, y, game, xVelocity, yVelocity, currentTick, PROGRAM_DATA["bomb_data"]["radius"]);
         this.bomberClass = bomberClass;
@@ -60,12 +40,6 @@ class Bomb extends SimpleProjectile {
         Method Description: Determines the damage of the bomb
         Method Return: Number
     */
-    /*
-        Method Name: getDamage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getDamage(){
         return PROGRAM_DATA["plane_data"][this.bomberClass]["bomb_damage"];
     }
@@ -75,12 +49,6 @@ class Bomb extends SimpleProjectile {
         Method Parameters: None
         Method Description: Determine movement and death each tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         // gamemodes on a local browser do no control these features of the bomb
@@ -98,12 +66,6 @@ class Bomb extends SimpleProjectile {
         Method Description: Blocks up on the ground damaging all buildings within the radius
         Method Return: void
     */
-    /*
-        Method Name: explode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     explode(){
         // Loop through and damage all nearby buildings
         for (let [building, bI] of this.gamemode.getTeamCombatManager().getBuildings()){
@@ -120,12 +82,6 @@ class Bomb extends SimpleProjectile {
         Method Parameters: None
         Method Description: Handles the death of a bomb
         Method Return: void
-    */
-    /*
-        Method Name: die
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     die(){
         this.gamemode.getSoundManager().play("explode", this.getX(), this.getY());
@@ -150,12 +106,6 @@ class Bomb extends SimpleProjectile {
         Method Description: Provide the bomb image
         Method Return: Image
     */
-    /*
-        Method Name: getImage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getImage(){
         return getImage("bomb");
     }
@@ -165,12 +115,6 @@ class Bomb extends SimpleProjectile {
         Method Parameters: None
         Method Description: Determine if the bomb is below ground
         Method Return: boolean, true if the bomb is below ground, false otherwise
-    */
-    /*
-        Method Name: isBelowGround
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isBelowGround(){
         let me = this;
@@ -189,14 +133,6 @@ class Bomb extends SimpleProjectile {
         Method Description: Checks if the bomb collides with another entity
         Method Return: boolean, true if collides, false otherwise
     */
-    /*
-        Method Name: collidesWith
-        Method Parameters: 
-            building:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     collidesWith(building){
         let result = Bullet.hitInTime(this.getHitbox(), this.getX(), this.getY(), this.getXVelocity(), this.getYVelocity(), building.getHitbox(), building.getCenterX(), building.getCenterY(), 0, 0, PROGRAM_DATA["settings"]["ms_between_ticks"]/1000);
         return result;
@@ -207,12 +143,6 @@ class Bomb extends SimpleProjectile {
         Method Parameters: None
         Method Description: Creates a JSON representation of the bomb
         Method Return: A JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         return {
@@ -235,14 +165,6 @@ class Bomb extends SimpleProjectile {
         Method Description: Set up a bullet based on a json representation
         Method Return: void
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            jsonRepresentation:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     fromJSON(jsonRepresentation){
         // No need to taken info from a dead bomb
         this.startX = jsonRepresentation["start_x"];
@@ -264,16 +186,6 @@ class Bomb extends SimpleProjectile {
                 A Game reference that includes the bomb
         Method Description: Creates a Bomb object from a JSON representation
         Method Return: Bomb
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-             game:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static fromJSON(rep, game){
         let bomb = new Bomb(0, 0, game, 0, 0, 0);

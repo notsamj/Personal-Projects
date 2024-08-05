@@ -18,12 +18,6 @@ class Gamemode {
         Method Description: Constructor
         Method Return: Constructor
     */    
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.running = true;
         this.gameOver = false;
@@ -58,12 +52,6 @@ class Gamemode {
         Method Description: Record a tick as occuring now
         Method Return: void
     */
-    /*
-        Method Name: refreshLastTickTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     refreshLastTickTime(){
         this.lastTickTime = Date.now();
     }
@@ -73,12 +61,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: Provides information about whether bullet physics are enabled in the game
         Method Return: Boolean, true -> bullet physics enabled, false -> bullet physics not enabled
-    */
-    /*
-        Method Name: areBulletPhysicsEnabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     areBulletPhysicsEnabled(){
         return this.bulletPhysicsEnabled;
@@ -90,12 +72,6 @@ class Gamemode {
         Method Description: Checks if the gamemode is run locally, false by default
         Method Return: Boolean
     */
-    /*
-        Method Name: runsLocally
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     runsLocally(){
         return false;
     }
@@ -105,12 +81,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: Getter
         Method Return: SoundManager
-    */
-    /*
-        Method Name: getSoundManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getSoundManager(){
         return this.soundManager;
@@ -122,12 +92,6 @@ class Gamemode {
         Method Description: Getter
         Method Return: AfterMatchStats
     */
-    /*
-        Method Name: getStatsManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getStatsManager(){
         return this.statsManager;
     }
@@ -137,12 +101,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: Getter
         Method Return: TeamCombatManager
-    */
-    /*
-        Method Name: getTeamCombatManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getTeamCombatManager(){
         return this.teamCombatManager;
@@ -154,12 +112,6 @@ class Gamemode {
         Method Description: Getter
         Method Return: VisualEffectManager
     */
-    /*
-        Method Name: getVisualEffectManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getVisualEffectManager(){
         return this.visualEffectManager;
     }
@@ -169,12 +121,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: Getter
         Method Return: NSEventHandler
-    */
-    /*
-        Method Name: getEventHandler
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getEventHandler(){
         return this.eventHandler;
@@ -186,12 +132,6 @@ class Gamemode {
         Method Description: Getter
         Method Return: integer
     */
-    /*
-        Method Name: getLastTickTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLastTickTime(){
         return this.lastTickTime;
     }
@@ -201,12 +141,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: Getter
         Method Return: Lock
-    */
-    /*
-        Method Name: getTickInProgressLock
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getTickInProgressLock(){
         return this.tickInProgressLock;
@@ -218,12 +152,6 @@ class Gamemode {
         Method Description: Getter
         Method Return: integer
     */
-    /*
-        Method Name: getStartTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getStartTime(){
         return this.startTime;
     }
@@ -233,12 +161,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: Getter
         Method Return: integer
-    */
-    /*
-        Method Name: getNumTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getNumTicks(){
         return this.numTicks;
@@ -250,12 +172,6 @@ class Gamemode {
         Method Description: Catches up the game mode to the expected tick
         Method Return: void
     */
-    /*
-        Method Name: correctTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     correctTicks(){
         this.numTicks = this.getExpectedTicks();
     }
@@ -265,12 +181,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: Returns whether the game mode is allowing the scene to tick
         Method Return: Boolean
-    */
-    /*
-        Method Name: allowingSceneTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     allowingSceneTicks(){
         return true;
@@ -282,12 +192,6 @@ class Gamemode {
         Method Description: Ends the gane
         Method Return: void
     */
-    /*
-        Method Name: end
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     end(){
         this.running = false;
     }
@@ -298,12 +202,6 @@ class Gamemode {
         Method Description: Determines if the game is paused
         Method Return: Boolean
     */
-    /*
-        Method Name: isPaused
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isPaused(){ return this.paused; }
 
     /*
@@ -311,12 +209,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: Checks if the game mode is running
         Method Return: boolean, true -> mission is running, false -> mission is not running
-    */
-    /*
-        Method Name: isRunning
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isRunning(){
         return this.running && !this.isGameOver();
@@ -328,12 +220,6 @@ class Gamemode {
         Method Description: Checks if the game mode has ended
         Method Return: Boolean
     */
-    /*
-        Method Name: isGameOver
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isGameOver(){
         return this.gameOver;
     }
@@ -344,12 +230,6 @@ class Gamemode {
         Method Description: Determines the expected number of ticks that have occured
         Method Return: integer
     */
-    /*
-        Method Name: getExpectedTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getExpectedTicks(){
         return Math.floor((Date.now() - this.startTime) / PROGRAM_DATA["settings"]["ms_between_ticks"]);
     }
@@ -359,12 +239,6 @@ class Gamemode {
         Method Parameters: None
         Method Description: A default method for any game mode. The default is that a game mode is not running a test sesion.
         Method Return: Boolean
-    */
-    /*
-        Method Name: isRunningATestSession
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isRunningATestSession(){ return false; }
 

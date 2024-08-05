@@ -24,22 +24,6 @@ class Building extends Entity {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            x:
-                TODO
-             width:
-                TODO
-             height:
-                TODO
-             health:
-                TODO
-             gamemode:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(x, width, height, health, gamemode){
         super(gamemode);
         this.x = x;
@@ -55,12 +39,6 @@ class Building extends Entity {
         Method Description: Get the center x value at the start of the tick
         Method Return: Number
     */
-    /*
-        Method Name: getXAtStartOfTick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getXAtStartOfTick(){
         return this.getCenterX();
     }
@@ -70,12 +48,6 @@ class Building extends Entity {
         Method Parameters: None
         Method Description: Get the center y value at the start of the tick
         Method Return: Number
-    */
-    /*
-        Method Name: getYAtStartOfTick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getYAtStartOfTick(){
         return this.getCenterY();
@@ -87,12 +59,6 @@ class Building extends Entity {
         Method Description: The building does not move so it provides 0 x velocity
         Method Return: integer
     */
-    /*
-        Method Name: getXVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getXVelocity(){
         return 0;
     }
@@ -102,12 +68,6 @@ class Building extends Entity {
         Method Parameters: None
         Method Description: The building does not move so it provides 0 y velocity
         Method Return: integer
-    */
-    /*
-        Method Name: getYVelocity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getYVelocity(){
         return 0;
@@ -121,14 +81,6 @@ class Building extends Entity {
         Method Description: Damages a building
         Method Return: void
     */
-    /*
-        Method Name: damage
-        Method Parameters: 
-            amount:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     damage(amount){
         this.health -= amount;
         if (this.health <= 0){
@@ -141,12 +93,6 @@ class Building extends Entity {
         Method Parameters: None
         Method Description: Handles the death of a building
         Method Return: void
-    */
-    /*
-        Method Name: die
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     die(){
         this.gamemode.getEventHandler().emit({
@@ -164,12 +110,6 @@ class Building extends Entity {
         Method Description: Determines the x coordinate of the building center
         Method Return: float
     */
-    /*
-        Method Name: getCenterX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getCenterX(){
         return this.x + this.width / 2;
     }
@@ -179,12 +119,6 @@ class Building extends Entity {
         Method Parameters: None
         Method Description: Determines the y coordinate of the building center
         Method Return: float
-    */
-    /*
-        Method Name: getCenterY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getCenterY(){
         return this.height / 2;
@@ -196,12 +130,6 @@ class Building extends Entity {
         Method Description: Getter
         Method Return: Number
     */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getWidth(){
         return this.width;
     }
@@ -212,12 +140,6 @@ class Building extends Entity {
         Method Description: Getter
         Method Return: Number
     */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getHeight(){
         return this.height;
     }
@@ -227,12 +149,6 @@ class Building extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: Hitbox
-    */
-    /*
-        Method Name: getHitbox
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getHitbox(){
         return this.hitBox;
@@ -247,16 +163,6 @@ class Building extends Entity {
                 The bottom left y displayed on the canvas relative to the focused entity
         Method Description: Displays the building on the canvas
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(lX, bY){
         // Do not display if dead
@@ -290,20 +196,6 @@ class Building extends Entity {
         Method Description: Checks if the building is in the specified region or at least touches it
         Method Return: Boolean
     */
-    /*
-        Method Name: touchesRegion
-        Method Parameters: 
-            lX:
-                TODO
-             rX:
-                TODO
-             bY:
-                TODO
-             tY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     touchesRegion(lX, rX, bY, tY){
         if (this.x + this.getWidth() < lX){ return false; }
         if (this.x > rX){ return false; }
@@ -317,12 +209,6 @@ class Building extends Entity {
         Method Parameters: None
         Method Description: Creates a JSON representation of the building
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         return {
@@ -342,14 +228,6 @@ class Building extends Entity {
         Method Description: Modifies the building based on a JSON representation
         Method Return: void
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     fromJSON(rep){
         this.health = rep["health"];
         this.setDead(rep["dead"]);
@@ -364,16 +242,6 @@ class Building extends Entity {
                 The gamemode that the building is a part of
         Method Description: Creates a building from a json representation
         Method Return: Building
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-             gamemode:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static fromJSON(rep, gamemode){
         let building = new Building(rep["x"], rep["width"], rep["height"], rep["health"], gamemode);

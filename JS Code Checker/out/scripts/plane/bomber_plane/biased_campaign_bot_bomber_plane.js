@@ -23,20 +23,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             biases:
-                TODO
-             autonomous=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, gamemode, biases, autonomous=true){
         super(planeClass, gamemode, biases, autonomous);
         this.flightAngle = 0;
@@ -47,12 +33,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Conduct decisions to do each tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         this.bombLock.tick();
@@ -71,12 +51,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Creates a JSON representation of the biased bot bomber plane
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         let rep = {};
@@ -117,14 +91,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Sets attributes of a biased campaign bot bomber plane from a JSON representation
         Method Return: void
     */
-    /*
-        Method Name: initFromJSON
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     initFromJSON(rep){
         this.id = rep["basic"]["id"];
         this.health = rep["basic"]["health"];
@@ -156,18 +122,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Creates a new Biased Campaign Bot Bomber Plane
         Method Return: BiasedCampaignBotBomberPlane
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-             gamemode:
-                TODO
-             autonomous:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static fromJSON(rep, gamemode, autonomous){
         let planeClass = rep["basic"]["plane_class"];
         let bp = new BiasedCampaignBotBomberPlane(planeClass, gamemode, rep["biases"], autonomous);
@@ -180,12 +134,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Makes decisions for the plane for the next tick
         Method Return: void
-    */
-    /*
-        Method Name: makeDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     makeDecisions(){
         // If not allowed to make decisions -> not make any
@@ -211,12 +159,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Resets the decisions so the planes actions can be chosen to reflect what it current wants to do rather than previously
         Method Return: void
     */
-    /*
-        Method Name: resetDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     resetDecisions(){
         this.decisions["face"] = 0;
         this.decisions["angle"] = 0;
@@ -228,12 +170,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Decide whether or not to shoot
         Method Return: void
-    */
-    /*
-        Method Name: executeAttackingDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     executeAttackingDecisions(){
         // Drop bombs
@@ -255,12 +191,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Make a decision on which direction to face. Either stay the same or turn.
         Method Return: void
-    */
-    /*
-        Method Name: decideOnDirection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     decideOnDirection(){
         let buildingInfo = this.getBuildingInfo();
@@ -290,18 +220,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Return the max shooting distance of this biased plane
         Method Return: BiasedCampaignBotBomberPlane
     */
-    /*
-        Method Name: createBiasedPlane
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             difficulty:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static createBiasedPlane(planeClass, gamemode, difficulty){
         let biases = {};
         for (let [key, bounds] of Object.entries(PROGRAM_DATA["ai"]["bomber_plane"]["bias_ranges"][difficulty])){
@@ -326,12 +244,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Determines the x location of the start of the first (lowest x) building and the end of the last (highest x) building
         Method Return: JSON Object
     */
-    /*
-        Method Name: getBuildingInfo
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getBuildingInfo(){
         let frontEnd = null;
         let backEnd = null;
@@ -354,12 +266,6 @@ class BiasedCampaignBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Check if it makes sense to start bombing. If so -> start bombing.
         Method Return: void
-    */
-    /*
-        Method Name: checkIfBombing
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkIfBombing(){
         if (this.bombLock.notReady()){ return; }

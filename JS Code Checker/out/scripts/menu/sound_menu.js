@@ -9,12 +9,6 @@ class SoundMenu extends Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.setup();
@@ -25,12 +19,6 @@ class SoundMenu extends Menu {
         Method Parameters: None
         Method Description: Sets up the menu interface
         Method Return: void
-    */
-    /*
-        Method Name: setup
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     setup(){
         let sectionYSize = 50;
@@ -72,16 +60,6 @@ class SoundMenu extends Menu {
         Method Description: Creates the settings menu elements for a given sound
         Method Return: void
     */
-    /*
-        Method Name: createSoundSettings
-        Method Parameters: 
-            soundName:
-                TODO
-             offSetIndex:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     createSoundSettings(soundName, offSetIndex){
         let width = 200;
         let height = 50;
@@ -118,12 +96,6 @@ class SoundMenu extends Menu {
         Method Parameters: None
         Method Description: Switches from this menu to the main menu
         Method Return: void
-    */
-    /*
-        Method Name: goToMainMenu
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     goToMainMenu(){
         MENU_MANAGER.switchTo("main");

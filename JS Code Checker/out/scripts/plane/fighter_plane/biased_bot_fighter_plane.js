@@ -37,20 +37,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             biases:
-                TODO
-             autonomous=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, gamemode, biases, autonomous=true){
         super(planeClass, gamemode, autonomous);
         this.currentEnemy = null;
@@ -72,12 +58,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Conduct decisions to do each tick
         Method Return: void
     */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     tick(){
         this.updateEnemyLock.tick();
         super.tick();
@@ -88,12 +68,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Makes decisions for the plane for the next tick
         Method Return: void
-    */
-    /*
-        Method Name: makeDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     makeDecisions(){
         // Sometimes the bot is controlled externally so doesn't need to make its own decisions
@@ -126,12 +100,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Take actions based on saved decisions
         Method Return: void
     */
-    /*
-        Method Name: executeDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     executeDecisions(){
         // Check shooting
         if (this.decisions["shoot"]){
@@ -162,12 +130,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Creates a JSON representation of the biased bot fighter plane
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         let rep = {};
@@ -201,14 +163,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Sets attributes of a biased bot fighter plane from a JSON representation
         Method Return: void
     */
-    /*
-        Method Name: initFromJSON
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     initFromJSON(rep){
         this.id = rep["basic"]["id"];
         this.health = rep["basic"]["health"];
@@ -238,16 +192,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Creates a new Biased Bot Fighter Plane
         Method Return: BiasedBotFighterPlane
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-             gamemode:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static fromJSON(rep, gamemode){
         let planeClass = rep["basic"]["plane_class"];
         let fp = new BiasedBotFighterPlane(planeClass, gamemode, rep["biases"], false); // In all circumstances when loading a bot from a JSON it will not be autonomous
@@ -260,12 +204,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Make decisions when there is no enemy to fight
         Method Return: void
-    */
-    /*
-        Method Name: handleWhenNoEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     handleWhenNoEnemy(){
         // No enemy -> make sure not to crash into the ground
@@ -281,14 +219,6 @@ class BiasedBotFighterPlane extends FighterPlane {
                 An object of an enemy fighter plane
         Method Description: Decide what to do when given an enemy to attack. Can move and can shoot.
         Method Return: void
-    */
-    /*
-        Method Name: handleEnemy
-        Method Parameters: 
-            enemy:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     handleEnemy(enemy){
         // Establish basic facts
@@ -350,18 +280,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Decide how to move given the presence of an enemy.
         Method Return: void
     */
-    /*
-        Method Name: handleMovement
-        Method Parameters: 
-            angleRAD:
-                TODO
-             distance:
-                TODO
-             enemy:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     handleMovement(angleRAD, distance, enemy){
         // If facing downwards and close to the ground then turn upwards
         if (this.closeToGround() && angleBetweenCCWRAD(this.getNoseAngle(), toRadians(180.01), toRadians(359.99))){
@@ -395,18 +313,6 @@ class BiasedBotFighterPlane extends FighterPlane {
                 An enemy fighter plane
         Method Description: Decide how to handle an enemy is that very close by
         Method Return: void
-    */
-    /*
-        Method Name: handleClose
-        Method Parameters: 
-            angleFromMeToEnemyRAD:
-                TODO
-             distance:
-                TODO
-             enemy:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     handleClose(angleFromMeToEnemyRAD, distance, enemy){
         let myAngleRAD = this.getNoseAngle();
@@ -446,12 +352,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Turn to a direction as part of an evasive maneuver
         Method Return: void
     */
-    /*
-        Method Name: evasiveManeuver
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     evasiveManeuver(){
         if (this.turningDirection == null){
             this.turningDirection = this.comeUpWithEvasiveTurningDirection();
@@ -466,12 +366,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Pick a direction to turn when you must conduct evasive maneuvers
         Method Return: True, turn cw, false then turn ccw
     */
-    /*
-        Method Name: comeUpWithEvasiveTurningDirection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     comeUpWithEvasiveTurningDirection(){
         return (randomNumberInclusive(1, 100) + this.biases["turn_direction"] <= 50) ? 1 : -1;
     }
@@ -481,12 +375,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Determine if the plane is close to the ground
         Method Return: True if close to the ground, false if not close
-    */
-    /*
-        Method Name: closeToGround
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     closeToGround(){
         return this.y < PROGRAM_DATA["settings"]["close_to_ground_constant"] * this.speed + this.biases["close_to_ground"];
@@ -499,14 +387,6 @@ class BiasedBotFighterPlane extends FighterPlane {
                 The angle to turn to (radians)
         Method Description: Turn the plane in a given direction
         Method Return: void
-    */
-    /*
-        Method Name: turnInDirection
-        Method Parameters: 
-            angleRAD:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     turnInDirection(angleRAD){
         // Determine if we need to switch from left to right
@@ -548,18 +428,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Turn the plane in a given direction. True if shot, false if not.
         Method Return: boolean
     */
-    /*
-        Method Name: tryToShootAtEnemy
-        Method Parameters: 
-            angleDifferenceRAD:
-                TODO
-             enemyRadius:
-                TODO
-             distanceToEnemy:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     tryToShootAtEnemy(angleDifferenceRAD, enemyRadius, distanceToEnemy){
         let angleAllowanceAtRangeRAD = Math.abs(Math.atan(enemyRadius / distanceToEnemy));
         // If the angle & distance are acceptable then shoot
@@ -585,12 +453,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Find all the enemies and return them
         Method Return: List
     */
-    /*
-        Method Name: getEnemyList
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getEnemyList(){
         let entities = this.gamemode.getTeamCombatManager().getLivingPlanes();
         let enemies = [];
@@ -607,12 +469,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Determine the id of the current enemy
         Method Return: void
-    */
-    /*
-        Method Name: updateEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     updateEnemy(){
         // If we have an enemy already and its close then don't update
@@ -646,12 +502,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Return the max shooting distance of this biased plane
         Method Return: float
     */
-    /*
-        Method Name: getMaxShootingDistance
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMaxShootingDistance(){
         return PROGRAM_DATA["settings"]["shoot_distance_constant"] * PROGRAM_DATA["bullet_data"]["speed"] + this.biases["max_shooting_distance"];
     }
@@ -662,12 +512,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Determine if there is currently a current enemy
         Method Return: True if has an enemy (and they exist), otherwise false
     */
-    /*
-        Method Name: hasCurrentEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasCurrentEnemy(){
         return this.currentEnemy != null && this.currentEnemy.isAlive();
     }
@@ -677,12 +521,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Get the current enemy
         Method Return: Plane
-    */
-    /*
-        Method Name: getCurrentEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getCurrentEnemy(){
         return this.currentEnemy;
@@ -702,20 +540,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Return a new biased plane
         Method Return: BiasedBotFighterPlane
     */
-    /*
-        Method Name: createBiasedPlane
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             difficulty:
-                TODO
-             autonomous=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static createBiasedPlane(planeClass, gamemode, difficulty, autonomous=true){
         let biases = BiasedBotFighterPlane.createBiases(difficulty);
         return new BiasedBotFighterPlane(planeClass, gamemode, biases, autonomous);
@@ -728,14 +552,6 @@ class BiasedBotFighterPlane extends FighterPlane {
                 The difficulty setting related to the plane
         Method Description: Creates a set of biases for a new plane
         Method Return: JSON Object
-    */
-    /*
-        Method Name: createBiases
-        Method Parameters: 
-            difficulty:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static createBiases(difficulty){
         let biasRanges = PROGRAM_DATA["ai"]["fighter_plane"]["bias_ranges"][difficulty];
@@ -768,18 +584,6 @@ class BiasedBotFighterPlane extends FighterPlane {
         Method Description: Determines if another plane is focused on an enemy that "I" am thinking about focusing on
         Method Return: boolean, True if another plane has the enemyID as a current enemy, false otherwise
     */
-    /*
-        Method Name: isFocused
-        Method Parameters: 
-            gamemode:
-                TODO
-             enemyID:
-                TODO
-             myID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static isFocused(gamemode, enemyID, myID){
         return focusedCount(gamemode, enemyID, myID) == 0;
     }
@@ -795,18 +599,6 @@ class BiasedBotFighterPlane extends FighterPlane {
                 A string ID of the plane making the inquiry
         Method Description: Determines how many other planes are focused on an enemy that "I" am thinking about focusing on
         Method Return: int
-    */
-    /*
-        Method Name: focusedCount
-        Method Parameters: 
-            gamemode:
-                TODO
-             enemyID:
-                TODO
-             myID:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static focusedCount(gamemode, enemyID, myID){
         let count = 0;
@@ -827,16 +619,6 @@ class BiasedBotFighterPlane extends FighterPlane {
                 The number of planes focused on this enemy
         Method Description: Comes up with a score for how valuable this enemy is to attack
         Method Return: Number
-    */
-    /*
-        Method Name: calculateEnemyScore
-        Method Parameters: 
-            distance:
-                TODO
-             focusedCount:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static calculateEnemyScore(distance, focusedCount){
         return distance + focusedCount * PROGRAM_DATA["settings"]["focused_count_distance_equivalent"];

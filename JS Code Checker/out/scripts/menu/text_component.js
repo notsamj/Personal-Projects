@@ -39,12 +39,6 @@ class TextComponent extends Component {
         Method Description: Either return x or if its a function, return its evaluation with the current screen width
         Method Return: Number
     */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getX(){
         if (typeof this.x === "function"){
             return this.x(getScreenWidth());
@@ -58,12 +52,6 @@ class TextComponent extends Component {
         Method Parameters: None
         Method Description: Either return y or if its a function, return its evaluation with the current screen height
         Method Return: Number
-    */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getY(){
         if (typeof this.y === "function"){
@@ -79,12 +67,6 @@ class TextComponent extends Component {
         Method Description: Displays the text on the screen
         Method Return: void
     */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(){
         if (!this.enabled){ return; }
         Menu.makeText(this.textStr, this.textColour, this.getX(), this.getY(), this.width, this.height, this.alignLR, this.alignTB);
@@ -95,14 +77,6 @@ class TextComponent extends Component {
         Method Parameters: None
         Method Description: Setter
         Method Return: void
-    */
-    /*
-        Method Name: setText
-        Method Parameters: 
-            str:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setText(str){
         this.textStr = str;

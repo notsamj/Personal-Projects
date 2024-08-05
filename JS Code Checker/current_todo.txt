@@ -1,6 +1,3 @@
-Issues:
-	- adding block comments infront of methods where already present
-		see gamemode_remote_translator
 Pseudo interfaces/classes
 	Need to make an alert like in summary:
 		Number of nsSpecification violations found: n
@@ -10,6 +7,9 @@ Pseudo interfaces/classes
 		Line: xxx
 		...
 Comment this code!
+
+(Optional)
+	Rework program when using matchAll to use match[0] for matchString and match["index"] for character index
 
 
 Notes:

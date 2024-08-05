@@ -24,20 +24,6 @@ class BiasedBotBomberPlane extends BomberPlane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             biases:
-                TODO
-             autonomous=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, gamemode, biases, autonomous=true){
         super(planeClass, gamemode, autonomous);
         this.biases = biases;
@@ -54,14 +40,6 @@ class BiasedBotBomberPlane extends BomberPlane {
         Method Description: Create gun objects for the plane
         Method Return: void
     */
-    /*
-        Method Name: generateGuns
-        Method Parameters: 
-            biases:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     generateGuns(biases){
         this.guns = [];
         for (let gunObj of PROGRAM_DATA["plane_data"][this.planeClass]["guns"]){
@@ -75,12 +53,6 @@ class BiasedBotBomberPlane extends BomberPlane {
         Method Description: Return the max shooting distance of this biased plane
         Method Return: float
     */
-    /*
-        Method Name: getMaxShootingDistance
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMaxShootingDistance(){
         return PROGRAM_DATA["settings"]["shoot_distance_constant"] * PROGRAM_DATA["bullet_data"]["speed"] + this.biases["max_shooting_distance_offset"];
     }
@@ -90,12 +62,6 @@ class BiasedBotBomberPlane extends BomberPlane {
         Method Parameters: None
         Method Description: Find all the enemies and return them
         Method Return: List
-    */
-    /*
-        Method Name: getEnemyList
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getEnemyList(){
         let planes = this.gamemode.getTeamCombatManager().getLivingPlanes();
@@ -126,14 +92,6 @@ class BiasedBotBomberPlane extends BomberPlane {
                 The angle to turn to (angle)
         Method Description: Turn the plane in a given direction
         Method Return: void
-    */
-    /*
-        Method Name: turnInDirection
-        Method Parameters: 
-            angleRAD:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     turnInDirection(angleRAD){
         let noseAngle = this.getNoseAngle()
@@ -168,12 +126,6 @@ class BiasedBotBomberPlane extends BomberPlane {
         Method Parameters: None
         Method Description: Take actions based on saved decisions
         Method Return: void
-    */
-    /*
-        Method Name: executeMainDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     executeMainDecisions(){
         // Change facing direction

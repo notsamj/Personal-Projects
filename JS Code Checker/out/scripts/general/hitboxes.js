@@ -14,14 +14,6 @@ class CircleHitbox {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            radius:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(radius){
         this.x = -1;
         this.y = -1;
@@ -38,16 +30,6 @@ class CircleHitbox {
         Method Description: Updates the position of the hitbox
         Method Return: void
     */
-    /*
-        Method Name: update
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     update(x, y){
         this.x = x;
         this.y = y;
@@ -60,14 +42,6 @@ class CircleHitbox {
                 The other hitbox that may be collided with
         Method Description: Determines whether two hitboxes collide
         Method Return: Boolean, true -> collision, false -> no collision
-    */
-    /*
-        Method Name: collidesWith
-        Method Parameters: 
-            otherHitbox:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     collidesWith(otherHitbox){
         if (otherHitbox instanceof RectangleHitbox){
@@ -83,12 +57,6 @@ class CircleHitbox {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getX(){
         return this.x;
     }
@@ -98,12 +66,6 @@ class CircleHitbox {
         Method Parameters: None
         Method Description: Getter
         Method Return: float
-    */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getY(){
         return this.y;
@@ -115,12 +77,6 @@ class CircleHitbox {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getCenterX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getCenterX(){
         return this.getX();
     }
@@ -130,12 +86,6 @@ class CircleHitbox {
         Method Parameters: None
         Method Description: Getter
         Method Return: float
-    */
-    /*
-        Method Name: getCenterY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getCenterY(){
         return this.getY();
@@ -147,12 +97,6 @@ class CircleHitbox {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getRadius
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getRadius(){
         return this.radius;
     }
@@ -162,12 +106,6 @@ class CircleHitbox {
         Method Parameters: None
         Method Description: Get the radius
         Method Return: float
-    */
-    /*
-        Method Name: getRadiusEquivalentX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getRadiusEquivalentX(){
         return this.getRadius();
@@ -179,12 +117,6 @@ class CircleHitbox {
         Method Description: Get the radius
         Method Return: float
     */
-    /*
-        Method Name: getRadiusEquivalentY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getRadiusEquivalentY(){
         return this.getRadius();
     }
@@ -194,12 +126,6 @@ class CircleHitbox {
         Method Parameters: None
         Method Description: Determines the right most coordinate on the hitbox
         Method Return: Number
-    */
-    /*
-        Method Name: getRightX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getRightX(){
         return this.x + this.radius;
@@ -211,12 +137,6 @@ class CircleHitbox {
         Method Description: Determines the left most coordinate on the hitbox
         Method Return: Number
     */
-    /*
-        Method Name: getLeftX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getLeftX(){
         return this.x - this.radius;
     }
@@ -227,12 +147,6 @@ class CircleHitbox {
         Method Description: Determines the top coordinate on the hitbox
         Method Return: Number
     */
-    /*
-        Method Name: getTopY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getTopY(){
         return this.y + this.radius;
     }
@@ -242,12 +156,6 @@ class CircleHitbox {
         Method Parameters: None
         Method Description: Determines the bottom coordinate on the hitbox
         Method Return: Number
-    */
-    /*
-        Method Name: getBottomY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getBottomY(){
         return this.y - this.radius;
@@ -275,20 +183,6 @@ class RectangleHitbox {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            width:
-                TODO
-             height:
-                TODO
-             centerX=null:
-                TODO
-             centerY=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(width, height, centerX=null, centerY=null){
         this.x1 = -1;
         this.x2 = -1;
@@ -314,14 +208,6 @@ class RectangleHitbox {
         Method Description: Sets the width value to the given value
         Method Return: void
     */
-    /*
-        Method Name: setWidth
-        Method Parameters: 
-            width:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setWidth(width){
         this.width = width;
     }
@@ -333,14 +219,6 @@ class RectangleHitbox {
                 New height value to take
         Method Description: Sets the height value to the given value
         Method Return: void
-    */
-    /*
-        Method Name: setHeight
-        Method Parameters: 
-            height:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setHeight(height){
         this.height = height;
@@ -355,16 +233,6 @@ class RectangleHitbox {
                 y value at the center of the hitbox
         Method Description: Updates the position of the hitbox
         Method Return: void
-    */
-    /*
-        Method Name: update
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     update(x, y){
         this.x1 = x - this.width / 2;
@@ -381,14 +249,6 @@ class RectangleHitbox {
         Method Description: Determines whether two hitboxes collide
         Method Return: Boolean, true -> collision, false -> no collision
     */
-    /*
-        Method Name: collidesWith
-        Method Parameters: 
-            otherHitbox:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     collidesWith(otherHitbox){
         if (otherHitbox instanceof RectangleHitbox){
             return rectangleWithRectangle(this, otherHitbox);
@@ -404,14 +264,6 @@ class RectangleHitbox {
                 The other hitbox that may be collided with
         Method Description: Determines where two hitboxes collide
         Method Return: Integer
-    */
-    /*
-        Method Name: collidesWithAt
-        Method Parameters: 
-            otherRectangleHitbox:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     collidesWithAt(otherRectangleHitbox){
         return cwaRectRect(this, otherRectangleHitbox);
@@ -463,12 +315,6 @@ class RectangleHitbox {
         Method Description: calculates the center x
         Method Return: float
     */
-    /*
-        Method Name: getCenterX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getCenterX(){
         return (this.getX1() + this.getX2())/2;
     }
@@ -478,12 +324,6 @@ class RectangleHitbox {
         Method Parameters: None
         Method Description: calculates the center y
         Method Return: float
-    */
-    /*
-        Method Name: getCenterY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getCenterY(){
         return (this.getY1() + this.getY2())/2;
@@ -495,12 +335,6 @@ class RectangleHitbox {
         Method Description: Get the closest approximation to a radius in x
         Method Return: float
     */
-    /*
-        Method Name: getRadiusEquivalentX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getRadiusEquivalentX(){
         return this.width / 2;
     }
@@ -510,12 +344,6 @@ class RectangleHitbox {
         Method Parameters: None
         Method Description: Get the closest approximation to a radius in x
         Method Return: float
-    */
-    /*
-        Method Name: getRadiusEquivalentY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getRadiusEquivalentY(){
         return this.height / 2;
@@ -527,12 +355,6 @@ class RectangleHitbox {
         Method Description: Determines the right most coordinate on the hitbox
         Method Return: Number
     */
-    /*
-        Method Name: getRightX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getRightX(){
         return Math.max(this.getX1(), this.getX2());
     }
@@ -542,12 +364,6 @@ class RectangleHitbox {
         Method Parameters: None
         Method Description: Determines the left most coordinate on the hitbox
         Method Return: Number
-    */
-    /*
-        Method Name: getLeftX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getLeftX(){
         return Math.min(this.getX1(), this.getX2());
@@ -559,12 +375,6 @@ class RectangleHitbox {
         Method Description: Determines the top coordinate on the hitbox
         Method Return: Number
     */
-    /*
-        Method Name: getTopY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getTopY(){
         return Math.max(this.getY1(), this.getY2());
     }
@@ -574,12 +384,6 @@ class RectangleHitbox {
         Method Parameters: None
         Method Description: Determines the bottom coordinate on the hitbox
         Method Return: Number
-    */
-    /*
-        Method Name: getBottomY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getBottomY(){
         return Math.min(this.getY1(), this.getY2());
@@ -595,16 +399,6 @@ class RectangleHitbox {
             Hitbox of a rectangle
     Method Description: Determine if a circle and a rectangle collide
     Method Return: Boolean, true -> collision, false -> no collision
-*/
-/*
-    Method Name: circleWithRectangle
-    Method Parameters: 
-        circleHitbox:
-            TODO
-         rectangleHitbox:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function circleWithRectangle(circleHitbox, rectangleHitbox){
     let circleCenterX = circleHitbox.getX();
@@ -669,16 +463,6 @@ function circleWithRectangle(circleHitbox, rectangleHitbox){
     Method Description: Determine if a circle and a circle collide
     Method Return: Boolean, true -> collision, false -> no collision
 */
-/*
-    Method Name: circleWithCircle
-    Method Parameters: 
-        circleHitbox1:
-            TODO
-         circleHitbox2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function circleWithCircle(circleHitbox1, circleHitbox2){
     let c1X = circleHitbox1.getX();
     let c2X = circleHitbox2.getX();
@@ -700,16 +484,6 @@ function circleWithCircle(circleHitbox1, circleHitbox2){
             Hitbox of another rectangle
     Method Description: Determine if a rectangle and a rectangle collide
     Method Return: Boolean, true -> collision, false -> no collision
-*/
-/*
-    Method Name: rectangleWithRectangle
-    Method Parameters: 
-        rectangleHitbox1:
-            TODO
-         rectangleHitbox2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function rectangleWithRectangle(rectangleHitbox1, rectangleHitbox2){
     let lXr1 = rectangleHitbox1.getX1();
@@ -798,24 +572,6 @@ function rectangleWithRectangle(rectangleHitbox1, rectangleHitbox2){
     Method Description: Determine if a point is inside a rectangle
     Method Return: Boolean, true -> point is inside, false -> not inside
 */
-/*
-    Method Name: pointInRectangle
-    Method Parameters: 
-        x:
-            TODO
-         y:
-            TODO
-         x1:
-            TODO
-         x2:
-            TODO
-         y1:
-            TODO
-         y2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 function pointInRectangle(x, y, x1, x2, y1, y2){
     if (x > x1 && x < x2 && y < y1 && y > y2){ return true; }
     if (x == x1 && x < x2 && y < y1 && y > y2){ return true; }
@@ -834,16 +590,6 @@ function pointInRectangle(x, y, x1, x2, y1, y2){
             Hitbox of another rectangle
     Method Description: Determine the way that a rectangle and a rectangle collide
     Method Return: Boolean, true -> collision, false -> no collision
-*/
-/*
-    Method Name: cwaRectRect
-    Method Parameters: 
-        rectangleHitbox1:
-            TODO
-         rectangleHitbox2:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
 */
 function cwaRectRect(rectangleHitbox1, rectangleHitbox2){
     let lXr1 = rectangleHitbox1.getX1();

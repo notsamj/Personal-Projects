@@ -16,14 +16,6 @@ class SeededRandomizer {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            seed:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(seed){
         this.seed = seed;
         this.lastNumber = seed;
@@ -39,12 +31,6 @@ class SeededRandomizer {
         used in an example in one of my classes back in University. I did not come up with this formula for generating "random" numbers. I imagine
         it can be found somewhere online but I wanted to make my generation method as unique as I could while still making it manageable so didn't do
         any research other than consulting my memory. I did come up with the three constants by randomly typing numbers and testing the distribution.
-    */
-    /*
-        Method Name: getBigNumber
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getBigNumber(){
         // Go to the next number
@@ -62,16 +48,6 @@ class SeededRandomizer {
         Method Description: Generates a random integer in a range (inclusive)
         Method Return: Integer
     */
-    /*
-        Method Name: getIntInRangeInclusive
-        Method Parameters: 
-            start:
-                TODO
-             end:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getIntInRangeInclusive(start, end){
         let value = (this.getBigNumber() % (end - start + 1)) + start;
         return value;
@@ -86,16 +62,6 @@ class SeededRandomizer {
                 The last number in the range
         Method Description: Generates a random integer in a range (last number is excluded)
         Method Return: Integer
-    */
-    /*
-        Method Name: getIntInRangeExclusive
-        Method Parameters: 
-            start:
-                TODO
-             end:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getIntInRangeExclusive(start, end){
         return this.getIntInRangeInclusive(start, end-1);

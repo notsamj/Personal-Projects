@@ -9,12 +9,6 @@ class Menu {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.visible = false;
         this.components = [];
@@ -26,12 +20,6 @@ class Menu {
         Method Description: Finds the width of the screen and returns it
         Method Return: int
     */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getWidth(){
         return getScreenWidth();
     }
@@ -41,12 +29,6 @@ class Menu {
         Method Parameters: None
         Method Description: Finds the height of the screen and returns it
         Method Return: int
-    */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getHeight(){
         return getScreenHeight();
@@ -73,26 +55,6 @@ class Menu {
         Method Description: Create a rectangle with text inside
         Method Return: void
     */
-    /*
-        Method Name: makeRectangleWithText
-        Method Parameters: 
-            textStr:
-                TODO
-             colour:
-                TODO
-             textColour:
-                TODO
-             x:
-                TODO
-             y:
-                TODO
-             width:
-                TODO
-             height:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static makeRectangleWithText(textStr, colour, textColour, x, y, width, height){
         let screenX = x;
         let screenY = MENU_MANAGER.changeToScreenY(y);
@@ -114,16 +76,6 @@ class Menu {
             The width of the text box
         Method Description: Determines the maximum text size based on the width of the text
         Method Return: int
-    */
-    /*
-        Method Name: determineMaxTextSizeByWidth
-        Method Parameters: 
-            textLines:
-                TODO
-             boxWidth:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static determineMaxTextSizeByWidth(textLines, boxWidth){
         let currentTextSize = 10; // Using as a standard
@@ -185,12 +137,6 @@ class Menu {
         Method Description: Display all components
         Method Return: void
     */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     display(){
         for (let component of this.components){
             if (!component.isDisplayEnabled()){ continue; }
@@ -209,16 +155,6 @@ class Menu {
         Method Description: Determine if any component was clicked (from most recently added to least)
         Method Return: void
     */
-    /*
-        Method Name: click
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     click(x, y){
         for (let i = this.components.length - 1; i >= 0; i--){
             let component = this.components[i];
@@ -234,14 +170,6 @@ class Menu {
         Method Parameters: None
         Method Description: Adds a component to the menu
         Method Return: void
-    */
-    /*
-        Method Name: addComponent
-        Method Parameters: 
-            component:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     addComponent(component){
         this.components.push(component);

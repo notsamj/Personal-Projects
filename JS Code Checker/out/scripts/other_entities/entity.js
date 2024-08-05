@@ -12,14 +12,6 @@ class Entity {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            gamemode:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(gamemode){
         this.id = null;
         this.x = null;
@@ -37,12 +29,6 @@ class Entity {
         Method Description: Getter
         Method Return: Gamemode
     */
-    /*
-        Method Name: getGamemode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getGamemode(){
         return this.gamemode;
     }
@@ -52,14 +38,6 @@ class Entity {
         Method Parameters: None
         Method Description: Calculates the x and y coordinates of this object at the current moment
         Method Return: void
-    */
-    /*
-        Method Name: calculateInterpolatedCoordinates
-        Method Parameters: 
-            displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     calculateInterpolatedCoordinates(displayTime){
         // TODO: Clean this up
@@ -103,12 +81,6 @@ class Entity {
         Method Return: boolean, true -> can rotate, false -> cannot rotate
         Note: Meant to be overridden
     */
-    /*
-        Method Name: canRotate
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     canRotate(){
         return false;
     }
@@ -119,12 +91,6 @@ class Entity {
         Method Description: Provides information about whether or not this entity is dead
         Method Return: boolean, true -> entity is dead, false -> entity is NOT dead
     */
-    /*
-        Method Name: isDead
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isDead(){
         return this.dead;
     }
@@ -134,12 +100,6 @@ class Entity {
         Method Parameters: None
         Method Description: Provides information about whether or not this entity is alive
         Method Return: boolean, true -> entity is alive, false -> entity is NOT alive
-    */
-    /*
-        Method Name: isAlive
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isAlive(){
         return !this.isDead();
@@ -153,14 +113,6 @@ class Entity {
         Method Description: Sets the dead value to the provided value
         Method Return: void
     */
-    /*
-        Method Name: setDead
-        Method Parameters: 
-            dead:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setDead(dead){
         this.dead = dead;
     }
@@ -170,12 +122,6 @@ class Entity {
         Method Parameters: None
         Method Description: Sets the dead value to true
         Method Return: void
-    */
-    /*
-        Method Name: die
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     die(){
         this.setDead(true);
@@ -187,12 +133,6 @@ class Entity {
         Method Description: Sets the dead value to true
         Method Return: void
     */
-    /*
-        Method Name: kill
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     kill(){
         this.die();
     }
@@ -202,12 +142,6 @@ class Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: Scene
-    */
-    /*
-        Method Name: getGame
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getGame(){
         return this.gamemode;
@@ -220,14 +154,6 @@ class Entity {
                 Another entity
         Method Description: Calculates the euclidian distance between this entity and another entity
         Method Return: float
-    */
-    /*
-        Method Name: distance
-        Method Parameters: 
-            entity:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     distance(entity){
         return this.distanceToPoint(entity.getX(), entity.getY());
@@ -243,16 +169,6 @@ class Entity {
         Method Description: Calculates the euclidian distance between this entity and a point
         Method Return: float
     */
-    /*
-        Method Name: distanceToPoint
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     distanceToPoint(x, y){
         return Math.sqrt(Math.pow(x - this.x, 2) + Math.pow(y - this.y, 2));
     }
@@ -266,14 +182,6 @@ class Entity {
         Method Description: Sets the x value to the given value
         Method Return: void
     */
-    /*
-        Method Name: setX
-        Method Parameters: 
-            x:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setX(x){
         this.setCenterX(x);
     }
@@ -285,14 +193,6 @@ class Entity {
                 New y value to take
         Method Description: Sets the y value to the given value
         Method Return: void
-    */
-    /*
-        Method Name: setY
-        Method Parameters: 
-            y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setY(y){
         this.setCenterY(y);
@@ -306,14 +206,6 @@ class Entity {
         Method Description: Sets the x value to the given value
         Method Return: void
     */
-    /*
-        Method Name: setCenterX
-        Method Parameters: 
-            x:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setCenterX(x){
         this.x = x;
     }
@@ -325,14 +217,6 @@ class Entity {
                 New y value to take
         Method Description: Sets the y value to the given value
         Method Return: void
-    */
-    /*
-        Method Name: setCenterY
-        Method Parameters: 
-            y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setCenterY(y){
         this.y = y;
@@ -346,14 +230,6 @@ class Entity {
         Method Description: Sets the id value to the given value
         Method Return: void
     */
-    /*
-        Method Name: setID
-        Method Parameters: 
-            id:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setID(id){
         this.id = id;
     }
@@ -363,12 +239,6 @@ class Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: String
-    */
-    /*
-        Method Name: getID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getID(){
         return this.id;
@@ -380,12 +250,6 @@ class Entity {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getX(){
         return this.getCenterX();
     }
@@ -395,12 +259,6 @@ class Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: float
-    */
-    /*
-        Method Name: getCenterX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getCenterX(){
         return this.x;
@@ -412,12 +270,6 @@ class Entity {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getY(){
         return this.y;
     }
@@ -428,12 +280,6 @@ class Entity {
         Method Description: Getter
         Method Return: float
     */
-    /*
-        Method Name: getCenterY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getCenterY(){
         return this.y;
     }
@@ -443,20 +289,6 @@ class Entity {
         Method Parameters: None
         Method Description: Determines whether or not the image of this entity collides with a given rectangle
         Method Return: boolean, true -> touches, false -> does not touch
-    */
-    /*
-        Method Name: touchesRegion
-        Method Parameters: 
-            lX:
-                TODO
-             rX:
-                TODO
-             bY:
-                TODO
-             tY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     touchesRegion(lX, rX, bY, tY){
         let x = this.getInterpolatedX();
@@ -481,12 +313,6 @@ class Entity {
         Method Description: Deletes this entity
         Method Return: void
     */
-    /*
-        Method Name: delete
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     delete(){
         this.gamemode.getScene().delete(this.id);
     }
@@ -499,12 +325,6 @@ class Entity {
         Method Description: Determines whether this entity is good to follow (the camera)
         Method Return: boolean, true -> yes good to follow, false -> no not good to follow
     */
-    /*
-        Method Name: goodToFollow
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     goodToFollow(){ return false; }
     /*
         Method Name: getDisplayID
@@ -512,24 +332,12 @@ class Entity {
         Method Description: Gets a displayable representation of the entity ID
         Method Return: String
     */
-    /*
-        Method Name: getDisplayID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getDisplayID(){ return this.getID(); }
     /*
         Method Name: hasRadar
         Method Parameters: None
         Method Description: Determines if the entity has a radar object
         Method Return: boolean, true -> has radar, false -> does not have a radar
-    */
-    /*
-        Method Name: hasRadar
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     hasRadar(){ return false; }
 
@@ -540,14 +348,6 @@ class Entity {
                 Other entity to find an angle to
         Method Description: Determine the angle between two entities. In radians.
         Method Return: Float
-    */
-    /*
-        Method Name: angleToOtherRAD
-        Method Parameters: 
-            otherEntity:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     angleToOtherRAD(otherEntity){
         return displacementToRadians(otherEntity.getX() - this.getX(), otherEntity.getY() - this.getY());

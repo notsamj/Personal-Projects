@@ -9,12 +9,6 @@ class UserInputManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         this.handlerNodes = [];
         this.tickedAggregators = [];
@@ -35,22 +29,6 @@ class UserInputManager {
         Method Parameters: None
         Method Description: Registers a new ticked aggregator
         Method Return: void
-    */
-    /*
-        Method Name: registerTickedAggregator
-        Method Parameters: 
-            alias:
-                TODO
-             onEventName:
-                TODO
-             onEventChecker:
-                TODO
-             offEventName:
-                TODO
-             offEventChecker:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     registerTickedAggregator(alias, onEventName, onEventChecker, offEventName, offEventChecker){
         let tickedAggregator = new TickedAggregator(alias);
@@ -75,14 +53,6 @@ class UserInputManager {
         Method Description: Finds a ticked aggregator if it exists, otherwise returns null
         Method Return: TickedAggregator
     */
-    /*
-        Method Name: getTickedAggregator
-        Method Parameters: 
-            alias:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getTickedAggregator(alias){
         for (let tickedAggregator of this.tickedAggregators){
             if (tickedAggregator.getAlias() == alias){ return tickedAggregator; }
@@ -95,12 +65,6 @@ class UserInputManager {
         Method Parameters: None
         Method Description: Ticks all ticked aggegators
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         for (let tickedAggregator of this.tickedAggregators){ tickedAggregator.tick(); }
@@ -120,20 +84,6 @@ class UserInputManager {
         Method Description: Sets up a listener for an event and potentially creates a node
         Method Return: void
     */
-    /*
-        Method Name: register
-        Method Parameters: 
-            alias:
-                TODO
-             eventName:
-                TODO
-             checker:
-                TODO
-             onOff=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     register(alias, eventName, checker, onOff=true){
         let node = this.get(alias);
         document.addEventListener(eventName, (event) => {
@@ -151,14 +101,6 @@ class UserInputManager {
         Method Description: Determines if a listener exists with a given name
         Method Return: boolean, true -> exists, false -> does not exist
     */
-    /*
-        Method Name: has
-        Method Parameters: 
-            alias:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     has(alias){
         return this.get(alias) != null;
     }
@@ -170,14 +112,6 @@ class UserInputManager {
                 The name of the listener
         Method Description: Finds a listener if it exists, otherwise, creates it. Returns it.
         Method Return: UserInputNode
-    */
-    /*
-        Method Name: get
-        Method Parameters: 
-            alias:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     get(alias){
         // Check if we have this node
@@ -200,14 +134,6 @@ class UserInputManager {
         Method Description: Determines if a listener node has been activated by an event
         Method Return: boolean, true -> activated, false -> not activated
     */
-    /*
-        Method Name: isActivated
-        Method Parameters: 
-            alias:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     isActivated(alias){
         return this.has(alias) ? this.get(alias).isActivated() : false;
     }
@@ -224,14 +150,6 @@ class TickedAggregator {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            alias:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(alias){
         this.alias = alias;
         this.ticksEnabled = false;
@@ -245,12 +163,6 @@ class TickedAggregator {
         Method Description: Disables ticks from occuring
         Method Return: void
     */
-    /*
-        Method Name: disableTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     disableTicks(){
         this.ticksEnabled = false;
     }
@@ -260,12 +172,6 @@ class TickedAggregator {
         Method Parameters: None
         Method Description: Enables ticks to occur
         Method Return: void
-    */
-    /*
-        Method Name: enableTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     enableTicks(){
         if (this.ticksEnabled){ return; }
@@ -279,12 +185,6 @@ class TickedAggregator {
         Method Description: Checks if ticks are currently enabled
         Method Return: Boolean
     */
-    /*
-        Method Name: isTicking
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isTicking(){
         return this.ticksEnabled;
     }
@@ -294,12 +194,6 @@ class TickedAggregator {
         Method Parameters: None
         Method Description: Increases the number of ticks by 1
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         if (!this.isTicking()){ return; }
@@ -312,12 +206,6 @@ class TickedAggregator {
         Method Description: Getter
         Method Return: integer
     */
-    /*
-        Method Name: getTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getTicks(){
         return this.ticks;
     }
@@ -327,12 +215,6 @@ class TickedAggregator {
         Method Parameters: None
         Method Description: Resets the number of ticks and returns the count
         Method Return: integer
-    */
-    /*
-        Method Name: clear
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     clear(){
         let ticks = this.getTicks();
@@ -346,12 +228,6 @@ class TickedAggregator {
         Method Description: Provides information as to how long the ticked aggregator has been ticking in miliseconds
         Method Return: integer
     */
-    /*
-        Method Name: getPressTime
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getPressTime(){
         if (this.isTicking()){
             return Date.now() - this.lastPressTime;
@@ -364,12 +240,6 @@ class TickedAggregator {
         Method Parameters: None
         Method Description: Getter
         Method Return: String
-    */
-    /*
-        Method Name: getAlias
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getAlias(){
         return this.alias;
@@ -393,14 +263,6 @@ class UserInputNode {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            alias:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(alias){
         this.alias = alias;
         this.activated = false;
@@ -411,12 +273,6 @@ class UserInputNode {
         Method Parameters: None
         Method Description: Getter
         Method Return: String
-    */
-    /*
-        Method Name: getAlias
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getAlias(){
         return this.alias;
@@ -430,14 +286,6 @@ class UserInputNode {
         Method Description: Getter
         Method Return: void
     */
-    /*
-        Method Name: setActivated
-        Method Parameters: 
-            onOff:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setActivated(onOff){
         this.activated = onOff;
     }
@@ -447,12 +295,6 @@ class UserInputNode {
         Method Parameters: None
         Method Description: Getter
         Method Return: boolean, true -> activated, false -> not activated
-    */
-    /*
-        Method Name: isActivated
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isActivated(){
         return this.activated;

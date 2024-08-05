@@ -101,14 +101,6 @@ USER_INPUT_MANAGER.registerTickedAggregator("s", "keydown", (event) => { return 
     Method Description: Makes things happen within a tick
     Method Return: void
 */
-/*
-    Method Name: tick
-    Method Parameters: 
-        timeSinceLastTickMS:
-            TODO
-    Method Description: TODO
-    Method Return: TODO
-*/
 async function tick(timeSinceLastTickMS){
     // Safety incase an error occurs stop running
     if (programOver){ return; }
@@ -158,12 +150,6 @@ async function tick(timeSinceLastTickMS){
     Method Description: Loads many images needed for the program.
     Method Return: void
 */
-/*
-    Method Name: loadExtraImages
-    Method Parameters: None
-    Method Description: TODO
-    Method Return: TODO
-*/
 async function loadExtraImages(){
     // Load generic extra images
     for (let imageName of PROGRAM_DATA["extra_images_to_load"]){
@@ -176,12 +162,6 @@ async function loadExtraImages(){
     Method Parameters: None
     Method Description: Changes the game zoom
     Method Return: void
-*/
-/*
-    Method Name: setGameZoom
-    Method Parameters: None
-    Method Description: TODO
-    Method Return: TODO
 */
 function setGameZoom(){
     let buttonCount = 0;

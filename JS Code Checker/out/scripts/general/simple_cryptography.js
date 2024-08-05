@@ -14,14 +14,6 @@ class SimpleCryptography {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            secretSeed:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(secretSeed){
         this.secretSeed = secretSeed;
         this.disabled = true;
@@ -34,14 +26,6 @@ class SimpleCryptography {
                 Data to encrypt (String)
         Method Description: Encrypts some data as a string
         Method Return: String
-    */
-    /*
-        Method Name: encrypt
-        Method Parameters: 
-            data:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     encrypt(data){
         if (this.disabled){
@@ -72,14 +56,6 @@ class SimpleCryptography {
                 Data to decrypt (String)
         Method Description: Decrypts a string to a string
         Method Return: String
-    */
-    /*
-        Method Name: decrypt
-        Method Parameters: 
-            encryptedData:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     decrypt(encryptedData){
         if (this.disabled){
@@ -114,14 +90,6 @@ class SimpleCryptography {
                 A supposedly encrypted string
         Method Description: Checks if an encrypted string is in the right format
         Method Return: Boolean
-    */
-    /*
-        Method Name: matchesEncryptedFormat
-        Method Parameters: 
-            data:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     matchesEncryptedFormat(data){
         if (this.disabled){

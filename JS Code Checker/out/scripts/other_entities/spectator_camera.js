@@ -15,18 +15,6 @@ class SpectatorCamera extends Entity {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            game:
-                TODO
-             x=0:
-                TODO
-             y=0:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(game, x=0, y=0){
         super(game);
         this.x = x;
@@ -50,14 +38,6 @@ class SpectatorCamera extends Entity {
         Method Description: Display the HUD of the entity that the camera is spectating
         Method Return: void
     */
-    /*
-        Method Name: displayHUD
-        Method Parameters: 
-            displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     displayHUD(displayTime){
         if (!this.isFollowing()){
             return;
@@ -72,12 +52,6 @@ class SpectatorCamera extends Entity {
         Method Description: Getter
         Method Return: String
     */
-    /*
-        Method Name: getID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     static getID(){
         return "freecam";
     }
@@ -87,12 +61,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: String
-    */
-    /*
-        Method Name: getID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getID(){
         return SpectatorCamera.getID();
@@ -104,12 +72,6 @@ class SpectatorCamera extends Entity {
         Method Description: Determines the ID to display in the HUD
         Method Return: String
     */
-    /*
-        Method Name: getDisplayID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getDisplayID(){
         return this.followingEntity != null ? this.followingEntity.getID() : this.getID();
     }
@@ -119,12 +81,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Determines if the camera is following an entity or flying around
         Method Return: boolean, true -> following, false -> not following
-    */
-    /*
-        Method Name: isFollowing
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isFollowing(){
         // Check if the entity is still around
@@ -140,12 +96,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Finds the entity to spectate in a "negative" direction
         Method Return: void
-    */
-    /*
-        Method Name: spectatePreviousEntity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     spectatePreviousEntity(){
         // If not following ANY entity then just start with one
@@ -178,12 +128,6 @@ class SpectatorCamera extends Entity {
         Method Description: For hud information, report plane speed if following one
         Method Return: float
     */
-    /*
-        Method Name: getSpeed
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getSpeed(){
         if (!this.isFollowing()){ return 0; }
         return this.followingEntity.getSpeed();
@@ -194,12 +138,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: For hud information, report plane throttle if following one
         Method Return: int
-    */
-    /*
-        Method Name: getThrottle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getThrottle(){
         if (!this.isFollowing()){ return 0; }
@@ -212,12 +150,6 @@ class SpectatorCamera extends Entity {
         Method Description: For hud information, report plane health if following one
         Method Return: int
     */
-    /*
-        Method Name: getHealth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getHealth(){
         if (!this.isFollowing()){ return 0; }
         return this.followingEntity.getHealth();
@@ -229,12 +161,6 @@ class SpectatorCamera extends Entity {
         Method Description: Getter
         Method Return: Radar
     */
-    /*
-        Method Name: getRadar
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getRadar(){ return this.radar; }
 
     /*
@@ -243,12 +169,6 @@ class SpectatorCamera extends Entity {
         Method Description: Provides the information that the spectator camera has a radar.
         Method Return: boolean, true -> has a radar, false -> does not have a radar
     */
-    /*
-        Method Name: hasRadar
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasRadar(){ return true; }
 
     /*
@@ -256,12 +176,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Finds the entity to spectate in a "positive" direction
         Method Return: void
-    */
-    /*
-        Method Name: spectateNextEntity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     spectateNextEntity(){
         // If not following ANY entity then just start with one
@@ -294,12 +208,6 @@ class SpectatorCamera extends Entity {
         Method Description: Finds the entity to spectate
         Method Return: void
     */
-    /*
-        Method Name: spectateFirstEntity
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     spectateFirstEntity(){
         let followableEntities = this.gamemode.getScene().getGoodToFollowEntities();
         if (followableEntities.length > 0){
@@ -321,12 +229,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Switch to spectating a plane from the other team
         Method Return: void
-    */
-    /*
-        Method Name: switchTeams
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     switchTeams(){
         // If not following ANY entity then just start with one
@@ -359,12 +261,6 @@ class SpectatorCamera extends Entity {
         Method Description: Checks if the user wants to toggle the following feature
         Method Return: void
     */
-    /*
-        Method Name: checkFollowToggle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     checkFollowToggle(){
         if (USER_INPUT_MANAGER.isActivated("spectator_follow") && this.followToggleLock.isReady()){
             this.followToggleLock.lock();
@@ -383,12 +279,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Checks if the user wants switch between entites previous or next
         Method Return: void
-    */
-    /*
-        Method Name: checkLeftRight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkLeftRight(){
         let leftKey = USER_INPUT_MANAGER.isActivated("spectator_spectate_left");
@@ -415,12 +305,6 @@ class SpectatorCamera extends Entity {
         Method Description: Check if the user wishes to switch which team to spectate
         Method Return: void
     */
-    /*
-        Method Name: checkSwitchTeams
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     checkSwitchTeams(){
         let switchKey = USER_INPUT_MANAGER.isActivated("t");
         if (!switchKey && this.switchTeamLock.notReady()){ this.switchTeamLock.unlock(); }
@@ -434,12 +318,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Checks if the user wants to move the camera left or right
         Method Return: void
-    */
-    /*
-        Method Name: checkMoveX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkMoveX(){
         let leftKey = USER_INPUT_MANAGER.isActivated("spectator_spectate_left");
@@ -463,12 +341,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Checks if the user wants to move the camera up or down
         Method Return: void
-    */
-    /*
-        Method Name: checkMoveY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkMoveY(){
         let upKey = USER_INPUT_MANAGER.isActivated("spectator_spectate_up");
@@ -494,12 +366,6 @@ class SpectatorCamera extends Entity {
         Method Return: Number
     */
 
-    /*
-        Method Name: getInterpolatedX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getInterpolatedX(){
         return this.interpolatedX;
     }
@@ -511,12 +377,6 @@ class SpectatorCamera extends Entity {
         Method Return: Number
     */
 
-    /*
-        Method Name: getInterpolatedY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getInterpolatedY(){
         return this.interpolatedY;
     }
@@ -530,14 +390,6 @@ class SpectatorCamera extends Entity {
         Method Return: void
     */
 
-    /*
-        Method Name: calculateInterpolatedCoordinates
-        Method Parameters: 
-            currentTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     calculateInterpolatedCoordinates(currentTime){
         // TODO: Clean this up
         let currentFrameIndex = FRAME_COUNTER.getFrameIndex();
@@ -560,12 +412,6 @@ class SpectatorCamera extends Entity {
         Method Parameters: None
         Method Description: Handles all the decisions and events in a tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         // Update tick locks

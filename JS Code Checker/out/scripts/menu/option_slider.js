@@ -66,12 +66,6 @@ class OptionSlider extends Component {
         Method Description: Determines the x value of this component. Depends on whether it is set as a function of the screen dimensions or static.
         Method Return: int
     */
-    /*
-        Method Name: getX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getX(){
         if (typeof this.x === "function"){
             return this.x(getScreenWidth());
@@ -86,12 +80,6 @@ class OptionSlider extends Component {
         Method Description: Determines the y value of this component. Depends on whether it is set as a function of the screen dimensions or static.
         Method Return: int
     */
-    /*
-        Method Name: getY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getY(){
         if (typeof this.y === "function"){
             return this.y(getScreenHeight());
@@ -105,12 +93,6 @@ class OptionSlider extends Component {
         Method Parameters: None
         Method Description: Displays the quantity slider
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         // Update position and such things
@@ -139,12 +121,6 @@ class OptionSlider extends Component {
         Method Description: Checks if the slider is currently sliding
         Method Return: Boolean
     */
-    /*
-        Method Name: isSliding
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isSliding(){
         return this.sliding;
     }
@@ -154,12 +130,6 @@ class OptionSlider extends Component {
         Method Parameters: None
         Method Description: Checks if the slider should move
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         let hasMouseOnY = this.coveredByY(MENU_MANAGER.changeFromScreenY(mouseY));
@@ -189,12 +159,6 @@ class OptionSlider extends Component {
         Method Description: Access the value of the slider
         Method Return: Number
     */
-    /*
-        Method Name: accessValue
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     accessValue(){
         return this.getValueFunction();
     }
@@ -206,14 +170,6 @@ class OptionSlider extends Component {
                 A new value after being modified by a slider
         Method Description: Modifies the value associated with the slider
         Method Return: 
-    */
-    /*
-        Method Name: modifyValue
-        Method Parameters: 
-            newValue:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     modifyValue(newValue){
         this.setValueFunction(newValue);
@@ -229,16 +185,6 @@ class OptionSlider extends Component {
         Method Description: Checks if a given point is covered by the slider
         Method Return: Boolean
     */
-    /*
-        Method Name: covers
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     covers(x, y){
         return this.coveredByX(x) && this.coveredByY(y);
     }
@@ -251,14 +197,6 @@ class OptionSlider extends Component {
         Method Description: Checks if a given point is covered by the slider's y position
         Method Return: Boolean
     */
-    /*
-        Method Name: coveredByY
-        Method Parameters: 
-            y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     coveredByY(y){
         return y <= this.getY() - this.height && y >= this.getY() - 2 * this.height;
     }
@@ -270,14 +208,6 @@ class OptionSlider extends Component {
                 An x coordinate
         Method Description: Checks if a given point is covered by the slider's x position
         Method Return: Boolean
-    */
-    /*
-        Method Name: coveredByX
-        Method Parameters: 
-            x:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     coveredByX(x){
         return x >= this.getX() && x <= this.getX() + this.width;

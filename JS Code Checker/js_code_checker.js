@@ -154,25 +154,38 @@ function collectAndLogDataCollector(jsFiles, settings){
 		log.write('\n' + "Number of statements: " + numberOfStatements.toString());
 
 		// Write number of function comments added
-		log.write('\n' + "Number of function comments added: " + fCommentsAdded.toString());
+		if (!settings["ignore_counters_with_zero_changes_in_log"] || fCommentsAdded > 0){
+			log.write('\n' + "Number of function comments added: " + fCommentsAdded.toString());
+		}
 
 		// Write number of method comments added
-		log.write('\n' + "Number of method comments added: " + mCommentsAdded.toString());
+		if (!settings["ignore_counters_with_zero_changes_in_log"] || mCommentsAdded > 0){
+			log.write('\n' + "Number of method comments added: " + mCommentsAdded.toString());
+		}
 
 		// Write number of class comments added
-		log.write('\n' + "Number of class comments added: " + cCommentsAdded.toString());
+		if (!settings["ignore_counters_with_zero_changes_in_log"] || cCommentsAdded > 0){
+			log.write('\n' + "Number of class comments added: " + cCommentsAdded.toString());
+		}
 
 		// Write number of line-referencing console.logs updated
-		log.write('\n' + "Number of line-referencing console.logs updated: " + lineReferencingConsoleLogsUpdated.toString());
+		if (!settings["ignore_counters_with_zero_changes_in_log"] || lineReferencingConsoleLogsUpdated > 0){
+			log.write('\n' + "Number of line-referencing console.logs updated: " + lineReferencingConsoleLogsUpdated.toString());
+		}
 
 		if (settings["remove_console_logs"]){
 			// Write number of old console.logs removed
-			log.write('\n' + "Number of old console.logs removed: " + oldConsoleLogsRemoved.toString());
+			if (!settings["ignore_counters_with_zero_changes_in_log"] || oldConsoleLogsRemoved > 0){
+				log.write('\n' + "Number of old console.logs removed: " + oldConsoleLogsRemoved.toString());
+			}
+
 		}
 
 		// Write number of todos
-		log.write('\n' + "Number of todos found: " + totalTodosFound.toString());
-		
+		if (!settings["ignore_counters_with_zero_changes_in_log"] || totalTodosFound > 0){
+			log.write('\n' + "Number of todos found: " + totalTodosFound.toString());
+		}
+
 		// Go through the TODOs
 
 		// Single line todos

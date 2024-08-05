@@ -30,18 +30,6 @@ class Plane extends Entity {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             autonomous=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, gamemode, autonomous=false){
         super(gamemode);
         this.planeClass = planeClass;
@@ -75,12 +63,6 @@ class Plane extends Entity {
         Method Description: This function chooses to change the facing direction of the plane based on its angle
         Method Return: void
     */
-    /*
-        Method Name: correctFacingDirection
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     correctFacingDirection(){
         // If not fighting an enemy then roll over the plane if needed
         let noseAngle = this.getNoseAngle();
@@ -99,12 +81,6 @@ class Plane extends Entity {
         Method Description: Getter
         Method Return: Number
     */
-    /*
-        Method Name: getStartingThrottle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getStartingThrottle(){
         return this.startingThrottle;
     }
@@ -117,14 +93,6 @@ class Plane extends Entity {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setAutonomous
-        Method Parameters: 
-            value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setAutonomous(value){
         this.autonomous = value;
     }
@@ -134,12 +102,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Checks if the plane is autonomous
         Method Return: Boolean
-    */
-    /*
-        Method Name: isAutonomous
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isAutonomous(){
         return this.autonomous;
@@ -151,12 +113,6 @@ class Plane extends Entity {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: TeamCombatManager
     */
-    /*
-        Method Name: getTeamCombatManager
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getTeamCombatManager(){
         return this.gamemode.getTeamCombatManager();
     }
@@ -167,12 +123,6 @@ class Plane extends Entity {
         Method Description: Interface for a function that is associated with a member variable of this class
         Method Return: PlaneGameScene
     */
-    /*
-        Method Name: getScene
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getScene(){
         return this.gamemode.getScene();
     }
@@ -182,12 +132,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: Gamemode
-    */
-    /*
-        Method Name: getGamemode
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getGamemode(){
         return this.gamemode;
@@ -202,16 +146,6 @@ class Plane extends Entity {
                 The number of ticks behind that this information is
         Method Description: Loads the movement information about the plane if the source has a newer set of values
         Method Return: void
-    */
-    /*
-        Method Name: loadMovementIfNew
-        Method Parameters: 
-            rep:
-                TODO
-             rollForwardAmount=0:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     loadMovementIfNew(rep, rollForwardAmount=0){
         let takePosition = rep["decisions"]["last_movement_mod_tick"] > this.decisions["last_movement_mod_tick"];
@@ -236,12 +170,6 @@ class Plane extends Entity {
         Method Description: Handle the death of a plane
         Method Return: void
     */
-    /*
-        Method Name: die
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     die(){
         this.gamemode.getSoundManager().play("explode", this.getX(), this.getY());
         this.gamemode.getEventHandler().emit({
@@ -259,12 +187,6 @@ class Plane extends Entity {
         Method Description: Get the current tick count of the gamemode mode
         Method Return: integer
     */
-    /*
-        Method Name: getCurrentTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getCurrentTicks(){
         return this.gamemode.getNumTicks();
     }
@@ -277,14 +199,6 @@ class Plane extends Entity {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setAlive
-        Method Parameters: 
-            alive:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setAlive(alive){
         this.dead = !alive;
     }
@@ -295,12 +209,6 @@ class Plane extends Entity {
         Method Description: Calculates the x at the start of the tick
         Method Return: Number
     */
-    /*
-        Method Name: getXAtStartOfTick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getXAtStartOfTick(){
         return this.getNewPositionValues(-1 * PROGRAM_DATA["settings"]["ms_between_ticks"])["x"];
     }
@@ -310,12 +218,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Calculates the y at the start of the tick
         Method Return: Number
-    */
-    /*
-        Method Name: getYAtStartOfTick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getYAtStartOfTick(){
         return this.getNewPositionValues(-1 * PROGRAM_DATA["settings"]["ms_between_ticks"])["y"];
@@ -336,12 +238,6 @@ class Plane extends Entity {
         Method Description: Getter
         Method Return: Integer
     */
-    /*
-        Method Name: getStartingHealth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getStartingHealth(){
         return this.startingHealth;
     }
@@ -351,12 +247,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: Integer
-    */
-    /*
-        Method Name: getStartingThrottle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getStartingThrottle(){
         return this.startingThrottle;
@@ -370,14 +260,6 @@ class Plane extends Entity {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setStartingHealth
-        Method Parameters: 
-            startingHealth:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setStartingHealth(startingHealth){
         this.startingHealth = startingHealth;
     }
@@ -387,14 +269,6 @@ class Plane extends Entity {
         Method Parameters: otherPlane
         Method Description: Determine if this plane is on the same team as another plane
         Method Return: True if the planes are on the same team, false otherwise
-    */
-    /*
-        Method Name: onSameTeam
-        Method Parameters: 
-            otherPlane:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     onSameTeam(otherPlane){
         return onSameTeam(this.getPlaneClass(), otherPlane.getPlaneClass());
@@ -406,12 +280,6 @@ class Plane extends Entity {
         Method Description: Creates a string representation of the plane
         Method Return: void
     */
-    /*
-        Method Name: toString
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     toString(){
         return `"Model: ${this.planeClass}\nFacing Right: ${this.facingRight}\nAngle: ${this.angle}\nHealth: ${this.health}`;
     }
@@ -421,12 +289,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: String
-    */
-    /*
-        Method Name: getPlaneClass
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getPlaneClass(){
         return this.planeClass;
@@ -438,12 +300,6 @@ class Plane extends Entity {
         Method Description: Getter
         Method Return: String
     */
-    /*
-        Method Name: getModel
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getModel(){
         return this.getPlaneClass();
     }
@@ -454,12 +310,6 @@ class Plane extends Entity {
         Method Description: Provides the information that this object is "good to follow"
         Method Return: boolean, true -> good to follow, false -> not good to follow
     */
-    /*
-        Method Name: goodToFollow
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     goodToFollow(){ return true; }
 
     /*
@@ -467,12 +317,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Provides information about what state of decay the plane is in
         Method Return: an integer number in range [0, Number of smoke images]
-    */
-    /*
-        Method Name: getSmokeStage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getSmokeStage(){
         let hpMissingProportion = (this.startingHealth - this.health) / this.startingHealth;
@@ -488,12 +332,6 @@ class Plane extends Entity {
         Method Description: Determine the maximum throttle of a plane based on its health
         Method Return: Integer in range [0,100]
     */
-    /*
-        Method Name: getMaxThrottle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMaxThrottle(){
         return Math.floor(this.startingThrottle * (1 - PROGRAM_DATA["settings"]["health_effect_on_throttle"] * (this.startingHealth - this.health) / this.startingHealth));
     }
@@ -504,12 +342,6 @@ class Plane extends Entity {
         Method Description: Determines if the plane is damaged enough to start smoking
         Method Return: Boolean, true -> smoking, false -> not smoking
     */
-    /*
-        Method Name: isSmoking
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isSmoking(){
         return this.getSmokeStage() > 0;
     }
@@ -519,12 +351,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Displays smoke if this plane is sufficiently damaged
         Method Return: void
-    */
-    /*
-        Method Name: displaySmoke
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     displaySmoke(){
         if (!this.isSmoking()){ return; }
@@ -538,12 +364,6 @@ class Plane extends Entity {
         Method Description: Indicates that fighter planes can rotate
         Method Return: Boolean, true -> can rotate, false -> cannot rotate
     */
-    /*
-        Method Name: canRotate
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     canRotate(){
         return true;
     }
@@ -555,14 +375,6 @@ class Plane extends Entity {
                 integer representing plane health
         Method Description: Setter
         Method Return: void
-    */
-    /*
-        Method Name: setHealth
-        Method Parameters: 
-            health:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setHealth(health){
         this.health = health;
@@ -576,14 +388,6 @@ class Plane extends Entity {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setThrottle
-        Method Parameters: 
-            throttle:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setThrottle(throttle){
         this.throttle = throttle;
     }
@@ -595,14 +399,6 @@ class Plane extends Entity {
                 integer representing plane speed
         Method Description: Setter
         Method Return: void
-    */
-    /*
-        Method Name: setSpeed
-        Method Parameters: 
-            speed:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     setSpeed(speed){
         this.speed = speed;
@@ -616,14 +412,6 @@ class Plane extends Entity {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setAngle
-        Method Parameters: 
-            angle:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setAngle(angle){
         this.angle = angle;
     }
@@ -634,12 +422,6 @@ class Plane extends Entity {
         Method Description: Getter
         Method Return: Integer in range [0,359]
     */
-    /*
-        Method Name: getAngle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getAngle(){
         return this.angle;
     }
@@ -649,12 +431,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Indicates the orientation of the plane
         Method Return: Boolean, true -> Facing right, false -> Facing left
-    */
-    /*
-        Method Name: isFacingRight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isFacingRight(){
         return this.facingRight;
@@ -667,14 +443,6 @@ class Plane extends Entity {
                 Amount to damage the plane, Integer
         Method Description: Damages a plane and kills it if damage causes plane to end up with 0 or less health
         Method Return: void
-    */
-    /*
-        Method Name: damage
-        Method Parameters: 
-            amount:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     damage(amount){
         this.gamemode.getSoundManager().play("damage", this.x, this.y);
@@ -692,12 +460,6 @@ class Plane extends Entity {
         Method Description: Getter, first updates the hitbox to reflect current plane location
         Method Return: Hitbox
     */
-    /*
-        Method Name: getHitbox
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getHitbox(){
         this.hitBox.update(this.x, this.y);
         return this.hitBox;
@@ -709,12 +471,6 @@ class Plane extends Entity {
         Method Description: Getter
         Method Return: Integer
     */
-    /*
-        Method Name: getMaxSpeed
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getMaxSpeed(){
         return this.maxSpeed;
     }
@@ -724,12 +480,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Determines if the plane can control itself
         Method Return: Boolean
-    */
-    /*
-        Method Name: hasNoControl
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     hasNoControl(){
         return this.throttle == 0;
@@ -742,14 +492,6 @@ class Plane extends Entity {
                 Amount to change the angle (and also the direction [pos/neg])
         Method Description: Change the angle of the plane
         Method Return: void
-    */
-    /*
-        Method Name: adjustAngle
-        Method Parameters: 
-            amount:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     adjustAngle(amount){
         let newAngle = this.angle;
@@ -774,14 +516,6 @@ class Plane extends Entity {
         Method Description: Change the orientation of the plane
         Method Return: void
     */
-    /*
-        Method Name: face
-        Method Parameters: 
-            facingRight:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     face(facingRight){
         // If not switching directions nothing to do
         if (facingRight == this.facingRight){
@@ -801,14 +535,6 @@ class Plane extends Entity {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setFacingRight
-        Method Parameters: 
-            facingRight:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setFacingRight(facingRight){
         this.facingRight = facingRight;
     }
@@ -818,12 +544,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Determine the current image of the plane (relic of when planes had 720 images)
         Method Return: Image
-    */
-    /*
-        Method Name: getCurrentImage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getCurrentImage(){
         return IMAGES[this.getImageIdentifier()];
@@ -835,12 +555,6 @@ class Plane extends Entity {
         Method Description: Determine the current image of the plane (relic of when planes had 720 images)
         Method Return: Image
     */
-    /*
-        Method Name: getImage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getImage(){
         return this.getCurrentImage();
     }
@@ -851,12 +565,6 @@ class Plane extends Entity {
         Method Description: Determine the name of the image of the plane (relic of when planes had 720 images)
         Method Return: String
     */
-    /*
-        Method Name: getImageIdentifier
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getImageIdentifier(){
         return this.getPlaneClass();
     }
@@ -866,12 +574,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Determine the width of the current plane image
         Method Return: int
-    */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getWidth(){
         // If using NodeJS -> Just use 2x hitbox radius
@@ -885,12 +587,6 @@ class Plane extends Entity {
         Method Description: Determine the height of the current plane image
         Method Return: int
     */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getHeight(){
         // If using NodeJS -> Just use 2x hitbox radius
         if (typeof window === "undefined"){ return this.hitBox.getRadius()*2; }
@@ -902,12 +598,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Conduct decisions to do each tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         // If hit the ground
@@ -936,16 +626,6 @@ class Plane extends Entity {
                 Whether the new value are for display only, should use decisions to affect angle
         Method Description: Determines new x, y, speed values for a tick
         Method Return: JSON Object
-    */
-    /*
-        Method Name: getNewPositionValues
-        Method Parameters: 
-            timeDiffMS:
-                TODO
-             displayOnly=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getNewPositionValues(timeDiffMS, displayOnly=false){
         let timeProportion = (timeDiffMS / 1000);
@@ -987,14 +667,6 @@ class Plane extends Entity {
         Method Description: Simulates multiple ticks moving the plane forward
         Method Return: void
     */
-    /*
-        Method Name: rollForward
-        Method Parameters: 
-            amount:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     rollForward(amount){
         for (let i = 0; i < amount; i++){
             let values = this.getNewPositionValues(PROGRAM_DATA["settings"]["ms_between_ticks"]);
@@ -1032,16 +704,6 @@ class Plane extends Entity {
         Method Description: Determine the x velocity of the plane at the moment
         Method Return: float
     */
-    /*
-        Method Name: getXVelocity
-        Method Parameters: 
-            speed=this.speed:
-                TODO
-             interpolated=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getXVelocity(speed=this.speed, interpolated=false){
         let angle = interpolated ? this.interpolatedAngle : this.angle;
         let effectiveAngle = this.getEffectiveAngle(angle);
@@ -1057,16 +719,6 @@ class Plane extends Entity {
                 Whether or not the y velocity is dependent on the angle decision
         Method Description: Determine the y velocity of the plane at the moment
         Method Return: float
-    */
-    /*
-        Method Name: getYVelocity
-        Method Parameters: 
-            speed=this.speed:
-                TODO
-             interpolated=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     getYVelocity(speed=this.speed, interpolated=false){
         let angle = interpolated ? this.interpolatedAngle : this.angle;
@@ -1085,14 +737,6 @@ class Plane extends Entity {
         if facing left must be changed to match what it would be if facing right
         Method Return: float in range [0,2*PI)
     */
-    /*
-        Method Name: getEffectiveAngle
-        Method Parameters: 
-            angle=this.angle:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     getEffectiveAngle(angle=this.angle){
         let effectiveAngle = angle;
         if (!this.isFacingRight()){
@@ -1108,12 +752,6 @@ class Plane extends Entity {
         Determine the angle at which bullets shoot out of the plane
         Method Return: float in range [0,2*PI)
     */
-    /*
-        Method Name: getNoseAngle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNoseAngle(){
         return fixRadians(this.angle + (this.facingRight ? 0 : toRadians(180)));
     }
@@ -1124,12 +762,6 @@ class Plane extends Entity {
         Method Description: Getter
         Method Return: Integer
     */
-    /*
-        Method Name: getSpeed
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getSpeed(){
         return this.speed;
     }
@@ -1139,12 +771,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: Integer in range [0,100]
-    */
-    /*
-        Method Name: getThrottle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getThrottle(){
         return this.throttle;
@@ -1159,14 +785,6 @@ class Plane extends Entity {
         Method Description: Conduct decisions to do each tick
         Method Return: void
     */
-    /*
-        Method Name: adjustThrottle
-        Method Parameters: 
-            amt:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     adjustThrottle(amt){
         this.throttle = Math.min(Math.max(0, this.throttle + amt), this.getMaxThrottle());
     }
@@ -1176,12 +794,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: Integer
-    */
-    /*
-        Method Name: getHealth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getHealth(){
         return this.health;
@@ -1193,12 +805,6 @@ class Plane extends Entity {
         Method Description: Determines whether the entity is controlled by a human.
         Method Return: boolean, true -> is controlled by a human, false -> is not controlled by a human
     */
-    /*
-        Method Name: isHuman
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isHuman(){
         return false;
     }
@@ -1208,12 +814,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: Number
-    */
-    /*
-        Method Name: getInterpolatedX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getInterpolatedX(){
         return this.interpolatedX;
@@ -1225,12 +825,6 @@ class Plane extends Entity {
         Method Description: Getter
         Method Return: Number
     */
-    /*
-        Method Name: getInterpolatedY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getInterpolatedY(){
         return this.interpolatedY;
     }
@@ -1240,12 +834,6 @@ class Plane extends Entity {
         Method Parameters: None
         Method Description: Getter
         Method Return: float in range [0, 2*PI)
-    */
-    /*
-        Method Name: getInterpolatedAngle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getInterpolatedAngle(){
         return this.interpolatedAngle;
@@ -1258,14 +846,6 @@ class Plane extends Entity {
                 The time at which the plane's position is being interpolated
         Method Description: Sets the interpolated variables for the plane's position
         Method Return: void
-    */
-    /*
-        Method Name: calculateInterpolatedCoordinates
-        Method Parameters: 
-            currentTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     calculateInterpolatedCoordinates(currentTime){
         // TODO: Clean this up
@@ -1297,18 +877,6 @@ class Plane extends Entity {
                 The time used to interpolate the positions of the planes
         Method Description: Displays a plane on the screen (if it is within the bounds)
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: 
-            lX:
-                TODO
-             bY:
-                TODO
-             displayTime:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     display(lX, bY, displayTime){
         let rX = lX + getZoomedScreenWidth() - 1;
@@ -1381,20 +949,6 @@ class Plane extends Entity {
                 A false bullet provided optionally
         Method Description: Shots the gun at a target in the direction its facing. The shot moves with infinite speed.
         Method Return: void
-    */
-    /*
-        Method Name: instantShot
-        Method Parameters: 
-            gunX:
-                TODO
-             gunY:
-                TODO
-             angleRAD:
-                TODO
-             fauxBullet=null:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     instantShot(gunX, gunY, angleRAD, fauxBullet=null){
         // Determine if the plane is facing -x or +x (not proper if plane is perpenticular to the x axis)

@@ -16,14 +16,6 @@ class ValueHistoryManager {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            tickHistoryToSave:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(tickHistoryToSave){
         this.data = new NotSamLinkedList();
         this.numSavedTicks = tickHistoryToSave;
@@ -39,16 +31,6 @@ class ValueHistoryManager {
                 The num ticks of the value that is being requested
         Method Description: Get the Node @ [id,numTicks]
         Method Return: ValueHistoryNode
-    */
-    /*
-        Method Name: get
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async get(id, numTicks){
         await this.syncLock.awaitUnlock(true);
@@ -72,16 +54,6 @@ class ValueHistoryManager {
         Method Description: Get the Value @ [id,numTicks]
         Method Return: Object (Unknown type)
     */
-    /*
-        Method Name: getValue
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async getValue(id, numTicks){
         let item = await this.get(id, numTicks);
         return item.getValue();
@@ -99,18 +71,6 @@ class ValueHistoryManager {
         Method Description: Set the Value @ [id,numTicks]
         Method Return: Promise (implicit)
     */
-    /*
-        Method Name: modify
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-             jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async modify(id, numTicks, jsonOBJ){
         await this.get(id, numTicks).fromJSON(jsonOBJ);
     }
@@ -124,16 +84,6 @@ class ValueHistoryManager {
                 The num ticks of the value that is being requested
         Method Description: Checks for the existence of a value
         Method Return: Boolean, true -> has, false -> does not have
-    */
-    /*
-        Method Name: has
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async has(id, numTicks){
         return await this.get(id, numTicks) != null;
@@ -152,20 +102,6 @@ class ValueHistoryManager {
                 Whether or not the value can be overwritten
         Method Description: Set the value at the position to a new value
         Method Return: Promise (implicit)
-    */
-    /*
-        Method Name: put
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-             value:
-                TODO
-             canBeOverwritten=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async put(id, numTicks, value, canBeOverwritten=true){
         await this.syncLock.awaitUnlock(true);
@@ -186,12 +122,6 @@ class ValueHistoryManager {
         Method Description: Get a JSON rep of the data structure
         Method Return: JSON Object
     */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     async toJSON(){
         await this.syncLock.awaitUnlock(true);
         let dataList = [];
@@ -209,14 +139,6 @@ class ValueHistoryManager {
                 A jason rep of the data structure
         Method Description: Fill up the ValueHistoryManager from a json representation
         Method Return: Promise (implicit)
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async fromJSON(jsonOBJ){
         for (let nodeOBJ of jsonOBJ["data"]){
@@ -238,14 +160,6 @@ class ValueHistoryManager {
         Method Description: Reset then fill up the ValueHistoryManager from a json representation
         Method Return: Promise (implicit)
     */
-    /*
-        Method Name: importJSON
-        Method Parameters: 
-            jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async importJSON(jsonOBJ){
         await this.syncLock.awaitUnlock(true);
         this.data = new NotSamLinkedList();
@@ -260,12 +174,6 @@ class ValueHistoryManager {
         Method Parameters: None
         Method Description: Delete old entries
         Method Return: Promise (implicit)
-    */
-    /*
-        Method Name: deletionProcedure
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     async deletionProcedure(){
         await this.syncLock.awaitUnlock(true);
@@ -295,14 +203,6 @@ class ValueHistoryManager {
         Method Description: Find the latest entry for a given id
         Method Return: Promise (implicit)
     */
-    /*
-        Method Name: findLast
-        Method Parameters: 
-            id:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     async findLast(id){
         await this.syncLock.awaitUnlock(true);
         let maxNumTicks = 0;
@@ -326,16 +226,6 @@ class ValueHistoryManager {
                 Inclusive, maximum tick to search up to
         Method Description: Find the latest entry for a given id up to and including the set point
         Method Return: Promise (implicit)
-    */
-    /*
-        Method Name: getLastUpTo
-        Method Parameters: 
-            id:
-                TODO
-             maxTickINCL:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     async getLastUpTo(id, maxTickINCL){
         await this.syncLock.awaitUnlock(true);
@@ -372,20 +262,6 @@ class ValueHistoryNode {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-             value:
-                TODO
-             canBeOverwritten=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(id, numTicks, value, canBeOverwritten=true){
         this.id = id;
         this.numTicks = numTicks;
@@ -399,12 +275,6 @@ class ValueHistoryNode {
         Method Description: Getter
         Method Return: int
     */
-    /*
-        Method Name: getNumTicks
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getNumTicks(){
         return this.numTicks;
     }
@@ -415,12 +285,6 @@ class ValueHistoryNode {
         Method Description: Getter
         Method Return: Unknown type
     */
-    /*
-        Method Name: getID
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getID(){
         return this.id;
     }
@@ -430,12 +294,6 @@ class ValueHistoryNode {
         Method Parameters: None
         Method Description: Getter
         Method Return: Unknown type
-    */
-    /*
-        Method Name: getValue
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getValue(){
         return this.value;
@@ -455,20 +313,6 @@ class ValueHistoryNode {
         Method Description: Modify the properties of a node
         Method Return: void
     */
-    /*
-        Method Name: modify
-        Method Parameters: 
-            id:
-                TODO
-             numTicks:
-                TODO
-             value:
-                TODO
-             canBeOverwritten=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     modify(id, numTicks, value, canBeOverwritten=true){
         if (!this.canBeOverwritten){ return; }
         this.id = id;
@@ -483,12 +327,6 @@ class ValueHistoryNode {
         Method Description: Get a JSON rep of the node
         Method Return: JSON Object
     */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     toJSON(){
         return { "id": this.id, "num_ticks": this.numTicks, "value": this.value, "can_be_overwritten": this.canBeOverwritten };
     }
@@ -500,14 +338,6 @@ class ValueHistoryNode {
                 A jason rep of the node
         Method Description: Modifies a node based on a JSON rep
         Method Return: void
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     fromJSON(jsonOBJ){
         if (!this.canBeOverwritten){
@@ -526,14 +356,6 @@ class ValueHistoryNode {
                 A jason rep of the data structure
         Method Description: Creates a new from a JSON rep
         Method Return: ValueHistoryNode
-    */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            jsonOBJ:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static fromJSON(jsonOBJ){
         return new ValueHistoryNode(jsonOBJ["id"], jsonOBJ["num_ticks"], jsonOBJ["value"], jsonOBJ["can_be_overwritten"])

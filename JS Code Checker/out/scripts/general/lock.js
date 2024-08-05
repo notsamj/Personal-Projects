@@ -16,14 +16,6 @@ class Lock {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            ready=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(ready=true){
         this.ready = ready;
         this.promiseUnlock = new NotSamLinkedList();
@@ -35,12 +27,6 @@ class Lock {
         Method Description: Provide information whether the lock is ready (unlocked)
         Method Return: Boolean
     */
-    /*
-        Method Name: isReady
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isReady(){
         return this.ready;
     }
@@ -50,12 +36,6 @@ class Lock {
         Method Parameters: None
         Method Description: Provide information whether the lock not is ready (locked)
         Method Return: Boolean
-    */
-    /*
-        Method Name: notReady
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     notReady(){
         return !this.isReady();
@@ -67,12 +47,6 @@ class Lock {
         Method Description: Determines if the lock is currently locked
         Method Return: Boolean, true if unlocked, false if locked
     */
-    /*
-        Method Name: notLocked
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     notLocked(){
         return this.isReady();
     }
@@ -82,12 +56,6 @@ class Lock {
         Method Parameters: None
         Method Description: Determines if the lock is currently locked
         Method Return: Boolean, true if locked, false if unlocked
-    */
-    /*
-        Method Name: isLocked
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isLocked(){
         return !this.isReady();
@@ -99,12 +67,6 @@ class Lock {
         Method Description: Determines if the lock is currently locked
         Method Return: Boolean, true if unlocked, false if locked
     */
-    /*
-        Method Name: isOpen
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isOpen(){
         return this.isReady();
     }
@@ -114,12 +76,6 @@ class Lock {
         Method Parameters: None
         Method Description: Determines if the lock is currently locked
         Method Return: Boolean, true if unlocked, false if locked
-    */
-    /*
-        Method Name: isUnlocked
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     isUnlocked(){
         return this.isReady();
@@ -131,12 +87,6 @@ class Lock {
         Method Description: Lock the lock
         Method Return: void
     */
-    /*
-        Method Name: lock
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     lock(){
         this.ready = false;
     }
@@ -146,12 +96,6 @@ class Lock {
         Method Parameters: None
         Method Description: Unlock the lock and handle those awaiting the unlock
         Method Return: void
-    */
-    /*
-        Method Name: unlock
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     unlock(){
         this.ready = true;
@@ -173,14 +117,6 @@ class Lock {
                 Lock as soon as unlocked to prevent sync issues
         Method Description: Provide a promise to await that will resolve when the lock is unlocked
         Method Return: Promise
-    */
-    /*
-        Method Name: awaitUnlock
-        Method Parameters: 
-            relock=false:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     awaitUnlock(relock=false){
         if (this.ready){

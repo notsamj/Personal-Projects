@@ -9,12 +9,6 @@ class AnimatedCloudBackground extends Component {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(){
         super();
         this.centerX = randomFloatBetween(100000,200000);
@@ -31,12 +25,6 @@ class AnimatedCloudBackground extends Component {
         Method Description: Getter
         Method Return: int
     */
-    /*
-        Method Name: getWidth
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getWidth(){
         return getZoomedScreenWidth();
     }
@@ -47,12 +35,6 @@ class AnimatedCloudBackground extends Component {
         Method Description: Getter
         Method Return: int
     */
-    /*
-        Method Name: getHeight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getHeight(){
         return getZoomedScreenHeight();
     }
@@ -62,12 +44,6 @@ class AnimatedCloudBackground extends Component {
         Method Parameters: None
         Method Description: Display the background clouds on the screen
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         if (!this.enabled){ return; }
@@ -87,16 +63,6 @@ class AnimatedCloudBackground extends Component {
                 Screen coordinate y
         Method Description: Determines whether the background covers a point on the screen
         Method Return: boolean, true -> covers, false -> does not cover
-    */
-    /*
-        Method Name: covers
-        Method Parameters: 
-            x:
-                TODO
-             y:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     covers(x, y){
         return true;

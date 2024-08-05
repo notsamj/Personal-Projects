@@ -21,18 +21,6 @@ class Radar {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            entity:
-                TODO
-             tickLockLength:
-                TODO
-             enabled:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(entity, tickLockLength, enabled){
         this.size = PROGRAM_DATA["radar"]["size"]; // MUST BE EVEN
         this.entity = entity;
@@ -74,14 +62,6 @@ class Radar {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setEnabled
-        Method Parameters: 
-            enabled:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setEnabled(enabled){
         this.enabled = enabled;
     }
@@ -92,12 +72,6 @@ class Radar {
         Method Description: Determine the x location of the radar with respect to the screen
         Method Return: Integer
     */
-    /*
-        Method Name: getScreenX
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getScreenX(){
         return getScreenWidth() - this.radarOutline.width - 1;
     }
@@ -107,12 +81,6 @@ class Radar {
         Method Parameters: None
         Method Description: Determine the y location of the radar with respect to the screen
         Method Return: Integer
-    */
-    /*
-        Method Name: getScreenY
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getScreenY(){
         return 1;
@@ -130,18 +98,6 @@ class Radar {
         Method Description: Draw a blip on the screen
         Method Return: void
     */
-    /*
-        Method Name: drawBlip
-        Method Parameters: 
-            bestBlipObject:
-                TODO
-             screenX:
-                TODO
-             screenY:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     drawBlip(bestBlipObject, screenX, screenY){
         let blipColour = Colour.fromCode(bestBlipObject["colour"]);
         strokeRectangle(blipColour, screenX, screenY, this.blipSize, this.blipSize);
@@ -152,12 +108,6 @@ class Radar {
         Method Parameters: None
         Method Description: Displays the radar on the screen
         Method Return: void
-    */
-    /*
-        Method Name: display
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     display(){
         let screenX = this.getScreenX();
@@ -184,12 +134,6 @@ class Radar {
         Method Description: Resets the radar
         Method Return: void
     */
-    /*
-        Method Name: resetRadar
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     resetRadar(){
         this.radarData.clear();
     }
@@ -207,20 +151,6 @@ class Radar {
                 The importance of the object
         Method Description: Places an object on the radar
         Method Return: void
-    */
-    /*
-        Method Name: placeOnRadar
-        Method Parameters: 
-            objectX:
-                TODO
-             objectY:
-                TODO
-             colour:
-                TODO
-             weight=1:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     placeOnRadar(objectX, objectY, colour, weight=1){
         let myX = this.entity.getX();
@@ -302,12 +232,6 @@ class Radar {
         Method Description: Handles actions within a tick for the radar
         Method Return: void
     */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     tick(){
         // Sometimes radars are disabled (like other human planes in multiplayer, they don't need it enabled)
         if (this.isDisabled()){ return; }
@@ -330,12 +254,6 @@ class Radar {
         Method Description: Checks if the radar is disabled
         Method Return: Boolean
     */
-    /*
-        Method Name: isDisabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isDisabled(){
         return !this.isEnabled();
     }
@@ -346,12 +264,6 @@ class Radar {
         Method Description: Checks if the radar is enabled
         Method Return: Boolean
     */
-    /*
-        Method Name: isEnabled
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isEnabled(){
         return this.enabled;
     }
@@ -361,12 +273,6 @@ class Radar {
         Method Parameters: None
         Method Description: Checks if the user wishes to change the b value of the radar
         Method Return: void
-    */
-    /*
-        Method Name: checkForSizeChange
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkForSizeChange(){
         let zoomIn = USER_INPUT_MANAGER.isActivated("radar_zoom_in");

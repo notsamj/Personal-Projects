@@ -14,16 +14,6 @@ class InfiniteLoopFinder {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            infiniteAmount:
-                TODO
-             name:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(infiniteAmount, name){
         this.infiniteAmount = infiniteAmount;
         this.name = name;
@@ -35,12 +25,6 @@ class InfiniteLoopFinder {
         Method Parameters: None
         Method Description: Determine if there has been too much iteration and if so then launch debugger
         Method Return: void
-    */
-    /*
-        Method Name: count
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     count(){
         if (this.loopCounter++ > this.infiniteAmount){
@@ -54,12 +38,6 @@ class InfiniteLoopFinder {
         Method Parameters: None
         Method Description: Reset the counter
         Method Return: void
-    */
-    /*
-        Method Name: reset
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     reset(){
         this.loopCounter = 0;

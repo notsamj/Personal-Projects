@@ -33,20 +33,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             biases:
-                TODO
-             autonomous=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, gamemode, biases, autonomous=true){
         super(planeClass, gamemode, biases, autonomous);
         this.currentEnemy = null;
@@ -61,12 +47,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Creates a JSON representation of the biased bot bomber plane
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         let rep = {};
@@ -108,18 +88,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Creates a new Biased Bot Bomber Plane
         Method Return: BiasedDogfightBotBomberPlane
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-             gamemode:
-                TODO
-             autonomous:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static fromJSON(rep, gamemode, autonomous){
         let planeClass = rep["basic"]["plane_class"];
         let bp = new BiasedDogfightBotBomberPlane(planeClass, gamemode, rep["biases"], autonomous);
@@ -134,14 +102,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
                 A json representation of a biased bot bomber plane
         Method Description: Sets attributes of a biased bot bomber plane from a JSON representation
         Method Return: void
-    */
-    /*
-        Method Name: initFromJSON
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     initFromJSON(rep){
         this.id = rep["basic"]["id"];
@@ -168,12 +128,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Creates a list of all friendly planes
         Method Return: List of planes
     */
-    /*
-        Method Name: getFriendlyList
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getFriendlyList(){
         let planes = this.gamemode.getTeamCombatManager().getLivingPlanes();
         let friendlies = [];
@@ -192,12 +146,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Conduct decisions to do each tick
         Method Return: void
     */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     tick(){
         this.updateEnemyLock.tick();
         this.updateFriendlyCenterLock.tick();
@@ -215,12 +163,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Makes decisions for the plane for the next tick
         Method Return: void
-    */
-    /*
-        Method Name: makeDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     makeDecisions(){
         // If not allowed to make decisions -> not make any
@@ -278,12 +220,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Resets the decisions so the planes actions can be chosen to reflect what it current wants to do rather than previously
         Method Return: void
     */
-    /*
-        Method Name: resetDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     resetDecisions(){
         this.decisions["face"] = 0;
         this.decisions["angle"] = 0;
@@ -294,12 +230,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Decide whether or not to shoot
         Method Return: void
-    */
-    /*
-        Method Name: executeAttackingDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     executeAttackingDecisions(){
         // Let guns shoot
@@ -321,20 +251,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
                 Whether or not the plane can make its own decisions
         Method Description: Return the max shooting distance of this biased plane
         Method Return: BiasedDogfightBotBomberPlane
-    */
-    /*
-        Method Name: createBiasedPlane
-        Method Parameters: 
-            planeClass:
-                TODO
-             gamemode:
-                TODO
-             difficulty:
-                TODO
-             autonomous:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     static createBiasedPlane(planeClass, gamemode, difficulty, autonomous){
         let biases = {};
@@ -359,12 +275,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Finds the center location of all friendly planes (excluding bombers)
         Method Return: JSON Object
-    */
-    /*
-        Method Name: findFriendlyCenter
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     findFriendlyCenter(){
         let totalX = 0;
@@ -394,12 +304,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Determine the id of the current enemy
         Method Return: void
-    */
-    /*
-        Method Name: updateEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     updateEnemy(){
         // If we have an enemy already and its close then don't update
@@ -435,14 +339,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Decide what to do when given an enemy to attack. Can move and can shoot.
         Method Return: void
     */
-    /*
-        Method Name: handleEnemy
-        Method Parameters: 
-            enemy:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     handleEnemy(enemy){
         // Separate into two things
         let myX = this.getX();
@@ -476,18 +372,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Decide how to move given the presence of an enemy.
         Method Return: void
     */
-    /*
-        Method Name: handleMovement
-        Method Parameters: 
-            angleRAD:
-                TODO
-             distance:
-                TODO
-             enemy:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     handleMovement(angleRAD, distance, enemy){
         // If facing downwards and close to the ground then turn upwards
         if (this.closeToGround() && angleBetweenCCWRAD(this.getNoseAngle(), toRadians(180.01), toRadians(359.99))){
@@ -505,12 +389,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Determine if the plane is close to the ground
         Method Return: True if close to the ground, false if not close
     */
-    /*
-        Method Name: closeToGround
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     closeToGround(){
         return this.y < PROGRAM_DATA["settings"]["close_to_ground_constant"] * this.speed;
     }
@@ -521,12 +399,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Description: Determine if there is currently a current enemy
         Method Return: True if has an enemy (and they exist), otherwise false
     */
-    /*
-        Method Name: hasCurrentEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasCurrentEnemy(){
         return this.currentEnemy != null && this.currentEnemy.isAlive();
     }
@@ -536,12 +408,6 @@ class BiasedDogfightBotBomberPlane extends BiasedBotBomberPlane {
         Method Parameters: None
         Method Description: Get the current enemy
         Method Return: Plane
-    */
-    /*
-        Method Name: getCurrentEnemy
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     getCurrentEnemy(){
         return this.currentEnemy;

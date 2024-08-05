@@ -28,18 +28,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Constructor
         Method Return: Constructor
     */
-    /*
-        Method Name: constructor
-        Method Parameters: 
-            planeClass:
-                TODO
-             game:
-                TODO
-             autonomous=true:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     constructor(planeClass, game, autonomous=true){
         super(planeClass, game, autonomous);
         this.lrLock = new Lock();
@@ -53,12 +41,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Determines how much damage a bullet from this plane causes
         Method Return: Number
     */
-    /*
-        Method Name: getDamage
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getDamage(){
         return super.getDamage() * this.damageMultiplier;
     }
@@ -70,14 +52,6 @@ class HumanFighterPlane extends FighterPlane {
                 A multiplier value
         Method Description: Modifies the health of the human plane
         Method Return: void
-    */
-    /*
-        Method Name: applyHealthMultiplier
-        Method Parameters: 
-            multiplier:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     applyHealthMultiplier(multiplier){
         this.setStartingHealth(this.getStartingHealth() * multiplier);
@@ -92,14 +66,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Modifies the damage done by bullets of the human plane
         Method Return: void
     */
-    /*
-        Method Name: applyDamageMultiplier
-        Method Parameters: 
-            multiplier:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     applyDamageMultiplier(multiplier){
         this.damageMultiplier = multiplier;
     }
@@ -112,14 +78,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Setter
         Method Return: void
     */
-    /*
-        Method Name: setAutonomous
-        Method Parameters: 
-            value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     setAutonomous(value){
         super.setAutonomous(value);
         this.radar.setEnabled(value);
@@ -130,12 +88,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Creates a JSON representation of the human fighter plane
         Method Return: JSON Object
-    */
-    /*
-        Method Name: toJSON
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     toJSON(){
         let rep = {};
@@ -170,16 +122,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Loads the movement information about the plane if the source has a newer set of values
         Method Return: void
     */
-    /*
-        Method Name: loadMovementIfNew
-        Method Parameters: 
-            rep:
-                TODO
-             rollForwardAmount=0:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     loadMovementIfNew(rep, rollForwardAmount=0){
         if (this.isAutonomous()){ return; }
         super.loadMovementIfNew(rep, rollForwardAmount);
@@ -192,14 +134,6 @@ class HumanFighterPlane extends FighterPlane {
                 A json representation of a plane
         Method Description: Sets attributes of a plane from a JSON representation
         Method Return: void
-    */
-    /*
-        Method Name: initFromJSON
-        Method Parameters: 
-            rep:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
     */
     initFromJSON(rep){
         this.id = rep["basic"]["id"];
@@ -229,18 +163,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Creates a new Human Fighter Plane
         Method Return: HumanFighterPlane
     */
-    /*
-        Method Name: fromJSON
-        Method Parameters: 
-            rep:
-                TODO
-             game:
-                TODO
-             autonomous:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
     static fromJSON(rep, game, autonomous){
         let planeClass = rep["basic"]["plane_class"];
         let hFP = new HumanFighterPlane(planeClass, game, autonomous);
@@ -254,12 +176,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Determines whether the entity is controlled by a human.
         Method Return: boolean, true -> is controlled by a human, false -> is not controlled by a human
     */
-    /*
-        Method Name: isHuman
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     isHuman(){
         return true;
     }
@@ -270,12 +186,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Getter
         Method Return: Radar
     */
-    /*
-        Method Name: getRadar
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     getRadar(){
         return this.radar;
     }
@@ -285,12 +195,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Conduct decisions to do each tick
         Method Return: void
-    */
-    /*
-        Method Name: tick
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     tick(){
         // Only need radar if autonomous
@@ -303,12 +207,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Makes decisions for the plane for the next tick
         Method Return: void
-    */
-    /*
-        Method Name: makeDecisions
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     makeDecisions(){
         // Sometimes the human will be controlled by the external input so don't make decisions
@@ -333,12 +231,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Provide the information that HumanFighterPlanes do have radars
         Method Return: void
     */
-    /*
-        Method Name: hasRadar
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     hasRadar(){ return true; }
 
     /*
@@ -346,12 +238,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Check if the user wishes to switch direction
         Method Return: void
-    */
-    /*
-        Method Name: checkMoveLeftRight
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkMoveLeftRight(){
         let aKey = USER_INPUT_MANAGER.isActivated("plane_turn_left");
@@ -384,12 +270,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Check if the user wishes to change the angle of the plane
         Method Return: void
     */
-    /*
-        Method Name: checkUpDown
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     checkUpDown(){
         let angleChangeMS = (1000 / (PROGRAM_DATA["settings"]["tick_rate"] * PROGRAM_DATA["controls"]["max_angle_change_per_tick_fighter_plane"]));
         let wKeyCount = USER_INPUT_MANAGER.getTickedAggregator("w").getPressTime() / angleChangeMS;
@@ -417,12 +297,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Description: Check if the user wishes to increase or reduce throttle
         Method Return: void
     */
-    /*
-        Method Name: checkThrottle
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
-    */
     checkThrottle(){
         let rKey = USER_INPUT_MANAGER.isActivated("plane_throttle_up");
         let fKey = USER_INPUT_MANAGER.isActivated("plane_throttle_down");
@@ -448,12 +322,6 @@ class HumanFighterPlane extends FighterPlane {
         Method Parameters: None
         Method Description: Check if the user wishes to shoot
         Method Return: void
-    */
-    /*
-        Method Name: checkShoot
-        Method Parameters: None
-        Method Description: TODO
-        Method Return: TODO
     */
     checkShoot(){
         let spaceKey = USER_INPUT_MANAGER.isActivated("fighter_plane_shooting");
