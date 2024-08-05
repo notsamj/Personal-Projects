@@ -159,18 +159,13 @@ function collectCharactersUntilMeetingChar(sourceString, charIndex, charToLookFo
 
 function collectCharactersUntilMeetingStr(sourceString, characterIndex, str){
 	let subString = "";
-	for (let i = charIndex; i < sourceString.length; i++){
+	for (let i = charIndex; i < sourceString.length - str.length + 1; i++){
 		let meetingStr = true;
-		// If there isn't enough space to meet the str then don't bother looping
-		if (sourceString.length < i + str.length){
-			meetingStr = false;
-		}else{
-			for (let j = i; j < i + str.length; j++){
-				if (sourceString[j] != str[j-i]){
-					meetingStr = false;
-					break;
-				}
-			} 
+		for (let j = i; j < i + str.length; j++){
+			if (sourceString[j] != str[j-i]){
+				meetingStr = false;
+				break;
+			}
 		}
 
 		if (meetingStr){ break; }
@@ -178,6 +173,23 @@ function collectCharactersUntilMeetingStr(sourceString, characterIndex, str){
 		subString += sourceString[i];
 	}
 	return subString;	
+}
+
+function countOccurancesOfSubString(sourceString, subString){
+	let occurances = 0;
+	for (let i = 0; i < sourceString.length - subString.length + 1; i++){
+		let match = true;
+		for (let j = 0; j < i + subString.length; j++){
+			if (sourceString[j] != subString[j-i]){
+				match = false;
+				break;
+			}
+		}
+		if (match){
+			occurances++;
+		}
+	}
+	return occurances;
 }
 
 module.exports = {
@@ -197,5 +209,6 @@ module.exports = {
 	multiplyString,
 	objectHasKey,
 	collectCharactersUntilMeetingChar,
-	collectCharactersUntilMeetingStr
+	collectCharactersUntilMeetingStr,
+	countOccurancesOfSubString
 }

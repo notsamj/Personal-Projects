@@ -27,6 +27,10 @@ class DataCollector {
 		}
 		return this.storage[valueName];
 	}
+	
+	getValue(valueName){
+		return this.getDataValue(valueName);
+	}
 }
 
 module.exports = DataCollector;

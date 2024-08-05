@@ -1,4 +1,14 @@
+Issues:
+	- adding block comments infront of methods where already present
+		see gamemode_remote_translator
 Pseudo interfaces/classes
+	Need to make an alert like in summary:
+		Number of nsSpecification violations found: n
+
+		--file.js--
+		*nsInterface violation*
+		Line: xxx
+		...
 Comment this code!
 
 

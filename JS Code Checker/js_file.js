@@ -16,6 +16,7 @@ const whatLineInString = require("./helper_functions.js").whatLineInString;
 const insertIntoStringBefore = require("./helper_functions.js").insertIntoStringBefore;
 const collectCharactersUntilMeetingChar = require("./helper_functions.js").collectCharactersUntilMeetingChar;
 const collectCharactersUntilMeetingStr = require("./helper_functions.js").collectCharactersUntilMeetingStr;
+const countOccurancesOfSubString = require("./helper_functions.js").countOccurancesOfSubString;
 
 class JSFile {
 	constructor(fileName, rPath, fileDataStr){
@@ -61,8 +62,7 @@ class JSFile {
 		this.dataCollector.setValue("multi_line_todos", multiLineTODOData);
 
 		// Count total number of todos
-		let basicTODORegex = /(^|\W)TODO($|\W)/g;
-		let totalTODOCount = [...this.fileDataStr.matchAll(basicTODORegex)].length;
+		let totalTODOCount = countOccurancesOfSubString(this.fileDataStr, "TODO");
 		this.dataCollector.setValue("total_todo_count", totalTODOCount);
 	}
 

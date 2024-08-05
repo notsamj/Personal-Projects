@@ -176,13 +176,13 @@ function collectAndLogDataCollector(jsFiles, settings){
 		// Go through the TODOs
 
 		// Single line todos
-		let singleLineTODOs = this.dataCollector.getValue("single_line_todos");
+		let singleLineTODOs = fileDataCollector.getValue("single_line_todos");
 		for (let todoDataJSON of singleLineTODOs){
 			log.write('\n' + "Line " + todoDataJSON["line_number"] + ": " + todoDataJSON["todo_str"]);
 		}
 
 		// Multi line todos
-		let multiLineTODOs = this.dataCollector.getValue("multi_line_todos");
+		let multiLineTODOs = fileDataCollector.getValue("multi_line_todos");
 		for (let todoDataJSON of multiLineTODOs){
 			log.write('\n' + "Line " + todoDataJSON["line_number"] + ": " + todoDataJSON["todo_str"]);
 		}
