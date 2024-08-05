@@ -27,6 +27,16 @@ class JSFile {
 		this.classes = [];
 	}
 
+	getRelativePath(){
+		return this.rPath;
+	}
+
+	countStatements(){
+		let statementRegex = /(;(\w)*\n)|(;(\w)*$)/g;
+		let statements = [...this.fileDataStr.matchAll(statementRegex)];
+		this.stats.setValue("number_of_statements", statements.length);
+	}
+
 	getStats(){
 		return this.stats;
 	}

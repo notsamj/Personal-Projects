@@ -1,8 +1,5 @@
 Pseudo interfaces/classes
 Check for all TODOs(
-Basic logging to console
-Summary of findings
-Full log saved to file
 Comment this code!
 
 

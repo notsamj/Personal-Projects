@@ -1,16 +1,21 @@
 ----- Summary -----
+Number of statements: 440
 Number of function comments added: 3
 Number of method comments added: 79
 Number of class comments added: 2
 Number of line-referencing console.logs updated: 2
 Number of old console.logs removed: 5
 ----- sample_code.js -----
+Relative path: ./in/
+Number of statements: 303
 Number of function comments added: 0
 Number of method comments added: 79
 Number of class comments added: 2
 Number of line-referencing console.logs updated: 2
 Number of old console.logs removed: 5
 ----- sample_code_2.js -----
+Relative path: ./in/sample_folder/
+Number of statements: 136
 Number of function comments added: 3
 Number of method comments added: 0
 Number of class comments added: 0

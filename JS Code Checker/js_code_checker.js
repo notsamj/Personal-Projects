@@ -95,6 +95,7 @@ function modifyJSFiles(jsFiles, settings){
 		if (settings["remove_console_logs"]){
 			jsFile.removeOldConsoleLogs();
 		}
+		jsFile.countStatements();
 	}
 }
 
@@ -107,33 +108,62 @@ function collectAndLogStats(jsFiles, settings){
 	let totalClassCommentsAdded = 0;
 	let totalLineReferencingConsoleLogsUpdated = 0;
 	let totalOldConsoleLogsRemoved = 0;
+	let totalNumberOfStatements = 0;
 
 	// Log details per file
 	for (let jsFile of jsFiles){
 		let fileStats = jsFile.getStats();
+
+		// Unimportant Stats
+		let numberOfStatements = fileStats.getStatValue("number_of_statements");
+
+		// Important Stats
+		let fCommentsAdded = fileStats.getStatValue("f_comments_added");
+		let mCommentsAdded = fileStats.getStatValue("m_comments_added");
+		let cCommentsAdded = fileStats.getStatValue("c_comments_added");
+		let lineReferencingConsoleLogsUpdated = fileStats.getStatValue("l_r_console_logs_updated");
+		let oldConsoleLogsRemoved = fileStats.getStatValue("old_console_logs_removed");
+
+		// Update total stats
+		totalNumberOfStatements += numberOfStatements;
+	
+		let sumOfChanges = fCommentsAdded + mCommentsAdded + cCommentsAdded + lineReferencingConsoleLogsUpdated + oldConsoleLogsRemoved; 
+		
+		// Do not add to log if there are no changes
+		if (settings["ignore_file_with_zero_changes_in_log"] && sumOfChanges == 0){
+			continue;
+		}
+
+		totalFunctionCommentsAdded += fCommentsAdded;
+		totalMethodCommentsAdded += mCommentsAdded;
+		totalClassCommentsAdded += cCommentsAdded;
+		totalLineReferencingConsoleLogsUpdated += lineReferencingConsoleLogsUpdated;
+		totalOldConsoleLogsRemoved += oldConsoleLogsRemoved; // Number will be zero if the setting is off so doesn't matter I'm adding it
+
 		// Write file name header
 		log.write('\n' + multiplyString('-', numDashesPerSide) + " " + jsFile.getFileName() + " " + multiplyString('-', numDashesPerSide))
 		
+		// Write relative path from output folder
+		log.write('\n' + "Relative path: " + jsFile.getRelativePath());
+
+		// Write number of statements found
+		log.write('\n' + "Number of statements: " + numberOfStatements.toString());
+
 		// Write number of function comments added
-		log.write('\n' + "Number of function comments added: " + fileStats.getStatValue("f_comments_added").toString());
-		totalFunctionCommentsAdded += fileStats.getStatValue("f_comments_added");
+		log.write('\n' + "Number of function comments added: " + fCommentsAdded.toString());
 
 		// Write number of method comments added
-		log.write('\n' + "Number of method comments added: " + fileStats.getStatValue("m_comments_added").toString());
-		totalMethodCommentsAdded += fileStats.getStatValue("m_comments_added");
+		log.write('\n' + "Number of method comments added: " + mCommentsAdded.toString());
 
 		// Write number of class comments added
-		log.write('\n' + "Number of class comments added: " + fileStats.getStatValue("c_comments_added").toString());
-		totalClassCommentsAdded += fileStats.getStatValue("c_comments_added");
+		log.write('\n' + "Number of class comments added: " + cCommentsAdded.toString());
 
 		// Write number of line-referencing console.logs updated
-		log.write('\n' + "Number of line-referencing console.logs updated: " + fileStats.getStatValue("l_r_console_logs_updated"));
-		totalLineReferencingConsoleLogsUpdated += fileStats.getStatValue("l_r_console_logs_updated");
+		log.write('\n' + "Number of line-referencing console.logs updated: " + lineReferencingConsoleLogsUpdated);
 
 		if (settings["remove_console_logs"]){
 			// Write number of old console.logs removed
-			log.write('\n' + "Number of old console.logs removed: " + fileStats.getStatValue("old_console_logs_removed"));
-			totalOldConsoleLogsRemoved += fileStats.getStatValue("old_console_logs_removed");
+			log.write('\n' + "Number of old console.logs removed: " + oldConsoleLogsRemoved);
 		}
 	}
 
@@ -143,6 +173,9 @@ function collectAndLogStats(jsFiles, settings){
 
 	// Summary Title
 	summaryText += multiplyString('-', numDashesPerSide) + " Summary " + multiplyString('-', numDashesPerSide);
+
+	// Write number of statements found in files
+	summaryText += '\n' + "Number of statements: " + totalNumberOfStatements.toString();
 
 	// Write number of function comments added
 	summaryText += '\n' + "Number of function comments added: " + totalFunctionCommentsAdded.toString();
@@ -158,7 +191,7 @@ function collectAndLogStats(jsFiles, settings){
 
 	if (settings["remove_console_logs"]){
 		// Write number of old console.logs removed
-		summaryText += '\n' + "Number of old console.logs removed: " + totalOldConsoleLogsRemoved;
+		summaryText += '\n' + "Number of old console.logs removed: " + totalOldConsoleLogsRemoved.toString();
 	}
 
 	log.writeAtBeginning(summaryText);
