@@ -40,8 +40,8 @@ async function run(){
 	// Modify files
 	modifyJSFiles(jsFiles, settings);
 
-	// Collect and log stats
-	collectAndLogStats(jsFiles, settings);
+	// Collect and log DataCollector
+	collectAndLogDataCollector(jsFiles, settings);
 
 	// Write files
 	writeJSFiles(inputFolderRPath.length, outputFolderRPath, jsFiles);
@@ -96,10 +96,11 @@ function modifyJSFiles(jsFiles, settings){
 			jsFile.removeOldConsoleLogs();
 		}
 		jsFile.countStatements();
+		jsFile.checkTODOs();
 	}
 }
 
-function collectAndLogStats(jsFiles, settings){
+function collectAndLogDataCollector(jsFiles, settings){
 	let log = new NSLog();
 	let numDashesPerSide = 5;
 
@@ -109,25 +110,27 @@ function collectAndLogStats(jsFiles, settings){
 	let totalLineReferencingConsoleLogsUpdated = 0;
 	let totalOldConsoleLogsRemoved = 0;
 	let totalNumberOfStatements = 0;
+	let totalTodosFound = 0;
 
 	// Log details per file
 	for (let jsFile of jsFiles){
-		let fileStats = jsFile.getStats();
+		let fileDataCollector = jsFile.getDataCollector();
 
-		// Unimportant Stats
-		let numberOfStatements = fileStats.getStatValue("number_of_statements");
+		// Unimportant DataCollector
+		let numberOfStatements = fileDataCollector.getDataValue("number_of_statements");
 
-		// Important Stats
-		let fCommentsAdded = fileStats.getStatValue("f_comments_added");
-		let mCommentsAdded = fileStats.getStatValue("m_comments_added");
-		let cCommentsAdded = fileStats.getStatValue("c_comments_added");
-		let lineReferencingConsoleLogsUpdated = fileStats.getStatValue("l_r_console_logs_updated");
-		let oldConsoleLogsRemoved = fileStats.getStatValue("old_console_logs_removed");
+		// Important DataCollector
+		let fCommentsAdded = fileDataCollector.getDataValue("f_comments_added");
+		let mCommentsAdded = fileDataCollector.getDataValue("m_comments_added");
+		let cCommentsAdded = fileDataCollector.getDataValue("c_comments_added");
+		let lineReferencingConsoleLogsUpdated = fileDataCollector.getDataValue("l_r_console_logs_updated");
+		let oldConsoleLogsRemoved = fileDataCollector.getDataValue("old_console_logs_removed");
+		let todosFound = fileDataCollector.getDataValue("total_todo_count");
 
-		// Update total stats
+		// Update total DataCollector
 		totalNumberOfStatements += numberOfStatements;
 	
-		let sumOfChanges = fCommentsAdded + mCommentsAdded + cCommentsAdded + lineReferencingConsoleLogsUpdated + oldConsoleLogsRemoved; 
+		let sumOfChanges = fCommentsAdded + mCommentsAdded + cCommentsAdded + lineReferencingConsoleLogsUpdated + oldConsoleLogsRemoved + todosFound; 
 		
 		// Do not add to log if there are no changes
 		if (settings["ignore_file_with_zero_changes_in_log"] && sumOfChanges == 0){
@@ -139,6 +142,7 @@ function collectAndLogStats(jsFiles, settings){
 		totalClassCommentsAdded += cCommentsAdded;
 		totalLineReferencingConsoleLogsUpdated += lineReferencingConsoleLogsUpdated;
 		totalOldConsoleLogsRemoved += oldConsoleLogsRemoved; // Number will be zero if the setting is off so doesn't matter I'm adding it
+		totalTodosFound += todosFound;
 
 		// Write file name header
 		log.write('\n' + multiplyString('-', numDashesPerSide) + " " + jsFile.getFileName() + " " + multiplyString('-', numDashesPerSide))
@@ -159,11 +163,28 @@ function collectAndLogStats(jsFiles, settings){
 		log.write('\n' + "Number of class comments added: " + cCommentsAdded.toString());
 
 		// Write number of line-referencing console.logs updated
-		log.write('\n' + "Number of line-referencing console.logs updated: " + lineReferencingConsoleLogsUpdated);
+		log.write('\n' + "Number of line-referencing console.logs updated: " + lineReferencingConsoleLogsUpdated.toString());
 
 		if (settings["remove_console_logs"]){
 			// Write number of old console.logs removed
-			log.write('\n' + "Number of old console.logs removed: " + oldConsoleLogsRemoved);
+			log.write('\n' + "Number of old console.logs removed: " + oldConsoleLogsRemoved.toString());
+		}
+
+		// Write number of todos
+		log.write('\n' + "Number of todos found: " + totalTodosFound.toString());
+		
+		// Go through the TODOs
+
+		// Single line todos
+		let singleLineTODOs = this.dataCollector.getValue("single_line_todos");
+		for (let todoDataJSON of singleLineTODOs){
+			log.write('\n' + "Line " + todoDataJSON["line_number"] + ": " + todoDataJSON["todo_str"]);
+		}
+
+		// Multi line todos
+		let multiLineTODOs = this.dataCollector.getValue("multi_line_todos");
+		for (let todoDataJSON of multiLineTODOs){
+			log.write('\n' + "Line " + todoDataJSON["line_number"] + ": " + todoDataJSON["todo_str"]);
 		}
 	}
 
@@ -187,12 +208,15 @@ function collectAndLogStats(jsFiles, settings){
 	summaryText += '\n' + "Number of class comments added: " + totalClassCommentsAdded.toString();
 
 	// Write number of line-referencing console.logs updated
-	summaryText += '\n' + "Number of line-referencing console.logs updated: " + totalLineReferencingConsoleLogsUpdated;
+	summaryText += '\n' + "Number of line-referencing console.logs updated: " + totalLineReferencingConsoleLogsUpdated.toString();
 
 	if (settings["remove_console_logs"]){
 		// Write number of old console.logs removed
 		summaryText += '\n' + "Number of old console.logs removed: " + totalOldConsoleLogsRemoved.toString();
 	}
+
+	// Write number of todos
+	summaryText += '\n' + "Number of todos found: " + totalTodosFound.toString();
 
 	log.writeAtBeginning(summaryText);
 

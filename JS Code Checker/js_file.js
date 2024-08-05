@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Stats = require("./stats.js");
+const DataCollector = require("./data_collector.js");
 
 const doesFolderExist = require("./helper_functions.js").doesFolderExist;
 const findIndexOfChar = require("./helper_functions.js").findIndexOfChar;
@@ -14,6 +14,8 @@ const searchForSubstringInStringAfter = require("./helper_functions.js").searchF
 const deleteXCharsAt = require("./helper_functions.js").deleteXCharsAt; 
 const whatLineInString = require("./helper_functions.js").whatLineInString; 
 const insertIntoStringBefore = require("./helper_functions.js").insertIntoStringBefore;
+const collectCharactersUntilMeetingChar = require("./helper_functions.js").collectCharactersUntilMeetingChar;
+const collectCharactersUntilMeetingStr = require("./helper_functions.js").collectCharactersUntilMeetingStr;
 
 class JSFile {
 	constructor(fileName, rPath, fileDataStr){
@@ -21,7 +23,7 @@ class JSFile {
 		this.rPath = rPath;
 		this.fileDataStr = fileDataStr.toString();
 
-		this.stats = new Stats();
+		this.dataCollector = new DataCollector();
 
 		this.functionsAndMethods = [];
 		this.classes = [];
@@ -31,20 +33,53 @@ class JSFile {
 		return this.rPath;
 	}
 
-	countStatements(){
-		let statementRegex = /(;(\w)*\n)|(;(\w)*$)/g;
-		let statements = [...this.fileDataStr.matchAll(statementRegex)];
-		this.stats.setValue("number_of_statements", statements.length);
+	checkTODOs(){
+		// Collect all single line todos
+		let singleLineTODORegex = /\/\/ *TODO/g;
+		let singleLineTODOs = [...this.fileDataStr.matchAll(singleLineTODORegex)];
+		let singleLineTODOData = [];
+
+		for (let singleLineTODOStr of singleLineTODOs){
+			let charIndex = searchForSubstringInString(singleLineTODOStr, this.fileDataStr);
+			let lineNumber = whatLineInString(this.fileDataStr, charIndex);
+			let todoContentsStr = collectCharactersUntilMeetingChar(this.fileDataStr, charIndex, '\n'); 
+			singleLineTODOData.push({"line_number": lineNumber, "todo_str": todoContentsStr});
+		}
+		this.dataCollector.setValue("single_line_todos", singleLineTODOData);
+
+		// Collect all multi line todos
+		let multiLineTODORegex = /\/\*\s*TODO/g;
+		let multiLineTODOs = [...this.fileDataStr.matchAll(multiLineTODORegex)];
+		let multiLineTODOData = [];
+
+		for (let multiLineTODOStr of multiLineTODOs){
+			let charIndex = searchForSubstringInString(multiLineTODOStr, this.fileDataStr);
+			let lineNumber = whatLineInString(this.fileDataStr, charIndex);
+			let todoContentsStr = collectCharactersUntilMeetingStr(this.fileDataStr, charIndex, "*/"); 
+			multiLineTODOData.push({"line_number": lineNumber, "todo_str": todoContentsStr});
+		}
+		this.dataCollector.setValue("multi_line_todos", multiLineTODOData);
+
+		// Count total number of todos
+		let basicTODORegex = /(^|\W)TODO($|\W)/g;
+		let totalTODOCount = [...this.fileDataStr.matchAll(basicTODORegex)].length;
+		this.dataCollector.setValue("total_todo_count", totalTODOCount);
 	}
 
-	getStats(){
-		return this.stats;
+	countStatements(){
+		let statementRegex = /; *($|\n)/g;
+		let statements = [...this.fileDataStr.matchAll(statementRegex)];
+		this.dataCollector.setValue("number_of_statements", statements.length);
+	}
+
+	getDataCollector(){
+		return this.dataCollector;
 	}
 
 	removeOldConsoleLogs(){
 		let oldConsoleLogRegex = / *\/\/console\.log([^\n])+\n/g;
-		// Add number being removed to stats
-		this.stats.setValue("old_console_logs_removed", [...this.fileDataStr.matchAll(oldConsoleLogRegex)].length);
+		// Add number being removed to DataCollector
+		this.dataCollector.setValue("old_console_logs_removed", [...this.fileDataStr.matchAll(oldConsoleLogRegex)].length);
 		// Delete them
 		this.fileDataStr = this.fileDataStr.replace(oldConsoleLogRegex, '');
 	}
@@ -67,8 +102,8 @@ class JSFile {
 			let lineCount = whatLineInString(this.fileDataStr, charIndex);
 			this.fileDataStr = insertIntoStringBefore("console.log(\"" + this.fileName + " (L" + lineCount.toString() + ")", this.fileDataStr, charIndex);
 		}
-		// Add work done to stats
-		this.stats.setValue("l_r_console_logs_updated", consoleLogStatements.length);
+		// Add work done to DataCollector
+		this.dataCollector.setValue("l_r_console_logs_updated", consoleLogStatements.length);
 	}
 
 	identifyMethodsAndFunctions(){
@@ -144,8 +179,8 @@ class JSFile {
 		if (searchForSubstringInString("Class Name: " + classDetailsJSON["name"], this.fileDataStr) != -1){
 			return;
 		}
-		// Add to stats
-		this.stats.incrementCounter("c_comments_added");
+		// Add to DataCollector
+		this.dataCollector.incrementCounter("c_comments_added");
 		let numSpaces = measureIndentingBefore(this.fileDataStr, classDetailsJSON["char_index"]);
 		let indenting = createIndenting(numSpaces);
 		let commentString = "/*\n" + indenting + "    Class Name: " + classDetailsJSON["name"] + "\n" + indenting + "    Class Description: TODO\n" + indenting + "*/\n" + indenting;
@@ -174,11 +209,11 @@ class JSFile {
 			charIndex -= "static ".length;
 		}
 
-		// Record in stats
+		// Record in DataCollector
 		if (isMethod){
-			this.stats.incrementCounter("m_comments_added");
+			this.dataCollector.incrementCounter("m_comments_added");
 		}else{
-			this.stats.incrementCounter("f_comments_added");
+			this.dataCollector.incrementCounter("f_comments_added");
 		}
 
 		let numSpaces = measureIndentingBefore(this.fileDataStr, charIndex);

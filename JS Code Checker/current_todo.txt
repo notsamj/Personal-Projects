@@ -1,5 +1,4 @@
 Pseudo interfaces/classes
-Check for all TODOs(
 Comment this code!
 
 

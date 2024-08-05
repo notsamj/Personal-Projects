@@ -146,6 +146,40 @@ function insertIntoStringBefore(insertString, sourceString, charIndex){
 	return sourceString.substring(0, charIndex) + insertString + sourceString.substring(charIndex, sourceString.length);
 }
 
+function collectCharactersUntilMeetingChar(sourceString, charIndex, charToLookFor){
+	let subString = "";
+	for (let i = charIndex; i < sourceString.length; i++){
+		if (sourceString[i] == charToLookFor){
+			break;
+		}
+		subString += sourceString[i];
+	}
+	return subString;
+}
+
+function collectCharactersUntilMeetingStr(sourceString, characterIndex, str){
+	let subString = "";
+	for (let i = charIndex; i < sourceString.length; i++){
+		let meetingStr = true;
+		// If there isn't enough space to meet the str then don't bother looping
+		if (sourceString.length < i + str.length){
+			meetingStr = false;
+		}else{
+			for (let j = i; j < i + str.length; j++){
+				if (sourceString[j] != str[j-i]){
+					meetingStr = false;
+					break;
+				}
+			} 
+		}
+
+		if (meetingStr){ break; }
+		
+		subString += sourceString[i];
+	}
+	return subString;	
+}
+
 module.exports = {
 	doesFolderExist,
 	findIndexOfChar,
@@ -161,5 +195,7 @@ module.exports = {
 	whatLineInString,
 	insertIntoStringBefore,
 	multiplyString,
-	objectHasKey
+	objectHasKey,
+	collectCharactersUntilMeetingChar,
+	collectCharactersUntilMeetingStr
 }
