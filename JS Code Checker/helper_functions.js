@@ -26,9 +26,18 @@ function doesFolderExist(path){
 	return false;
 }
 
-function findIndexOfChar(str, chr){
+function findIndexOfChar(str, char){
 	for (let i = 0; i < str.length; i++){
-		if (str[i] === chr){
+		if (str[i] === char){
+			return i;
+		}
+	}
+	return -1; // not found
+}
+
+function findNextIndexOfChar(str, char, startingIndex){
+	for (let i = startingIndex; i < str.length; i++){
+		if (str[i] === char){
 			return i;
 		}
 	}
@@ -219,9 +228,21 @@ function countOccurancesOfSubString(sourceString, subString){
 	return occurances;
 }
 
+function appendLists(list1, list2){
+	let newList = [];
+	for (let item of list1){
+		newList.push(list1);
+	}
+	for (let item of list2){
+		newList.push(list2);
+	}
+	return newList;
+}
+
 module.exports = {
 	doesFolderExist,
 	findIndexOfChar,
+	findNextIndexOfChar,
 	copyArray,
 	insertStringIntoStringBeforeCharIndex,
 	searchForSubstringInString,
@@ -237,5 +258,6 @@ module.exports = {
 	objectHasKey,
 	collectCharactersUntilMeetingChar,
 	collectCharactersUntilMeetingStr,
-	countOccurancesOfSubString
+	countOccurancesOfSubString,
+	appendLists
 }

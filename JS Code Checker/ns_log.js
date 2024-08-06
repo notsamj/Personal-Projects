@@ -12,8 +12,8 @@ class NSLog {
 		this.logData = str + this.logData;
 	}
 
-	saveToFile(){
-		fs.writeFileSync("log.txt", this.logData);
+	saveToFile(outputFolderRPath){
+		fs.writeFileSync(outputFolderRPath + "js_code_checker_log.txt", this.logData);
 	}
 }
 

@@ -11,8 +11,8 @@ async function run(){
 
 		argv[0] node
 		argv[1] js_code_checker.js
-		argv[2] $input_file_name
-		argv[3] $output_file_name
+		argv[2] $input_file_relative_path
+		argv[3] $output_file_relative_path
 		argv[4] $preset_name
 	*/
 	let settingsJSON = await JSON.parse(fs.readFileSync("settings.json"));
@@ -40,11 +40,37 @@ async function run(){
 	// Modify files
 	modifyJSFiles(jsFiles, settings);
 
-	// Collect and log DataCollector
-	collectAndLogDataCollector(jsFiles, settings);
+	// Check for ns-inferfaces, ns-extensions
+	checkForAdditionalNSFeatures(jsFiles);
+
+	// Collect and log data
+	collectAndLogData(jsFiles, settings, outputFolderRPath);
 
 	// Write files
 	writeJSFiles(inputFolderRPath.length, outputFolderRPath, jsFiles);
+}
+
+function checkForAdditionalNSFeatures(jsFiles){
+	let abstractClasses = [];
+	let interfaces = [];
+	let classesImplementingOrExtending = [];
+
+	// Gather up all abstract classes, interfaces, or classes that implement/extend
+	for (let jsFile of jsFiles){
+		let nsRequirementData = jsFile.gatherNSRequirementData();
+		for (let abstractClass of nsRequirementData["abstract_classes"]){
+			abstractClasses.push(abstractClass);
+		}
+		for (let interface of nsRequirementData["interfaces"]){
+			interfaces.push(interface);
+		}
+		for (let classExtendingOrImplementing of nsRequirementData["classes_extending_or_implementing"]){
+			classesImplementingOrExtending.push(classExtendingOrImplementing);
+		}
+	}
+
+	// Look through each interface
+	// TODO
 }
 
 async function readJSFiles(rPath){
@@ -100,7 +126,7 @@ function modifyJSFiles(jsFiles, settings){
 	}
 }
 
-function collectAndLogDataCollector(jsFiles, settings){
+function collectAndLogData(jsFiles, settings, outputFolderRPath){
 	let log = new NSLog();
 	let numDashesPerSide = 5;
 
@@ -237,7 +263,7 @@ function collectAndLogDataCollector(jsFiles, settings){
 		console.log(summaryText);
 	}
 
-	log.saveToFile();
+	log.saveToFile(outputFolderRPath);
 }
 
 function writeJSFiles(inputFolderRPathLength, outputFolderRPath, jsFiles){

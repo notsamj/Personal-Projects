@@ -3,6 +3,7 @@ const DataCollector = require("./data_collector.js");
 
 const doesFolderExist = require("./helper_functions.js").doesFolderExist;
 const findIndexOfChar = require("./helper_functions.js").findIndexOfChar;
+const findNextIndexOfChar = require("./helper_functions.js").findNextIndexOfChar;
 const copyArray = require("./helper_functions.js").copyArray;
 const insertStringIntoStringBeforeCharIndex = require("./helper_functions.js").insertStringIntoStringBeforeCharIndex;
 const searchForSubstringInString = require("./helper_functions.js").searchForSubstringInString;
@@ -28,6 +29,182 @@ class JSFile {
 
 		this.functionsAndMethods = [];
 		this.classes = [];
+	}
+
+	gatherNSRequirementData(){
+		let requirementData = {
+			"classes_extending_or_implementing": [],
+			"abstract_classes": [],
+			"interfaces": []
+		}
+
+		let extractClassName = (str, searchStartIndex) => {
+			let className = "";
+			let stage = "findingClass";
+			let whiteSpace = /\w/;
+			for (let i = startIndex; i < str.length; i++){
+				let char = str[i];
+				if (stage == "findingClass"){
+					if (!whiteSpace.test(char)){
+						stage = "skippingClassKeyword";
+					}
+				}
+				if (stage == "skippingClassKeyword"){
+					if (char != " "){
+						stage = "readingClassName";
+					}
+				}
+				if (stage == "readingClassName"){
+					if (char != " " && char != "{"){
+						className += char;
+					}else{
+						break;
+					}
+				}
+			}
+			return className;
+		}
+		// Index of { at the start of the class
+		let findClassInteriorStartIndex = (str, searchStartIndex) => {
+			for (let i = searchStartIndex; i < str.length; i++){
+				if (str[i] == "{"){
+					return i;
+				}
+			}
+			return -1;
+		}
+
+		/*
+			Three valid examples
+			// nsRequire { "nsExtends": ["nsHumanCharacter"], "nsImplements": ["myInterface"]}
+			// nsRequire { "nsExtends": ["nsHumanCharacter"] }
+			// nsRequire {"nsImplements": ["myInterface"]}
+		*/
+		let nsRequireRegex = /\/\/ nsRequire \{ ?"[a-zA-Z]+\": [\"[a-zA-Z]+](, ?"[a-zA-Z]+\": [\"[a-zA-Z]+])? ?}/g;
+		let requireMatches = [...this.fileDataStr.matchAll(nsRequireRegex)];
+		let startOfNsRequireStringLength = "// nsRequire ".length;
+
+		// find all nsRequire matches and record
+		for (let match of requireMatches){
+			let matchStr = match[0];
+			let jsonStr = matchStr.substring(startOfNsRequireStringLength, matchStr.length);
+			let jsonObj = JSON.parse(jsonStr);
+			let className = extractClassName(this.fileDataStr, match["index"] + matchStr.length);
+			// The start index is probably an underestimate, it's not meant to be perfect, just prior to { which is expected but if the file is in an improper format then may not exist and result in errors but whatever, use at your own risk of error 
+			let classInteriorStartIndex = findClassInteriorStartIndex(this.fileDataStr, match["index"] + matchStr.length + className.length);
+			requirementData["classes_extending_or_implementing"].push({
+				"class_name": className,
+				"class_interior_start_index": classInteriorStartIndex,
+				"nsExtends": objectHasKey(jsonObj, "nsExtends") ? jsonObj["nsExtends"] : [],
+				"nsImplements": objectHasKey(jsonObj, "nsImplements") ? jsonObj["nsImplements"] : [],
+				"file": this
+			});
+		}
+
+		// Now find all abstract class definitions and get data
+		let nsAbstractClassRegex = /\/\/ nsAbstractClass/g;
+		let abstractClassMatches = [...this.fileDataStr.matchAll(nsAbstractClassRegex)];
+
+		let findPositionOfClosingBrace = (openingParenthesisIndex, sourceString) => {
+			let openCount = 1; // Assuming openParenthesisIndex is a '('
+			let closedCount = 0;
+			for (let i = openingParenthesisIndex; i < sourceString.length; i++){
+				let char = sourceString[i];
+				if (char == '('){
+					openCount++;
+				}else if (char == ')'){
+					closedCount++;
+					if (openCount == closedCount){
+						return i;
+					}
+				}
+			}
+			// Never closed just return sourceString length - 1
+			return sourceString.length - 1;
+		}
+
+		let extractClassVariablesAndMethods = (sourceString, classStartIndex) => {
+			let classSubString = sourceString.substring(classStartIndex, findPositionOfClosingBrace(classStartIndex, sourceString)+1);
+			let returnJSON = {
+				"member_variables": [],
+				"methods": []
+			}
+
+			// Find methods
+			let methodRegex = /[a-zA-Z]+\(([a-zA-Z0-9.=]+(, ?[a-zA-Z0-9.=]+)*)?\)\{/g;
+			let methodMatches = [...classSubString.matchAll(methodRegex)];
+			for (let methodMatch of methodMatches){
+				let methodHeader = methodMatch[i][0];
+				// Note: Assuming there are no two functions with the same name / header
+				let charIndex = methodMatch["index"];
+				let name = methodHeader.substring(0, findIndexOfChar(methodHeader, '('));
+
+				let parametersString = methodHeader.substring(findIndexOfChar(methodHeader, '(') + 1, fOrMethodHeader.length - 2);
+				let parametersStringList = parametersString.split(',');
+				// If empty then use an empty array
+				if (parametersStringList.length == 1 && parametersStringList[0] === ''){
+					parametersStringList = [];
+				}
+				let methodOpeningBraceIndex = findNextIndexOfChar(classSubString, '{', charIndex);
+				let methodClosingBraceIndex = findPositionOfClosingBrace(methodOpeningBraceIndex, classSubString);
+				let methodContentsStr = this.fileDataStr.substring(methodOpeningBraceIndex, methodClosingBraceIndex+1);
+				returnJSON["methods"].push({"method_name": methodHeader, "method_parameters": parametersStringList, "method_contents_string": methodContentsStr});
+			}
+
+			// Find member variables
+
+			let constructorRegex = /constructor/g;
+			let constructorMatchs = [...classSubString.matchAll(constructorRegex)];
+			let constructorMatch = constructorMatches[0];
+			let constructorBraceStartIndex = findNextIndexOfChar(classSubString, '{', constructorMatch["index"]);
+			let constructorBraceEndIndex = findPositionOfClosingBrace(classSubString, constructorBraceStartIndex);
+			let constructorSubString = classSubString.substring(constructorBraceStartIndex, constructorBraceEndIndex+1);
+
+			let memberVariableRegex = /this\.([a-zA-Z0-9]) ?= ?null;/g;
+			let memberVariableMatches = [...constructorSubString.matchAll(memberVariableRegex)];
+			for (let memberVariableMatch of memberVariableMatches){
+				returnJSON["member_variables"].push(memberVariableMatch[1])''
+			}
+			return returnJSON;
+		}
+
+		// Record all abstract classes
+		for (let match of abstractClassMatches){
+			let matchStr = match[0];
+			let className = extractClassName(this.fileDataStr, match["index"] + matchStr.length);
+			let classInteriorStartIndex = findClassInteriorStartIndex(this.fileDataStr, match["index"] + matchStr.length + className.length);
+			let classVariablesAndMethods = extractClassVariablesAndMethods(this.fileDataStr, classInteriorStartIndex);
+			requirementData["abstract_classes"].push({
+				"class_name": className,
+				"member_variables": classVariablesAndMethods["member_variables"],
+				"methods": classVariablesAndMethods["methods"],
+				"file": this
+			});
+		}
+
+		// Find interfaces
+
+		let extractInterfaceName = extractClassName;
+		let findInterfaceInteriorStartIndex = findClassInteriorStartIndex;
+		let findInterfaceMethods = extractClassVariablesAndMethods;
+
+		let nsInterfaceRegex = /\/\/ nsInterface/g;
+		let interfaceMatches = [...this.fileDataStr.matchAll(nsInterfaceRegex)];
+
+		// Record all interfaces
+		for (let match of abstractClassMatches){
+			let matchStr = match[0];
+			let interfaceName = extractInterfaceName(this.fileDataStr, match["index"] + matchStr.length);
+			let interfaceInteriorStartIndex = findInterfaceInteriorStartIndex(this.fileDataStr, match["index"] + matchStr.length + interfaceName.length);
+			let interfaceMethods = findInterfaceMethods(this.fileDataStr, classInteriorStartIndex);
+			requirementData["interfaces"].push({
+				"interface_name": interfaceName,
+				"methods": interfaceMethods["methods"],
+				"file": this
+			});
+		}
+
+		return requirementData;
 	}
 
 	getRelativePath(){

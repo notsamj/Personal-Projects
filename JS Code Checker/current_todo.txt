@@ -1,4 +1,63 @@
 Pseudo interfaces/classes
+	nsAbstractClass
+		--interface_my_interface.js--
+		// nsInterface
+		class myInterface {
+			myMethodA(a, b, c){}
+		}
+		--abstract_class_ns_human_character.js--
+		// nsAbstractClass
+		class nsHumanCharacter {
+			constructor(/* Intentionally empty */){
+				this.memberVariableA = false;
+			}
+
+			getPointingAngle(){
+				return Math.atan((mouseY - centerOfScreenY) / (mouseX - centerOfScreenX));
+			}
+
+			getANumber(){
+				return 5;
+			}
+		}
+		--game_a_human_character.js--
+		// nsRequire { "nsExtends": ["nsHumanCharacter"] }
+		class GameAHumanCharacter extends GameACharacter {
+			constructor(...){
+				...
+				this.memberVariableA = 5; /* Note: if this isn't included it will get an error that looks like
+				(--game_a_human_character.js--)
+				*nsAbstractClass violation*
+				class "GameACharacter" missing member variable "memberVariableA" from "nsHumanCharacter" */
+			}
+
+			/*
+				Note:
+					If this isn't included OR the code inside getPointingAngle didn't perfectly match the code in nsHumanCharacter there would be a 
+				*nsAbstractClass violation*
+				class "GameACharacter" method "getPointingAngle" from "nsHumanCharacter" is not present
+
+				class "GameACharacter" method "getPointingAngle" code does not match "getPointingAngle" from "nsHumanCharacter"
+			*/
+			// nsMethodExactMatch
+			getPointingAngle(){
+				return Math.atan((mouseY - centerOfScreenY) / (mouseX - centerOfScreenX));
+			}
+
+			/*
+				Note:
+					If this isn't included
+				*nsAbstractClass violation*
+				class "GameACharacter" method "getPointingAngle" from "nsHumanCharacter" is not present
+			*/
+			// nsMethodOverride Note: Actually this doesn't need to be present, override is assumed unless exact match
+			getANumber(){
+				return 6;
+			}
+
+			Similarily can do
+			// nsRequire { "nsExtends": ["nsHumanCharacter"], "nsImplements": ["myInterface"]}
+		}
 	Need to make an alert like in summary:
 		Number of nsSpecification violations found: n
 
@@ -6,6 +65,7 @@ Pseudo interfaces/classes
 		*nsInterface violation*
 		Line: xxx
 		...
+Create test data for all this code
 Comment this code!
 
 (Optional)
