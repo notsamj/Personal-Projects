@@ -1,36 +1,43 @@
 const objectHasKey = require("./helper_functions.js").objectHasKey;
 class DataCollector {
-	constructor(){
-		this.storage = {};
-	}
+    constructor(){
+        this.storage = {};
+    }
 
-	setValue(valueName, value){
-		this.storage[valueName] = value;
-	}
+    getValueOrSetTo(valueName, value){
+        if (!this.hasValue(valueName)){
+            this.setValue(valueName, value);
+        }
+        return this.getDataValue(valueName);
+    }
 
-	hasValue(valueName){
-		return objectHasKey(this.storage, valueName);
-	}
+    setValue(valueName, value){
+        this.storage[valueName] = value;
+    }
 
-	incrementCounter(valueName){
-		// 0 if doesn't exist
-		if (!this.hasValue(valueName)){
-			this.setValue(valueName, 0);
-		}
-		this.storage[valueName]++;
-	}
+    hasValue(valueName){
+        return objectHasKey(this.storage, valueName);
+    }
 
-	getDataValue(valueName){
-		// 0 if doesn't exist
-		if (!this.hasValue(valueName)){
-			return 0;
-		}
-		return this.storage[valueName];
-	}
-	
-	getValue(valueName){
-		return this.getDataValue(valueName);
-	}
+    incrementCounter(valueName){
+        // 0 if doesn't exist
+        if (!this.hasValue(valueName)){
+            this.setValue(valueName, 0);
+        }
+        this.storage[valueName]++;
+    }
+
+    getDataValue(valueName){
+        // 0 if doesn't exist
+        if (!this.hasValue(valueName)){
+            return 0;
+        }
+        return this.storage[valueName];
+    }
+    
+    getValue(valueName){
+        return this.getDataValue(valueName);
+    }
 }
 
 module.exports = DataCollector;

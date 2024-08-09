@@ -167,15 +167,15 @@ class AsyncUpdateManager {
     /*
         Method Name: deletionProcedure
         Method Parameters:
-        	currentTicks:
-        		Number of ticks to delete all updates prior to
+            currentTicks:
+                Number of ticks to delete all updates prior to
         Method Description: Delete old entries
         Method Return: Promise (implicit)
     */
     async deletionProcedure(currentTicks){
         await this.syncLock.awaitUnlock(true);
         this.data.deleteWithCondition((node) => {
-        	return node.getNumTicks() < currentTicks;
+            return node.getNumTicks() < currentTicks;
         });
         this.syncLock.unlock();
     }

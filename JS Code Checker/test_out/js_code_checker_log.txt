@@ -1,0 +1,91 @@
+----- Summary -----
+Number of statements: 29
+Number of function comments added: 0
+Number of method comments added: 21
+Number of class comments added: 2
+Number of line-referencing console.logs updated: 0
+Number of old console.logs removed: 0
+Number of todos found: 95
+Number of violations found: 11
+----- gamemode_remote_translator.js -----
+Relative path: ./test_in/
+Number of statements: 8
+Number of todos found: 40
+Line 24: // TODO: Do something else
+Line 17: /*
+        TODO:
+            Do this
+            then
+            do that
+    
+----- abstract_class_1.js -----
+Relative path: ./test_in/violations/
+Number of statements: 3
+Number of method comments added: 3
+Number of class comments added: 1
+Number of todos found: 9
+----- interface_1.js -----
+Relative path: ./test_in/violations/
+Number of statements: 0
+Number of method comments added: 3
+Number of class comments added: 1
+Number of todos found: 7
+----- test_class1.js -----
+Relative path: ./test_in/violations/
+Number of statements: 0
+Number of violations found: 4
+Violations:
+Method "myAbstractMethod1" from abstract class "AbstractClassOne" missing in class "myTestClass1".
+Method "myAbstractMethod2" from abstract class "AbstractClassOne" missing in class "myTestClass1".
+Member variable "memberVariable1" from abstract class "AbstractClassOne" missing in class "myTestClass1".
+Member variable "memberVariable2" from abstract class "AbstractClassOne" missing in class "myTestClass1".
+----- test_class2.js -----
+Relative path: ./test_in/violations/
+Number of statements: 1
+Number of violations found: 3
+Violations:
+Method "myAbstractMethod1" from abstract class "AbstractClassOne" missing in class "myTestClass2".
+Method "myAbstractMethod2" from abstract class "AbstractClassOne" missing in class "myTestClass2".
+Member variable "memberVariable2" from abstract class "AbstractClassOne" missing in class "myTestClass2".
+----- test_class3.js -----
+Relative path: ./test_in/violations/
+Number of statements: 3
+Number of method comments added: 2
+Number of todos found: 6
+----- test_class4.js -----
+Relative path: ./test_in/violations/
+Number of statements: 3
+Number of method comments added: 2
+Number of todos found: 6
+Number of violations found: 1
+Violations:
+Method "myAbstractMethod2" from abstract class "AbstractClassOne" missing in class "myTestClass4" due to content mismatch.
+----- test_class5.js -----
+Relative path: ./test_in/violations/
+Number of statements: 3
+Number of method comments added: 2
+Number of todos found: 5
+Number of violations found: 1
+Violations:
+Method "myAbstractMethod2" from abstract class "AbstractClassOne" missing in class "myTestClass5" due to parameter mismatch.
+----- test_class6.js -----
+Relative path: ./test_in/violations/
+Number of statements: 3
+Number of method comments added: 3
+Number of todos found: 8
+Number of violations found: 1
+Violations:
+Method "myIMethod2" from interface "InterfaceOne" missing in class "myTestClass6".
+----- test_class7.js -----
+Relative path: ./test_in/violations/
+Number of statements: 3
+Number of method comments added: 4
+Number of todos found: 10
+----- test_class8.js -----
+Relative path: ./test_in/violations/
+Number of statements: 2
+Number of method comments added: 2
+Number of todos found: 4
+Number of violations found: 1
+Violations:
+Method "myIMethod2" from interface "InterfaceOne" missing in class "myTestClass8".

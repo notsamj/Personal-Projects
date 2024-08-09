@@ -11,11 +11,11 @@ let singleLineTODOs = [...sourceStr.matchAll(singleLineTODORegex)];
 let singleLineTODOData = [];
 
 for (let singleLineTODOMatch of singleLineTODOs){
-	let singleLineTODOStr = singleLineTODOMatch[0];
-	console.log("substring", singleLineTODOStr)
-	let charIndex = searchForSubstringInString(singleLineTODOStr, sourceStr);
-	let lineNumber = whatLineInString(sourceStr, charIndex);
-	let todoContentsStr = collectCharactersUntilMeetingChar(sourceStr, charIndex, '\n');
-	console.log("got", todoContentsStr, charIndex)
-	singleLineTODOData.push({"line_number": lineNumber, "todo_str": todoContentsStr});
+    let singleLineTODOStr = singleLineTODOMatch[0];
+    console.log("substring", singleLineTODOStr)
+    let charIndex = searchForSubstringInString(singleLineTODOStr, sourceStr);
+    let lineNumber = whatLineInString(sourceStr, charIndex);
+    let todoContentsStr = collectCharactersUntilMeetingChar(sourceStr, charIndex, '\n');
+    console.log("got", todoContentsStr, charIndex)
+    singleLineTODOData.push({"line_number": lineNumber, "todo_str": todoContentsStr});
 }

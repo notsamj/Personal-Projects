@@ -30,18 +30,18 @@ class Mission extends Gamemode {
         Method Description: Constructor
         Method Return: Constructor
     */
-	constructor(missionObject, missionSetupJSON){
-		super();
-		this.missionObject = missionObject;
+    constructor(missionObject, missionSetupJSON){
+        super();
+        this.missionObject = missionObject;
         this.allyDifficulty = missionSetupJSON["ally_difficulty"];
         this.axisDifficulty = missionSetupJSON["axis_difficulty"];
-		this.buildings = this.createBuildings();
-		this.planes = this.createPlanes(missionSetupJSON);
+        this.buildings = this.createBuildings();
+        this.planes = this.createPlanes(missionSetupJSON);
         this.attackerSpawnLock = new TickLock(this.missionObject[this.getAttackerDifficulty()]["respawn_times"]["attackers"] / PROGRAM_DATA["settings"]["ms_between_ticks"], false);
         this.defenderSpawnLock = new TickLock(this.missionObject[this.getDefenderDifficulty()]["respawn_times"]["defenders"] / PROGRAM_DATA["settings"]["ms_between_ticks"], false);
-		this.teamCombatManager.setEntities(appendLists(this.planes, this.buildings));
+        this.teamCombatManager.setEntities(appendLists(this.planes, this.buildings));
         this.bulletPhysicsEnabled = missionSetupJSON["use_physics_bullets"];
-	}
+    }
 
     /*
         Method Name: getAttackerDifficulty
@@ -73,7 +73,7 @@ class Mission extends Gamemode {
         return this.buildings;
     }
 
-	/*
+    /*
         Method Name: tick
         Method Parameters: None
         Method Description: Run the actions that take place during a tick
@@ -230,28 +230,28 @@ class Mission extends Gamemode {
         Method Return: void
     */
     checkForEnd(){
-    	let livingBuildings = 0;
-    	for (let building of this.buildings){
-    		if (building.isAlive()){
-    			livingBuildings++;
-    		}
-    	}
-    	// If all buildings are destroyed then the attackers win
-    	if (livingBuildings == 0){
-    		this.endGame(true);
-    	}
+        let livingBuildings = 0;
+        for (let building of this.buildings){
+            if (building.isAlive()){
+                livingBuildings++;
+            }
+        }
+        // If all buildings are destroyed then the attackers win
+        if (livingBuildings == 0){
+            this.endGame(true);
+        }
 
-    	let livingBombers = 0;
-    	for (let plane of this.planes){
-    		if (plane instanceof BomberPlane && plane.isAlive()){
-    			livingBombers++;
-    		}
-    	}
+        let livingBombers = 0;
+        for (let plane of this.planes){
+            if (plane instanceof BomberPlane && plane.isAlive()){
+                livingBombers++;
+            }
+        }
 
-    	// If all bombers are dead then the attacker loses
-    	if (livingBombers == 0){
-    		this.endGame(false);
-    	}
+        // If all bombers are dead then the attacker loses
+        if (livingBombers == 0){
+            this.endGame(false);
+        }
     }
 
     /*
@@ -347,9 +347,9 @@ class Mission extends Gamemode {
     */
     createPlanes(missionSetupJSON){
         let userList = missionSetupJSON["users"];
-    	let planes = [];
+        let planes = [];
         // Save plane counts
-    	this.planeCounts = mergeCopyObjects(this.missionObject[this.getAttackerDifficulty()]["attacker_plane_counts"], this.missionObject[this.getDefenderDifficulty()]["defender_plane_counts"]);
+        this.planeCounts = mergeCopyObjects(this.missionObject[this.getAttackerDifficulty()]["attacker_plane_counts"], this.missionObject[this.getDefenderDifficulty()]["defender_plane_counts"]);
         
         // Add users
         for (let user of userList){
@@ -370,7 +370,7 @@ class Mission extends Gamemode {
             if (this.planeCounts[userEntityModel] == 0){ continue; }
             this.planeCounts[userEntityModel]--;
         }
-    	
+        
         // Populate with bot planes
         // Spawn the bot planes
         let botPlanes = this.createBotPlanes();
