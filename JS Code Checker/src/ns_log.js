@@ -1,4 +1,5 @@
 const fs = require("fs");
+const doesFolderExist = require("./helper_functions.js").doesFolderExist;
 /*
     Class Name: NSLog
     Class Description: A log of information
@@ -47,6 +48,11 @@ class NSLog {
         Method Return: void
     */
     saveToFile(outputFolderRPath){
+        let folderExists = doesFolderExist(outputFolderRPath);
+        if (!folderExists){
+            // Create folder
+            fs.mkdirSync(outputFolderRPath);
+        }
         fs.writeFileSync(outputFolderRPath + "js_code_checker_log.txt", this.logData);
     }
 }

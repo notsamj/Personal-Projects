@@ -1,0 +1,9 @@
+console.log("console_log_showcase.js (L1)");
+console.log("console_log_showcase.js (L2)");
+console.log("console_log_showcase.js (L3)");
+console.log("console_log_showcase.js (L4)");
+console.log("console_log_showcase.js (L5)");
+console.log("console_log_showcase.js (L6)");
+console.log("console_log_showcase.js (L7)");
+console.log("console_log_showcase.js (L8)");
+console.log("console_log_showcase.js (L9)");

@@ -11,6 +11,8 @@
   - An attempt at the Towers of Hanoi problem utilizing three approaches.
 - Python App 1
   - A custom-config class.
+- JS Code Checker
+  - A NodeJS application for modifying JS files and summarizing findings.
 ## W.I.P & Future Applications
 - CPP App 1
   - I haven't decided what I want to do for this yet. It's just Hello World for now.
