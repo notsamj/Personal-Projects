@@ -256,7 +256,7 @@ function modifyJSFiles(jsFiles, settings){
             jsFile.removeOldConsoleLogs();
         }
         jsFile.countStatements();
-        jsFile.checkTODOs();
+        jsFile.checkToDos();
     }
 }
 
@@ -371,17 +371,17 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
             log.write('\n' + "Number of violations found: " + violationsFound.toString());
         }
 
-        // Go through the TODOs
+        // Go through the todos
 
         // Single line todos
-        let singleLineTODOs = fileDataCollector.getValue("single_line_todos");
-        for (let todoDataJSON of singleLineTODOs){
+        let singleLineToDos = fileDataCollector.getValue("single_line_todos");
+        for (let todoDataJSON of singleLineToDos){
             log.write('\n' + "Line " + todoDataJSON["line_number"] + ": " + todoDataJSON["todo_str"]);
         }
 
         // Multi line todos
-        let multiLineTODOs = fileDataCollector.getValue("multi_line_todos");
-        for (let todoDataJSON of multiLineTODOs){
+        let multiLineToDos = fileDataCollector.getValue("multi_line_todos");
+        for (let todoDataJSON of multiLineToDos){
             log.write('\n' + "Line " + todoDataJSON["line_number"] + ": " + todoDataJSON["todo_str"]);
         }
 

@@ -264,43 +264,43 @@ class JSFile {
     }
 
     /*
-        Method Name: checkTODOs
+        Method Name: checkToDos
         Method Parameters: None
-        Method Description: Counts and records TODOs in the file
+        Method Description: Counts and records ToDos in the file
         Method Return: void
     */
-    checkTODOs(){
+    checkToDos(){
         // Collect all single line todos
-        let singleLineTODORegex = /\/\/ *TODO/g;
-        let singleLineTODOs = [...this.fileDataStr.matchAll(singleLineTODORegex)];
-        let singleLineTODOData = [];
+        let singleLineToDoRegex = /\/\/ *TODO/g;
+        let singleLineToDos = [...this.fileDataStr.matchAll(singleLineToDoRegex)];
+        let singleLineToDoData = [];
 
-        for (let singleLineTODOMatch of singleLineTODOs){
-            let singleLineTODOStr = singleLineTODOMatch[0];
-            let charIndex = singleLineTODOMatch["index"];
+        for (let singleLineToDoMatch of singleLineToDos){
+            let singleLineToDoStr = singleLineToDoMatch[0];
+            let charIndex = singleLineToDoMatch["index"];
             let lineNumber = whatLineInString(this.fileDataStr, charIndex);
-            let todoContentsStr = collectCharactersUntilMeetingChar(this.fileDataStr, charIndex, '\n');
-            singleLineTODOData.push({"line_number": lineNumber, "todo_str": todoContentsStr});
+            let toDoContentsStr = collectCharactersUntilMeetingChar(this.fileDataStr, charIndex, '\n');
+            singleLineToDoData.push({"line_number": lineNumber, "todo_str": toDoContentsStr});
         }
-        this.dataCollector.setValue("single_line_todos", singleLineTODOData);
+        this.dataCollector.setValue("single_line_todos", singleLineToDoData);
 
         // Collect all multi line todos
-        let multiLineTODORegex = /\/\*\s*TODO/g;
-        let multiLineTODOs = [...this.fileDataStr.matchAll(multiLineTODORegex)];
-        let multiLineTODOData = [];
+        let multiLineToDoRegex = /\/\*\s*TODO/g;
+        let multiLineTODOs = [...this.fileDataStr.matchAll(multiLineToDoRegex)];
+        let multiLineToDoData = [];
 
         for (let multiLineTODOMatch of multiLineTODOs){
             let multiLineTODOStr = multiLineTODOMatch[0];
             let charIndex = multiLineTODOMatch["index"];
             let lineNumber = whatLineInString(this.fileDataStr, charIndex);
-            let todoContentsStr = collectCharactersUntilMeetingStr(this.fileDataStr, charIndex, "*/"); 
-            multiLineTODOData.push({"line_number": lineNumber, "todo_str": todoContentsStr});
+            let toDoContentsStr = collectCharactersUntilMeetingStr(this.fileDataStr, charIndex, "*/"); 
+            multiLineToDoData.push({"line_number": lineNumber, "todo_str": toDoContentsStr});
         }
-        this.dataCollector.setValue("multi_line_todos", multiLineTODOData);
+        this.dataCollector.setValue("multi_line_todos", multiLineToDoData);
 
         // Count total number of todos
-        let totalTODOCount = countOccurancesOfSubString(this.fileDataStr, "TODO");
-        this.dataCollector.setValue("total_todo_count", totalTODOCount);
+        let totalToDoCount = countOccurancesOfSubString(this.fileDataStr, "TODO");
+        this.dataCollector.setValue("total_todo_count", totalToDoCount);
     }
 
     /*

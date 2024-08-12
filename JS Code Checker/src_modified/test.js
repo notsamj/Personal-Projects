@@ -5,8 +5,8 @@ const whatLineInString = require("./helper_functions.js").whatLineInString;
 let str = fs.readFileSync("./in/scripts/gamemodes/gamemode_remote_translator.js").toString();
 let sourceStr = "*/\n    // TODO: Do something else\n    /*";
 //let result = collectCharactersUntilMeetingChar(sourceStr, "*/\n    ".length, '\n');
-let singleLineTODORegex = /\/\/ *TODO/g;
-let singleLineTODOs = [...sourceStr.matchAll(singleLineTODORegex)];
+let singleLineToDoRegex = /\/\/ *TODO/g;
+let singleLineTODOs = [...sourceStr.matchAll(singleLineToDoRegex)];
 let singleLineTODOData = [];
 
 for (let singleLineTODOMatch of singleLineTODOs){

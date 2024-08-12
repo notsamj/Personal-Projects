@@ -413,11 +413,11 @@ class DLLNode{
         Method Name: constructor
         Method Parameters: 
             previous:
-                TODO
+                Previous node
             value:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
+                Value at the node
+        Method Description: Constructor
+        Method Return: constructor
     */
     constructor(previous, value){
         this.value = value;
