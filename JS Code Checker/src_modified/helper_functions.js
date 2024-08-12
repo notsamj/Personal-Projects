@@ -1,12 +1,12 @@
 /*
     Function Name: objectHasKey
-    Function Parameters: 
+    Method Parameters: 
         obj:
             A JSON object
          key:
             A key
-    Function Description: Checks if a JSON object has a given key
-    Function Return: Boolean
+    Method Description: Checks if a JSON object has a given key
+    Method Return: Boolean
 */
 function objectHasKey(obj, key){
     for (let objKey of Object.keys(obj)){
@@ -19,13 +19,13 @@ function objectHasKey(obj, key){
 
 /*
     Function Name: multiplyString
-    Function Parameters: 
+    Method Parameters: 
         str:
             A string
          count:
             The desired number of occurances of the string
-    Function Description: Repeats a string a given number of times
-    Function Return: String
+    Method Description: Repeats a string a given number of times
+    Method Return: String
 */
 function multiplyString(str, count){
     let multipliedString = "";
@@ -37,11 +37,11 @@ function multiplyString(str, count){
 
 /*
     Function Name: doesFolderExist
-    Function Parameters: 
+    Method Parameters: 
         path:
             A string, path to a folder
-    Function Description: Checks if a folder with a given path exists
-    Function Return: Boolean
+    Method Description: Checks if a folder with a given path exists
+    Method Return: Boolean
 */
 function doesFolderExist(path){
     let fs = require("fs");
@@ -56,13 +56,13 @@ function doesFolderExist(path){
 
 /*
     Function Name: findIndexOfChar
-    Function Parameters: 
+    Method Parameters: 
         str:
             A string to search through
          char:
             A character to find
-    Function Description: Searchs a string for a character
-    Function Return: Integer, index in the string or -1 if not found
+    Method Description: Searchs a string for a character
+    Method Return: Integer, index in the string or -1 if not found
 */
 function findIndexOfChar(str, char){
     for (let i = 0; i < str.length; i++){
@@ -75,15 +75,15 @@ function findIndexOfChar(str, char){
 
 /*
     Function Name: findNextIndexOfChar
-    Function Parameters: 
+    Method Parameters: 
         str:
             A string to search through
          char:
             A character to find
          startingIndex:
             The index at which to start the search
-    Function Description: Searchs a string for a character. Starting from a provided index
-    Function Return: Integer, index in the string or -1 if not found
+    Method Description: Searchs a string for a character. Starting from a provided index
+    Method Return: Integer, index in the string or -1 if not found
 */
 function findNextIndexOfChar(str, char, startingIndex){
     for (let i = startingIndex; i < str.length; i++){
@@ -96,11 +96,11 @@ function findNextIndexOfChar(str, char, startingIndex){
 
 /*
     Function Name: copyArray
-    Function Parameters: 
+    Method Parameters: 
         array:
             An array
-    Function Description: Coppies an array into a new array
-    Function Return: Array
+    Method Description: Coppies an array into a new array
+    Method Return: Array
 */
 function copyArray(array){
     let newArray = [];
@@ -110,15 +110,15 @@ function copyArray(array){
 
 /*
     Function Name: insertStringIntoStringBeforeCharIndex
-    Function Parameters: 
+    Method Parameters: 
         insertString:
             A string to insert
          sourceString:
             A string to have the other string inserted into
          charIndex:
             A character index at which to insert the string
-    Function Description: Inserts one string into another at a given position
-    Function Return: String
+    Method Description: Inserts one string into another at a given position
+    Method Return: String
 */
 function insertStringIntoStringBeforeCharIndex(insertString, sourceString, charIndex){
     return sourceString.substring(0, charIndex) + insertString + sourceString.substring(charIndex, sourceString.length);
@@ -126,13 +126,13 @@ function insertStringIntoStringBeforeCharIndex(insertString, sourceString, charI
 
 /*
     Function Name: searchForSubstringInString
-    Function Parameters: 
+    Method Parameters: 
         subString:
             A substring
          sourceString:
             A string which may contain the substring
-    Function Description: Finds the location of a given substring inside a string
-    Function Return: Integer, the index of the start of the substring, -1 if not found
+    Method Description: Finds the location of a given substring inside a string
+    Method Return: Integer, the index of the start of the substring, -1 if not found
 */
 function searchForSubstringInString(subString, sourceString){
     for (let i = 0; i < sourceString.length - subString.length; i++){
@@ -153,13 +153,13 @@ function searchForSubstringInString(subString, sourceString){
 
 /*
     Function Name: measureIndentingBefore
-    Function Parameters: 
+    Method Parameters: 
         sourceString:
             A string
         charIndex:
             The index at which to check for indenting prior
-    Function Description: Counts how many spaces are ahead of a point in a string until it reaches a non-space
-    Function Return: Integer, the number of spaces
+    Method Description: Counts how many spaces are ahead of a point in a string until it reaches a non-space
+    Method Return: Integer, the number of spaces
 */
 function measureIndentingBefore(sourceString, charIndex){
     let c = 0;
@@ -175,11 +175,11 @@ function measureIndentingBefore(sourceString, charIndex){
 
 /*
     Function Name: createIndenting
-    Function Parameters: 
+    Method Parameters: 
         size:
             The number of spaces to include
-    Function Description: Creates a string of spaces of the given size
-    Function Return: String
+    Method Description: Creates a string of spaces of the given size
+    Method Return: String
 */
 function createIndenting(size){
     let indenting = "";
@@ -191,15 +191,15 @@ function createIndenting(size){
 
 /*
     Function Name: isPrecededBy
-    Function Parameters: 
+    Method Parameters: 
         sourceString:
             A string
         characterIndex:
             An index in the source string
         subString:
             A substring to look for
-    Function Description: Checks if a character index in the source string is preceded by a substring
-    Function Return: Boolean
+    Method Description: Checks if a character index in the source string is preceded by a substring
+    Method Return: Boolean
 */
 function isPrecededBy(sourceString, characterIndex, subString){
     if (characterIndex < subString.length){ return false; }
@@ -213,15 +213,15 @@ function isPrecededBy(sourceString, characterIndex, subString){
 
 /*
     Function Name: isPrecededByIgnoreWhiteSpace
-    Function Parameters: 
+    Method Parameters: 
         sourceString:
             A string
         characterIndex:
             An index in the source string
         subString:
             A substring to look for
-    Function Description: Checks if a character index in the source string is preceded by a substring. Ignores all white space.
-    Function Return: Boolean
+    Method Description: Checks if a character index in the source string is preceded by a substring. Ignores all white space.
+    Method Return: Boolean
 */
 function isPrecededByIgnoreWhiteSpace(sourceString, characterIndex, subString){
     let whiteSpace = /\s/;
@@ -250,15 +250,15 @@ function isPrecededByIgnoreWhiteSpace(sourceString, characterIndex, subString){
 
 /*
     Function Name: searchForSubstringInStringAfter
-    Function Parameters: 
+    Method Parameters: 
         subString:
             A string
         sourceString:
             A string
         startPoint:
             Integer, character index in source string
-    Function Description: Finds a substring in a source string after a given point
-    Function Return: Integer, character index if found, -1 if not found
+    Method Description: Finds a substring in a source string after a given point
+    Method Return: Integer, character index if found, -1 if not found
 */
 function searchForSubstringInStringAfter(subString, sourceString, startPoint){
     for (let i = startPoint+1; i < sourceString.length - subString.length; i++){
@@ -279,15 +279,15 @@ function searchForSubstringInStringAfter(subString, sourceString, startPoint){
 
 /*
     Function Name: deleteXCharsAt
-    Function Parameters: 
+    Method Parameters: 
         sourceString:
             A string
         charIndex:
             A location in the source string
         x:
             The number of characters to delete
-    Function Description: Removes x characters from a string at a given location
-    Function Return: String
+    Method Description: Removes x characters from a string at a given location
+    Method Return: String
 */
 function deleteXCharsAt(sourceString, charIndex, x){
     return sourceString.substring(0, charIndex) + sourceString.substring(charIndex + x, sourceString.length);
@@ -295,13 +295,13 @@ function deleteXCharsAt(sourceString, charIndex, x){
 
 /*
     Function Name: whatLineInString
-    Function Parameters: 
+    Method Parameters: 
         sourceString:
             A string
          characterIndex:
             A location in the source string
-    Function Description: Counts the lines at determines what line of the string a character index is on
-    Function Return: Integer
+    Method Description: Counts the lines at determines what line of the string a character index is on
+    Method Return: Integer
 */
 function whatLineInString(sourceString, characterIndex){
     let lineCount = 1;
@@ -315,15 +315,15 @@ function whatLineInString(sourceString, characterIndex){
 
 /*
     Function Name: insertIntoStringBefore
-    Function Parameters: 
+    Method Parameters: 
         insertString:
             A string
         sourceString:
             A string
         charIndex:
             A location in the source string
-    Function Description: Inserts a string into the source string
-    Function Return: String
+    Method Description: Inserts a string into the source string
+    Method Return: String
 */
 function insertIntoStringBefore(insertString, sourceString, charIndex){
     return sourceString.substring(0, charIndex) + insertString + sourceString.substring(charIndex, sourceString.length);
@@ -331,15 +331,15 @@ function insertIntoStringBefore(insertString, sourceString, charIndex){
 
 /*
     Function Name: collectCharactersUntilMeetingChar
-    Function Parameters: 
+    Method Parameters: 
         sourceString:
             A string
          charIndex:
             An index at which to start collecting characters
          charToLookFor:
             The character at which to end the collection
-    Function Description: Collects characters in a string from a point until it meets a given character
-    Function Return: String
+    Method Description: Collects characters in a string from a point until it meets a given character
+    Method Return: String
 */
 function collectCharactersUntilMeetingChar(sourceString, charIndex, charToLookFor){
     let subString = "";
@@ -354,15 +354,15 @@ function collectCharactersUntilMeetingChar(sourceString, charIndex, charToLookFo
 
 /*
     Function Name: collectCharactersUntilMeetingStr
-    Function Parameters: 
+    Method Parameters: 
         sourceString:
             A string
          characterIndex:
             A location in the source string
          str:
             A string to look for
-    Function Description: Collects character in a string until meeting a provided substring
-    Function Return: String
+    Method Description: Collects character in a string until meeting a provided substring
+    Method Return: String
 */
 function collectCharactersUntilMeetingStr(sourceString, characterIndex, str){
     let subString = "";
@@ -384,13 +384,13 @@ function collectCharactersUntilMeetingStr(sourceString, characterIndex, str){
 
 /*
     Function Name: countOccurancesOfSubString
-    Function Parameters: 
+    Method Parameters: 
         sourceString:
             A string
          subString:
             A string
-    Function Description: Counts occurances of a substring in a string
-    Function Return: Integer
+    Method Description: Counts occurances of a substring in a string
+    Method Return: Integer
 */
 function countOccurancesOfSubString(sourceString, subString){
     let occurances = 0;
@@ -411,13 +411,13 @@ function countOccurancesOfSubString(sourceString, subString){
 
 /*
     Function Name: appendLists
-    Function Parameters: 
+    Method Parameters: 
         list1:
             A list
          list2:
             A list
-    Function Description: Appends two lists to make a new list
-    Function Return: List
+    Method Description: Appends two lists to make a new list
+    Method Return: List
 */
 function appendLists(list1, list2){
     let newList = [];
@@ -432,13 +432,13 @@ function appendLists(list1, list2){
 
 /*
     Function Name: listsEqual
-    Function Parameters: 
+    Method Parameters: 
         list1:
             A list
          list2:
             A list
-    Function Description: Checks if two lists are identical
-    Function Return: Boolean
+    Method Description: Checks if two lists are identical
+    Method Return: Boolean
 */
 function listsEqual(list1, list2){
     if (list1.length != list2.length){
@@ -454,13 +454,13 @@ function listsEqual(list1, list2){
 
 /*
     Function Name: listContainsElement
-    Function Parameters: 
+    Method Parameters: 
         myList:
             A list
          element:
             A value
-    Function Description: Checks if a list contains a given value
-    Function Return: Boolean
+    Method Description: Checks if a list contains a given value
+    Method Return: Boolean
 */
 function listContainsElement(myList, element){
     for (let elementInList of myList){
@@ -473,13 +473,13 @@ function listContainsElement(myList, element){
 
 /*
     Function Name: getLineBefore
-    Function Parameters: 
+    Method Parameters: 
         str:
             A string
         charIndex:
             A location in the string
-    Function Description: Collects a string of the line before the current line (at charIndex) in a string
-    Function Return: String
+    Method Description: Collects a string of the line before the current line (at charIndex) in a string
+    Method Return: String
 */
 function getLineBefore(str, charIndex){
     let linesBefore = 0;
@@ -501,11 +501,11 @@ function getLineBefore(str, charIndex){
 
 /*
     Function Name: reverseString
-    Function Parameters: 
+    Method Parameters: 
         str:
             A string
-    Function Description: Reverses a string
-    Function Return: String
+    Method Description: Reverses a string
+    Method Return: String
 */
 function reverseString(str){
     let reversedString = "";

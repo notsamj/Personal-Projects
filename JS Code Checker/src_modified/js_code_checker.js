@@ -8,9 +8,9 @@ const listsEqual = require("./helper_functions.js").listsEqual;
 const listContainsElement = require("./helper_functions.js").listContainsElement;
 /*
     Function Name: run
-    Function Parameters: None
-    Function Description: Runs the program
-    Function Return: void
+    Method Parameters: None
+    Method Description: Runs the program
+    Method Return: void
 */
 async function run(){
     /*
@@ -56,11 +56,11 @@ async function run(){
 
 /*
     Function Name: checkForAdditionalNSFeatures
-    Function Parameters: 
+    Method Parameters: 
         jsFiles:
             A list of JSFile objects
-    Function Description: Checks for additional features such as interfaces and abstract classes
-    Function Return: void
+    Method Description: Checks for additional features such as interfaces and abstract classes
+    Method Return: void
 */
 function checkForAdditionalNSFeatures(jsFiles){
     let abstractClasses = [];
@@ -111,13 +111,13 @@ function checkForAdditionalNSFeatures(jsFiles){
                             found = true;
                         }
                     }
-                    // If the expected Function isn't found
+                    // If the expected method isn't found
                     if (!found){
                         let violationString;
                         if (notFoundBecauseOfInvalidParameters){
-                            violationString = "Function \"" + methodObjectOfInterface["method_name"] + "\" from interface \"" + interfaceToCheck["interface_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\" due to parameter mismatch.";
+                            violationString = "Method \"" + methodObjectOfInterface["method_name"] + "\" from interface \"" + interfaceToCheck["interface_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\" due to parameter mismatch.";
                         }else{
-                            violationString = "Function \"" + methodObjectOfInterface["method_name"] + "\" from interface \"" + interfaceToCheck["interface_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\".";
+                            violationString = "Method \"" + methodObjectOfInterface["method_name"] + "\" from interface \"" + interfaceToCheck["interface_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\".";
                         }
                         listOfViolations.push(violationString);
                     }    
@@ -162,15 +162,15 @@ function checkForAdditionalNSFeatures(jsFiles){
                             found = true;
                         }
                     }
-                    // If the expected Function isn't found
+                    // If the expected method isn't found
                     if (!found){
                         let violationString;
                         if (notFoundBecauseOfInvalidParameters){
-                            violationString = "Function \"" + methodObjectOfAbstractClass["method_name"] + "\" from abstract class \"" + abstractClassToCheck["class_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\" due to parameter mismatch.";
+                            violationString = "Method \"" + methodObjectOfAbstractClass["method_name"] + "\" from abstract class \"" + abstractClassToCheck["class_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\" due to parameter mismatch.";
                         }else if (notFoundBecauseOfInvalidContents){
-                            violationString = "Function \"" + methodObjectOfAbstractClass["method_name"] + "\" from abstract class \"" + abstractClassToCheck["class_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\" due to content mismatch.";
+                            violationString = "Method \"" + methodObjectOfAbstractClass["method_name"] + "\" from abstract class \"" + abstractClassToCheck["class_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\" due to content mismatch.";
                         }else{
-                            violationString = "Function \"" + methodObjectOfAbstractClass["method_name"] + "\" from abstract class \"" + abstractClassToCheck["class_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\".";
+                            violationString = "Method \"" + methodObjectOfAbstractClass["method_name"] + "\" from abstract class \"" + abstractClassToCheck["class_name"] + "\" missing in class \"" + classToCheck["class_name"] + "\".";
                         }
                         listOfViolations.push(violationString);
                     }    
@@ -191,11 +191,11 @@ function checkForAdditionalNSFeatures(jsFiles){
 
 /*
     Function Name: readJSFiles
-    Function Parameters: 
+    Method Parameters: 
         rPath:
             Relative path to the input folder
-    Function Description: Reads all the js files in a folder
-    Function Return: List of JSFile
+    Method Description: Reads all the js files in a folder
+    Method Return: List of JSFile
 */
 async function readJSFiles(rPath){
     let readLock = new Lock();
@@ -240,13 +240,13 @@ async function readJSFiles(rPath){
 
 /*
     Function Name: modifyJSFiles
-    Function Parameters: 
+    Method Parameters: 
         jsFiles:
             List of JSFile
         settings:
-            A JSON with settings information
-    Function Description: Modifies each js file
-    Function Return: void
+            TODO
+    Method Description: TODO
+    Method Return: TODO
 */
 function modifyJSFiles(jsFiles, settings){
     for (let jsFile of jsFiles){
@@ -262,15 +262,15 @@ function modifyJSFiles(jsFiles, settings){
 
 /*
     Function Name: collectAndLogData
-    Function Parameters: 
+    Method Parameters: 
         jsFiles:
-            List of JSFile
+            TODO
         settings:
-            A JSON with settings information
+            TODO
         outputFolderRPath:
-            String path to output folder
-    Function Description: Collects and logs data about the js files
-    Function Return: void
+            TODO
+    Method Description: TODO
+    Method Return: TODO
 */
 function collectAndLogData(jsFiles, settings, outputFolderRPath){
     let log = new NSLog();
@@ -338,9 +338,9 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
             log.write('\n' + "Number of function comments added: " + fCommentsAdded.toString());
         }
 
-        // Write number of Function comments added
+        // Write number of method comments added
         if (!settings["ignore_counters_with_zero_changes_in_log"] || mCommentsAdded > 0){
-            log.write('\n' + "Number of Function comments added: " + mCommentsAdded.toString());
+            log.write('\n' + "Number of method comments added: " + mCommentsAdded.toString());
         }
 
         // Write number of class comments added
@@ -407,8 +407,8 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
     // Write number of function comments added
     summaryText += '\n' + "Number of function comments added: " + totalFunctionCommentsAdded.toString();
 
-    // Write number of Function comments added
-    summaryText += '\n' + "Number of Function comments added: " + totalMethodCommentsAdded.toString();
+    // Write number of method comments added
+    summaryText += '\n' + "Number of method comments added: " + totalMethodCommentsAdded.toString();
 
     // Write number of class comments added
     summaryText += '\n' + "Number of class comments added: " + totalClassCommentsAdded.toString();
@@ -438,15 +438,15 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
 
 /*
     Function Name: writeJSFiles
-    Function Parameters: 
+    Method Parameters: 
         inputFolderRPathLength:
-            String path to the input folder
+            TODO
         outputFolderRPath:
-            String path to the output folder
+            TODO
         jsFiles:
-            List of jsFile
-    Function Description: Writes each js file to the output folder
-    Function Return: void
+            TODO
+    Method Description: TODO
+    Method Return: TODO
 */
 function writeJSFiles(inputFolderRPathLength, outputFolderRPath, jsFiles){
     for (let jsFile of jsFiles){

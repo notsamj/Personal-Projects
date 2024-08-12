@@ -1,0 +1,38 @@
+*1
+    Keep in mind that the num_ticks for a decision is the numTicks when the decision is made example first is 0, not -1, not 1.
+
+    num_ticks for a server state is after the tick has played out. Example state 1 is after the planes have moved 1 time
+
+
+Client:
+    Load from server state (start of tick before moving planes and stuff)
+
+        If currentGameTicks >= ticksOfServerGame
+            fromJSON on each plane take position if higher decisions tickCount than local decisions
+            if currentGameTicks > ticksOfServerGame state
+                Roll forward
+        else if currentGameTicks < ticksOfServerGame
+            Save to async update manager
+            Check if we have saved update from server in async_update_manager, if so, load
+
+    Receive plane start outisde of tick loop
+        if ticksOfPlaneDecisionMessage* == this.numTicks then
+            (* should be last plane decision numTicks + 1)
+            just load the decisions
+        
+
+        /* *Not worth it probably a waste of time
+        else if ticksOfPlane < this.numTicks then
+            do nothing
+        else if ticksOfPlane > this.numTicks then
+            add to async update manager
+        */
+
+Server:
+    Load from client start (start of tick before movign planes and stuff)
+        If asyncUpdateManager.hasPlaneUpdate(currentGameTicks, planeID)
+            fromJSON on each plane take position if higher decisions tickCount than local decisions
+            if currentGameTicks > ticksOfServerGame state
+                Roll forward
+    Receive plane start outisde of tick loop
+        Add all to async update thing for each planeID so that it can be sorted out on each tick

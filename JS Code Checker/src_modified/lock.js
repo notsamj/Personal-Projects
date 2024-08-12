@@ -41,31 +41,34 @@ class Lock {
         return !this.isReady();
     }
 
+    // TODO: Comments
     /*
         Method Name: notLocked
         Method Parameters: None
-        Method Description: Determines if the lock is not locked
-        Method Return: Boolean
+        Method Description: TODO
+        Method Return: TODO
     */
     notLocked(){
         return this.isReady();
     }
 
+    // TODO: Comments
     /*
         Method Name: isLocked
         Method Parameters: None
-        Method Description: Checks if the lock is locked
-        Method Return: Boolean
+        Method Description: TODO
+        Method Return: TODO
     */
     isLocked(){
         return !this.isReady();
     }
 
+    // TODO: Comments
     /*
         Method Name: isOpen
         Method Parameters: None
-        Method Description: Checks if the lock is open
-        Method Return: Boolean
+        Method Description: TODO
+        Method Return: TODO
     */
     isOpen(){
         return this.isReady();
@@ -74,8 +77,8 @@ class Lock {
     /*
         Method Name: isUnlocked
         Method Parameters: None
-        Method Description: Checks if the lock is unlocked
-        Method Return: Boolean
+        Method Description: TODO
+        Method Return: TODO
     */
     isUnlocked(){
         return this.isReady();

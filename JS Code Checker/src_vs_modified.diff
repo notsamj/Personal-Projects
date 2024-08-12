@@ -1,0 +1,159 @@
+Only in .: .DS_Store
+diff ./js_code_checker_log.txt ../src_modified/js_code_checker_log.txt
+2,5c2,5
+< Number of statements: 593
+< Number of function comments added: 9
+< Number of method comments added: 26
+< Number of class comments added: 2
+---
+> Number of statements: 602
+> Number of function comments added: 0
+> Number of method comments added: 9
+> Number of class comments added: 1
+7,8c7,8
+< Number of old console.logs removed: 18
+< Number of todos found: 145
+---
+> Number of old console.logs removed: 1
+> Number of todos found: 136
+10,39d9
+< ----- data_collector.js -----
+< Relative path: ./
+< Number of statements: 12
+< Number of todos found: 1
+< ----- helper_functions.js -----
+< Relative path: ./
+< Number of statements: 98
+< Number of function comments added: 3
+< Number of todos found: 12
+< Line 132: /*
+< TODO: Remove I think this has some issues
+< function isPrecededByIgnoreWhiteSpace(sourceString, characterIndex, subString){
+<     let whiteSpace = /\s/;
+<     if (characterIndex < subString.length){ return false; }
+<     let j = 1;
+<     let wsCount = 0;
+<     for (let i = characterIndex - 1; i >= characterIndex - subString.length - wsCount; i--){
+<         // Ignore white space
+<         if (whiteSpace.test(sourceString[i])){
+<             wsCount++;
+<             continue;
+<         }
+<         if (sourceString[i] != subString[subString.length - j]){
+<             return false;
+<         }
+<         j++;
+<     }
+<     return true;
+< }
+< 
+43,45c13
+< Number of function comments added: 6
+< Number of old console.logs removed: 6
+< Number of todos found: 28
+---
+> Number of todos found: 19
+48,51c16
+< Number of statements: 217
+< Number of method comments added: 17
+< Number of class comments added: 1
+< Number of old console.logs removed: 12
+---
+> Number of statements: 219
+71c36,42
+< Number of todos found: 12
+\ No newline at end of file
+---
+> Number of todos found: 12
+> ----- test.js -----
+> Relative path: ./
+> Number of statements: 15
+> Number of old console.logs removed: 1
+> Number of todos found: 13
+> Line 6: // TODO: Do something else\n    /*";
+\ No newline at end of file
+diff ./lock.js ../src_modified/lock.js
+44a45,50
+>     /*
+>         Method Name: notLocked
+>         Method Parameters: None
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+49a56,61
+>     /*
+>         Method Name: isLocked
+>         Method Parameters: None
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+54a67,72
+>     /*
+>         Method Name: isOpen
+>         Method Parameters: None
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+58a77,82
+>     /*
+>         Method Name: isUnlocked
+>         Method Parameters: None
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+diff ./notsam_linked_list.js ../src_modified/notsam_linked_list.js
+411a412,421
+>     /*
+>         Method Name: constructor
+>         Method Parameters: 
+>             previous:
+>                 TODO
+>             value:
+>                 TODO
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+diff ./ns_log.js ../src_modified/ns_log.js
+1a2,5
+> /*
+>     Class Name: NSLog
+>     Class Description: TODO
+> */
+2a7,12
+>     /*
+>         Method Name: constructor
+>         Method Parameters: None
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+6a17,24
+>     /*
+>         Method Name: write
+>         Method Parameters: 
+>             str:
+>                 TODO
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+10a29,36
+>     /*
+>         Method Name: writeAtBeginning
+>         Method Parameters: 
+>             str:
+>                 TODO
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+14a41,48
+>     /*
+>         Method Name: saveToFile
+>         Method Parameters: 
+>             outputFolderRPath:
+>                 TODO
+>         Method Description: TODO
+>         Method Return: TODO
+>     */
+Only in .: settings.json
+diff ./test.js ../src_modified/test.js
+8d7
+< //console.log(result)

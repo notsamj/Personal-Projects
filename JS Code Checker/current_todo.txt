@@ -1,14 +1,22 @@
 Comment this code!
+Create README
+Add to README on main github page
 
 (Optional)
     Rework program when using matchAll to use match[0] for matchString and match["index"] for character index
 
+Features Examples:
+console.log("$FL") // gets replaced with a console log providing the filename and the line the console.log is on
+
 
 Notes:
+    Breaks files that have a function inside a block comment
     Does not support automatic comments for functions with arrow function default parameters e.g.
     myFunction(a, b, c = (var) => { return var * 5; }){
         return a * c(b);
     }
+
+    Handle case method named 'catch' (reserved?)
 
     Pseudo interfaces/classes
     nsAbstractClass

@@ -24,20 +24,20 @@ const listContainsElement = require("./helper_functions.js").listContainsElement
 
 /*
     Class Name: JSFile
-    Class Description: A class representing a file of javascript code
+    Class Description: TODO
 */
 class JSFile {
     /*
         Method Name: constructor
         Method Parameters: 
             fileName:
-                The name of the js file
+                TODO
              rPath:
-                The relative path to the js file
+                TODO
              fileDataStr:
-                A string of the file contents
-        Method Description: constructor
-        Method Return: constructor
+                TODO
+        Method Description: TODO
+        Method Return: TODO
     */
     constructor(fileName, rPath, fileDataStr){
         this.fileName = fileName;
@@ -53,8 +53,8 @@ class JSFile {
     /*
         Method Name: gatherNSRequirementData
         Method Parameters: None
-        Method Description: Gathers infroamtion about interfaces, abstract classes in this file
-        Method Return: JSON Object
+        Method Description: TODO
+        Method Return: TODO
     */
     gatherNSRequirementData(){
         let requirementData = {
@@ -256,8 +256,8 @@ class JSFile {
     /*
         Method Name: getRelativePath
         Method Parameters: None
-        Method Description: Getter
-        Method Return: String
+        Method Description: TODO
+        Method Return: TODO
     */
     getRelativePath(){
         return this.rPath;
@@ -266,8 +266,8 @@ class JSFile {
     /*
         Method Name: checkTODOs
         Method Parameters: None
-        Method Description: Counts and records TODOs in the file
-        Method Return: void
+        Method Description: TODO
+        Method Return: TODO
     */
     checkTODOs(){
         // Collect all single line todos
@@ -306,8 +306,8 @@ class JSFile {
     /*
         Method Name: countStatements
         Method Parameters: None
-        Method Description: Counts the number of statements in a file
-        Method Return: void
+        Method Description: TODO
+        Method Return: TODO
     */
     countStatements(){
         let statementRegex = /; *($|\n)/g;
@@ -318,8 +318,8 @@ class JSFile {
     /*
         Method Name: getDataCollector
         Method Parameters: None
-        Method Description: Getter
-        Method Return: DataCollector
+        Method Description: TODO
+        Method Return: TODO
     */
     getDataCollector(){
         return this.dataCollector;
@@ -328,8 +328,8 @@ class JSFile {
     /*
         Method Name: removeOldConsoleLogs
         Method Parameters: None
-        Method Description: Removes commented out console log statements
-        Method Return: void
+        Method Description: TODO
+        Method Return: TODO
     */
     removeOldConsoleLogs(){
         let oldConsoleLogRegex = / *\/\/console\.log([^\n])+\n/g;
@@ -342,8 +342,8 @@ class JSFile {
     /*
         Method Name: handleComments
         Method Parameters: None
-        Method Description: Identifies needed comment places and adds comments
-        Method Return: void
+        Method Description: TODO
+        Method Return: TODO
     */
     handleComments(){
         this.identifyMethodsAndFunctions();
@@ -354,8 +354,8 @@ class JSFile {
     /*
         Method Name: updateConsoleLogs
         Method Parameters: None
-        Method Description: Updates console log statements that are associated with a certain line
-        Method Return: void
+        Method Description: TODO
+        Method Return: TODO
     */
     updateConsoleLogs(){
         let consoleLogRegex = /console\.log\("((\$FL)|([a-zA-Z_]+\.js \(L[0-9]+\)))/g;
@@ -376,8 +376,8 @@ class JSFile {
     /*
         Method Name: identifyMethodsAndFunctions
         Method Parameters: None
-        Method Description: Identifies all methods and functions in the file
-        Method Return: void
+        Method Description: TODO
+        Method Return: TODO
     */
     identifyMethodsAndFunctions(){
         let functionMethodRegex = /[a-z][a-zA-Z0-9]+\(([a-zA-Z0-9.=]+(, ?[a-zA-Z0-9.=]+)*)?\)\{/g;
@@ -419,8 +419,8 @@ class JSFile {
     /*
         Method Name: addClassAndMethodComments
         Method Parameters: None
-        Method Description: Adds class and method (and function) comments to the file
-        Method Return: void
+        Method Description: TODO
+        Method Return: TODO
     */
     addClassAndMethodComments(){
         let headersInNeedOfComments = [];
@@ -463,9 +463,9 @@ class JSFile {
         Method Name: commentClass
         Method Parameters: 
             classDetailsJSON:
-                Information about a class in the JSON format
-        Method Description: Creates comments for a class
-        Method Return: void
+                TODO
+        Method Description: TODO
+        Method Return: TODO
     */
     commentClass(classDetailsJSON){
         let charIndex = classDetailsJSON["char_index"];
@@ -502,9 +502,9 @@ class JSFile {
         Method Name: commentMethodOrFunction
         Method Parameters: 
             mFDetails:
-                Information about a method or function in the json format
-        Method Description: Adds a comment before a method or function
-        Method Return: void
+                TODO
+        Method Description: TODO
+        Method Return: TODO
     */
     commentMethodOrFunction(mFDetails){
         let charIndex = mFDetails["char_index"];
@@ -562,8 +562,8 @@ class JSFile {
     /*
         Method Name: indentifyClasses
         Method Parameters: None
-        Method Description: Identifies all classes in the file
-        Method Return: void
+        Method Description: TODO
+        Method Return: TODO
     */
     indentifyClasses(){
         let classRegex = /class [a-zA-Z]+ ?{/g;
@@ -583,8 +583,8 @@ class JSFile {
     /*
         Method Name: getFileName
         Method Parameters: None
-        Method Description: Getter
-        Method Return: String
+        Method Description: TODO
+        Method Return: TODO
     */
     getFileName(){
         return this.fileName;
@@ -594,22 +594,22 @@ class JSFile {
         Method Name: writeToOutputFolder
         Method Parameters: 
             inputFolderRPathLength:
-                String, path to the input folder
+                TODO
              outputFolderRPath:
-                String, path to the output folder
-        Method Description: Writes this file to the output folder
-        Method Return: void
+                TODO
+        Method Description: TODO
+        Method Return: TODO
     */
     writeToOutputFolder(inputFolderRPathLength, outputFolderRPath){
         let subPath = this.rPath.substring(inputFolderRPathLength, this.rPath.length);
 
         // Create folders in output folder from sub path
 
-        let subPathFolderNames = subPath.split('/');
+        let subPathFolderNames = subPath.split("/");
         let currentRPath = outputFolderRPath;
         // Create all folders leading to file
         for (let folderName of subPathFolderNames){
-            currentRPath += folderName + '/';
+            currentRPath += folderName + "/";
             let folderExists = doesFolderExist(currentRPath);
             if (!folderExists){
                 // Create folder
@@ -625,11 +625,11 @@ class JSFile {
         Method Name: read
         Method Parameters: 
             fileName:
-                Name of a js file
+                TODO
              rPath:
-                Path to a js file
-        Method Description: Reads a js file and returns a JSFile instance related to it
-        Method Return: JSFile
+                TODO
+        Method Description: TODO
+        Method Return: TODO
     */
     static read(fileName, rPath){
         return new JSFile(fileName, rPath, fs.readFileSync(rPath + fileName));
