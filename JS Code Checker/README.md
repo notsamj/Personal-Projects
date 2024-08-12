@@ -58,7 +58,7 @@ The purpose of JS Code Checker is to modify and analyze JavaScript files.
     getValueOrSetTo(valueName, value){
   ```
   ### Updating console.logs
-    After running the application, code blocks such as
+  After running the application, code blocks such as
   ```
     console.log("$FL"); // Assume this is on line 9
     console.log("console_log_showcase.js (L5)"); // Assume this is on line 10
@@ -132,6 +132,9 @@ When running the application call `ns_code_checker.js` with arguments
 1. Relative path to the input folder
 2. Relative path to the output folder
 3. Name of the preset being used
+
+## Application Examples
+See "in" and "out" folders to see what the application can do. The "violations" folder may be best to get an idea of abstract classes and interfaces.
 
 ## Application warnings
 This application may have some bugs that will wreck js files. It is recommended the output folder used is different than the input folder to prevent breaking the files.
