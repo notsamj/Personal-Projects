@@ -19,27 +19,27 @@ The purpose of JS Code Checker is to modify and analyze JavaScript files.
     */
     class DataCollector {
   ```
-  ### Function Comments
-    After running the application, code blocks such as
+  ### Function Comments 
+  After running the application, code blocks such as
   ```
-function objectHasKey(obj, key){
+  function objectHasKey(obj, key){
   ```
   will automatically receive function block comments like
   ```
-/*
-    Function Name: objectHasKey
-    Function Parameters: 
-        obj:
-            TODO
-         key:
-            TODO
-    Function Description: TODO
-    Function Return: TODO
-*/
-function objectHasKey(obj, key){
+  /*
+      Function Name: objectHasKey
+      Function Parameters: 
+          obj:
+              TODO
+           key:
+              TODO
+      Function Description: TODO
+      Function Return: TODO
+  */
+  function objectHasKey(obj, key){
   ```
   ### Method Comments
-    After running the application, code blocks such as
+  After running the application, code blocks such as
   ```
     getValueOrSetTo(valueName, value){
   ```
