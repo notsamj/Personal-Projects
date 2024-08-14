@@ -9,6 +9,7 @@ ensurePathExists(){
 	for pathPart in "${splitAdditionalPathArray[@]}"; do
 		tempPath="$tempPath""$pathPart"/
 		if [[ ! (-d "$tempPath") ]]; then
+			echo "Making dir $pathPart"
 			mkdir "$pathPart"
 		fi
 		cd "$pathPart"
@@ -126,6 +127,11 @@ hashCounts=() # Count's aren't really needed but I'd like to be able to review t
 
 # Explore the out folder to see what files are already backed up
 collectChecksumsFromDirectory "$outFolderAPath" ""
+
+# TODO: Fix and test program on windows!
+
+# Temporarily disabled until I figure out why this is broken on windows
+exit 0
 
 # Create new backup folder
 createNewBackupFolder
