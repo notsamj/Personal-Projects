@@ -123,8 +123,8 @@ collectChecksumsFromDirectory(){
 clear
 
 
-inFolderAPath="/Users/samueljones/Documents/GitHub/Personal-Projects/Bash File Backups/in/"
-outFolderAPath="/Users/samueljones/Documents/GitHub/Personal-Projects/Bash File Backups/out/"
+inFolderAPath="$1" # passed in
+outFolderAPath="$2" # passed in 
 backupFolderNumber=-1 # placeholder value
 
 # Stores hashes and associated counts
