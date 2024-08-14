@@ -4,7 +4,6 @@ ensurePathExists(){
 	# $2 - additional path
 	local additionalPathStr="$2"
 	local splitAdditionalPathArray=($(echo "$additionalPathStr" | sed "s/\//\n/g"))
-	#echo "$1"
 	cd "$1"
 	local tempPath="$1"
 	for pathPart in "${splitAdditionalPathArray[@]}"; do
@@ -93,8 +92,6 @@ collectChecksumsFromDirectory(){
 	# $2 - extra path
 
 	# cd to full path
-	#echo $1
-	#echo $2
 	local fullPath="$1$2"
 	cd "$fullPath"
 	files=(*)
@@ -118,10 +115,6 @@ collectChecksumsFromDirectory(){
 		fi
 	done
 }
-
-# Clear the screen
-clear
-
 
 inFolderAPath="$1" # passed in
 outFolderAPath="$2" # passed in 
