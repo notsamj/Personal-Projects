@@ -1,3 +1,5 @@
+import time
+import math
 from notsamj_error import NSJError
 class NSJLog:
     def __init__(self, fileName):
@@ -32,5 +34,5 @@ class NSJLog:
         file.close()
 
     def addLine(self, line):
-        self._lines.append(line)
+        self._lines.append(line + " @" + str(math.floor(time.time() * 1000)))
         self.saveToFile()
