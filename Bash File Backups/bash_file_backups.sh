@@ -10,12 +10,10 @@ ensurePathExists(){
 		echo "Failed to cd to: $1"
 		exit 1
 	fi
-	echo "Trying to ensure path exists one $1 two $2 three $splitAdditionalPathArray"
 	local tempPath="$1"
 	for unusablePathPart in "${splitAdditionalPathArray[@]}"; do
 		pathPart=$(echo "$unusablePathPart" | sed "s/,/ /g") # Replace commas with spaces
 		tempPath="$tempPath""$pathPart"/
-		echo "Checking temp path $tempPath $pathPart"
 		if [[ ! (-d "$tempPath") ]]; then
 			mkdir "$pathPart"
 			if [ ! $? = 0 ]; then
@@ -40,7 +38,6 @@ moveNewFiles(){
 	cd "$fullPath"
 	if [ ! $? = 0 ]; then
 		echo "Failed to cd to: $fullPath"
-		echo "cd returned: $success"
 		exit 1
 	fi
 	files=(*)
