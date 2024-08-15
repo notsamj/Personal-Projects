@@ -1,0 +1,3 @@
+Add checks on 'mkdir', 'cp', 'check if file' and every time it fails exit with code 1 for safety
+Test on windows
+Add shortcut functionality
