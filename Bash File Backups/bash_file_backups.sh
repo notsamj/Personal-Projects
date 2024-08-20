@@ -3,15 +3,29 @@ ensurePathExists(){
 	# $1 - absolute path to back up folder
 	# $2 - additional path
 	local additionalPathStr="$2"
-	local splitAdditionalPathArray=($(echo "$additionalPathStr" | sed "s/\//\n/g"))
+	local cleanAdditionalPathStr=$(echo "$additionalPathStr" | sed "s/ /,/g") # Replace spaces with commas
+	local splitAdditionalPathArray=($(echo "$cleanAdditionalPathStr" | sed "s/\//\n/g"))
 	cd "$1"
+	if [ ! $? = 0 ]; then
+		echo "Failed to cd to: $1"
+		exit 1
+	fi
 	local tempPath="$1"
-	for pathPart in "${splitAdditionalPathArray[@]}"; do
+	for unusablePathPart in "${splitAdditionalPathArray[@]}"; do
+		pathPart=$(echo "$unusablePathPart" | sed "s/,/ /g") # Replace commas with spaces
 		tempPath="$tempPath""$pathPart"/
 		if [[ ! (-d "$tempPath") ]]; then
 			mkdir "$pathPart"
+			if [ ! $? = 0 ]; then
+				echo "Failed to make directory: $pathPart"
+				exit 1
+			fi
 		fi
 		cd "$pathPart"
+		if [ ! $? = 0 ]; then
+			echo "Failed to cd to: $pathPart"
+			exit 1
+		fi
 	done
 }
 
@@ -22,6 +36,10 @@ moveNewFiles(){
 	local fullPath="$1$3"
 	local fullPathInBackup="$2$3"
 	cd "$fullPath"
+	if [ ! $? = 0 ]; then
+		echo "Failed to cd to: $fullPath"
+		exit 1
+	fi
 	files=(*)
 	for fileOrDir in "${files[@]}"; do
 		if [ "$fileOrDir" = "*" ]; then
@@ -42,6 +60,10 @@ moveNewFiles(){
 				# Make sure the path exists in backup
 				ensurePathExists "$2" "$3"
 				cp "$fullPathToFileOrDir" "$fullPathInBackup"
+				if [ ! $? = 0 ]; then
+					echo "Failed to copy $fullPathToFileOrDir to $fullPathInBackup"
+					exit 1
+				fi
 			fi
 		else
 		    echo Found an invalid element "$fullPathToFileOrDir"
@@ -65,6 +87,10 @@ createNewBackupFolder(){
 
 	# Create new backup folder
 	mkdir "$newBackUpFolderPath"
+	if [ ! $? = 0 ]; then
+		echo "Failed to make: $newBackUpFolderPath"
+		exit 1
+	fi
 	backupFolderNumber=$i
 }
 
@@ -94,6 +120,10 @@ collectChecksumsFromDirectory(){
 	# cd to full path
 	local fullPath="$1$2"
 	cd "$fullPath"
+	if [ ! $? = 0 ]; then
+		echo "Failed to cd to: $fullPath"
+		exit 1
+	fi
 	files=(*)
 	for fileOrDir in "${files[@]}"; do
 		if [ "$fileOrDir" = "*" ]; then
