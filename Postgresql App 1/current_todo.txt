@@ -1,0 +1,3 @@
+Make interface for database in NodeJS
+Allow for sending requests to nodeJS server to add to database.
+	NodeJS app will sanitize the requests and translate to the database.
