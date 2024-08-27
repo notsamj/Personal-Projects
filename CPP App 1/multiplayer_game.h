@@ -1,13 +1,24 @@
 #include <chrono>
+#include <mutex>
+#include "./notsam_linked_list.h"
+#include <string>
+
 class MultiplayerGame {
 	private:
 		std::chrono::time_point<std::chrono::system_clock> startTime; 
 		long ticksPassed;
+		std::mutex tickLock*;
+		std::mutex userUpdateLock*;
+		NotSam::LinkedList<string>* userUpdates;
+
 	protected:
 	public:
 		MultiplayerGame();
 		long getExpectedTicksPassed();
 		long getTicksPassed();
+		void takeDataFromUser();
+
+		void virtual processUserData();
 		void virtual tick();
 };
 
@@ -15,6 +26,9 @@ MultiplayerGame::MultiplayerGame(){
 	//std::cout << "MultiplayerGame constructor called.\n";
 	this->startTime = std::chrono::system_clock::now(); // Start time for the server
 	this->ticksPassed = 0;
+	this->tickLock = new std::mutex();
+	this->userUpdateLock = new std::mutex();
+	this->userUpdates = new NotSam::LinkedList<string>;
 }
 
 long MultiplayerGame::getExpectedTicksPassed(){
@@ -25,5 +39,12 @@ long MultiplayerGame::getExpectedTicksPassed(){
 }
 
 long MultiplayerGame::getTicksPassed(){
-	return
+	return this->ticksPassed;
+}
+
+MultiplayerGame::takeDataFromUser(string dataStr){
+	// Wait and reserve lock
+	this->userUpdateLock.lock();
+	this->userUpdateLock.push(dataStr);
+	this->userUpdateLock.unlock();
 }
