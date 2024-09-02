@@ -1,6 +1,6 @@
 #include <chrono>
 #include <mutex>
-#include "./notsam_linked_list.h"
+#include "./notsam_linked_list.cpp"
 #include <string>
 
 class MultiplayerGame {

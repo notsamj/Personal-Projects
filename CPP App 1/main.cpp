@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 #include <unistd.h>
-#include "./notsam_linked_list.h"
+#include "./notsam_linked_list.cpp"
 #include "./tank_game.cpp"
 using namespace std;
 

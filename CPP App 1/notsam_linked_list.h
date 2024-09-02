@@ -27,15 +27,9 @@ namespace NotSam {
 			        Method Description: Constructor
 			        Method Return: constructor
 			    */
-			    DLLNode(DLLNode* previous, T value){
-			        this->value = value;
-			        this->previous = previous;
-			        this->next = 0;
-			    }
+			    DLLNode(DLLNode* previous, T value);
 
-			    ~DLLNode(){
-			    	//std::cout << "Testing: Remove. Node Destructor called!\n";
-			    }
+			    ~DLLNode();
 			};
 
 			DLLNode* head;
@@ -49,35 +43,16 @@ namespace NotSam {
 	        Method Description: Constructor
 	        Method Return: Constructor
 	    */
-	    LinkedList(){
-	        this->head = 0;
-	        this->end = 0;
-	    }
+	    LinkedList();
 
-	    ~LinkedList(){
-	        if (this->getSize() == 0){
-	            return;
-	        }
-
-	        DLLNode* current = this->head;
-	        DLLNode* toDelete = 0;
-	        // Loop through the list and print each value
-	        while (current != 0){
-	        	toDelete = current;
-	            current = current->next;
-	            delete toDelete;
-	        }
-	    }
+	    ~LinkedList();
 	    /*
 	        Method Name: clear
 	        Method Parameters: None
 	        Method Description: Empties the list
 	        Method Return: void
 	    */
-	    void clear(){
-	        this->head = 0;
-	        this->end = 0;
-	    }
+	    void clear();
 
 	    /*
 	     *   Method Name: append
@@ -88,14 +63,7 @@ namespace NotSam {
 	     *   This method inserts a value into the end of the list.
 	     *   Method Return: None
 	     */
-	    void append(T value){
-	        if (this->isEmpty()){
-	            this->insert(value);
-	        }else{
-	            this->end->next = new DLLNode(this->end, value);
-	            this->end = this->end->next;
-	        }
-	    }
+	    void append(T value);
 
 	    /*
 	     *   Method Name: insert
@@ -108,54 +76,9 @@ namespace NotSam {
 	     *   This method inserts a value into the list.
 	     *   Method Return: None
 	     */
-	    void insert(T value, int index){
-	        // Note: Inefficient
-	        int size = this->getSize();
-	        if (index > size || index < 0){
-	            std::cerr << "Invalid insertion index! (" << index << '\n';
-	            return; 
-	        }
-	        DLLNode* newNode = new DLLNode(0, value);
+	    void insert(T value, int index);
 
-	        // If empty list
-	        if (size == 0){
-	            this->head = newNode;
-	            this->end = newNode;
-	            return;
-	        }
-
-	        DLLNode* current = this->head;
-	        DLLNode* previous = 0;
-	        int i = 0;
-	        // Go through the list to a proper insertion index
-	        while (i < index){
-	            // Only need to set previous once we get to the index
-	            if (i == index - 1){
-	                previous = current;
-	            }
-	            current = current->next;
-	            i++;
-	        }
-	        // This is only the case when at the end of the list
-	        if (index == size){
-	            this->end = newNode;
-	            previous->next = newNode;
-	            newNode->next = 0;
-	            newNode->previous = previous;
-	        }else{
-	            // If the list is 1 long
-	            if (previous != 0){
-	                previous->next = newNode;
-	            }else{
-	                this->head = newNode;
-	            }
-	            newNode->next = current;
-	        }
-	    }
-
-	    void insert(T value){
-	        this->insert(value, this->getSize());
-	    }
+	    void insert(T value);
 
 	    /*
 	     *   Method Name: push
@@ -166,7 +89,7 @@ namespace NotSam {
 	     *   This method inserts a value into the end of the list.
 	     *   Method Return: None
 	     */
-	    void push(T value){ this->append(value); }
+	    void push(T value);
 
 	    /*
 	     *   Method Name: add
@@ -177,7 +100,7 @@ namespace NotSam {
 	     *   This method inserts a value into the end of the list.
 	     *   Method Return: None
 	     */
-	    void add(T value){ this->append(value); }
+	    void add(T value);
 	    
 	    /*
 	     *   Method Name: getSize
@@ -186,16 +109,7 @@ namespace NotSam {
 	     *   This method calculates then returns the size of the list.
 	     *   Method Return: int (Size of the list)
 	     */
-	    int getSize(){
-	        DLLNode* current = this->head;
-	        int size = 0;
-	        // Loop through the list
-	        while (current != 0){
-	            current = current->next;
-	            size += 1;
-	        }
-	        return size;
-	    }
+	    int getSize();
 
 	    /*
 	     *   Method Name: getSize
@@ -204,9 +118,7 @@ namespace NotSam {
 	     *   This method calculates then returns the size of the list.
 	     *   Method Return: int (Size of the list)
 	     */
-	    int getLength(){
-	        return this->getSize();
-	    }
+	    int getLength();
 
 	    /*
 	     *   Method Name: print
@@ -215,21 +127,7 @@ namespace NotSam {
 	     *   This method prints every element in the list
 	     *   Method Return: None
 	     */
-	    void print(){
-	        if (this->getSize() == 0){
-	            std::cout << "List Empty --> cannot print!" << "\n";
-	            return;
-	        }
-
-	        DLLNode* current = this->head;
-	        int i = 0;
-	        // Loop through the list and print each value
-	        while (current != 0){
-	            std::cout << i << ": " << current->value << "\n";
-	            i++;
-	            current = current->next;
-	        }
-	    }
+	    void print();
 
 	    /*
 	     *   Method Name: get
@@ -240,10 +138,7 @@ namespace NotSam {
 	     *   This method returns a value from the list.
 	     *   Method Return: double
 	     */
-	    T get(int index){
-	        DLLNode* node = this->getNode(index);
-	        return node->value;
-	    }
+	    T get(int index);
 
 	    /*
 	     *   Method Name: getNode
@@ -254,22 +149,7 @@ namespace NotSam {
 	     *   This method returns a value from the list.
 	     *   Method Return: DLLNode
 	     */
-	    DLLNode* getNode(int index){
-	        // If the index is out of bounds
-	        if (this->getSize() < index + 1 || index < 0){
-	            std::cerr << "Issue @ Index: " << index << "(List Size: " << this->getSize() << ")\n";
-	            return;
-	        }
-
-	        int i = 0;
-	        DLLNode* current = this->head;
-	        // Loop until desired index
-	        while(i < index){
-	            current = current->next;
-	            i++;
-	        }
-	        return current;
-	    }
+	    DLLNode* getNode(int index);
 
 	    /*
 	        Method Name: has
@@ -279,9 +159,7 @@ namespace NotSam {
 	        Method Description: Check if the linked list includes a value
 	        Method Return: boolean, true -> list has the value, false -> list does NOT have the value
 	    */
-	    bool has(T value){
-	        return (this->search(value) != -1);
-	    }
+	    bool has(T value);
 
 	    /*
 	        Method Name: search
@@ -291,20 +169,7 @@ namespace NotSam {
 	        Method Description: Search the linked list for a value and return the index found (-1 if not found)
 	        Method Return: int
 	    */
-	    int search(T value){
-	        int index = -1;
-	        DLLNode* current = this->head;
-	        int i = 0;
-	        // Loop through the list
-	        while (current != 0){
-	            if (current->value == value){
-	                return i;
-	            }
-	            current = current->next;
-	            i++;
-	        }
-	        return -1; // not found
-	    }
+	    int search(T value);
 
 	    /*
 	        Method Name: remove
@@ -314,32 +179,7 @@ namespace NotSam {
 	        Method Description: Remove the element @ index {index}
 	        Method Return: void
 	    */
-	    void remove(int index){
-	        int size = this->getSize();
-	        if (!((index >= 0 && index < size))){
-	            return;
-	        }
-
-	        if (index == 0){
-	            this->head = this->head->next;
-	            if (this->head != 0){
-	                this->head->previous = 0;
-	            } 
-	            return;
-	        }else if (index == size){
-	            this->end = this->end->previous;
-	            if (this->end != 0){
-	                this->end->next = 0;
-	            }
-	        }
-	        DLLNode* node = this->getNode(index);
-	        DLLNode* previous = node->previous; // MUST NOT BE NULL OR ERROR
-	        previous->next = node->next;
-	        // If this is the last node then it would be 0
-	        if (node->next != 0){
-	            node->next->previous = previous;
-	        }
-	    }
+	    void remove(int index);
 
 	    /*
 	        Method Name: set
@@ -351,10 +191,7 @@ namespace NotSam {
 	        Method Description: Put value into position {index}
 	        Method Return: void
 	    */
-	    void set(int index, T value){
-	        DLLNode* node = this->getNode(index);
-	        node->value = value;
-	    }
+	    void set(int index, T value);
 
 	    /*
 	        Method Name: isEmpty
@@ -362,9 +199,7 @@ namespace NotSam {
 	        Method Description: Determine if the array list is empty
 	        Method Return: boolean, true -> empty, false -> not empty
 	    */
-	    bool isEmpty(){
-	        return this->head == 0;
-	    }
+	    bool isEmpty();
 
 	    /*
 	        Method Name: pop
@@ -374,14 +209,7 @@ namespace NotSam {
 	        Method Description: Remove the element and return it
 	        Method Return: Object (Unknown type)
 	    */
-	    T pop(int index){
-	        if (!((index >= 0 && index < this->getSize()))){
-	            return 0;
-	        }
-	        DLLNode* element = this->get(index);
-	        this->remove(index);
-	        return element;
-	    }
+	    T pop(int index);
 
 	    /*
 	        Method Name: getLastNode
@@ -389,38 +217,20 @@ namespace NotSam {
 	        Method Description: Returns the last node
 	        Method Return: DLLNode
 	    */
-	    DLLNode* getLastNode(){
-	        return this->end;
-	    }
+	    DLLNode* getLastNode();
 
 	    /*
-	        Method Name: deleteWithCondition
+	        Method Name: removeWithCondition
 	        Method Parameters:
 	            conditionFunction:
 	                A function that takes a single parameter and returns a boolean, true -> delete element, false -> don't delete
 	        Method Description: Deletes all elements for which the conditionFunction return true
 	        Method Return: void
 	    */
-	    void deleteWithCondition(bool (*conditionFunction)(T)){
-	        if (this->isEmpty()){ return; }
-	        DLLNode* current = this->getLastNode();
-	        while (current != 0){
-	            // If value matches condition then remove it
-	            if (conditionFunction(current->value)){
-	                if (current->next != 0){
-	                    current->next->previous = current->previous;
-	                }else{ // Else this is the end
-	                    this->end = current->previous;
-	                }
-	                if (current->previous != 0){
-	                    current->previous->next = current->next;
-	                }else{ // Else this is the head
-	                    this->head = current->next;
-	                }
-	            }
-	            // Move to next
-	            current = current->previous;
-	        }
-	    }
+	    void removeWithCondition(bool (*conditionFunction)(T));
+
+	    void deleteAllElements();
+
+	    void removeAllElements();
 	};
 }

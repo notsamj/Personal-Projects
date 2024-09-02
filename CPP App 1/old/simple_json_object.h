@@ -1,6 +1,7 @@
 #include <string>
 #include <regex>
-#include "notsam_linked_list.h"
+#include "notsam_linked_list.cpp"
+// TODO: Would be easier to read things if you took a substring from after key to comma or }
 namespace NotSam {
 	class SimpleJSONObject {
 		private:
