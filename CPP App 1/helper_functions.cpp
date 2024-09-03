@@ -50,3 +50,22 @@ NotSam::LinkedList<string>* splitStringBySubstring(string sourceString, string s
 
 	return splitResult;
 }
+
+std::string cleanseStringOfCharacter(std::string myString, char character){
+	// Before making a new string try searching
+	bool hasCharacter = false;
+	for (int i = 0; i < myString.length; i++){
+		if (myString[i] == character){
+			hasCharacter = true;
+			break;
+		}
+	}
+	if (!hasCharacter){ return myString; }
+	std::string newString = "";
+	for (int i = 0; i < myString.length; i++){
+		if (myString[i] != character){
+			newString += myString[i];
+		}
+	}
+	return newString;
+}

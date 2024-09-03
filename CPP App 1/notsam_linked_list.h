@@ -34,6 +34,9 @@ namespace NotSam {
 
 			DLLNode* head;
 	        DLLNode* end;
+	        DLLNode* lastAccessed;
+			int lastAccessedIndex;
+			int storedLength;
 	    public:
 	    /*
 	        Method Name: constructor
@@ -57,7 +60,7 @@ namespace NotSam {
 	    /*
 	     *   Method Name: append
 	     *   Method Parameters:
-	     *   Double value:
+	     *   T value:
 	     *      Value to add to the list
 	     *   Method Description:
 	     *   This method inserts a value into the end of the list.
@@ -103,10 +106,19 @@ namespace NotSam {
 	    void add(T value);
 	    
 	    /*
-	     *   Method Name: getSize
+	     *   Method Name: calculateSize
 	     *   Method Parameters: None
 	     *   Method Description:
 	     *   This method calculates then returns the size of the list.
+	     *   Method Return: int (Size of the list)
+	     */
+	    int calculateSize();
+
+	   	/*
+	     *   Method Name: getSize
+	     *   Method Parameters: None
+	     *   Method Description:
+	     *   This method returns the stored size of the list.
 	     *   Method Return: int (Size of the list)
 	     */
 	    int getSize();
@@ -136,9 +148,20 @@ namespace NotSam {
 	     *      Index of desired element
 	     *   Method Description:
 	     *   This method returns a value from the list.
-	     *   Method Return: double
+	     *   Method Return: T
 	     */
 	    T get(int index);
+
+	   	/*
+	     *   Method Name: getQuick
+	     *   Method Parameters:
+	     *   int index:
+	     *      Index of desired element
+	     *   Method Description:
+	     *   This method returns a value from the list. This method performs quicker than get in some cases.
+	     *   Method Return: T
+	     */
+	    T getQuick(int index);
 
 	    /*
 	     *   Method Name: getNode

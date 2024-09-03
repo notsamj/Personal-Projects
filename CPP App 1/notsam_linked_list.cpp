@@ -1,5 +1,6 @@
 #include "notsam_linked_list.h"
 #include <iostream>
+#include <stdlib.h>
 template <class T>
 NotSam::LinkedList<T>::DLLNode::DLLNode(NotSam::LinkedList<T>::DLLNode* previous, T value){
     this->value = value;
@@ -15,6 +16,9 @@ template <class T>
 NotSam::LinkedList<T>::LinkedList(){
     this->head = 0;
     this->end = 0;
+    this->storedLength = 0;
+    this->lastAccessed = 0;
+    this->lastAccessedIndex = -1;
 }
 
 template <class T>
@@ -26,6 +30,9 @@ template <class T>
 void NotSam::LinkedList<T>::clear(){
     this->head = 0;
     this->end = 0;
+    this->storedLength = 0;
+    this->lastAccessed = 0;
+    this->lastAccessedIndex = -1;
 }
 
 template <class T>
@@ -52,6 +59,7 @@ void NotSam::LinkedList<T>::insert(T value, int index){
     if (size == 0){
         this->head = newNode;
         this->end = newNode;
+        this->storedLength = 1;
         return;
     }
 
@@ -82,6 +90,7 @@ void NotSam::LinkedList<T>::insert(T value, int index){
         }
         newNode->next = current;
     }
+    this->storedLength++;
 }
 
 template <class T>
@@ -96,7 +105,7 @@ template <class T>
 void NotSam::LinkedList<T>::add(T value){ this->append(value); }
 
 template <class T>
-int NotSam::LinkedList<T>::getSize(){
+int NotSam::LinkedList<T>::calculateSize(){
     NotSam::LinkedList<T>::DLLNode* current = this->head;
     int size = 0;
     // Loop through the list
@@ -105,6 +114,11 @@ int NotSam::LinkedList<T>::getSize(){
         size += 1;
     }
     return size;
+}
+
+template <class T>
+int NotSam::LinkedList<T>::getSize(){
+    return this->storedLength;
 }
 
 template <class T>
@@ -136,6 +150,56 @@ T NotSam::LinkedList<T>::get(int index){
 }
 
 template <class T>
+T NotSam::LinkedList<T>::getQuick(int index){
+    // If the index is out of bounds
+    if (this->getSize() < index + 1 || index < 0){
+        std::cerr << "Issue @ Index: " << index << "(List Size: " << this->getSize() << ")\n";
+        return 0;
+    }
+
+    int distanceToFront = index;
+    int distanceToBack = this.getSize() - 1 - index;
+    int distanceToLastAccessed = abs(this.lastAccessedIndex - index);
+    // If last accessed is not available, give it a distance too big to be used
+    if (this->lastAccessedIndex == -1){
+        distanceToLastAccessed = this.getSize(); // The point is now its higher than distance to front and back
+    }
+
+    // Determine starting node
+    NotSam::LinkedList<T>::DLLNode* current = 0;
+    int direction;
+    int currentIndex;
+    if (distanceToFront <= distanceToBack && distanceToFront <= distanceToLastAccessed){
+        current = this->head;
+        direction = 1;
+        currentIndex = 0;
+    }else if (distanceToBack <= distanceToFront && distanceToBack <= distanceToLastAccessed){
+        current = this->end;
+        direction = -1;
+        currentIndex = this.getSize() - 1;
+    }else{ // last accessed is the closest
+        current = this->lastAccessed;
+        if (this->lastAccessedIndex > index){
+            direction = -1;
+        }else{
+            direction = 1;
+        }
+        currentIndex = this->lastAccessedIndex;
+    }
+
+    // Loop until desired index
+    while(currentIndex != index){
+        if (direction > 0){
+            current = current->next;
+        }else{
+            current = current->previous;
+        }
+        currentIndex += direction;
+    }
+    return current->value;
+}
+
+template <class T>
 NotSam::LinkedList<T>::DLLNode* NotSam::LinkedList<T>::getNode(int index){
     // If the index is out of bounds
     if (this->getSize() < index + 1 || index < 0){
@@ -145,6 +209,7 @@ NotSam::LinkedList<T>::DLLNode* NotSam::LinkedList<T>::getNode(int index){
 
     int i = 0;
     NotSam::LinkedList<T>::DLLNode* current = this->head;
+    
     // Loop until desired index
     while(i < index){
         current = current->next;
@@ -178,7 +243,7 @@ template <class T>
 void NotSam::LinkedList<T>::remove(int index){
     int size = this->getSize();
     if (!((index >= 0 && index < size))){
-        return;
+        throw std::invalid_argument("Received invalid index");
     }
 
     if (index == 0){
@@ -200,6 +265,10 @@ void NotSam::LinkedList<T>::remove(int index){
     if (node->next != 0){
         node->next->previous = previous;
     }
+    // Clear last accessed
+    this->lastAccessed = 0;
+    this->lastAccessedIndex = -1;
+    this->storedLength--;
 }
 
 template <class T>
@@ -210,7 +279,7 @@ void NotSam::LinkedList<T>::set(int index, T value){
 
 template <class T>
 bool NotSam::LinkedList<T>::isEmpty(){
-    return this->head == 0;
+    return this->storedLength == 0;
 }
 
 template <class T>
@@ -249,6 +318,10 @@ void NotSam::LinkedList<T>::removeWithCondition(bool (*conditionFunction)(T)){
         // Move to next
         current = current->previous;
     }
+    // Clear last accessed
+    this->lastAccessed = 0;
+    this->lastAccessedIndex = -1;
+    this->storedLength = this->calculateSize();
 }
 
 template <class T>
@@ -259,7 +332,7 @@ void NotSam::LinkedList<T>::deleteAllElements(){
     	delete current->value;
         current = current->next;
     }
-    this->removeAllElements;
+    this->removeAllElements();
 }
 
 template <class T>
@@ -276,4 +349,8 @@ void NotSam::LinkedList<T>::removeAllElements(){
         current = current->next;
         delete toDelete;
     }
+    // Clear last accessed
+    this->lastAccessed = 0;
+    this->lastAccessedIndex = -1;
+    this->storedLength = 0;
 }
