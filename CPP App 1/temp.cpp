@@ -2,8 +2,7 @@
 using namespace std;
 
 int main(int argc, const char* argv[]){
-	NotSam::LinkedList<string>* resultList = splitStringBySubstring("a|c ", " ");
-	resultList->print();
-	cout << "OK" << resultList->get(0) << "OK\n";
+	// TODO: Test reading from file to DataFormatter object
+	// TODO: Test data formatter object to string to a new file and compare with original file
 	return 0;
 }

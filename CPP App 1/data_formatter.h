@@ -16,7 +16,8 @@ namespace NotSam {
 			LinkedList<DataEntry*> entries;
 		public:
 			DataFormatter();
-			DataFormatter(string dataFormatterString);
+			DataFormatter(std::string dataFormatterString);
+			static DataFormatter* readFromFile(std::string fileName);
 
 			void addEntry(DataEntry* entry);
 
@@ -43,6 +44,7 @@ namespace NotSam {
 					int storedInteger;
 				public:
 					IntegerEntry(std::string key, int integerToStore);
+					IntegerEntry(std::string key, std::string stringRepresentation);
 					int getValue();
 					std::string toString();
 			};
@@ -52,6 +54,7 @@ namespace NotSam {
 					LinkedList<int> storedIntegers;
 				public:
 					IntegerListEntry(std::string key, LinkedList<int>* integersToStore);
+					IntegerListEntry(std::string key, std::string stringRepresentation);
 					LinkedList<int>* getValue();
 					std::string toString();
 			};
@@ -61,6 +64,7 @@ namespace NotSam {
 					float storedFloat;
 				public:
 					FloatEntry(std::string key, int floatToStore);
+					FloatEntry(std::string key, std::string stringRepresentation);
 					float getValue();
 					std::string toString();
 			};
@@ -70,6 +74,7 @@ namespace NotSam {
 					LinkedList<float> storedFloats;
 				public:
 					FloatListEntry(std::string key, int floatsToStore);
+					FloatListEntry(std::string key, std::string stringRepresentation);
 					LinkedList<float>* getValue();
 					std::string toString();
 			};
@@ -79,6 +84,7 @@ namespace NotSam {
 					bool storedBoolean;
 				public:
 					BooleanEntry(std::string key, int booleanToStore);
+					BooleanEntry(std::string key, std::string stringRepresentation);
 					bool getValue();
 					std::string toString();
 			};
@@ -88,6 +94,7 @@ namespace NotSam {
 					std::string storedString;
 				public:
 					StringEntry(std::string key, int stringToStore);
+					StringEntry(std::string key, std::string stringRepresentation);
 					std::string getValue();
 					std::string toString();
 			};
@@ -97,6 +104,7 @@ namespace NotSam {
 					LinkedList<std::string> storedStrings;
 				public:
 					StringListEntry(std::string key, LinkedList<std::string>* stringsToStore);
+					StringListEntry(std::string key, std::string stringRepresentation);
 					LinkedList<std::string>* getValue();
 					// Note: Assuming no commas present
 					std::string toString();
