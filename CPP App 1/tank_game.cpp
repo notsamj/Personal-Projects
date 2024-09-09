@@ -1,12 +1,4 @@
-#include "./multiplayer_game.h"
-#include <string>
-class TankGame : public MultiplayerGame {
-	private:
-	processUserUpdate();
-	public:
-	TankGame();
-};
-
+#include "tank_game.h"
 TankGame::TankGame(){
 	//std::cout << "Tank game constructor called!" << std::endl;
 }

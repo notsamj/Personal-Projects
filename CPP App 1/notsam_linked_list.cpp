@@ -158,11 +158,11 @@ T NotSam::LinkedList<T>::getQuick(int index){
     }
 
     int distanceToFront = index;
-    int distanceToBack = this.getSize() - 1 - index;
-    int distanceToLastAccessed = abs(this.lastAccessedIndex - index);
+    int distanceToBack = this->getSize() - 1 - index;
+    int distanceToLastAccessed = abs(this->lastAccessedIndex - index);
     // If last accessed is not available, give it a distance too big to be used
     if (this->lastAccessedIndex == -1){
-        distanceToLastAccessed = this.getSize(); // The point is now its higher than distance to front and back
+        distanceToLastAccessed = this->getSize(); // The point is now its higher than distance to front and back
     }
 
     // Determine starting node
@@ -176,7 +176,7 @@ T NotSam::LinkedList<T>::getQuick(int index){
     }else if (distanceToBack <= distanceToFront && distanceToBack <= distanceToLastAccessed){
         current = this->end;
         direction = -1;
-        currentIndex = this.getSize() - 1;
+        currentIndex = this->getSize() - 1;
     }else{ // last accessed is the closest
         current = this->lastAccessed;
         if (this->lastAccessedIndex > index){

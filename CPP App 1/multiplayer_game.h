@@ -1,6 +1,6 @@
 #include <chrono>
 #include <mutex>
-#include "./notsam_linked_list.cpp"
+#include "./notsam_linked_list.h"
 #include <string>
 
 class MultiplayerGame {
@@ -44,7 +44,7 @@ long MultiplayerGame::getTicksPassed(){
 
 MultiplayerGame::takeDataFromUser(string dataStr){
 	// Wait and reserve lock
-	this->userUpdateLock.lock();
-	this->userUpdateLock.push(dataStr);
-	this->userUpdateLock.unlock();
+	this->userUpdateLock->lock();
+	this->userUpdateLock->push(dataStr);
+	this->userUpdateLock->unlock();
 }

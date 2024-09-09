@@ -1,5 +1,4 @@
-#include <string>
-#include "notsam_linked_list.cpp"
+#include "helper_functions.h"
 using namespace std;
 
 NotSam::LinkedList<string>* splitStringBySubstring(string sourceString, string subString){
@@ -54,7 +53,7 @@ NotSam::LinkedList<string>* splitStringBySubstring(string sourceString, string s
 std::string cleanseStringOfCharacter(std::string myString, char character){
 	// Before making a new string try searching
 	bool hasCharacter = false;
-	for (int i = 0; i < myString.length; i++){
+	for (int i = 0; i < myString.length(); i++){
 		if (myString[i] == character){
 			hasCharacter = true;
 			break;
@@ -62,7 +61,7 @@ std::string cleanseStringOfCharacter(std::string myString, char character){
 	}
 	if (!hasCharacter){ return myString; }
 	std::string newString = "";
-	for (int i = 0; i < myString.length; i++){
+	for (int i = 0; i < myString.length(); i++){
 		if (myString[i] != character){
 			newString += myString[i];
 		}

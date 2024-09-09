@@ -1,5 +1,7 @@
 #include <string>
-#include "notsam_linked_list.cpp"
+#include <fstream>
+#include "notsam_linked_list.h"
+#include "helper_functions.h"
 namespace NotSam {
 	enum EntryDataType {
 		IntegerEntry,
@@ -11,28 +13,19 @@ namespace NotSam {
 		StringListEntry
 	};
 
+	std::string enumEDTToString(EntryDataType enumType);
+	EntryDataType stringToEnumEDT(std::string typeStr);
+
 	class DataFormatter {
-		private:
-			LinkedList<DataEntry*> entries;
 		public:
-			DataFormatter();
-			DataFormatter(std::string dataFormatterString);
-			static DataFormatter* readFromFile(std::string fileName);
-
-			void addEntry(DataEntry* entry);
-
-			DataEntry* getEntry(string key);
-
-			std::string toString();
-
 			// Abstract Class
 			class DataEntry {
 				private:
 					std::string key;
-					EntryDataType type;
+					EntryDataType EDTType;
 				protected:
 				public:
-					DataEntry(std::string key, std::string type);
+					DataEntry(std::string key, std::string EDTType);
 					std::string getKey();
 
 					std::string virtual toString();
@@ -109,5 +102,19 @@ namespace NotSam {
 					// Note: Assuming no commas present
 					std::string toString();
 			};
+
+			DataFormatter();
+			DataFormatter(std::string dataFormatterString);
+			static DataFormatter* readFromFile(std::string fileName);
+
+			void addEntry(DataEntry* entry);
+
+			DataEntry* getEntry(string key);
+
+			std::string toString();
+
+			void saveToFile(std::string fileName);
+		private:
+			LinkedList<DataFormatter::DataEntry*>* entries;
 	};
 }

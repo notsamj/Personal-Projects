@@ -1,54 +1,52 @@
 #include "data_formatter.h"
-#include "helper_functions.cpp"
-#include <string>
-
+#include "helper_functions.h"
 std::string NotSam::enumEDTToString(NotSam::EntryDataType enumType){
-	if (type == NotSam::EntryDataType::IntegerEntry){
+	if (enumType == NotSam::EntryDataType::IntegerEntry){
 		return "integer_entry";
-	}else if (type == NotSam::EntryDataType::IntegerListEntry){
+	}else if (enumType == NotSam::EntryDataType::IntegerListEntry){
 		return "integer_list_entry";
-	}else if (type == NotSam::EntryDataType::FloatEntry){
+	}else if (enumType == NotSam::EntryDataType::FloatEntry){
 		return "float_entry";
-	}else if (type == NotSam::EntryDataType::FloatListEntry){
+	}else if (enumType == NotSam::EntryDataType::FloatListEntry){
 		return "float_list_entry";
-	}else if (type == NotSam::EntryDataType::BooleanEntry){
+	}else if (enumType == NotSam::EntryDataType::BooleanEntry){
 		return "boolean_entry";
-	}else if (type == NotSam::EntryDataType::StringEntry){
+	}else if (enumType == NotSam::EntryDataType::StringEntry){
 		return "string_entry";
-	}else if (type == NotSam::EntryDataType::StringListEntry){
+	}else if (enumType == NotSam::EntryDataType::StringListEntry){
 		return "string_list_entry";
 	}
 	throw std::invalid_argument("Received invalid type");
-};
+}
 
 NotSam::EntryDataType NotSam::stringToEnumEDT(std::string typeStr){
-	if (type == "integer_entry"){
+	if (typeStr == "integer_entry"){
 		return NotSam::EntryDataType::IntegerEntry;
-	}else if (type == "integer_list_entry"){
+	}else if (typeStr == "integer_list_entry"){
 		return NotSam::EntryDataType::IntegerListEntry;
-	}else if (type == "float_entry"){
+	}else if (typeStr == "float_entry"){
 		return NotSam::EntryDataType::FloatEntry;
-	}else if (type == "float_list_entry"){
+	}else if (typeStr == "float_list_entry"){
 		return NotSam::EntryDataType::FloatListEntry;
-	}else if (type == "boolean_entry"){
+	}else if (typeStr == "boolean_entry"){
 		return NotSam::EntryDataType::BooleanEntry;
-	}else if (type == "string_entry"){
+	}else if (typeStr == "string_entry"){
 		return NotSam::EntryDataType::StringEntry;
-	}else if (type == "string_list_entry"){
+	}else if (typeStr == "string_list_entry"){
 		return NotSam::EntryDataType::StringListEntry;
 	}
 	throw std::invalid_argument("Received invalid type");
 }
 
-NotSam::DataFormatter(){
-	this->entries = new NotSam::LinkedList<DataEntry*>();
+NotSam::DataFormatter::DataFormatter(){
+	this->entries = new NotSam::LinkedList<NotSam::DataFormatter::DataEntry*>();
 }
 
-NotSam::DataFormatter(string dataFormatterString){
+NotSam::DataFormatter::DataFormatter(string dataFormatterString){
 	// Call default constructor
 	NotSam::DataFormatter();
 
-	LinkedList<std::string>* stringSplit = splitStringBySubstring(dataFormatterString, '\n');
+	LinkedList<std::string>* stringSplit = splitStringBySubstring(dataFormatterString, std::string(1, '\n'));
 
 	int stringSplitSize = stringSplit->getLength();
 	// Expecting multiple of 3 lines
@@ -59,21 +57,21 @@ NotSam::DataFormatter(string dataFormatterString){
 	// Loop until end of strings
 	for (int i = 0; i < stringSplitSize; i += 3){
 		std::string key = stringSplit->get(i);
-		NotSam::DataFormatter::EntryDataType type = NotSam::DataFormatter::stringToEnumEDT(stringSplit->get(i+1));
-		if (type == NotSam::EntryDataType::IntegerEntry){
-			this->entries.push(new NotSam::DataFormatter::IntegerEntry(key, stringSplit->get(i+2)));
-		}else if (type == NotSam::EntryDataType::IntegerListEntry){
-			this->entries.push(new NotSam::DataFormatter::IntegerListEntry(key, stringSplit->get(i+2)));
-		}else if (type == NotSam::EntryDataType::FloatEntry){
-			this->entries.push(new NotSam::DataFormatter::FloatEntry(key, stringSplit->get(i+2)));
-		}else if (type == NotSam::EntryDataType::FloatListEntry){
-			this->entries.push(new NotSam::DataFormatter::FloatListEntry(key, stringSplit->get(i+2)));
-		}else if (type == NotSam::EntryDataType::BooleanEntry){
-			this->entries.push(new NotSam::DataFormatter::BooleanEntry(key, stringSplit->get(i+2)));
-		}else if (type == NotSam::EntryDataType::StringEntry){
-			this->entries.push(new NotSam::DataFormatter::StringEntry(key, stringSplit->get(i+2)));
-		}else if (type == NotSam::EntryDataType::StringListEntry){
-			this->entries.push(new NotSam::DataFormatter::StringListEntry(key, stringSplit->get(i+2)));
+		NotSam::EntryDataType enumType = NotSam::stringToEnumEDT(stringSplit->get(i+1));
+		if (enumType == NotSam::EntryDataType::IntegerEntry){
+			this->entries->push(new NotSam::DataFormatter::IntegerEntry(key, stringSplit->get(i+2)));
+		}else if (enumType == NotSam::EntryDataType::IntegerListEntry){
+			this->entries->push(new NotSam::DataFormatter::IntegerListEntry(key, stringSplit->get(i+2)));
+		}else if (enumType == NotSam::EntryDataType::FloatEntry){
+			this->entries->push(new NotSam::DataFormatter::FloatEntry(key, stringSplit->get(i+2)));
+		}else if (enumType == NotSam::EntryDataType::FloatListEntry){
+			this->entries->push(new NotSam::DataFormatter::FloatListEntry(key, stringSplit->get(i+2)));
+		}else if (enumType == NotSam::EntryDataType::BooleanEntry){
+			this->entries->push(new NotSam::DataFormatter::BooleanEntry(key, stringSplit->get(i+2)));
+		}else if (enumType == NotSam::EntryDataType::StringEntry){
+			this->entries->push(new NotSam::DataFormatter::StringEntry(key, stringSplit->get(i+2)));
+		}else if (enumType == NotSam::EntryDataType::StringListEntry){
+			this->entries->push(new NotSam::DataFormatter::StringListEntry(key, stringSplit->get(i+2)));
 		}
 		throw std::invalid_argument("Received invalid data formatter string.");
 	}
@@ -81,17 +79,23 @@ NotSam::DataFormatter(string dataFormatterString){
 	delete stringSplit;
 }
 
-NotSam::DataFormatter* static NotSam::DataFormatter::readFromFile(string fileName){
-	// TODO
+NotSam::DataFormatter* NotSam::DataFormatter::readFromFile(string fileName){
+	std::string fileData;
+
+	std::ifstream file(fileName);
+
+	file >> fileData;
+
+	return new DataFormatter(fileData);
 }
 
-void NotSam::DataFormatter::addEntry(DataEntry* entry){
+void NotSam::DataFormatter::addEntry(NotSam::DataFormatter::DataEntry* entry){
 	this->entries->push(entry);
 }
 
-DataEntry* NotSam::DataFormatter::getEntry(string key){
+NotSam::DataFormatter::DataEntry* NotSam::DataFormatter::getEntry(string key){
 	for (int i = 0; i < this->entries->getLength(); i++){
-		DataEntry* entry = this->entries->get(i);
+		NotSam::DataFormatter::DataEntry* entry = this->entries->get(i);
 		if (entry->getKey() == key){
 			return entry;
 		}
@@ -99,10 +103,10 @@ DataEntry* NotSam::DataFormatter::getEntry(string key){
 	return 0;
 }
 
-string NotSam::DataFormatter::toString(){
+std::string NotSam::DataFormatter::toString(){
 	std::string outputString = "";
 	for (int i = 0; i < this->entries->getLength(); i++){
-		DataEntry* entry = this->entries->get(i);
+		NotSam::DataFormatter::DataEntry* entry = this->entries->get(i);
 		if (i != 0){
 			outputString += '\n';
 		}
@@ -111,21 +115,29 @@ string NotSam::DataFormatter::toString(){
 	return outputString;
 }
 
-NotSam::DataFormatter::DataEntry::DataEntry(std::string key, std::string type){
+void NotSam::DataFormatter::saveToFile(std::string fileName){
+	std::ofstream file(fileName);
+
+	file << this->toString();
+
+	file.close();
+}
+
+NotSam::DataFormatter::DataEntry::DataEntry(std::string key, std::string EDTType){
 	this->key = key;
-	this->type = type;
+	this->EDTType = NotSam::stringToEnumEDT(EDTType);
 }
 
 std::string NotSam::DataFormatter::DataEntry::getKey(){
 	return this->key;
 }
 
-std::string NotSam::DataFormatter::DataEntry::getType(){
-	return this->type;
+NotSam::EntryDataType NotSam::DataFormatter::DataEntry::getType(){
+	return this->EDTType;
 }
 
-NotSam::DataFormatter::IntegerEntry::IntegerEntry(std::string key, int integerToStore){
-	NotSam::DataFormatter::DataEntry(key, NotSam::EntryDataType::IntegerEntry);
+NotSam::DataFormatter::IntegerEntry::IntegerEntry(std::string key, int integerToStore) : NotSam::DataFormatter::DataEntry(key, NotSam::EntryDataType::IntegerEntry) {
+	//NotSam::DataFormatter::DataEntry(key, NotSam::EntryDataType::IntegerEntry);
 	this->storedInteger = integerToStore;
 }
 
@@ -143,7 +155,7 @@ std::string toString(){
 }
 
 std::string getType(){
-	return this->type;
+	return this->EDTType;
 }
 
 NotSam::DataFormatter::IntegerListEntry::IntegerListEntry(std::string key, LinkedList<int>* integersToStore){
@@ -154,7 +166,7 @@ NotSam::DataFormatter::IntegerListEntry::IntegerListEntry(std::string key, Linke
 NotSam::DataFormatter::IntegerListEntry::IntegerListEntry(std::string key, std::string stringRepresentation){
 	NotSam::DataFormatter::DataEntry(key, NotSam::EntryDataType::IntegerListEntry);
 	this->storedIntegers = new NotSam::LinkedList<int>();
-	LinkedList<std::string>* stringSplit = splitStringBySubstring(dataFormatterString, ',');
+	LinkedList<std::string>* stringSplit = splitStringBySubstring(dataFormatterString, std::string(1, ','));
 	for (int i = 0; i < stringSplit.getSize(); i++){
 		this->storedIntegers->push(std::stoi(stringSplit->getQuick(i)));
 	}
@@ -203,7 +215,7 @@ NotSam::DataFormatter::FloatListEntry::FloatListEntry(std::string key, LinkedLis
 NotSam::DataFormatter::FloatListEntry::FloatListEntry(std::string key, std::string stringRepresentation){
 	NotSam::DataFormatter::DataEntry(key, NotSam::EntryDataType::FloatListEntry);
 	this->storedFloats = new NotSam::LinkedList<float>();
-	LinkedList<std::string>* stringSplit = splitStringBySubstring(dataFormatterString, ',');
+	LinkedList<std::string>* stringSplit = splitStringBySubstring(dataFormatterString, std::string(1, ','));
 	for (int i = 0; i < stringSplit.getSize(); i++){
 		this->storedFloats->push(std::stof(stringSplit->getQuick(i)));
 	}

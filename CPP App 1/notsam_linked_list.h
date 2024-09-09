@@ -1,3 +1,5 @@
+#ifndef _NOTSAM_LINKED_LIST_ 
+#define _NOTSAM_LINKED_LIST_
 namespace NotSam {
 	/*
 	    Class Name: NotSamLinkedList
@@ -257,3 +259,4 @@ namespace NotSam {
 	    void removeAllElements();
 	};
 }
+#endif
