@@ -2,7 +2,9 @@
 #include <string>
 class TankGame : public MultiplayerGame {
 	private:
-	processUserUpdate();
+	void processUserUpdate(std::string dataStr);
 	public:
 	TankGame();
+	void processUserData();
+	void tick();
 };

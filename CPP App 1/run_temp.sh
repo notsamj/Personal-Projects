@@ -6,5 +6,8 @@ g++ -c multiplayer_game.cpp -std=c++20 -o multiplayer_game.o
 g++ -c tank_game.cpp -std=c++20 -o tank_game.o
 g++ -c temp.cpp -std=c++20 -o temp.o
 
-g++ -o temp.exe temp.o tank_game.o multiplayer_game.o helper_functions.o data_formatter.o notsam_linked_list.o
-./temp.exe
+# g++ -o temp.exe temp.o tank_game.o multiplayer_game.o helper_functions.o data_formatter.o notsam_linked_list.o
+# g++ -o temp.exe notsam_linked_list.o helper_functions.o data_formatter.o multiplayer_game.o tank_game.o temp.o
+# g++ -o temp.exe temp.o data_formatter.o helper_functions.o notsam_linked_list.o
+# g++ -o temp.exe temp.o notsam_linked_list.o
+./temp.o

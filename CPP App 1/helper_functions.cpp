@@ -68,3 +68,8 @@ std::string cleanseStringOfCharacter(std::string myString, char character){
 	}
 	return newString;
 }
+
+bool stringToBoolean(std::string str){
+	if (str == "true"){ return true; }
+	return false;
+}

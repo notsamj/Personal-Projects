@@ -1,6 +1,7 @@
 #include "notsam_linked_list.h"
 #include <iostream>
 #include <stdlib.h>
+
 template <class T>
 NotSam::LinkedList<T>::DLLNode::DLLNode(NotSam::LinkedList<T>::DLLNode* previous, T value){
     this->value = value;

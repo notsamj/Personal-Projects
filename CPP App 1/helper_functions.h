@@ -7,4 +7,6 @@ using namespace std;
 NotSam::LinkedList<string>* splitStringBySubstring(string sourceString, string subString);
 
 std::string cleanseStringOfCharacter(std::string myString, char character);
+
+bool stringToBoolean(std::string str);
 #endif

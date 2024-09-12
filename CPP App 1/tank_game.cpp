@@ -3,17 +3,21 @@ TankGame::TankGame(){
 	//std::cout << "Tank game constructor called!" << std::endl;
 }
 
-TankGame::processUserData(){
+void TankGame::processUserData(){
 	// Wait for the lock
-	this->userUpdateLock.lock();
+	this->userUpdateLock->lock();
 
-	while (this->userUpdates.getSize() > 0){
-		this.processUserUpdate(this->userUpdates.pop(0));
+	while (this->userUpdates->getSize() > 0){
+		this->processUserUpdate(this->userUpdates->pop(0));
 	}
 
-	this->userUpdateLock.unlock();
+	this->userUpdateLock->unlock();
 }
 
-TankGame::processUserUpdate(string dataStr){
+void TankGame::processUserUpdate(std::string dataStr){
+	
+}
+
+void TankGame::tick(){
 	
 }

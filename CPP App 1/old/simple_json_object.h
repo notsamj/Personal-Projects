@@ -6,7 +6,7 @@ namespace NotSam {
 	class SimpleJSONObject {
 		private:
 		protected:
-			LinkedList<JSONValue> values;
+			NotSam::LinkedList<JSONValue> values;
 		public:
 		SimpleJSONObject(string sourceString);
 		readFromString(string sourceString);
@@ -35,7 +35,7 @@ namespace NotSam {
 }
 
 NotSam::SimpleJSONObject::SimpleJSONObject(sourceString){
-	this->values = new LinkedList<NotSam::JSONValue>();
+	this->values = new NotSam::LinkedList<NotSam::JSONValue>();
 	this->readFromString(sourceString);
 }
 
