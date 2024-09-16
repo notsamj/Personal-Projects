@@ -1,0 +1,3 @@
+class PlayerMenu extends Menu {
+
+}
