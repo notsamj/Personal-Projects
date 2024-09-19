@@ -31,11 +31,11 @@ class MainMenu extends Menu {
         // Background
         //this.components.push(new AnimatedCloudBackground())
 
-        // Dog Fight
+        // Play Song
         let playSongButtonY = (innerHeight) => { return innerHeight - gapSize; };
         this.playSongButton = new RectangleButton("Play Song", "#3bc44b", "#e6f5f4", buttonX, playSongButtonY, buttonSizeX, buttonSizeY, (menuInstance) => {
-            //MENU_MANAGER.switchTo("player");
-            console.log("Play song switching to player not disabled")
+            MENU_MANAGER.getMenuByName("player").reset();
+            MENU_MANAGER.switchTo("player");
         });
         this.playSongButton.disable();
         this.components.push(this.playSongButton);
@@ -48,12 +48,12 @@ class MainMenu extends Menu {
 
         // Load Song Data
         let loadSongDataButtonY = (innerHeight) => { return playSongButtonY(innerHeight) - buttonSizeY - gapSize; }
-        this.components.push(new RectangleButton("Load Song Data", "#3bc44b", "#e6f5f4", buttonX, loadSongDataButtonY, buttonSizeX, buttonSizeY, (menuInstance) => {
+        this.components.push(new RectangleButton("Load Song Data", "#3bc44b", "#e6f5f4", buttonX, loadSongDataButtonY, buttonSizeX, buttonSizeY, async (menuInstance) => {
             if (this.lockSongLock.isLocked()){
                 return;
             }
             this.lockSongLock.lock();
-            activeSong = Song.create(document.getElementById("song_file_submission").value);
+            activeSong = await Song.create(document.getElementById("song_file_submission").value);
             this.playSongButton.setDisabled(activeSong === null);
             this.lockSongLock.unlock();
         }));

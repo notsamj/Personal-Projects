@@ -3,6 +3,38 @@ if (typeof window === "undefined"){
     PROGRAM_DATA = require("../../data/data_json.js");
 }
 
+function timeStampToSeconds(timeStampString){
+    let split = timeStampString.split(":");
+    return 60 * 60 * parseInt(split[0]) + 60 * parseInt(split[1]) + parseInt(split[2]);
+}
+
+function secondsToTimeStamp(audioSecondsLength){
+    let hours = Math.floor(audioSecondsLength / (60 * 60));
+    let minutes = Math.floor((audioSecondsLength - hours * (60 * 60)) / 60);
+    let seconds = audioSecondsLength - hours * (60 * 60) - minutes * 60;
+    let hoursString;
+    if (hours >= 10){
+        hoursString = hours.toString();
+    }else{
+        hoursString = "0" + hours.toString();
+    }
+
+    let minutesString;
+    if (minutes >= 10){
+        minutesString = minutes.toString();
+    }else{
+        minutesString = "0" + minutes.toString();
+    }
+
+    let secondsString;
+    if (seconds >= 10){
+        secondsString = seconds.toString();
+    }else{
+        secondsString = "0" + seconds.toString();
+    }
+    return hoursString + ":" + minutesString + ":" + secondsString;
+}
+
 /*
     Method Name: getIndexOfElementInList
     Method Parameters:

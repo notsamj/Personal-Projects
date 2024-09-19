@@ -128,15 +128,7 @@ class MenuManager {
         Method Return: void
     */
     switchTo(newMenu){
-        if (newMenu == "main"){
-            this.activeMenu = this.mainMenu;
-        }else if (newMenu == "sound"){
-            this.activeMenu = this.soundMenu;
-        }else if (newMenu == "player"){
-            this.activeMenu = this.playerMenu;
-        }else{
-            this.activeMenu = null;
-        }
+        this.activeMenu = this.getMenuByName(newMenu);
     }
 
     /*

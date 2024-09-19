@@ -34,17 +34,22 @@ class SoundManager {
         }
     }
 
-    loadSound(soundFileName){
+    async loadSound(soundFileName){
         let soundName = null;
         // If ends with .mp3
         if (soundFileName.substring(soundFileName.length-4,soundFileName.length) === ".mp3"){
             console.log("Trying to load", soundFileName)
             soundName = soundFileName.substring(0, soundFileName.length-4);
-            if (this.hasSound(soundName)){ return 0; }
-            this.sounds.push(new Sound(soundName, "mp3", this.mainVolume));
-            return 1;
+            if (this.hasSound(soundName)){
+                return { "code": 0, "sound_name": soundName };
+            }
+            let sound = new Sound(soundName, "ongoing", this.mainVolume);
+            await sound.awaitLoading();
+            this.sounds.push(sound);
+            this.updateVolume(soundName, 100);
+            return { "code": 1, "sound_name": soundName };
         }
-        return -1;
+        return { "code": -1 };
     }
 
     /*
@@ -327,10 +332,34 @@ class Sound {
         this.lastPlayed = 0;
         // Audio will be {} if opened in NodeJS
         this.audio = (typeof window != "undefined") ? new Audio(PROGRAM_DATA["sound_data"]["url"] + "/" + this.name + "/" + this.name + PROGRAM_DATA["sound_data"]["file_type"]) : {};
+        this.loadLock = new Lock();
+        this.audio.addEventListener("loadeddata", () => {
+            this.loadLock.unlock();
+            console.log("Loaded:", this.name);
+        });
+        this.audio.addEventListener("error", (errorEvent) => {
+            console.error("Failed to load:", this.name, errorEvent);
+        });
         this.running = false;
         this.volume = getLocalStorage(soundName, 0);
         this.adjustByMainVolume(mainVolume);
         this.preparedToPause = true;
+    }
+
+    async awaitLoading(){
+        await this.loadLock.awaitUnlock(false);
+    }
+
+    getCurrentTime(){
+        return Math.floor(this.audio.currentTime);
+    }
+
+    setCurrentTime(newTime){
+        this.audio.currentTime = newTime;
+    }
+
+    getDuration(){
+        return Math.floor(this.audio.duration);
     }
 
     /*

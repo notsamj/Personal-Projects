@@ -94,10 +94,6 @@ class OptionSlider extends Component {
         // Text
         let value = this.accessValue();
         let valueString = this.accessValue().toString();
-        // Float
-        if (Math.floor(value) != value){
-            valueString = value.toFixed(2);
-        }
         Menu.makeText(valueString, this.textColour, this.getX(), this.getY(), this.width, this.height);
     }
 
@@ -118,6 +114,7 @@ class OptionSlider extends Component {
         Method Return: void
     */
     tick(){
+        if (this.isDisabled()){ return; }
         let hasMouseOnY = this.coveredByY(MENU_MANAGER.changeFromScreenY(mouseY));
         let hasMouseOn = this.covers(mouseX, MENU_MANAGER.changeFromScreenY(mouseY));
         let activated = USER_INPUT_MANAGER.isActivated("option_slider_grab");
