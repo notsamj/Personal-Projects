@@ -40,6 +40,7 @@ class OptionSlider extends Component {
         this.backgroundBarColour = Colour.fromCode(backgroundBarColour);
         this.sliderColour = Colour.fromCode(sliderColour);
         this.textColour = textColour;
+        this.toStringFunction = null;
     }
 
     // Abstract
@@ -77,7 +78,7 @@ class OptionSlider extends Component {
     /*
         Method Name: display
         Method Parameters: None
-        Method Description: Displays the quantity slider
+        Method Description: Displays the option slider
         Method Return: void
     */
     display(){
@@ -93,8 +94,17 @@ class OptionSlider extends Component {
 
         // Text
         let value = this.accessValue();
-        let valueString = this.accessValue().toString();
+        let valueString;
+        if (this.toStringFunction === null){
+            valueString = value.toString();
+        }else{
+            valueString = this.toStringFunction(value);
+        }
         Menu.makeText(valueString, this.textColour, this.getX(), this.getY(), this.width, this.height);
+    }
+
+    setToStringFunction(func){
+        this.toStringFunction = func;
     }
 
     /*

@@ -33,6 +33,22 @@ class TextComponent extends Component {
         this.height = height;
     }
 
+    setX(x){
+        this.x = x;
+    }
+
+    setY(y){
+        this.y = y;
+    }
+
+    getWidth(){
+        return this.width;
+    }
+
+    getHeight(){
+        return this.height;
+    }
+
     /*
         Method Name: getX
         Method Parameters: None

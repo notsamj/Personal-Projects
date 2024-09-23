@@ -4,7 +4,7 @@ const PROGRAM_DATA = {
     },
     "sound_data": {
         "sounds": [],
-        "url": "./songs/public",
+        "url": "./songs/local",
         "file_type": ".mp3"
     },
     "menu": {

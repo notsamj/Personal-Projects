@@ -28,9 +28,9 @@ function secondsToTimeStamp(audioSecondsLength){
 
     let secondsString;
     if (seconds >= 10){
-        secondsString = seconds.toString();
+        secondsString = Math.floor(seconds).toString();
     }else{
-        secondsString = "0" + seconds.toString();
+        secondsString = "0" + Math.floor(seconds).toString();
     }
     return hoursString + ":" + minutesString + ":" + secondsString;
 }

@@ -351,7 +351,7 @@ class Sound {
     }
 
     getCurrentTime(){
-        return Math.floor(this.audio.currentTime);
+        return this.audio.currentTime;
     }
 
     setCurrentTime(newTime){
@@ -359,7 +359,7 @@ class Sound {
     }
 
     getDuration(){
-        return Math.floor(this.audio.duration);
+        return this.audio.duration;
     }
 
     /*

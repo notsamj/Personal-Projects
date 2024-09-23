@@ -1,0 +1,14 @@
+Lyric size seems to be much bigger than what is calculated with short lyrics sometimes
+Proper handling of audio file reaching end
+Responsive feedback for invalid song file
+Responsive feedback for invalid text data
+UI details -> Data file rather than in code
+Comment
+Modify JS Code Checker to add unused function counter
+REMOVE unused functions from helper_function.js
+README
+    Explain changing file location
+    Instructional youtube video
+Publish
+
+Feature to select chords to instruct to to play and other practice thgngs

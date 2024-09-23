@@ -80,8 +80,8 @@ class Menu {
     static determineMaxTextSizeByWidth(textLines, boxWidth){
         let currentTextSize = 10; // Using as a standard
         updateFontSize(currentTextSize);
-        let longestLine = textLines[0];
-        let longestLineWidth = measureTextWidth(longestLine);
+        let longestLine;
+        let longestLineWidth = -1;
         
         // Find the longest line
         for (let i = 0; i < textLines.length; i++){
@@ -91,9 +91,17 @@ class Menu {
                 longestLineWidth = currentLineWidth;
             }
         }
+        // If invalid data then use 10
+        if (longestLineWidth <= 0){
+            return currentTextSize;
+        }
 
         // Loop until the text is too big
+        let safeMaxTextSize = 250;
         while (measureTextWidth(longestLine) + PROGRAM_DATA["ui"]["text_box_padding_proportion"] * boxWidth < boxWidth){
+            if (currentTextSize > safeMaxTextSize){
+                return safeMaxTextSize;
+            }
             updateFontSize(++currentTextSize);
         }
         return currentTextSize - 1; // -1 because we've established that this is 1 size too big for the width
@@ -119,16 +127,23 @@ class Menu {
         Method Return: void
     */
     static makeText(textStr, textColour, x, y, boxWidth, boxHeight, alignLR="left", alignTB="top"){
-        if (textStr == ""){ return; }
+        if (textStr === ""){ return; }
         let splitByLine = textStr.split("\n");
         let numLines = splitByLine.length;
         let screenX = x;
         let screenY = MENU_MANAGER.changeToScreenY(y);
+        let calculatedTextSize = Menu.calculateTextSize(textStr, boxWidth, boxHeight);
+        makeText(textStr, screenX, screenY, boxWidth, boxHeight, textColour, calculatedTextSize, alignLR, alignTB);
+    }
+
+    static calculateTextSize(textString, boxWidth, boxHeight){
+        let splitByLine = textString.split('\n');
+        let numLines = splitByLine.length;
         let maxTextSizeW = Menu.determineMaxTextSizeByWidth(splitByLine, boxWidth);
         let maxTextSizeH = Math.floor((boxHeight - PROGRAM_DATA["ui"]["text_box_padding_proportion"] * boxHeight) / numLines);
         let calculatedTextSize = Math.min(maxTextSizeW, maxTextSizeH);
         calculatedTextSize = Math.max(calculatedTextSize, 1);
-        makeText(textStr, screenX, screenY, boxWidth, boxHeight, textColour, calculatedTextSize, alignLR, alignTB);
+        return calculatedTextSize;
     }
 
     /*

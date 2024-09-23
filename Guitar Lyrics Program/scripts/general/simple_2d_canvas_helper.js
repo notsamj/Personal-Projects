@@ -347,6 +347,11 @@ function makeText(textStr, screenX, screenY, boxWidth, boxHeight, textColour, te
     let currentSpaceOccupied = textSize;
     drawingContext.textAlign = alignLR;
     drawingContext.textBaseline = alignTB;
+    /*
+        Options:
+            alignLR: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign
+            alignTB: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline
+    */
     let lines = textStr.split("\n");
     // Display line by line
     let i = 0;

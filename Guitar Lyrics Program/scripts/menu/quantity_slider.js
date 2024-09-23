@@ -41,6 +41,22 @@ class QuantitySlider extends OptionSlider {
         this.updateSliderX();
     }
 
+    setMinValue(minValue){
+        this.minValue = minValue;
+    }
+
+    setMaxValue(maxValue){
+        this.maxValue = maxValue;
+    }
+
+    setGetter(getter){
+        this.getValueFunction = getter;
+    }
+    setSetter(setter){
+        this.setValueFunction = setter;
+    }
+
+
     /*
         Method Name: updateSliderX
         Method Parameters: None
