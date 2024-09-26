@@ -1,9 +1,3 @@
-// If using NodeJS -> Do required imports
-if (typeof window === "undefined"){
-    helperFunctions = require("../general/helper_functions.js");
-    getLocalStorage = helperFunctions.getLocalStorage;
-    setLocalStorage = helperFunctions.setLocalStorage;
-}
 /*
     Class Name: SoundManager
     Description: A class for managing the playing of sounds.
@@ -330,15 +324,14 @@ class Sound {
         this.name = soundName;
         this.ongoing = soundType == "ongoing";
         this.lastPlayed = 0;
-        // Audio will be {} if opened in NodeJS
-        this.audio = (typeof window != "undefined") ? new Audio(PROGRAM_DATA["sound_data"]["url"] + "/" + this.name + "/" + this.name + PROGRAM_DATA["sound_data"]["file_type"]) : {};
+        this.audio = (!PROGRAM_DATA["sound_data"]["using_public"]) ? new Audio(PROGRAM_DATA["sound_data"]["local_url"] + "/" + this.name + "/" + this.name + PROGRAM_DATA["sound_data"]["file_type"]) : new Audio(PROGRAM_DATA["sound_data"]["public_url"] + "/" + this.name + "/" + this.name + PROGRAM_DATA["sound_data"]["file_type"]);
         this.loadLock = new Lock();
         this.audio.addEventListener("loadeddata", () => {
             this.loadLock.unlock();
-            console.log("Loaded:", this.name);
+            console.log("Loaded sound:", this.name);
         });
         this.audio.addEventListener("error", (errorEvent) => {
-            console.error("Failed to load:", this.name, errorEvent);
+            console.error("Failed to load sound:", this.name, errorEvent);
         });
         this.running = false;
         this.volume = getLocalStorage(soundName, 0);
@@ -382,7 +375,7 @@ class Sound {
         // Already playing....
         this.lastPlayed = Date.now();
         this.preparedToPause = false;
-        if (this.isRunning() || this.volume == 0){ return; }
+        if (this.isRunning() || this.volume === 0){ return; }
         this.audio.play();
         this.running = true;
     }
@@ -406,10 +399,8 @@ class Sound {
     pause(){
         // Ongoing sounds can be paused but not discrete sounds
         if (!this.ongoing){ return; }
-        if (this.isRunning()){
-            this.running = false;
-            this.audio.pause();
-        }
+        this.running = false;
+        this.audio.pause();
     }
 
     /*
@@ -477,9 +468,4 @@ class Sound {
             this.pause();
         }
     }
-}
-
-// If using NodeJS then export the lock class
-if (typeof window === "undefined"){
-    module.exports = SoundManager;
 }

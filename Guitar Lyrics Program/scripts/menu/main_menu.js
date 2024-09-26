@@ -23,17 +23,17 @@ class MainMenu extends Menu {
         Method Return: void
     */
     setup(){
-        let buttonSizeX = 800;
-        let buttonSizeY = 120;
-        let gapSize = 40;
+        let buttonSizeX = PROGRAM_DATA["menu"]["main_menu"]["component_details"]["play_button"]["x_size"];
+        let buttonSizeY = PROGRAM_DATA["menu"]["main_menu"]["component_details"]["play_button"]["y_size"];
+        let gapSize = PROGRAM_DATA["menu"]["main_menu"]["gap_size"];
         let buttonX = (innerWidth) => { return (innerWidth - buttonSizeX)/2; }
             
         // Background
-        //this.components.push(new AnimatedCloudBackground())
+        // Note: No background in this program but this is where it would go
 
         // Play Song
         let playSongButtonY = (innerHeight) => { return innerHeight - gapSize; };
-        this.playSongButton = new RectangleButton("Play Song", "#3bc44b", "#e6f5f4", buttonX, playSongButtonY, buttonSizeX, buttonSizeY, (menuInstance) => {
+        this.playSongButton = new RectangleButton("Play Song", PROGRAM_DATA["menu"]["main_menu"]["component_details"]["play_button"]["fill_colour"], PROGRAM_DATA["menu"]["main_menu"]["component_details"]["play_button"]["text_colour"], buttonX, playSongButtonY, buttonSizeX, buttonSizeY, (menuInstance) => {
             MENU_MANAGER.getMenuByName("player").reset();
             MENU_MANAGER.switchTo("player");
         });
@@ -41,14 +41,14 @@ class MainMenu extends Menu {
         this.components.push(this.playSongButton);
 
         // Information
-        let infoY = 250;
+        let infoY = PROGRAM_DATA["menu"]["main_menu"]["component_details"]["credits"]["y"];
         let infoXSize = (PROGRAM_DATA["general"]["expected_canvas_width"] - buttonSizeX)/2;
-        let infoYSize = 200;
-        this.components.push(new TextComponent("Made by notsamj.", "#000000", 0, infoY, infoXSize, infoYSize));
+        let infoYSize = PROGRAM_DATA["menu"]["main_menu"]["component_details"]["credits"]["y_size"];
+        this.components.push(new TextComponent(PROGRAM_DATA["menu"]["main_menu"]["component_details"]["credits"]["text"], PROGRAM_DATA["menu"]["main_menu"]["component_details"]["credits"]["colour"], PROGRAM_DATA["menu"]["main_menu"]["component_details"]["credits"]["x"], infoY, infoXSize, infoYSize));
 
         // Load Song Data
         let loadSongDataButtonY = (innerHeight) => { return playSongButtonY(innerHeight) - buttonSizeY - gapSize; }
-        this.components.push(new RectangleButton("Load Song Data", "#3bc44b", "#e6f5f4", buttonX, loadSongDataButtonY, buttonSizeX, buttonSizeY, async (menuInstance) => {
+        this.components.push(new RectangleButton(PROGRAM_DATA["menu"]["main_menu"]["component_details"]["load_button"]["text"], PROGRAM_DATA["menu"]["main_menu"]["component_details"]["load_button"]["fill_colour"], PROGRAM_DATA["menu"]["main_menu"]["component_details"]["load_button"]["text_colour"], buttonX, loadSongDataButtonY, buttonSizeX, buttonSizeY, async (menuInstance) => {
             if (this.lockSongLock.isLocked()){
                 return;
             }
@@ -61,7 +61,7 @@ class MainMenu extends Menu {
 
         // Sound
         let soundButtonY = (innerHeight) => { return loadSongDataButtonY(innerHeight) - buttonSizeY - gapSize; }
-        this.components.push(new RectangleButton("Sound", "#3bc44b", "#e6f5f4", buttonX, soundButtonY, buttonSizeX, buttonSizeY, async (menuInstance) => {
+        this.components.push(new RectangleButton(PROGRAM_DATA["menu"]["main_menu"]["component_details"]["sound_settings_button"]["text"], PROGRAM_DATA["menu"]["main_menu"]["component_details"]["sound_settings_button"]["fill_colour"], PROGRAM_DATA["menu"]["main_menu"]["component_details"]["sound_settings_button"]["text_colour"], buttonX, soundButtonY, buttonSizeX, buttonSizeY, async (menuInstance) => {
             MENU_MANAGER.switchTo("sound");
         }));
     }

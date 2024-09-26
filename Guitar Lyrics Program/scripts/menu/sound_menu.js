@@ -24,15 +24,15 @@ class SoundMenu extends Menu {
         let sectionYSize = 50;
 
         // Background
-        //this.components.push(new AnimatedCloudBackground())
+        // Note: No background in this program but this is where it would go
 
         // Back Button
-        let backButtonX = () => { return 50; }
-        let backButtonY = (innerHeight) => { return innerHeight-27; }
-        let backButtonXSize = 200;
-        let backButtonYSize = 76;
-        this.components.push(new RectangleButton("Main Menu", "#3bc44b", "#e6f5f4", backButtonX, backButtonY, backButtonXSize, backButtonYSize, (instance) => {
-            instance.goToMainMenu();
+        let backButtonX = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["back_button"]["x"];
+        let backButtonY = (innerHeight) => { return innerHeight-PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["back_button"]["back_button_y_gap"]; }
+        let backButtonXSize = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["back_button"]["x_size"];
+        let backButtonYSize = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["back_button"]["y_size"];
+        this.components.push(new RectangleButton(PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["back_button"]["text"], PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["back_button"]["fill_colour"], PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["back_button"]["text_colour"], backButtonX, backButtonY, backButtonXSize, backButtonYSize, (playerMenuInstance) => {
+            MENU_MANAGER.switchTo("main");
         }));
 
         // Interface for sound amounts
@@ -55,23 +55,23 @@ class SoundMenu extends Menu {
         Method Return: void
     */
     createSoundSettings(soundName, offSetIndex){
-        let width = 200;
-        let height = 50;
-        let sectionYSize = 100;
+        let width = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["width"];
+        let height = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["height"];
+        let sectionYSize = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["y_size"];
         let sectionYStart = sectionYSize * offSetIndex;
 
-        let soundLabelXSize = 300;
-        let soundLabelX = 600;
-        let soundLabelYSize = 100;
-        let soundLabelY = (innerHeight) => { return innerHeight - 27 - sectionYStart - sectionYSize/2 - height/2; }
+        let soundLabelXSize = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["label_x_size"];
+        let soundLabelX = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["label_x"];
+        let soundLabelYSize = PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["label_y_size"];
+        let soundLabelY = (innerHeight) => { return innerHeight - PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["top_gap"] - sectionYStart - sectionYSize/2 - height/2; }
 
         let soundScaleX = soundLabelX + soundLabelXSize;
-        let soundScaleY = (innerHeight) => { return innerHeight - 27 - sectionYStart; }
+        let soundScaleY = (innerHeight) => { return innerHeight - PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["top_gap"] - sectionYStart; }
 
         // Components
 
         // Sound Name
-        this.components.push(new TextComponent(soundName, "#f5d442", soundLabelX, soundLabelY, soundLabelXSize, soundLabelYSize, "center", "middle"));
+        this.components.push(new TextComponent(soundName, PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["theme_colour_code"], soundLabelX, soundLabelY, soundLabelXSize, soundLabelYSize, PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["position_x"], PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["position_y"]));
 
         let getValueFunction = () => {
             return SOUND_MANAGER.getVolume(soundName);
@@ -81,7 +81,7 @@ class SoundMenu extends Menu {
             SOUND_MANAGER.updateVolume(soundName, newVolume);
         }
 
-        let quantitySlider = new QuantitySlider(soundScaleX, soundScaleY, width, height, getValueFunction, setValueFunction, 0, 100, false, "#000000", "#f5d442", "#f5d442");
+        let quantitySlider = new QuantitySlider(soundScaleX, soundScaleY, width, height, getValueFunction, setValueFunction, 0, 100, false, PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["000000"], PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["theme_colour_code"], PROGRAM_DATA["menu"]["sound_menu"]["component_details"]["sound_changer"]["theme_colour_code"]);
         this.components.push(quantitySlider);
     }
 

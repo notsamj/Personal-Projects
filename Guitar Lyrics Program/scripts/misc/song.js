@@ -63,6 +63,14 @@ class Song {
         return SOUND_MANAGER.findSound(this.getSoundName()).getDuration();
     }
 
+    isAtTheEnd(){
+        return this.getDuration() === this.getCurrentTimeInSeconds();
+    }
+
+    reset(){
+        this.updateTime(0);
+    }
+
     getSoundName(){
         return this.soundName;
     }
@@ -107,6 +115,7 @@ class Song {
         let chordLineRegex = /^[0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?,chord,[a-zA-Z0-9 \-_]+$/;
         let strumStyleLineRegex = /^[0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?,strum_style,[a-zA-Z0-9 \-_]+$/;
         
+        let parseError = false;
         // Read lines
         for (let line of lines){
             // Allow them to add extra spaces so trim
@@ -132,7 +141,15 @@ class Song {
                 let timeStampInSeconds = timeStampToSeconds(lineSplit[0]);
                 let strumStyleString = lineSplit[2];
                 strumStyles.push({"time_in_seconds": timeStampInSeconds, "strum_style": strumStyleString});
+            }else{
+                parseError = true;
+                console.error("Failed to parse:", line);
             }
+        }
+
+        // Provide feedback if error
+        if (parseError){
+            MENU_MANAGER.addTemporaryMessage("Failed to parse some of the text contents.\nSee console for additional information.", "#ff7300", 5000);
         }
 
         // Sort these arrays
@@ -152,7 +169,6 @@ class Song {
         this.lyrics = lyrics;
         this.chords = chords;
         this.strumStyles = strumStyles;
-        console.log(this.lyrics)
     }
 
     static async create(songFileNameUncleaned){
@@ -170,6 +186,7 @@ class Song {
         // If failed to load song
         if (result["code"] == -1){
             console.error("Failed to load:", songFileName);
+            MENU_MANAGER.addTemporaryMessage("Failed to load song file.\nSee console for additional information.", "#ff0000", 5000);
             return null;
         }
         let soundName = result["sound_name"];
