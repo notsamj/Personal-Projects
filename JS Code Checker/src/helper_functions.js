@@ -95,20 +95,6 @@ function findNextIndexOfChar(str, char, startingIndex){
 }
 
 /*
-    Function Name: copyArray
-    Function Parameters: 
-        array:
-            An array
-    Function Description: Coppies an array into a new array
-    Function Return: Array
-*/
-function copyArray(array){
-    let newArray = [];
-    for (let element of array){ newArray.push(element); }
-    return newArray;
-}
-
-/*
     Function Name: insertStringIntoStringBeforeCharIndex
     Function Parameters: 
         insertString:
@@ -410,27 +396,6 @@ function countOccurancesOfSubString(sourceString, subString){
 }
 
 /*
-    Function Name: appendLists
-    Function Parameters: 
-        list1:
-            A list
-         list2:
-            A list
-    Function Description: Appends two lists to make a new list
-    Function Return: List
-*/
-function appendLists(list1, list2){
-    let newList = [];
-    for (let item of list1){
-        newList.push(list1);
-    }
-    for (let item of list2){
-        newList.push(list2);
-    }
-    return newList;
-}
-
-/*
     Function Name: listsEqual
     Function Parameters: 
         list1:
@@ -515,11 +480,70 @@ function reverseString(str){
     return reversedString;
 }
 
+/*
+    Function Name: collectCharactersFromStartingPToEndingP
+    Function Parameters: 
+        sourceString:
+            A string
+        characterIndexOfStartingP:
+            index of the Opening parenthesis
+    Function Description: Collects characters from the start of a parenthesis to the closing one
+    Function Return: String
+*/
+function collectCharactersFromStartingPToEndingP(sourceString, characterIndexOfStartingP){
+    let depth = 1;
+    let i = characterIndexOfStartingP + 1;
+    let outputString = "(";
+    // Note: Also ends with end of string
+    while (depth > 0 && i < sourceString.length){
+        let charAtIndex = sourceString[i];
+        // Skip strings
+        if (charAtIndex === "\""){
+            i += calculateLengthOfStringWithinString(sourceString, i);
+            continue;
+        }
+        if (charAtIndex === ')'){
+            depth -= 1;
+        }else if (charAtIndex === '('){
+            depth += 1;
+        }
+        outputString += charAtIndex;
+        i++;
+    }
+    return outputString;
+}
+
+/*
+    Function Name: calculateLengthOfStringWithinString
+    Function Parameters: 
+        sourceString:
+            A string
+        startingIndex:
+            The index of an opening "
+    Function Description: Calculates the length of a String inside a string
+    Function Return: Integer
+*/
+function calculateLengthOfStringWithinString(sourceString, startingIndex){
+    let stringSize = 1;
+    let i = startingIndex + 1;
+    let depth = 1;
+    let previousChar = "";
+    while (depth > 0 && i < sourceString.length){
+        let charAtIndex = sourceString[i];
+        if (charAtIndex === "\"" && previousChar != "\\"){
+            depth = 0;
+        }
+        previousChar = charAtIndex;
+        i++;
+        stringSize++;
+    }
+    return stringSize;
+}
+
 module.exports = {
     doesFolderExist,
     findIndexOfChar,
     findNextIndexOfChar,
-    copyArray,
     insertStringIntoStringBeforeCharIndex,
     searchForSubstringInString,
     measureIndentingBefore,
@@ -535,9 +559,9 @@ module.exports = {
     collectCharactersUntilMeetingChar,
     collectCharactersUntilMeetingStr,
     countOccurancesOfSubString,
-    appendLists,
     listsEqual,
     listContainsElement,
     getLineBefore,
-    reverseString
+    reverseString,
+    collectCharactersFromStartingPToEndingP
 }

@@ -1,88 +1,173 @@
 ----- Summary -----
-Number of statements: 5289
+Number of statements: 3
 Number of function comments added: 1
 Number of Function comments added: 54
 Number of class comments added: 3
 Number of line-referencing console.logs updated: 9
 Number of old console.logs removed: 16
+Number of unused functions found: 81
 Number of todos found: 159
-Number of violations found: 11
+Number of violations found: 0
 ----- console_log_showcase.js -----
 Relative path: ../in/
-Number of statements: 9
+Number of statements: 1
 Number of line-referencing console.logs updated: 9
 ----- gamemode.js -----
 Relative path: ../in/scripts/gamemodes/
-Number of statements: 42
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 2
 ----- local_client.js -----
 Relative path: ../in/scripts/gamemodes/
-Number of statements: 13
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 3
 ----- local_mission.js -----
 Relative path: ../in/scripts/gamemodes/
-Number of statements: 33
+Number of statements: 0
 Number of todos found: 1
 ----- mission.js -----
 Relative path: ../in/scripts/gamemodes/
-Number of statements: 133
+Number of statements: 0
 Number of function comments added: 1
 Number of todos found: 5
+Unused function: myTestFunction
 ----- remote_dogfight.js -----
 Relative path: ../in/scripts/gamemodes/
-Number of statements: 68
+Number of statements: 0
 Number of old console.logs removed: 1
 Number of todos found: 1
 Line 76: // TODO: If tickdifference is great enough then take from server?
 ----- remote_mission.js -----
 Relative path: ../in/scripts/gamemodes/
-Number of statements: 84
+Number of statements: 0
 Number of old console.logs removed: 1
 Number of todos found: 1
 Line 82: // TODO: If tickdifference is great enough then take from server?
+----- helper_functions.js -----
+Relative path: ../in/scripts/general/
+Number of statements: 0
+Unused function: getIndexOfElementInList
+Unused function: modifyDataJSONValue
+Unused function: accessDataJSONValue
+Unused function: getDataJSONObjAtPath
+Unused function: getImage
+Unused function: getTickMultiplier
+Unused function: objectHasKey
+Unused function: mergeCopyObjects
+Unused function: copyObject
+Unused function: appendLists
+Unused function: safeDivide
+Unused function: getLocalStorage
+Unused function: setLocalStorage
+Unused function: getScreenWidth
+Unused function: getScreenHeight
+Unused function: getDegreesFromDisplacement
+Unused function: planeModelToType
+Unused function: copyArray
+Unused function: listMean
+Unused function: listMin
+Unused function: listMax
+Unused function: listMedian
+Unused function: isClose
+Unused function: toRadians
+Unused function: toDegrees
+Unused function: fixDegrees
+Unused function: fixRadians
+Unused function: toFixedRadians
+Unused function: displacementToDegrees
+Unused function: displacementToRadians
+Unused function: randomNumberInclusive
+Unused function: randomNumber
+Unused function: onSameTeam
+Unused function: calculateAngleDiffDEG
+Unused function: calculateAngleDiffRAD
+Unused function: calculateAngleDiffCCWDEG
+Unused function: calculateAngleDiffCWDEG
+Unused function: rotateCWDEG
+Unused function: rotateCWRAD
+Unused function: rotateCCWDEG
+Unused function: rotateCCWRAD
+Unused function: angleBetweenCCWDEG
+Unused function: angleBetweenCWRAD
+Unused function: angleBetweenCCWRAD
+Unused function: calculateAngleDiffCWRAD
+Unused function: calculateAngleDiffCCWRAD
+Unused function: angleBetweenCWDEG
+Unused function: lessThanDir
+Unused function: lessThanEQDir
+Unused function: nextIntInDir
+Unused function: randomFloatBetween
+Unused function: countryToAlliance
+Unused function: planeModelToCountry
+Unused function: planeModelToAlliance
+Unused function: sleep
+----- hitboxes.js -----
+Relative path: ../in/scripts/general/
+Number of statements: 0
+Unused function: circleWithRectangle
+Unused function: circleWithCircle
+Unused function: rectangleWithRectangle
+Unused function: pointInRectangle
+Unused function: cwaRectRect
 ----- mail_service.js -----
 Relative path: ../in/scripts/general/
-Number of statements: 52
+Number of statements: 0
 Number of old console.logs removed: 2
 ----- notsam_array_list.js -----
 Relative path: ../in/scripts/general/
-Number of statements: 44
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 3
 ----- notsam_linked_list.js -----
 Relative path: ../in/scripts/general/
-Number of statements: 96
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 4
 ----- notsam_singly_linked_list.js -----
 Relative path: ../in/scripts/general/
-Number of statements: 72
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 3
+----- simple_2d_canvas_helper.js -----
+Relative path: ../in/scripts/general/
+Number of statements: 1
+Unused function: translate
+Unused function: rotate
+Unused function: scale
+Unused function: strokeRectangle
+Unused function: noStrokeRectangle
+Unused function: strokeCircle
+Unused function: noStrokeCircle
+Unused function: updateFontSize
+Unused function: measureTextWidth
+Unused function: updateFillColour
+Unused function: makeText
+Unused function: displayImage
+Unused function: getZoomedScreenWidth
+Unused function: getZoomedScreenHeight
 ----- sound_manager.js -----
 Relative path: ../in/scripts/general/
-Number of statements: 64
+Number of statements: 0
 Number of todos found: 1
 ----- component.js -----
 Relative path: ../in/scripts/menu/
-Number of statements: 13
+Number of statements: 0
 Number of Function comments added: 3
 Number of todos found: 6
 ----- menu_manager.js -----
 Relative path: ../in/scripts/menu/
-Number of statements: 60
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 2
 ----- option_slider.js -----
 Relative path: ../in/scripts/menu/
-Number of statements: 37
+Number of statements: 0
 Number of Function comments added: 2
 Number of todos found: 5
 ----- visual_effect_manager.js -----
 Relative path: ../in/scripts/misc/
-Number of statements: 150
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 10
 Line 68: // TODO: Come up with something better for this
@@ -90,67 +175,70 @@ Line 102: // TODO: Come up with something better for this
 Line 122: // TODO: Come up with something better for this
 ----- entity.js -----
 Relative path: ../in/scripts/other_entities/
-Number of statements: 50
+Number of statements: 0
 Number of Function comments added: 9
 Number of todos found: 19
 Line 43: // TODO: Clean this up
 ----- bomb.js -----
 Relative path: ../in/scripts/other_entities/simple_projectiles/
-Number of statements: 32
+Number of statements: 0
 Number of old console.logs removed: 1
 Number of todos found: 1
 Line 97: // TODO: Remove
 ----- spectator_camera.js -----
 Relative path: ../in/scripts/other_entities/
-Number of statements: 121
+Number of statements: 0
 Number of todos found: 1
 Line 394: // TODO: Clean this up
 ----- biased_bot_bomber_plane.js -----
 Relative path: ../in/scripts/plane/bomber_plane/
-Number of statements: 34
+Number of statements: 0
 Number of old console.logs removed: 1
 ----- biased_campaign_bot_bomber_plane.js -----
 Relative path: ../in/scripts/plane/bomber_plane/
-Number of statements: 65
+Number of statements: 0
 Number of old console.logs removed: 3
 ----- bomber_plane.js -----
 Relative path: ../in/scripts/plane/bomber_plane/
-Number of statements: 55
+Number of statements: 0
 Number of todos found: 2
 Line 94: // TODO: I need 1 function to load shoot lock tick timer and another function to load the deicison to shoot
 Line 109: // TODO: I need 1 function to load shoot lock tick timer and another function to load the deicison to shoot
 ----- plane.js -----
 Relative path: ../in/scripts/plane/
-Number of statements: 199
+Number of statements: 0
 Number of Function comments added: 3
 Number of todos found: 7
 Line 851: // TODO: Clean this up
 ----- propeller.js -----
 Relative path: ../in/scripts/plane/
-Number of statements: 40
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 4
 ----- radar.js -----
 Relative path: ../in/scripts/radar/
-Number of statements: 92
+Number of statements: 0
 Number of Function comments added: 1
 Number of todos found: 2
 ----- plane_game_scene.js -----
 Relative path: ../in/scripts/scene/
-Number of statements: 140
+Number of statements: 0
 Number of Function comments added: 4
 Number of todos found: 12
+Unused function: loadLocalImage
+Unused function: loadRotatedImages
+Unused function: loadPlanes
 Line 382: // TODO: This is somewhat ugly
 Line 624: // TODO: Switch to display x for all entities
 ----- sky_manager.js -----
 Relative path: ../in/scripts/scene/
-Number of statements: 92
+Number of statements: 0
 Number of old console.logs removed: 1
 Number of todos found: 1
 Line 278: // TODO: Come up with something better?
 ----- server_connection.js -----
 Relative path: ../in/scripts/server_communication/
-Number of statements: 81
+Number of statements: 0
 Number of old console.logs removed: 3
 Number of todos found: 1
 Line 41: // TODO: Incase activagmemode is null or not a client?
@@ -161,20 +249,26 @@ Number of class comments added: 1
 Number of todos found: 1
 ----- biased_bot_bomber_turret.js -----
 Relative path: ../in/scripts/turret/
-Number of statements: 25
+Number of statements: 0
 Number of old console.logs removed: 1
 ----- bomber_turret.js -----
 Relative path: ../in/scripts/turret/
-Number of statements: 59
+Number of statements: 0
 Number of old console.logs removed: 2
 ----- turret.js -----
 Relative path: ../in/scripts/turret/
-Number of statements: 29
+Number of statements: 0
 Number of Function comments added: 3
 Number of todos found: 6
+----- ww2planegame.js -----
+Relative path: ../in/scripts/
+Number of statements: 1
+Unused function: tick
+Unused function: loadExtraImages
+Unused function: setGameZoom
 ----- abstract_class_1.js -----
 Relative path: ../in/violations/
-Number of statements: 3
+Number of statements: 0
 Number of Function comments added: 3
 Number of class comments added: 1
 Number of todos found: 9
@@ -184,62 +278,33 @@ Number of statements: 0
 Number of Function comments added: 3
 Number of class comments added: 1
 Number of todos found: 7
------ test_class1.js -----
-Relative path: ../in/violations/
-Number of statements: 0
-Number of violations found: 4
-Violations:
-Function "myAbstractMethod1" from abstract class "AbstractClassOne" missing in class "myTestClass1".
-Function "myAbstractMethod2" from abstract class "AbstractClassOne" missing in class "myTestClass1".
-Member variable "memberVariable1" from abstract class "AbstractClassOne" missing in class "myTestClass1".
-Member variable "memberVariable2" from abstract class "AbstractClassOne" missing in class "myTestClass1".
------ test_class2.js -----
-Relative path: ../in/violations/
-Number of statements: 1
-Number of violations found: 3
-Violations:
-Function "myAbstractMethod1" from abstract class "AbstractClassOne" missing in class "myTestClass2".
-Function "myAbstractMethod2" from abstract class "AbstractClassOne" missing in class "myTestClass2".
-Member variable "memberVariable2" from abstract class "AbstractClassOne" missing in class "myTestClass2".
 ----- test_class3.js -----
 Relative path: ../in/violations/
-Number of statements: 3
+Number of statements: 0
 Number of Function comments added: 2
 Number of todos found: 6
 ----- test_class4.js -----
 Relative path: ../in/violations/
-Number of statements: 3
+Number of statements: 0
 Number of Function comments added: 2
 Number of todos found: 6
-Number of violations found: 1
-Violations:
-Function "myAbstractMethod2" from abstract class "AbstractClassOne" missing in class "myTestClass4" due to content mismatch.
 ----- test_class5.js -----
 Relative path: ../in/violations/
-Number of statements: 3
+Number of statements: 0
 Number of Function comments added: 2
 Number of todos found: 5
-Number of violations found: 1
-Violations:
-Function "myAbstractMethod2" from abstract class "AbstractClassOne" missing in class "myTestClass5" due to parameter mismatch.
 ----- test_class6.js -----
 Relative path: ../in/violations/
-Number of statements: 3
+Number of statements: 0
 Number of Function comments added: 3
 Number of todos found: 8
-Number of violations found: 1
-Violations:
-Function "myIMethod2" from interface "InterfaceOne" missing in class "myTestClass6".
 ----- test_class7.js -----
 Relative path: ../in/violations/
-Number of statements: 3
+Number of statements: 0
 Number of Function comments added: 4
 Number of todos found: 10
 ----- test_class8.js -----
 Relative path: ../in/violations/
-Number of statements: 2
+Number of statements: 0
 Number of Function comments added: 2
 Number of todos found: 4
-Number of violations found: 1
-Violations:
-Function "myIMethod2" from interface "InterfaceOne" missing in class "myTestClass8".

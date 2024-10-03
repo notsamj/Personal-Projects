@@ -41,79 +41,80 @@ const PROGRAM_DATA = {
                 } 
             }
         },
-    },
-    "player_menu": {
-        "gap_size": 50,
-        "component_details": {
-            "back_button": {
-                "x_size": 200,
-                "y_size": 76,
-                "x": 50,
-                "back_button_y_gap": 27,
-                "text": "Main Menu",
-                "fill_colour": "#3bc44b",
-                "text_colour": "#e6f5f4"
-            },
-            "song_name": {
-                "width": 800,
-                "height": 200,
-                "top_buffer": 100,
-                "colour_code": "#6f279c",
-                "text": "Song Name",
-                "position_x": "center",
-                "position_y": "top"
-            },
-            "play_button": {
-                "x": 50,
-                "y": 80,
-                "width": 100,
-                "height": 50,
-                "play_text": "Play",
-                "pause_text": "Pause",
-                "play_colour": "#61ed68",
-                "pause_colour": "#eb4034",
-                "text_colour": "#ffffff"
-            },
-            "slider": {
-                "height": 50,
-                "width": 1620,
-                "x": 150,
-                "y": 80,
-                "background_colour": "#000000",
-                "slider_colour": "#94151d",
-                "text_colour": "#000000"
-            },
-            "lyric": {
-                "width": 1200,
-                "height": 400,
-                "colour_code": "#32e34c",
-                "position_y": "top",
-                "position_x": "center",
-                "buffer": 50
-            },
-            "next_lyric": {
-                "width": 1200,
-                "height": 100,
-                "colour_code": "#f0f0f0",
-                "position_y": "top",
-                "position_x": "center",
-                "buffer": 20
-            },
-            "chord": {
-                "width": 400,
-                "height": 90,
-                "colour_code": "#5972ff",
-                "position_y": "top",
-                "position_x": "center",
-                "buffer": 20
-            },
-            "strum_style": {
-                "width": 800,
-                "height": 120,
-                "colour_code": "#f06718",
-                "position_y": "top",
-                "position_x": "center",
-                "buffer": 20
+    
+        "player_menu": {
+            "gap_size": 50,
+            "component_details": {
+                "back_button": {
+                    "x_size": 200,
+                    "y_size": 76,
+                    "x": 50,
+                    "back_button_y_gap": 27,
+                    "text": "Main Menu",
+                    "fill_colour": "#3bc44b",
+                    "text_colour": "#e6f5f4"
+                },
+                "song_name": {
+                    "width": 800,
+                    "height": 200,
+                    "top_buffer": 100,
+                    "colour_code": "#6f279c",
+                    "text": "Song Name",
+                    "position_x": "center",
+                    "position_y": "top"
+                },
+                "play_button": {
+                    "x": 50,
+                    "y": 80,
+                    "width": 100,
+                    "height": 50,
+                    "play_text": "Play",
+                    "pause_text": "Pause",
+                    "play_colour": "#61ed68",
+                    "pause_colour": "#eb4034",
+                    "text_colour": "#ffffff"
+                },
+                "slider": {
+                    "height": 50,
+                    "width": 1620,
+                    "x": 150,
+                    "y": 80,
+                    "background_colour": "#000000",
+                    "slider_colour": "#94151d",
+                    "text_colour": "#000000"
+                },
+                "lyric": {
+                    "width": 1200,
+                    "height": 400,
+                    "colour_code": "#32e34c",
+                    "position_y": "top",
+                    "position_x": "center",
+                    "buffer": 50
+                },
+                "next_lyric": {
+                    "width": 1200,
+                    "height": 100,
+                    "colour_code": "#f0f0f0",
+                    "position_y": "top",
+                    "position_x": "center",
+                    "buffer": 20
+                },
+                "chord": {
+                    "width": 400,
+                    "height": 90,
+                    "colour_code": "#5972ff",
+                    "position_y": "top",
+                    "position_x": "center",
+                    "buffer": 20
+                },
+                "strum_style": {
+                    "width": 800,
+                    "height": 120,
+                    "colour_code": "#f06718",
+                    "position_y": "top",
+                    "position_x": "center",
+                    "buffer": 20
+                },
             },
         },
         "sound_menu": {

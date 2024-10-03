@@ -47,7 +47,7 @@ class PlayerMenu extends Menu {
         this.components.push(this.playButton);
 
         // Pause button
-        this.pauseButton = new RectangleButton(PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["pause_text"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["play_colour"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["text_colour"], playPauseX, playPauseY, playPauseWidth, playPauseHeight, (playerMenuInstance) => {
+        this.pauseButton = new RectangleButton(PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["pause_text"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["pause_colour"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["text_colour"], playPauseX, playPauseY, playPauseWidth, playPauseHeight, (playerMenuInstance) => {
             playerMenuInstance.pause();
         });
         this.components.push(this.pauseButton);
@@ -58,19 +58,19 @@ class PlayerMenu extends Menu {
         let sliderWidth = PROGRAM_DATA["menu"]["player_menu"]["component_details"]["slider"]["width"];
         let sliderX = PROGRAM_DATA["menu"]["player_menu"]["component_details"]["slider"]["x"];
         let sliderY = PROGRAM_DATA["menu"]["player_menu"]["component_details"]["slider"]["y"] + sliderHeight;
-        this.optionSlider = new QuantitySlider(sliderX, sliderY, sliderWidth, sliderHeight, dudFunction, dudFunction, 0, 0, true, PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["background_colour"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["slider_colour"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["play_button"]["text_colour"]);
+        this.optionSlider = new QuantitySlider(sliderX, sliderY, sliderWidth, sliderHeight, dudFunction, dudFunction, 0, 0, true, PROGRAM_DATA["menu"]["player_menu"]["component_details"]["slider"]["background_colour"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["slider"]["slider_colour"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["slider"]["text_colour"]);
         this.optionSlider.setToStringFunction((value) => {
             return secondsToTimeStamp(value);
         });        
         this.components.push(this.optionSlider);
 
         // Current lyric text
-        let lyricTextWidth = PROGRAM_DATA["menu"]["player_menu"]["component_details"]["current_lyric"]["width"];
-        let lyricTextHeight = PROGRAM_DATA["menu"]["player_menu"]["component_details"]["current_lyric"]["height"];
+        let lyricTextWidth = PROGRAM_DATA["menu"]["player_menu"]["component_details"]["lyric"]["width"];
+        let lyricTextHeight = PROGRAM_DATA["menu"]["player_menu"]["component_details"]["lyric"]["height"];
         let lyricTextX = (innerWidth) => { return Math.floor(innerWidth/2); }
         let lyricTextY = (innerHeight) => { return songNameY(innerHeight) - songNameHeight; }
-        let lyricTextColour = Colour.fromCode(PROGRAM_DATA["menu"]["player_menu"]["component_details"]["current_lyric"]["colour_code"]);
-        this.lyricTextComponent = new TextComponent("", lyricTextColour, lyricTextX, lyricTextY, lyricTextWidth, lyricTextHeight, PROGRAM_DATA["menu"]["player_menu"]["component_details"]["current_lyric"]["position_x"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["current_lyric"]["position_y"]);
+        let lyricTextColour = Colour.fromCode(PROGRAM_DATA["menu"]["player_menu"]["component_details"]["lyric"]["colour_code"]);
+        this.lyricTextComponent = new TextComponent("", lyricTextColour, lyricTextX, lyricTextY, lyricTextWidth, lyricTextHeight, PROGRAM_DATA["menu"]["player_menu"]["component_details"]["lyric"]["position_x"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["lyric"]["position_y"]);
         this.components.push(this.lyricTextComponent);
 
         // Next lyric text
@@ -79,7 +79,7 @@ class PlayerMenu extends Menu {
         let nextLyricTextX = (innerWidth) => { return Math.floor(innerWidth/2); }
         let nextLyricTextY = (innerHeight) => { return lyricTextY(innerHeight) - lyricTextHeight/2; }
         let nextLyricTextColour = Colour.fromCode(PROGRAM_DATA["menu"]["player_menu"]["component_details"]["next_lyric"]["colour_code"]);
-        this.nextLyricTextComponent = new TextComponent("", nextLyricTextColour, nextLyricTextX, nextLyricTextY, nextLyricTextWidth, nextLyricTextHeight, PROGRAM_DATA["menu"]["player_menu"]["component_details"]["next_lyric"]["position_x"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["next_lyric"]["position_y"];
+        this.nextLyricTextComponent = new TextComponent("", nextLyricTextColour, nextLyricTextX, nextLyricTextY, nextLyricTextWidth, nextLyricTextHeight, PROGRAM_DATA["menu"]["player_menu"]["component_details"]["next_lyric"]["position_x"], PROGRAM_DATA["menu"]["player_menu"]["component_details"]["next_lyric"]["position_y"]);
         this.components.push(this.nextLyricTextComponent);
 
         // Chord text

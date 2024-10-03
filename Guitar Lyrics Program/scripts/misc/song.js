@@ -111,35 +111,37 @@ class Song {
         let strumStyles = [];
 
         // Note: I could add groups do I don't need to .split(',')
-        let lyricsLineRegex = /^[0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?,lyrics,[a-zA-Z0-9 \-_'\(\)]+$/;
-        let chordLineRegex = /^[0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?,chord,[a-zA-Z0-9 \-_]+$/;
-        let strumStyleLineRegex = /^[0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?,strum_style,[a-zA-Z0-9 \-_]+$/;
+        let lyricsLineRegex = /^([0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?),lyrics,([a-zA-Z0-9 \-_'’\(\),]+)$/;
+        let chordLineRegex = /^([0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?),chord,([a-zA-Z0-9 \-_]+)$/;
+        let strumStyleLineRegex = /^([0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+))?,strum_style,([a-zA-Z0-9 \-_]+)$/;
         
         let parseError = false;
         // Read lines
         for (let line of lines){
             // Allow them to add extra spaces so trim
             line = line.trim();
+            // Ignore blank lines
+            if (line.length === 0){ continue; }
             
             // If lyrics line
-            if (line.match(lyricsLineRegex)){
-                let lineSplit = line.split(',');
-                let timeStampInSeconds = timeStampToSeconds(lineSplit[0]);
-                let lyricString = lineSplit[2];
+            let lyricMatch = line.match(lyricsLineRegex);
+            let chordMatch = line.match(chordLineRegex);
+            let strumStyleMatch = line.match(strumStyleLineRegex);
+            if (lyricMatch){
+                let timeStampInSeconds = timeStampToSeconds(lyricMatch[1]);
+                let lyricString = lyricMatch[3];
                 lyrics.push({"time_in_seconds": timeStampInSeconds, "lyric": lyricString});
             }
             // If chord line
-            else if (line.match(chordLineRegex)){
-                let lineSplit = line.split(',');
-                let timeStampInSeconds = timeStampToSeconds(lineSplit[0]);
-                let chordString = lineSplit[2];
+            else if (chordMatch){
+                let timeStampInSeconds = timeStampToSeconds(chordMatch[1]);
+                let chordString = chordMatch[3];
                 chords.push({"time_in_seconds": timeStampInSeconds, "chord": chordString});
             }
             // If strum style line
-            else if (line.match(strumStyleLineRegex)){
-                let lineSplit = line.split(',');
-                let timeStampInSeconds = timeStampToSeconds(lineSplit[0]);
-                let strumStyleString = lineSplit[2];
+            else if (strumStyleMatch){
+                let timeStampInSeconds = timeStampToSeconds(strumStyleMatch[1]);
+                let strumStyleString = strumStyleMatch[3];
                 strumStyles.push({"time_in_seconds": timeStampInSeconds, "strum_style": strumStyleString});
             }else{
                 parseError = true;

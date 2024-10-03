@@ -6,6 +6,7 @@ const NSLog = require("./ns_log.js");
 const multiplyString = require("./helper_functions.js").multiplyString;
 const listsEqual = require("./helper_functions.js").listsEqual;
 const listContainsElement = require("./helper_functions.js").listContainsElement;
+const NotSamLinkedSet = require("./notsam_linked_set.js");
 /*
     Function Name: run
     Function Parameters: None
@@ -47,11 +48,58 @@ async function run(){
     // Modify files
     modifyJSFiles(jsFiles, settings);
 
+    // Perform additional analysis
+    performAditionalAnalysis(jsFiles);
+
     // Collect and log data
     collectAndLogData(jsFiles, settings, outputFolderRPath);
 
     // Write files
     writeJSFiles(inputFolderRPath.length, outputFolderRPath, jsFiles);
+}
+
+/*
+    Function Name: performAditionalAnalysis
+    Function Parameters: 
+        jsFiles:
+            A list of JSFile objects
+    Function Description: Performs some analysis on js files
+    Function Return: void
+*/
+function performAditionalAnalysis(jsFiles){
+    // Do some analysis
+    for (let jsFile of jsFiles){
+        jsFile.countStatements();
+        jsFile.checkToDos();
+        jsFile.identifyFunctionsCalled();
+    }
+
+    createDataOnFunctionUse(jsFiles);
+}
+
+/*
+    Function Name: createDataOnFunctionUse
+        jsFiles:
+            A list of JSFile objects
+    Function Description: Counts unused function declarations/definitions
+    Function Return: void
+*/
+function createDataOnFunctionUse(jsFiles){
+    let consolidatedFunctionCallSet = new NotSamLinkedSet();
+
+    // Fill up the set with the name of all functions called
+    for (let jsFile of jsFiles){
+        let jsFileFunctionCallSet = jsFile.getFunctionsCalled();
+        // Add all data from this files set to the total function call set
+        for (let [functionName, index] of jsFileFunctionCallSet){
+            consolidatedFunctionCallSet.add(functionName);
+        }
+    }
+
+    // Tell js file to record number of uncalled functions it contains
+    for (let jsFile of jsFiles){
+        jsFile.findUnusedFunctions(consolidatedFunctionCallSet);
+    }
 }
 
 /*
@@ -255,8 +303,6 @@ function modifyJSFiles(jsFiles, settings){
         if (settings["remove_console_logs"]){
             jsFile.removeOldConsoleLogs();
         }
-        jsFile.countStatements();
-        jsFile.checkToDos();
     }
 }
 
@@ -288,6 +334,7 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
     let totalNumberOfStatements = 0;
     let totalTodosFound = 0;
     let totalViolationCount = 0;
+    let totalUnusedFunctionCount = 0;
 
     // Log details per file
     for (let jsFile of jsFiles){
@@ -305,11 +352,13 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
         let todosFound = fileDataCollector.getDataValue("total_todo_count");
         let violations = fileDataCollector.getValueOrSetTo("violations", []);
         let violationsFound = violations.length;
+        let unusedFunctionNames = fileDataCollector.getDataValue("unused_function_names");
+        let unusedFunctionsFound = unusedFunctionNames.length;
 
         // Update total DataCollector
         totalNumberOfStatements += numberOfStatements;
     
-        let sumOfChanges = fCommentsAdded + mCommentsAdded + cCommentsAdded + lineReferencingConsoleLogsUpdated + oldConsoleLogsRemoved + todosFound + violationsFound; 
+        let sumOfChanges = fCommentsAdded + mCommentsAdded + cCommentsAdded + lineReferencingConsoleLogsUpdated + oldConsoleLogsRemoved + todosFound + violationsFound + unusedFunctionsFound; 
         
         // Do not add to log if there are no changes
         if (settings["ignore_file_with_zero_changes_in_log"] && sumOfChanges == 0){
@@ -321,6 +370,7 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
         totalClassCommentsAdded += cCommentsAdded;
         totalLineReferencingConsoleLogsUpdated += lineReferencingConsoleLogsUpdated;
         totalOldConsoleLogsRemoved += oldConsoleLogsRemoved; // Number will be zero if the setting is off so doesn't matter I'm adding it
+        totalUnusedFunctionCount += unusedFunctionsFound;
         totalTodosFound += todosFound;
         totalViolationCount += violationsFound;
 
@@ -369,6 +419,11 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
         // Write number of todos
         if (!settings["ignore_counters_with_zero_changes_in_log"] || violationsFound > 0){
             log.write('\n' + "Number of violations found: " + violationsFound.toString());
+        }
+
+        // Write unused functions
+        for (let unusedFunctionName of unusedFunctionNames){
+            log.write('\n' + "Unused function: " + unusedFunctionName);
         }
 
         // Go through the todos
@@ -420,6 +475,9 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
         // Write number of old console.logs removed
         summaryText += '\n' + "Number of old console.logs removed: " + totalOldConsoleLogsRemoved.toString();
     }
+
+    // Write number of unused functions
+    summaryText += '\n' + "Number of unused functions found: " + totalUnusedFunctionCount.toString();
 
     // Write number of todos
     summaryText += '\n' + "Number of todos found: " + totalTodosFound.toString();
