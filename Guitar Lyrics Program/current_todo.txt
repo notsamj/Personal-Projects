@@ -1,10 +1,6 @@
-Modify JS Code Checker to add unused function counter
-Comment
-REMOVE unused functions from helper_function.js
-Test to make sure it still works
 README
     Explain changing file location
     Instructional youtube video
 Publish
 
-Feature to select chords to instruct to to play and other practice thgngs
+Feature to select chords to instruct to to play and other practice things

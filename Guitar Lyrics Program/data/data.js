@@ -7,7 +7,8 @@ const PROGRAM_DATA = {
         "using_local": false,
         "local_url": "./songs/local",
         "public_url": "./songs/public",
-        "file_type": ".mp3"
+        "file_type": ".mp3",
+        "ongoing_shutoff_delay": 100 // 100ms
     },
     "menu": {
         "option_slider": {

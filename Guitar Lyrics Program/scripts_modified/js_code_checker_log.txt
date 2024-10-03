@@ -1,0 +1,18 @@
+----- Summary -----
+Number of statements: 821
+Number of function comments added: 0
+Number of Function comments added: 0
+Number of class comments added: 0
+Number of line-referencing console.logs updated: 0
+Number of old console.logs removed: 0
+Number of unused functions found: 5
+Number of todos found: 0
+Number of violations found: 0
+----- simple_2d_canvas_helper.js -----
+Relative path: ./scripts/general/
+Number of statements: 73
+Unused function: strokeCircle
+Unused function: noStrokeCircle
+Unused function: displayImage
+Unused function: getZoomedScreenWidth
+Unused function: getZoomedScreenHeight
