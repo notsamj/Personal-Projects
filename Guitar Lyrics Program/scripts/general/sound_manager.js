@@ -47,6 +47,10 @@ class SoundManager {
             }
             let sound = new Sound(soundName, "ongoing", this.mainVolume);
             await sound.awaitLoading();
+            // If the sound failed to load
+            if (!sound.isLoaded()){
+                return {"code": -1};
+            }
             this.sounds.push(sound);
             this.updateVolume(soundName, 100);
             return { "code": 1, "sound_name": soundName };
@@ -332,19 +336,33 @@ class Sound {
         this.name = soundName;
         this.ongoing = soundType == "ongoing";
         this.lastPlayed = 0;
-        this.audio = (!PROGRAM_DATA["sound_data"]["using_public"]) ? new Audio(PROGRAM_DATA["sound_data"]["local_url"] + "/" + this.name + "/" + this.name + PROGRAM_DATA["sound_data"]["file_type"]) : new Audio(PROGRAM_DATA["sound_data"]["public_url"] + "/" + this.name + "/" + this.name + PROGRAM_DATA["sound_data"]["file_type"]);
+        this.audio = PROGRAM_DATA["sound_data"]["using_local"] ? (new Audio(PROGRAM_DATA["sound_data"]["local_url"] + "/" + this.name + "/" + this.name + PROGRAM_DATA["sound_data"]["file_type"])) : (new Audio(PROGRAM_DATA["sound_data"]["public_url"] + "/" + this.name + "/" + this.name + PROGRAM_DATA["sound_data"]["file_type"]));
+        this.loaded = false;
         this.loadLock = new Lock();
+        this.loadLock.lock();
         this.audio.addEventListener("loadeddata", () => {
-            this.loadLock.unlock();
             console.log("Loaded sound:", this.name);
+            this.loaded = true;
+            this.loadLock.unlock();
         });
         this.audio.addEventListener("error", (errorEvent) => {
             console.error("Failed to load sound:", this.name, errorEvent);
+            this.loadLock.unlock();
         });
         this.running = false;
         this.volume = getLocalStorage(soundName, 0);
         this.adjustByMainVolume(mainVolume);
         this.preparedToPause = true;
+    }
+
+    /*
+        Method Name: isLoaded
+        Method Parameters: None
+        Method Description: Checkers if the sound is loaded successfully
+        Method Return: Boolean
+    */
+    isLoaded(){
+        return this.loaded;
     }
 
     /*

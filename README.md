@@ -15,6 +15,8 @@
   - A NodeJS application for modifying JS files and summarizing findings.
 - Bash File Backups
   - A Bash application for backing up files, omitting those already backed up to save space.
+- Guitar Lyrics Program
+  - A program that runs in browser. Synchronizes given text data with the playback of an audio file.
 ## W.I.P & Future Applications
 - CPP App 1
   - I haven't decided what I want to do for this yet. It's just Hello World for now.

@@ -205,7 +205,7 @@ class Song {
         // Note: I could add groups do I don't need to .split(',')
         let lyricsLineRegex = /^([0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?),lyrics,([a-zA-Z0-9 \-_'’\(\),]+)$/;
         let chordLineRegex = /^([0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?),chord,([a-zA-Z0-9 \-_]+)$/;
-        let strumStyleLineRegex = /^([0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+))?,strum_style,([a-zA-Z0-9 \-_]+)$/;
+        let strumStyleLineRegex = /^([0-9][0-9]:[0-9][0-9]:[0-9][0-9](\.[0-9]+)?),strum_style,([a-zA-Z0-9 \-_]+)$/;
         
         let parseError = false;
         // Read lines
