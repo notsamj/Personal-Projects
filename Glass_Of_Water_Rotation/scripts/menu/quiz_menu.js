@@ -20,10 +20,10 @@ class QuizMenu extends Menu {
     setup(){
         // Background
         // Note: No background in this program but this is where it would go
-        //let waterGlass = new WaterGlassComponent(900, 500, 200, 400); // Need more optimization for this
-        let waterGlass = new WaterGlassComponent(900, 500, 10, 75);
+        let waterGlass = new WaterGlassComponent(900, 500, 200, 400); // Need more optimization for this
+        //let waterGlass = new WaterGlassComponent(900, 500, 10, 75);
         //let waterGlass = new WaterGlassComponent(900, 500, 20, 40);
-        waterGlass.updateFillAndAngle(0.5, toRadians(0));
+        waterGlass.updateFillAndAngle(0.4, toRadians(60));
         this.waterGlasses.push(waterGlass);
         this.components.push(waterGlass);
     }

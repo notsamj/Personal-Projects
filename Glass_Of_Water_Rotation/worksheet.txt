@@ -1,0 +1,19 @@
+----- 1
+|   |
+|   | 
+|   | h
+|   | 
+|   |
+----- 0
+0 b 1
+Angle 0
+Bottom = 0.5b, 0h
+
+Angle 45
+Bottom = 1b, 0h
+
+Angle 90
+Bottom = 1b, 0.5h
+
+Angle 135
+Bottom = 

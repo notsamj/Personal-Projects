@@ -11,13 +11,148 @@ class WaterGlassComponent extends Component {
         this.updateWaterRectangles();
     }
 
+    getAngleRAD(){
+        return this.angleRAD;
+    }
+
     updateFillAndAngle(fillAmount, angleRAD){
         this.fill = fillAmount;
         this.angleRAD = angleRAD;
         this.updateWaterRectangles();
     }
 
+    getWidth(){
+        return this.width;
+    }
+
+    getHeight(){
+        return this.height;
+    }
+
+    getWaterWidth(){
+        return this.getWidth() - this.getSideWidth() * 2;
+    }
+
+    getMaxWaterHeight(){
+        return this.getHeight() - this.getSideWidth() * 2;
+    }
+
+    getSideWidth(){
+        return PROGRAM_DATA["menu"]["quiz"]["component_details"]["water_glass_component"]["side_width"];
+    }
+
+    getFill(){
+        return this.fill;
+    }
+
     updateWaterRectangles(){
+        let rectangles = [];
+        let waterHeight = Math.floor(this.getFill() * this.getMaxWaterHeight());
+        let pivotPointTileX = this.getWaterWidth() / 2;
+        let pivotPointTileY = this.getMaxWaterHeight() / 2;
+
+        // Normally down is 270deg, when you rotate it x radians CW then the new bottom is 270 deg rotated CCW by x radians
+        let angleRADFromPivotToRotatedBottom = rotateCCWRAD(toRadians(270), this.getAngleRAD());
+        
+        let tileXOfBottom;
+        let tileYOfBottom;
+
+        let cosOfAngle = Math.cos(angleRADFromPivotToRotatedBottom);
+        let sinOfAngle = Math.sin(angleRADFromPivotToRotatedBottom);
+
+        let xDirection = cosOfAngle < 0 ? -1 : 1;
+        let yDirection = sinOfAngle < 0 ? -1 : 1;
+
+        let cosOfAngleMagnitude = cosOfAngle / xDirection;
+        let sinOfAngleMagnitude = sinOfAngle / yDirection;
+
+        /*
+            This is the proportion of angle in x/y relative to the distance in x/y
+            Example
+            60deg
+            cos(60deg) = 0.5
+            sin(60deg) = 0.866
+
+            but dX = 1 and dY = 2
+            so even though 60deg favours y with a bigger sin
+            2/0.866 = 2.30946882217
+            1 / 0.5 = 2
+            2 < 2.309
+            therfore it will cover the x distance before the y distance
+        */
+
+        let xPropRelToDistX;
+        let yPropRelToDistY;
+
+        let calculateXProp = true;
+        let calculateYProp = true;
+
+        // If the magnitude is close to zero then just assume the other direction is better
+        if (isClose(cosOfAngleMagnitude, 0, 1e-7)){
+            xPropRelToDistX = Number.MAX_SAFE_INTEGER;
+            calculateXProp = false;
+        }
+        // else if is fine because they can't both be close to zero
+        else if (isClose(sinOfAngleMagnitude, 0, 1e-7)){
+            yPropRelToDistY = Number.MAX_SAFE_INTEGER;
+            calculateYProp = false; 
+        }
+
+        if (calculateXProp){
+            // = dX / magX
+            xPropRelToDistX = pivotPointTileX / cosOfAngleMagnitude;
+        }
+
+        if (calculateYProp){
+            // = dY / magY
+            yPropRelToDistY = pivotPointTileY / sinOfAngleMagnitude;
+        }
+
+        /* Note: Remember, this is a rectangle stood up like
+                    ----- 1
+                    |   |
+                    |   | 
+                    | p | h
+                    |   | 
+                    |   |
+                    ----- 0
+                    0 b 1
+        
+            Where p is the pivot point
+        
+        */
+        // If it will reach x first
+        if (xPropRelToDistX < yPropRelToDistY){
+            if (xDirection > 0){
+                tileXOfBottom = this.getWaterWidth() - 1;
+            }else{
+                tileXOfBottom = 0;
+            }
+            tileYOfBottom = pivotPointTileY + pivotPointTileX * sinOfAngleMagnitude / cosOfAngleMagnitude;
+        }
+        // Else it reaches y first
+        else{
+            if (yDirection > 0){
+                tileYOfBottom = this.getMaxWaterHeight() - 1;
+            }else{
+                tileYOfBottom = 0;
+            }
+            tileXOfBottom = pivotPointTileX + pivotPointTileY * cosOfAngleMagnitude / sinOfAngleMagnitude;
+        }
+
+        // Round in direction (towards bottom)
+        tileXOfBottom = roundInDirection(tileXOfBottom, xDirection);
+        tileYOfBottom = roundInDirection(tileYOfBottom, yDirection);
+
+        // Determine critera for the water line
+
+        // Create rectangles
+        
+
+        this.waterRectangles = rectangles;
+    }
+
+    /*updateWaterRectangles(){
         let sideWidth = PROGRAM_DATA["menu"]["quiz"]["component_details"]["water_glass_component"]["side_width"];
         let waterWidth = this.width - sideWidth * 2;
         let maxWaterHeight = this.height - sideWidth;
@@ -272,7 +407,7 @@ class WaterGlassComponent extends Component {
         this.waterRectangles = rectangles;
         //console.log(this.waterRectangles)
         //debugger;
-    }
+    }*/
 
     display(){
         let leftHalfWidth = Math.floor(this.width / 2);
@@ -283,15 +418,15 @@ class WaterGlassComponent extends Component {
 
         let x = this.centerX - leftHalfWidth;
         let y = this.centerY - topHalfHeight;
-        let width = this.width;
-        let height = this.height;
+        let width = this.getWidth();
+        let height = this.getHeight();
 
-        let sideWidth = PROGRAM_DATA["menu"]["quiz"]["component_details"]["water_glass_component"]["side_width"];
+        let sideWidth = this.getSideWidth();
 
-        let rotationAmountRAD = this.angle;
+        let rotationAmountRAD = this.getAngleRAD();
 
-        let waterWidth = this.width - sideWidth * 2;
-        let maxWaterHeight = height - sideWidth;
+        let waterWidth = this.getWaterWidth();
+        let maxWaterHeight = this.getMaxWaterHeight();
         let waterHeight = Math.ceil(this.fill * maxWaterHeight);
 
         let waterXOffset = sideWidth + -1 * width / 2;
@@ -306,6 +441,7 @@ class WaterGlassComponent extends Component {
 
         // Empty area
         let emptyColourCode = PROGRAM_DATA["menu"]["quiz"]["component_details"]["water_glass_component"]["empty_colour"];
+        //emptyColourCode = "#ff0000";
         noStrokeRectangle(Colour.fromCode(emptyColourCode), waterXOffset, -1 * height / 2 + sideWidth, waterWidth, height - sideWidth * 2);
 
         // Water
@@ -313,10 +449,10 @@ class WaterGlassComponent extends Component {
         //noStrokeRectangle(Colour.fromCode(waterColourCode), waterXOffset, waterYOffset, waterWidth, waterHeight);
         let waterColour = Colour.fromCode(waterColourCode);
         for (let rectangleObj of this.waterRectangles){
-            let rectangleXOffset = waterXOffset + rectangleObj["tile_x"];
-            //let rectangleYOffset = maxWaterHeight - rectangleObj["tile_y"] - rectangleObj["height"];
-            let rectangleYOffset = maxWaterHeight - rectangleObj["tile_y"] - rectangleObj["height"];
-            rectangleYOffset *= -1;
+            let rectangleXOffset = waterXOffset + rectangleObj["left_tile_x"];
+            let distanceToTopOfRectange = maxWaterHeight - (rectangleObj["bottom_tile_y"] + rectangleObj["height"]);
+            let rectangleYOffset = -1 * height / 2 + sideWidth + distanceToTopOfRectange;
+            //let rectangleYOffset = -1 * height / 2 + sideWidth;
             noStrokeRectangle(waterColour, rectangleXOffset, rectangleYOffset, rectangleObj["width"], rectangleObj["height"]);
         }
 
