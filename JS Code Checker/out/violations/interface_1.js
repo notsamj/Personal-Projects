@@ -1,8 +1,8 @@
+// nsInterface
 /*
     Class Name: InterfaceOne
     Class Description: TODO
 */
-// nsInterface
 class InterfaceOne {
     /*
         Method Name: constructor

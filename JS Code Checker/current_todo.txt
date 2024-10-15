@@ -1,3 +1,5 @@
+Set up proper settings json because right now you have to copy it to the directory you are using
+Just ignore TODOs in strings and comments
 (Optional)
     Rework program when using matchAll to use match[0] for matchString and match["index"] for character index
 

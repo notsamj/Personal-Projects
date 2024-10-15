@@ -1,8 +1,8 @@
+// nsAbstractClass
 /*
     Class Name: AbstractClassOne
     Class Description: TODO
 */
-// nsAbstractClass
 class AbstractClassOne {
     /*
         Method Name: constructor

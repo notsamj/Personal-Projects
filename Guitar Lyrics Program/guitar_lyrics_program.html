@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guitar Lyrics Program</title>
+
+    <link rel="stylesheet" href="stylesheets/main.css">
+
+    <!-- Data -->
+    <script src="data/data.js"></script>
+
+    <!-- Dependencies -->
+
+    <!-- Simple 2d Canvas Interface -->
+    <script src="scripts/general/simple_2d_canvas_helper.js"></script>
+    
+    <!-- General -->
+    <script src="scripts/general/helper_functions.js"></script>
+    <script src="scripts/general/user_input_manager.js"></script>
+    <script src="scripts/general/sound_manager.js"></script>
+    <script src="scripts/general/frame_rate_counter.js"></script>
+    <script src="scripts/general/notsam_linked_list.js"></script>
+    <script src="scripts/general/lock.js"></script>
+    <script src="scripts/general/cooldown_lock.js"></script>
+
+    <!-- Menu Specific -->
+    <script src="scripts/menu/component.js"></script>
+    <script src="scripts/menu/text_component.js"></script>
+    <script src="scripts/menu/rectangle_button.js"></script>
+    <script src="scripts/menu/option_slider.js"></script>
+    <script src="scripts/menu/quantity_slider.js"></script>
+    <script src="scripts/menu/menu_manager.js"></script>
+    <script src="scripts/menu/menu.js"></script>
+    <script src="scripts/menu/main_menu.js"></script>
+    <script src="scripts/menu/player_menu.js"></script>
+    <script src="scripts/menu/sound_menu.js"></script>
+    <script src="scripts/misc/tick_scheduler.js"></script>
+
+    <!-- Misc -->
+    <script src="scripts/misc/song.js"></script>
+
+    <!-- Main Script --> 
+    <script src="scripts/guitar_lyrics_program.js"></script>
+</head>
+<body>
+    <!-- Canvas for displaying stuff -->
+    <main>
+        <canvas id="canvas"></canvas>
+    </main>
+    <!-- File input for song mp3 -->
+    <h3>Input song file (mp3)</h3>
+    <input type="file" id="song_file_submission">
+    <!-- Text area for song data submission --> 
+    <h3>Input song data (see README for format)</h3>
+    <textarea id="data_submission"></textarea>
+</body>
+</html>

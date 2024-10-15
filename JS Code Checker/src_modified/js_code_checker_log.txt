@@ -1,13 +1,14 @@
 ----- Summary -----
-Number of statements: 587
+Number of statements: 639
 Number of function comments added: 0
 Number of Function comments added: 0
 Number of class comments added: 0
 Number of line-referencing console.logs updated: 0
 Number of old console.logs removed: 0
+Number of unused functions found: 0
 Number of todos found: 13
 Number of violations found: 0
 ----- js_file.js -----
 Relative path: ./
-Number of statements: 219
+Number of statements: 235
 Number of todos found: 13

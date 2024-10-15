@@ -1,0 +1,6 @@
+README
+    Explain changing file location
+    Instructional youtube video
+Publish
+
+Feature to select chords to instruct to to play and other practice things

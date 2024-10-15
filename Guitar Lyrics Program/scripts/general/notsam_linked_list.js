@@ -5,12 +5,12 @@
     Copy of NotSamSinglyLinkedList but made doubly.
     Also I haven't made a doubly linked list in many many years so this may have many errors because I haven't tested it :)
 */
-class NotSamLinkedList{
+class NotSamLinkedList {
         /*
         Method Name: constructor
         Method Parameters:
             array:
-                An array used to initialize the data for this linked list
+                An array used to initialize the data for this array list
         Method Description: Constructor
         Method Return: Constructor
     */
@@ -20,6 +20,27 @@ class NotSamLinkedList{
         if (array != null){
             this.convertFromArray(array);
         }
+    }
+
+    /*
+        Method Name: countCondition
+        Method Parameters:
+            conditionFunction:
+                A function taking one parameter and returning true or flase
+        Method Description: Counts the number of elements satisfying a condition
+        Method Return: Integer
+    */
+    countCondition(conditionFunction){
+        let count = 0;
+        let current = this.head;
+        while (current != null){
+            // If value matches condition then add to count
+            if (conditionFunction(current.value)){
+                count++;
+            }
+            current = current.next;
+        }
+        return count;
     }
 
     /*
@@ -189,7 +210,7 @@ class NotSamLinkedList{
         let i = 0;
         // Loop through the list and print each value
         while (current != null){
-            console.log(`${i}: ${current.value}`);
+            console.error(`${i}: ${current.value}:`);
             i++;
             current = current.next;
         }
@@ -408,16 +429,16 @@ class NotSamLinkedList{
     Class Name: DLLNode
     Description: A doubly linked node.
 */
-class DLLNode{
+class DLLNode {
     /*
         Method Name: constructor
         Method Parameters: 
             previous:
-                Previous node
+                Previous DLLNode
             value:
-                Value at the node
+                The value to store
         Method Description: Constructor
-        Method Return: constructor
+        Method Return: Constructor
     */
     constructor(previous, value){
         this.value = value;

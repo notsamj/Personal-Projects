@@ -4,7 +4,6 @@ const DataCollector = require("./data_collector.js");
 const doesFolderExist = require("./helper_functions.js").doesFolderExist;
 const findIndexOfChar = require("./helper_functions.js").findIndexOfChar;
 const findNextIndexOfChar = require("./helper_functions.js").findNextIndexOfChar;
-const copyArray = require("./helper_functions.js").copyArray;
 const insertStringIntoStringBeforeCharIndex = require("./helper_functions.js").insertStringIntoStringBeforeCharIndex;
 const searchForSubstringInString = require("./helper_functions.js").searchForSubstringInString;
 const measureIndentingBefore = require("./helper_functions.js").measureIndentingBefore;
@@ -21,6 +20,8 @@ const countOccurancesOfSubString = require("./helper_functions.js").countOccuran
 const objectHasKey = require("./helper_functions.js").objectHasKey;
 const getLineBefore = require("./helper_functions.js").getLineBefore;
 const listContainsElement = require("./helper_functions.js").listContainsElement;
+const NotSamLinkedSet = require("./notsam_linked_set.js");
+const collectCharactersFromStartingPToEndingP = require("./helper_functions.js").collectCharactersFromStartingPToEndingP;
 
 /*
     Class Name: JSFile
@@ -47,6 +48,7 @@ class JSFile {
         this.dataCollector = new DataCollector();
 
         this.functionsAndMethods = [];
+        this.functionsCalledSet = new NotSamLinkedSet();
         this.classes = [];
     }
 
@@ -310,7 +312,7 @@ class JSFile {
         Method Return: void
     */
     countStatements(){
-        let statementRegex = /; *($|\n)/g;
+        let statementRegex = /; *($|(\n|(\r\n)))/g;
         let statements = [...this.fileDataStr.matchAll(statementRegex)];
         this.dataCollector.setValue("number_of_statements", statements.length);
     }
@@ -374,6 +376,64 @@ class JSFile {
     }
 
     /*
+        Method Name: identifyFunctionsCalled
+        Method Parameters: None
+        Method Description: Identifies functions called in the file
+        Method Return: void
+    */
+    identifyFunctionsCalled(){
+        let functionCallRegex = /([a-z][a-zA-Z0-9]+)\(/g
+        let functionCallStrings = [...this.fileDataStr.matchAll(functionCallRegex)]; 
+        // Loop through and identify
+        for (let functionCallString of functionCallStrings){
+            let functionName = functionCallString[1];
+            let charIndex = functionCallString["index"];
+            let firstParenthesisIndex = charIndex + functionName.length;
+            let parameterString = collectCharactersFromStartingPToEndingP(this.fileDataStr, firstParenthesisIndex);
+            let endParnthesisCharIndex = firstParenthesisIndex + parameterString.length - 1; // -1 because parameterString includes opening '('
+            let expectedOpeningBraceForFunctionIndex = endParnthesisCharIndex + 1;
+            let isACall = expectedOpeningBraceForFunctionIndex < this.fileDataStr.length && this.fileDataStr[expectedOpeningBraceForFunctionIndex] != '{';
+            // Note: If the index is too big idk its just a mess anyway
+            if (isACall){
+                this.functionsCalledSet.add(functionName);
+            }
+        }
+    }
+
+    /*
+        Method Name: getFunctionsCalled
+        Method Parameters: None
+        Method Description: Returns the set of functions called
+        Method Return: NotSamLinedSet<String>
+    */
+    getFunctionsCalled(){
+        return this.functionsCalledSet;
+    }
+
+    /*
+        Method Name: findUnusedFunctions
+        Method Parameters: 
+            namesOfAllFunctionsCalledSet:
+                A NotSamLinkedSet<String> with names of functions called in the program
+        Method Description: Finds unused functions and records them
+        Method Return: void
+    */
+    findUnusedFunctions(namesOfAllFunctionsCalledSet){
+        let unusedFunctionNames = [];
+
+        // Loop through all functions declared in this file, ignore methods
+        for (let functionOrMethod of this.functionsAndMethods){
+            if (!functionOrMethod["is_a_function"]){ continue; }
+            let functionName = functionOrMethod["name"];
+            // If function name isn't found in a call then push it to this list
+            if (!namesOfAllFunctionsCalledSet.has(functionName)){
+                unusedFunctionNames.push(functionName);
+            }
+        }
+        this.dataCollector.setValue("unused_function_names", unusedFunctionNames);
+    }
+
+    /*
         Method Name: identifyMethodsAndFunctions
         Method Parameters: None
         Method Description: Identifies all methods and functions in the file
@@ -392,7 +452,7 @@ class JSFile {
             // Check banned method names (hard coding this)
 
             // Easier than changing how methods are identified to just include this case and not comment catch
-            if (name == "catch"){ continue; }
+            if (name === "catch"){ continue; }
 
             // Check for other functions with the same name and adjust char index to the next occurance
             for (let fOrMethod of this.functionsAndMethods){
@@ -411,8 +471,9 @@ class JSFile {
             for (let i = 0; i < parametersStringList.length; i++){
                 parametersStringList[i] = parametersStringList[i].trim();
             }
+            let isAFunction = isPrecededBy(this.fileDataStr, charIndex, "function ");
             // Note: not doing things like checking if the same parameter name is used twice like function test$(a, a, b){}
-            this.functionsAndMethods.push({"type": "method/function", "char_index": charIndex, "name": name, "parameters": parametersStringList});
+            this.functionsAndMethods.push({"type": "method/function", "is_a_function": isAFunction, "char_index": charIndex, "name": name, "parameters": parametersStringList});
         }
     }
 

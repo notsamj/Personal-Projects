@@ -1,0 +1,23 @@
+00:00:00,lyrics,now playing E minor
+00:00:00,chord,E-m
+00:00:00,strum_style,down-down-up-down-up-down-down-down
+
+00:00:10,lyrics,now playing A sus 2
+00:00:10,chord,A-sus2
+00:00:10,strum_style,down-down-up-down-up-down
+
+00:00:20,lyrics,now playing A major
+00:00:20,chord,A-M
+00:00:20,strum_style,down-down-up-down-up-down
+
+00:00:29,lyrics,now playing A minor
+00:00:29,chord,A-m
+00:00:29,strum_style,down-down-up-down-up-down
+
+00:00:36,lyrics,now playing E major
+00:00:36,chord,E-M
+00:00:36,strum_style,down-down-up-down-up-down
+
+00:00:44,lyrics,now playing F major
+00:00:44,chord,F-M
+00:00:44,strum_style,down-down-up-down-up-down

@@ -16,17 +16,17 @@ class myTestClass4 {
     */
     myAbstractMethod1(){}
 
-    /*
-        Method Name: myAbstractMethod2
-        Method Parameters: 
-            a:
-                TODO
-            b:
-                TODO
-        Method Description: TODO
-        Method Return: TODO
-    */
-    // nsMethodExactMatch
+    //*
+    Method Name: myAbstractMethod2
+    Method Parameters: 
+        a:
+            TODO
+        b:
+            TODO
+    Method Description: TODO
+    Method Return: TODO
+*/
+/ nsMethodExactMatch
     myAbstractMethod2(a,b){
         console.log("testing2!!!");
     }
