@@ -2,7 +2,7 @@
 #### Samuel Jones
 ####
 
-## Completed Applications
+## Completed applications in this repository
 - C App 1
   - A simple command line client & server chatroom application.
 - C Sharp App 1
@@ -28,7 +28,7 @@
 ### Other Projects
 
 ### Individual
-I have made a simple game using JavaScript and the P5 Library.
+I have made a simple game using JavaScript.
 https://github.com/notsamj/LobsterAceWW2/
 
 ### Group
