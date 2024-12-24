@@ -2,6 +2,10 @@
 #### Samuel Jones
 ####
 
+### Individual
+I have made a simple game using JavaScript.
+https://github.com/notsamj/LobsterAceWW2/
+
 ## Completed applications in this repository
 - C App 1
   - A simple command line client & server chatroom application.
@@ -26,10 +30,6 @@
   - Not yet in development.
 
 ### Other Projects
-
-### Individual
-I have made a simple game using JavaScript.
-https://github.com/notsamj/LobsterAceWW2/
 
 ### Group
 I have contributed to two public group projects during my time as a student at Ontario Tech (with a different GitHub account)\
