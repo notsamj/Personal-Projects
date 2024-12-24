@@ -29,7 +29,7 @@
 
 ### Individual
 I have made a simple game using JavaScript and the P5 Library.
-https://github.com/notsamj/WW2PlaneGame/
+https://github.com/notsamj/LobsterAceWW2/
 
 ### Group
 I have contributed to two public group projects during my time as a student at Ontario Tech (with a different GitHub account)\
