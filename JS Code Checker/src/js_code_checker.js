@@ -388,9 +388,9 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
             log.write('\n' + "Number of function comments added: " + fCommentsAdded.toString());
         }
 
-        // Write number of Function comments added
+        // Write number of method comments added
         if (!settings["ignore_counters_with_zero_changes_in_log"] || mCommentsAdded > 0){
-            log.write('\n' + "Number of Function comments added: " + mCommentsAdded.toString());
+            log.write('\n' + "Number of method comments added: " + mCommentsAdded.toString());
         }
 
         // Write number of class comments added
@@ -462,8 +462,8 @@ function collectAndLogData(jsFiles, settings, outputFolderRPath){
     // Write number of function comments added
     summaryText += '\n' + "Number of function comments added: " + totalFunctionCommentsAdded.toString();
 
-    // Write number of Function comments added
-    summaryText += '\n' + "Number of Function comments added: " + totalMethodCommentsAdded.toString();
+    // Write number of method comments added
+    summaryText += '\n' + "Number of method comments added: " + totalMethodCommentsAdded.toString();
 
     // Write number of class comments added
     summaryText += '\n' + "Number of class comments added: " + totalClassCommentsAdded.toString();
