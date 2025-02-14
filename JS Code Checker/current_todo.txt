@@ -1,3 +1,14 @@
+Inserting play comment in display! (because its above)
+
+di*/splay(){
+    
+}
+
+play(){
+    
+}
+
+
 Set up proper settings json because right now you have to copy it to the directory you are using
 Just ignore TODOs in strings and comments
 (Optional)
