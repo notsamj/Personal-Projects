@@ -1,4 +1,4 @@
-# C App 1
+# Python Config
 #### main.py
 #### notsamj_config.py
 #### Tested with Python Version: 3.8.10
