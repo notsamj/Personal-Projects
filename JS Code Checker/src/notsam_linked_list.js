@@ -128,6 +128,10 @@ class NotSamLinkedList {
 
         this.storedLength++;
     }
+
+    has(value){
+        return this.search(value) != -1;
+    }
     
     /*
         Method Name: append
