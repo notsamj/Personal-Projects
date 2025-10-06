@@ -31,7 +31,7 @@ The in-program prompts should be self-explanatory.
 
 ## Application Shortcomings
 The application has various shortcomings. Listed below are a few.
-- Port selectiion is not dynamic
+- Port selection is not dynamic
   - Port must be set in the .c files
 - IP selection is not dynamic
   - IP must be set in the `chat_application_client.c` file
